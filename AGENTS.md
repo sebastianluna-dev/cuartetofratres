@@ -1,0 +1,14 @@
+# Convenciones del proyecto
+
+Resumen de lo que explica `README.md`. Si algo de aquí y el código discrepan, manda el código.
+
+- **Una app Next 16, una sola página**: `app/page.tsx` renderiza `app/landing-page.tsx`, que compone las secciones según `config/site.config.ts`. No hay base de datos ni CMS: el contenido vive en `constants/` y se despliega con el código.
+- **Archivos**: kebab-case con sufijos `.section.tsx`, `.comp.tsx`, `.hook.ts`, `.const.ts`, `.types.ts`, `.actions.ts`; named exports (default sólo en archivos de App Router); sin barrels, imports `@/...`.
+- **Componentes**: Server Components por defecto; `"use client"` sólo en la hoja que tiene el estado (cabecera, lista de integrantes, reproductor, formulario). Imágenes con `next/image`, nunca `<img>`. Copy en español. `components/site/` es espejo de la página: `sections/shell/` (cabecera, pie, avisos), `sections/home/<sección>/` (una carpeta por sección con su `.section.tsx` y sus `.comp.tsx`) y `shared/` (piezas que reutilizan varias secciones). Sin carpetas `common`.
+- **Idioma**: los comentarios del código van en inglés, como los identificadores; el copy que ve el usuario (y las anclas) sigue en español, así que un comentario que cite un rótulo lo cita tal cual.
+- **CSS**: BEM estricto (`bloque__elemento`, modificador `_clave_valor`), un archivo por componente y TODAS sus reglas anidadas bajo el selector raíz con nesting nativo (`&`), media queries dentro del bloque, desktop-first. Excepción: `@keyframes` no se puede anidar y va al nivel superior, con el nombre del bloque como prefijo. Tokens `--color-*`, `--font-*` y `--site-*` en `app/globals.css`, que también tiene las clases compartidas (`section`, `eyebrow`, `reveal`, `button`). Sin Tailwind ni CSS-in-JS.
+- **Datos y lógica**: lo que se puede probar sin React va a `lib/` (función pura + `*.test.ts` al lado) o a `services/`. Los componentes no formatean fechas ni filtran listas por su cuenta.
+- **Formulario**: server action plana con validación en el servidor (`services/contact/`); el cliente sólo añade el estado `pending` y el mensaje. Cualquier campo nuevo se valida en `contact.validation.ts` y se acota en `constants/contact.const.ts`.
+- **Deuda**: lo que se encuentra y no se arregla va a `IMPROVEMENTS.md` (área, prioridad y cómo abordarlo); las tareas mecánicas, a `todos.md`. Los dos están en inglés.
+- **Documentación**: **todo cambio importante se documenta en el mismo commit**, no después: `README.md` si cambian puesta en marcha, scripts, contenido o rutas; `AGENTS.md` si el cambio ES una convención; `IMPROVEMENTS.md`/`todos.md` para la deuda encontrada o resuelta.
+- **Antes de dar algo por terminado**: `npm run typecheck`, `npm run lint`, `npm test` y `npm run build` en verde. Rendimiento y layout, siempre contra `npm run build && npm run start`, nunca contra `next dev`.
