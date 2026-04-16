@@ -1,0 +1,228 @@
+:root {
+  /* Palette. Two grounds (ivory and ink) and one accent (lime), plus the
+     olive that the accent becomes when it has to be read on ivory. */
+  --color-ivory: #f3f2f2;
+  --color-ivory-soft: #eae9e9;
+  --color-ink: #121418;
+  --color-ink-soft: #20242c;
+  --color-lime: #e6ec9e;
+  --color-lime-hover: #f1f6bd;
+  --color-olive: #4d5610;
+  --color-olive-hover: #3a4110;
+  /* Text. */
+  --color-text-on-ivory: #121418;
+  --color-text-soft-on-ivory: #3a3d42;
+  --color-muted-on-ivory: #605d5d;
+  --color-text-on-ink: #f2f4f3;
+  --color-muted-on-ink: rgba(242, 244, 243, 0.62);
+  /* Hairlines. */
+  --color-divider-on-ivory: rgba(18, 20, 24, 0.2);
+  --color-divider-soft-on-ivory: rgba(18, 20, 24, 0.14);
+  --color-divider-on-ink: rgba(242, 244, 243, 0.16);
+  --color-divider-strong-on-ink: rgba(242, 244, 243, 0.2);
+
+  --font-heading: var(--font-forum), Georgia, serif;
+  --font-display: var(--font-fratres), var(--font-forum), Georgia, serif;
+  --font-body: var(--font-hoves), system-ui, sans-serif;
+
+  /* Horizontal padding of every section and the header: one value so the
+     content edges line up from the top of the page to the footer. */
+  --site-gutter: clamp(20px, 4.5vw, 72px);
+  --site-max-width: 1500px;
+  /* Anchor offset: the fixed header must not cover a section's title when a
+     nav link scrolls to it. */
+  --site-header-offset: 84px;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Base reset
+   The stylesheets assume headings carry no size of their own, lists carry no
+   bullet or indentation, and images are block elements.
+   --------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0 solid;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100%;
+  line-height: inherit;
+  background: var(--color-ivory);
+  color: var(--color-text-on-ivory);
+  font-family: var(--font-body);
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+b,
+strong {
+  font-weight: 600;
+}
+
+/* Visible focus across the whole site. On ink the lime reads; on ivory the
+   olive does, which is why sections on ivory recolour it. */
+:focus-visible {
+  outline: 2px solid var(--color-lime);
+  outline-offset: 3px;
+}
+
+.section_theme_ivory :focus-visible {
+  outline-color: var(--color-olive);
+}
+
+::selection {
+  background: rgba(230, 236, 158, 0.55);
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Skip link to the content: off-screen until it receives focus. */
+.skip-link {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--color-lime);
+  color: var(--color-ink);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12px;
+  transform: translateY(-200%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------------------------------------
+   Shared layout pieces
+   Every section is `section section_theme_<ivory|ink>` with a `section__inner`
+   that sets the width; the padding is each section's own.
+   --------------------------------------------------------------------------- */
+
+.section {
+  scroll-margin-top: var(--site-header-offset);
+
+  &.section_theme_ivory {
+    background: var(--color-ivory);
+    color: var(--color-text-on-ivory);
+  }
+
+  &.section_theme_ink {
+    background: var(--color-ink);
+    color: var(--color-text-on-ink);
+  }
+
+  & .section__inner {
+    max-width: var(--site-max-width);
+    margin: 0 auto;
+    padding: 0 var(--site-gutter);
+  }
+
+  & .section__inner_width_narrow {
+    max-width: 1400px;
+  }
+}
+
+/* Small uppercase label above a title, next to the staff ornament. */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  & .eyebrow__label {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-olive);
+  }
+
+  &.eyebrow_theme_ink .eyebrow__label {
+    color: var(--color-lime);
+  }
+}
+
+/* Blocks fade in the first time they enter the viewport (hooks/use-reveal.hook.ts).
+   Without JavaScript the class never applies and everything is visible. */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 0.9s var(--ease-out);
+
+  &.reveal_seen {
+    opacity: 1;
+    transform: none;
+  }
+}
+
