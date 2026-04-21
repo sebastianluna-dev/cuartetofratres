@@ -1,0 +1,26 @@
+.staff-ornament {
+  display: block;
+  flex: 0 0 auto;
+
+  & .staff-ornament__lines {
+    stroke: currentColor;
+    stroke-width: 1.2;
+    opacity: 0.6;
+  }
+
+  & .staff-ornament__notes {
+    fill: currentColor;
+  }
+
+  &.staff-ornament_theme_ink {
+    color: var(--color-ink);
+  }
+
+  &.staff-ornament_theme_ivory {
+    color: var(--color-lime);
+
+    & .staff-ornament__lines {
+      opacity: 0.8;
+    }
+  }
+}
