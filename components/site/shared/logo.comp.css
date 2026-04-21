@@ -1,0 +1,22 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  transition: color 0.45s ease;
+
+  /* Only the height is set (inline, from the prop); the width follows the
+     viewBox ratio. `display: block` removes the line box under an inline SVG. */
+  & .logo__image {
+    display: block;
+    width: auto;
+    fill: currentColor;
+  }
+
+  &.logo_theme_ivory {
+    color: var(--color-text-on-ink);
+  }
+
+  &.logo_theme_ink {
+    color: var(--color-ink);
+  }
+}
