@@ -226,3 +226,57 @@ strong {
   }
 }
 
+/* Solid lime pill used by the header and the hero. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.3s ease;
+
+  &.button_variant_lime {
+    padding: 12px 24px;
+    background: var(--color-lime);
+    border: 1px solid var(--color-lime);
+    color: var(--color-ink);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    &:hover {
+      background: var(--color-lime-hover);
+      border-color: var(--color-lime-hover);
+    }
+  }
+
+  &.button_variant_outline-lime {
+    padding: 12px 22px;
+    border: 1px solid var(--color-lime);
+    border-radius: 2px;
+    color: var(--color-lime);
+    font-family: var(--font-heading);
+    font-size: 14px;
+
+    &:hover {
+      background: rgba(230, 236, 158, 0.16);
+    }
+  }
+
+  &.button_variant_ink {
+    padding: 16px 30px;
+    background: var(--color-ink);
+    color: var(--color-lime);
+    font-family: var(--font-heading);
+    font-size: 16px;
+
+    &:hover {
+      background: var(--color-ink-soft);
+    }
+  }
+}
