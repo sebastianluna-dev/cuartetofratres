@@ -43,6 +43,11 @@
     text-transform: uppercase;
   }
 
+  /* On the photo the links need a halo to stay legible; on ivory they do not. */
+  &.site-header_theme_ivory .site-header__nav {
+    text-shadow: 0 1px 12px rgba(18, 20, 24, 0.55);
+  }
+
   & .site-header__link {
     padding: 6px 0;
     border-bottom: 1px solid transparent;
