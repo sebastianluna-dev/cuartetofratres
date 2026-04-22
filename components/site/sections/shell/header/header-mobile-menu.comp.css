@@ -1,0 +1,105 @@
+.header-menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 2px;
+  transition: color 0.45s ease;
+
+  & .header-menu-toggle__bar {
+    display: block;
+    width: 26px;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  &.header-menu-toggle_theme_ivory {
+    color: var(--color-text-on-ink);
+  }
+
+  &.header-menu-toggle_theme_ink {
+    color: var(--color-ink);
+  }
+
+  /* While the ink panel is open the toggle sits over it, so it is always ivory. */
+  &.header-menu-toggle_open {
+    color: var(--color-text-on-ink);
+    position: relative;
+    z-index: 71;
+
+    & .header-menu-toggle__bar:first-child {
+      transform: translateY(3.75px) rotate(45deg);
+    }
+
+    & .header-menu-toggle__bar:last-child {
+      transform: translateY(-3.75px) rotate(-45deg);
+    }
+  }
+
+  @media (max-width: 767px) {
+    display: flex;
+  }
+}
+
+.header-mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 32px;
+  padding: 120px var(--site-gutter) 40px;
+  background: var(--color-ink);
+  color: var(--color-text-on-ink);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s var(--ease-out),
+    visibility 0s linear 0.3s;
+
+  &.header-mobile-menu_open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+  }
+
+  & .header-mobile-menu__links {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-divider-strong-on-ink);
+  }
+
+  & .header-mobile-menu__link {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-divider-on-ink);
+    font-family: var(--font-display);
+    font-size: 34px;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: var(--color-lime);
+  }
+
+  & .header-mobile-menu__index {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    color: var(--color-muted-on-ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  & .header-mobile-menu__cta {
+    height: 56px;
+    font-size: 13px;
+  }
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
