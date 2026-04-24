@@ -1,0 +1,18 @@
+import { siteConfig } from "@/config/site.config";
+import { Header } from "@/components/site/sections/shell/header/header.section";
+import { Footer } from "@/components/site/sections/shell/footer/footer.section";
+import { HeroSection } from "@/components/site/sections/home/hero/hero.section";
+
+export default function LandingPage() {
+  const { sections } = siteConfig.home;
+
+  return (
+    <div className="landing-page">
+      <Header />
+      <main id="contenido">
+        {sections.hero && <HeroSection />}
+      </main>
+      <Footer />
+    </div>
+  );
+}
