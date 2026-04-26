@@ -1,0 +1,20 @@
+.staff-divider {
+  pointer-events: none;
+  color: var(--color-ink);
+
+  & .staff-divider__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  & .staff-divider__lines {
+    stroke: currentColor;
+    stroke-width: 1.4;
+    opacity: 0.55;
+  }
+
+  & .staff-divider__notes {
+    fill: currentColor;
+  }
+}
