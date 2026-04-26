@@ -1,0 +1,123 @@
+.about {
+  & .about__content {
+    padding: clamp(56px, 8vw, 124px) 0 clamp(48px, 6vw, 80px);
+  }
+
+  & .about__grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: clamp(32px, 4.5vw, 64px);
+  }
+
+  & .about__text {
+    flex: 1 1 420px;
+    min-width: 0;
+  }
+
+  & .about__eyebrow {
+    margin-bottom: clamp(18px, 2.4vw, 26px);
+  }
+
+  & .about__title {
+    max-width: 15em;
+    font-family: var(--font-display);
+    font-size: clamp(38px, 5.6vw, 76px);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+
+  & .about__lead {
+    margin-top: clamp(22px, 3vw, 30px);
+    max-width: 32em;
+    font-size: 19px;
+    line-height: 1.75;
+    text-wrap: pretty;
+  }
+
+  & .about__pillars {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 46em;
+    margin-top: clamp(32px, 4vw, 48px);
+  }
+
+  /* The figure starts above the text block so the photo overlaps the title's
+     top edge, as in the design. */
+  & .about__figure {
+    flex: 0 1 460px;
+    min-width: 280px;
+    margin-top: calc(-1 * clamp(0px, 6vw, 140px));
+    align-self: stretch;
+  }
+
+  & .about__frame {
+    position: relative;
+    height: clamp(440px, 56vw, 720px);
+    overflow: hidden;
+  }
+
+  & .about__photo {
+    object-fit: cover;
+    object-position: 50% 40%;
+    filter: saturate(0.75);
+  }
+
+  & .about__caption {
+    margin-top: 10px;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    color: var(--color-muted-on-ivory);
+  }
+
+  @media (max-width: 767px) {
+    & .about__content {
+      padding-top: 38px;
+    }
+
+    & .about__title {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      line-height: 1.06;
+      letter-spacing: -0.01em;
+      text-transform: none;
+    }
+
+    & .about__lead {
+      font-size: 17.5px;
+      line-height: 1.65;
+    }
+
+    /* Horizontal strip of cards, bleeding to the right edge of the screen. */
+    & .about__pillars {
+      flex-wrap: nowrap;
+      gap: 14px;
+      max-width: none;
+      margin: 28px calc(-1 * var(--site-gutter)) 0 0;
+      padding-right: var(--site-gutter);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    & .about__figure {
+      flex-basis: 100%;
+      min-width: 0;
+      margin: 0 calc(-1 * var(--site-gutter));
+    }
+
+    & .about__frame {
+      height: 392px;
+    }
+
+    & .about__caption {
+      padding: 0 var(--site-gutter);
+    }
+  }
+}
