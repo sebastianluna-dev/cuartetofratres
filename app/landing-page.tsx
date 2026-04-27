@@ -2,6 +2,7 @@ import { siteConfig } from "@/config/site.config";
 import { Header } from "@/components/site/sections/shell/header/header.section";
 import { Footer } from "@/components/site/sections/shell/footer/footer.section";
 import { HeroSection } from "@/components/site/sections/home/hero/hero.section";
+import { AboutSection } from "@/components/site/sections/home/about/about.section";
 
 export default function LandingPage() {
   const { sections } = siteConfig.home;
@@ -11,6 +12,7 @@ export default function LandingPage() {
       <Header />
       <main id="contenido">
         {sections.hero && <HeroSection />}
+        {sections.about && <AboutSection />}
       </main>
       <Footer />
     </div>
