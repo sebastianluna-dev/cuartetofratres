@@ -12,6 +12,10 @@ export function useReveal<T extends HTMLElement>(): { ref: React.RefObject<T | n
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
+    if (typeof IntersectionObserver === "undefined" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setSeen(true);
+      return;
+    }
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
