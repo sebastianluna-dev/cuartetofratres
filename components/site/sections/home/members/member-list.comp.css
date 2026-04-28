@@ -1,0 +1,8 @@
+.member-list {
+  border-bottom: 1px solid var(--color-divider-on-ivory);
+
+  @media (max-width: 767px) {
+    margin: 0 calc(-1 * var(--site-gutter));
+    border-bottom: 0;
+  }
+}
