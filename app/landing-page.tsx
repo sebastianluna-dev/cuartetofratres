@@ -3,6 +3,7 @@ import { Header } from "@/components/site/sections/shell/header/header.section";
 import { Footer } from "@/components/site/sections/shell/footer/footer.section";
 import { HeroSection } from "@/components/site/sections/home/hero/hero.section";
 import { AboutSection } from "@/components/site/sections/home/about/about.section";
+import { MembersSection } from "@/components/site/sections/home/members/members.section";
 
 export default function LandingPage() {
   const { sections } = siteConfig.home;
@@ -13,6 +14,7 @@ export default function LandingPage() {
       <main id="contenido">
         {sections.hero && <HeroSection />}
         {sections.about && <AboutSection />}
+        {sections.members && <MembersSection />}
       </main>
       <Footer />
     </div>
