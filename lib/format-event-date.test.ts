@@ -12,3 +12,13 @@ describe("formatEventDate", () => {
     expect(() => formatEventDate("")).toThrow();
   });
 });
+
+describe("formatEventDateLong", () => {
+  it("spells the month in Spanish without a leading zero on the day", () => {
+    expect(formatEventDateLong("2026-11-08")).toBe("8 de noviembre de 2026");
+  });
+
+  it("rejects an impossible month", () => {
+    expect(() => formatEventDateLong("2026-13-01")).toThrow();
+  });
+});
