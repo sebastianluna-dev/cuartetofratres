@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { UPCOMING_EVENTS } from "@/constants/events.const";
 import { SITE_LOCATION, SITE_NAME } from "@/constants/site.const";
+import { selectUpcomingEvents, todayIso } from "@/lib/upcoming-events";
 import { EventCard } from "./event-card.comp";
 import "./hero.section.css";
 
@@ -10,7 +11,7 @@ const MAX_EVENT_CARDS = 2;
 // First screen: the group photo to the right, the name and the next two
 // dates to the left. The photo is the LCP, hence `priority`.
 export function HeroSection() {
-  const events = UPCOMING_EVENTS.slice(0, MAX_EVENT_CARDS);
+  const events = selectUpcomingEvents(UPCOMING_EVENTS, todayIso()).slice(0, MAX_EVENT_CARDS);
 
   return (
     <section id="inicio" className="section section_theme_ink hero">

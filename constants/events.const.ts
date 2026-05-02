@@ -12,7 +12,8 @@ export interface UpcomingEvent {
   };
 }
 
-// Dates are edited here until the quartet has a calendar of its own.
+// Dates are edited here until the quartet has a calendar of its own. The hero
+// shows them in order and only the ones still ahead (see lib/date-ranges.ts).
 export const UPCOMING_EVENTS: readonly UpcomingEvent[] = [
   {
     id: "temporada-2026",
