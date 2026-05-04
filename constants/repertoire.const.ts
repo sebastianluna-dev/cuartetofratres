@@ -22,6 +22,14 @@ export const CATEGORY_LABELS: Record<RepertoireCategory, string> = {
   pop: "Pop y contemporáneo",
 };
 
+export const REPERTOIRE_FILTERS: readonly RepertoireFilter[] = [
+  { value: null, label: "Todo" },
+  { value: "clasico", label: "Cámara" },
+  { value: "latam", label: "Latinoamericana" },
+  { value: "bodas", label: "Bodas" },
+  { value: "pop", label: "Pop" },
+];
+
 export const TRACKS: readonly Track[] = [
   {
     id: "danzas-latinoamericanas",
