@@ -1,0 +1,133 @@
+.track-item {
+  border-top: 1px solid var(--color-divider-on-ink);
+
+  & .track-item__button {
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    gap: 20px;
+    padding: clamp(16px, 2vw, 22px) 0 clamp(16px, 2vw, 22px) 20px;
+    text-align: left;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: rgba(242, 244, 243, 0.04);
+    }
+  }
+
+  & .track-item__marker {
+    position: absolute;
+    left: 0;
+    top: clamp(16px, 2vw, 22px);
+    bottom: clamp(16px, 2vw, 22px);
+    width: 2px;
+    background: transparent;
+    transition: background 0.3s ease;
+  }
+
+  & .track-item__number {
+    flex: 0 0 auto;
+    font-family: var(--font-heading);
+    font-size: 15px;
+    color: var(--color-muted-on-ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  & .track-item__title {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(21px, 2.1vw, 26px);
+    line-height: 1.2;
+    color: var(--color-text-on-ink);
+    transition: color 0.3s ease;
+  }
+
+  & .track-item__equalizer {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    flex: 0 0 auto;
+    height: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  & .track-item__bar {
+    display: block;
+    width: 2px;
+    height: 100%;
+    background: var(--color-lime);
+    transform-origin: bottom;
+    transform: scaleY(0.25);
+  }
+
+  & .track-item__composer {
+    flex: 0 0 auto;
+    font-size: 12.5px;
+    color: var(--color-muted-on-ink);
+    white-space: nowrap;
+  }
+
+  &.track-item_selected {
+    & .track-item__marker {
+      background: var(--color-lime);
+    }
+
+    & .track-item__title {
+      color: var(--color-lime);
+    }
+  }
+
+  &.track-item_playing {
+    & .track-item__equalizer {
+      opacity: 1;
+    }
+
+    & .track-item__bar {
+      animation: track-item-equalizer 0.9s ease-in-out infinite;
+    }
+
+    & .track-item__bar:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    & .track-item__bar:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+  }
+
+  @media (max-width: 767px) {
+    & .track-item__button {
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 16px 0;
+    }
+
+    & .track-item__marker {
+      display: none;
+    }
+
+    & .track-item__title {
+      font-size: 21px;
+      line-height: 1.15;
+    }
+
+    & .track-item__composer {
+      flex-basis: 100%;
+      padding-left: 30px;
+    }
+  }
+}
+
+@keyframes track-item-equalizer {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+
+  50% {
+    transform: scaleY(1);
+  }
+}
