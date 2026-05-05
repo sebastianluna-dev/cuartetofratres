@@ -1,0 +1,53 @@
+.staff-progress {
+  --staff-progress-line: 1.4px;
+  --staff-progress-track: rgba(242, 244, 243, 0.2);
+
+  position: relative;
+  height: 60px;
+  cursor: pointer;
+  /* Four lines, drawn as background gradients so they need no markup. */
+  background-image:
+    linear-gradient(var(--staff-progress-track), var(--staff-progress-track)),
+    linear-gradient(var(--staff-progress-track), var(--staff-progress-track)),
+    linear-gradient(var(--staff-progress-track), var(--staff-progress-track)),
+    linear-gradient(var(--staff-progress-track), var(--staff-progress-track));
+  background-size: 100% var(--staff-progress-line);
+  background-position:
+    0 10px,
+    0 24px,
+    0 40px,
+    0 54px;
+  background-repeat: no-repeat;
+
+  & .staff-progress__played {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-image:
+      linear-gradient(var(--color-lime), var(--color-lime)), linear-gradient(var(--color-lime), var(--color-lime)),
+      linear-gradient(var(--color-lime), var(--color-lime)), linear-gradient(var(--color-lime), var(--color-lime));
+    background-size: 100% var(--staff-progress-line);
+    background-position:
+      0 10px,
+      0 24px,
+      0 40px,
+      0 54px;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+
+  /* The playhead is a double bar line. */
+  & .staff-progress__head {
+    position: absolute;
+    top: 3px;
+    bottom: 3px;
+    width: var(--staff-progress-line);
+    background: var(--color-lime);
+    pointer-events: none;
+  }
+
+  & .staff-progress__head_second {
+    margin-left: 7px;
+  }
+}
