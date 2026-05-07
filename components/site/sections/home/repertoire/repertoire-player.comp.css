@@ -1,0 +1,43 @@
+.repertoire-player {
+  & .repertoire-player__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 12px;
+    margin-bottom: clamp(30px, 4vw, 52px);
+    border-bottom: 1px solid var(--color-divider-strong-on-ink);
+  }
+
+  & .repertoire-player__title {
+    margin-right: auto;
+    padding-bottom: 16px;
+    font-family: var(--font-display);
+    font-size: clamp(38px, 5.2vw, 68px);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: var(--color-lime);
+  }
+
+  & .repertoire-player__body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: clamp(28px, 4vw, 56px);
+  }
+
+  @media (max-width: 767px) {
+    & .repertoire-player__head {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 20px;
+      border-bottom: 0;
+      margin-bottom: 24px;
+    }
+
+    & .repertoire-player__title {
+      padding-bottom: 0;
+      font-size: 46px;
+    }
+  }
+}
