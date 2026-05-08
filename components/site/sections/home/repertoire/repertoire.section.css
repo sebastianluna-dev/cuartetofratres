@@ -1,0 +1,12 @@
+.repertoire {
+  & .repertoire__content {
+    padding: clamp(56px, 7vw, 104px) 0 clamp(64px, 8vw, 110px);
+  }
+
+  @media (max-width: 767px) {
+    & .repertoire__content {
+      padding-top: 34px;
+      padding-bottom: 48px;
+    }
+  }
+}
