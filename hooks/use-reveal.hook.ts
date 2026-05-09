@@ -1,25 +1,31 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+
+const SEEN_CLASS = "reveal_seen";
 
 /**
  * Fades a block in the first time it enters the viewport. Returns the ref to
- * attach and whether it has been seen; the stylesheet does the actual
- * transition (`reveal` / `reveal_seen` in globals.css).
+ * attach; the element must carry the `reveal` class (globals.css) and this
+ * hook adds `reveal_seen` when it is time. The class is toggled on the DOM
+ * node directly, not through state: nothing else in the tree depends on it,
+ * and it spares a re-render per block.
+ *
+ * Visitors who prefer reduced motion see everything at once, and so does any
+ * browser without IntersectionObserver.
  */
-export function useReveal<T extends HTMLElement>(): { ref: React.RefObject<T | null>; seen: boolean } {
+export function useReveal<T extends HTMLElement>(): React.RefObject<T | null> {
   const ref = useRef<T | null>(null);
-  const [seen, setSeen] = useState(false);
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
     if (typeof IntersectionObserver === "undefined" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setSeen(true);
+      element.classList.add(SEEN_CLASS);
       return;
     }
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
-          setSeen(true);
+          element.classList.add(SEEN_CLASS);
           observer.disconnect();
         }
       },
@@ -29,5 +35,5 @@ export function useReveal<T extends HTMLElement>(): { ref: React.RefObject<T | n
     return () => observer.disconnect();
   }, []);
 
-  return { ref, seen };
+  return ref;
 }
