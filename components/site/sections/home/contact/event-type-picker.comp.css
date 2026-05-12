@@ -1,0 +1,64 @@
+.event-type-picker {
+  min-width: 0;
+
+  & .event-type-picker__legend {
+    margin-bottom: 12px;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-muted-on-ivory);
+  }
+
+  & .event-type-picker__options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  & .event-type-picker__chip {
+    position: relative;
+    padding: 11px 17px;
+    border: 1px solid rgba(18, 20, 24, 0.3);
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-soft-on-ivory);
+    cursor: pointer;
+    transition:
+      background 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease;
+
+    &:hover {
+      border-color: var(--color-ink);
+    }
+
+    &:has(.event-type-picker__input:focus-visible) {
+      outline: 2px solid var(--color-olive);
+      outline-offset: 2px;
+    }
+  }
+
+  & .event-type-picker__chip_selected {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-text-on-ink);
+  }
+
+  /* Visually hidden, still focusable and announced. */
+  & .event-type-picker__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  & .event-type-picker__error {
+    display: block;
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: #a13a2a;
+  }
+}
