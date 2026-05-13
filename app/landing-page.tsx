@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/site/sections/home/hero/hero.section";
 import { AboutSection } from "@/components/site/sections/home/about/about.section";
 import { MembersSection } from "@/components/site/sections/home/members/members.section";
 import { RepertoireSection } from "@/components/site/sections/home/repertoire/repertoire.section";
+import { ContactSection } from "@/components/site/sections/home/contact/contact.section";
 
 export default function LandingPage() {
   const { sections } = siteConfig.home;
@@ -17,6 +18,7 @@ export default function LandingPage() {
         {sections.about && <AboutSection />}
         {sections.members && <MembersSection />}
         {sections.repertoire && <RepertoireSection />}
+        {sections.contact && <ContactSection />}
       </main>
       <Footer />
     </div>
