@@ -8,9 +8,9 @@
     gap: 20px;
   }
 
-  & .contact-form__row + .contact-form__row,
-  & .event-type-picker,
-  & .contact-form__row + .contact-field {
+  /* Every block of the form (rows, the event picker, the details field) is
+     separated by the same gap; the button and the notice set their own. */
+  & > * + * {
     margin-top: 26px;
   }
 
