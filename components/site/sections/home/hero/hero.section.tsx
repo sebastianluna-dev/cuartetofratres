@@ -44,7 +44,7 @@ export function HeroSection() {
             </ul>
           )}
           <Link href="#repertorio" className="hero__listen">
-            Escuchar al
+            {"Escuchar al "}
             <br />
             cuarteto
           </Link>
