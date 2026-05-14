@@ -172,4 +172,19 @@
       }
     }
   }
+
+  @media (max-width: 479px) {
+    & .hero__lead {
+      max-width: none;
+    }
+
+    /* Two equal columns; `minmax(0, 1fr)` so the cards shrink below their
+       desktop width instead of pushing the hero past the screen edge. */
+    & .hero__events {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      width: 100%;
+      gap: 12px;
+    }
+  }
 }
