@@ -29,6 +29,9 @@
   @media (max-width: 767px) {
     & .repertoire-player__head {
       flex-direction: column;
+      /* `nowrap` matters: a wrapping column sizes its line to the filters'
+         full row of tabs and pushes the page past the screen edge. */
+      flex-wrap: nowrap;
       align-items: stretch;
       gap: 20px;
       border-bottom: 0;

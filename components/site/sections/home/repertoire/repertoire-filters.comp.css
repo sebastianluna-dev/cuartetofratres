@@ -28,6 +28,9 @@
 
   @media (max-width: 767px) {
     flex-wrap: nowrap;
+    /* A flex item's `min-width: auto` would size it to the sum of the tabs
+       and push the page past the screen; zero lets it clip and scroll. */
+    min-width: 0;
     gap: 8px;
     margin-right: calc(-1 * var(--site-gutter));
     padding-right: var(--site-gutter);
