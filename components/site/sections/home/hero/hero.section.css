@@ -45,6 +45,7 @@
   & .hero__inner {
     position: relative;
     width: 100%;
+    min-width: 0;
     max-width: var(--site-max-width);
     margin: 0 auto;
     padding: clamp(124px, 16vh, 180px) clamp(20px, 4vw, 64px) clamp(44px, 7vh, 76px) var(--site-gutter);
