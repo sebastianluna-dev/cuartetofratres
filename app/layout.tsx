@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { forum, fratresDisplay, ttHoves } from "./fonts";
+import { GoogleAnalytics } from "@/components/site/shared/google-analytics.comp";
 import { SITE_NAME, SITE_TAGLINE } from "@/constants/site.const";
 import { SITE_URL } from "@/lib/site-url";
 
@@ -32,6 +34,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Saltar al contenido
         </a>
         {children}
+        <GoogleAnalytics />
+        {/* Its script only exists on Vercel deployments; elsewhere it produced a console 404 on every visit. */}
+        {process.env.VERCEL === "1" && <Analytics />}
       </body>
     </html>
   );
