@@ -57,3 +57,23 @@ Las fotos están en `public/images` (JPEG a 82 de calidad; `next/image` sirve AV
 ## Reproductor de repertorio
 
 Todavía no hay grabaciones de estudio. El reproductor (`hooks/use-sample-player.hook.ts`) simula la reproducción: avanza un reloj sobre la duración de la obra, nunca arranca solo y sólo "suena" una pista a la vez. Cuando existan los archivos de audio, ese hook es el único sitio que hay que cambiar; la interfaz (tarjeta fija, barra de progreso en forma de pentagrama, lista con ecualizador) ya está hecha.
+
+## Formulario de contacto
+
+Es un formulario normal enviado a una server action (`services/contact/contact.actions.ts`), así que funciona antes de que hidrate la página. La validación (`contact.validation.ts`) devuelve todos los errores de una vez y limita longitudes también en el servidor.
+
+- Con `CONTACT_WEBHOOK_URL` definido, la solicitud se envía por POST como JSON a esa URL (un hook de Zapier/Make, un relay de correo).
+- Sin él, sólo se registra en el servidor (una línea JSON por solicitud, `lib/logger.ts`), que es lo que hace el desarrollo local.
+
+En ambos casos el visitante recibe la misma confirmación.
+
+## Arquitectura en breve
+
+- **`app/`**: layout, página, `landing-page.tsx` (compone las secciones según `config/site.config.ts`), 404, error boundaries, `robots.ts`, `sitemap.ts` y la imagen Open Graph.
+- **`components/site/sections/`**: `shell/` (cabecera, menú móvil, pie, pantalla de aviso) y `home/` (una carpeta por sección: `hero`, `about`, `members`, `repertoire`, `contact`). Cada archivo `.section.tsx` o `.comp.tsx` importa su propio `.css`.
+- **`components/site/shared/`**: piezas que usan varias secciones (logo, pentagrama ornamental, eyebrow, `Reveal`, analítica).
+- **`hooks/`**: estado de la cabecera al hacer scroll, aparición de bloques al entrar en pantalla y transporte del reproductor.
+- **`lib/`**: funciones puras con test al lado (`*.test.ts`).
+- **`services/contact/`**: tipos, validación y server action del formulario.
+
+Las convenciones de código están en `AGENTS.md`; la deuda conocida, en `IMPROVEMENTS.md`; las tareas mecánicas, en `todos.md`.
