@@ -106,8 +106,10 @@
       }
     }
 
+    /* Bleeds to both screen edges: the basis has to include the two gutters
+       the negative margins give back. */
     & .about__figure {
-      flex-basis: 100%;
+      flex-basis: calc(100% + 2 * var(--site-gutter));
       min-width: 0;
       margin: 0 calc(-1 * var(--site-gutter));
     }
