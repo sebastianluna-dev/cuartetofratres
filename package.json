@@ -10,7 +10,9 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "format": "prettier --write . --ignore-path .gitignore",
+    "format:check": "prettier --check . --ignore-path .gitignore"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -25,6 +27,7 @@
     "@vitest/coverage-v8": "^4.1.11",
     "eslint": "^9",
     "eslint-config-next": "16.3.0",
+    "prettier": "^3.9.6",
     "typescript": "^5",
     "vitest": "^4.1.11"
   }
