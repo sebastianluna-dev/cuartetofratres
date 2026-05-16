@@ -7,8 +7,8 @@ import localFont from "next/font/local";
 /** Headings and the player's numerals. Latin subsets of Google's Forum, self-hosted. */
 export const forum = localFont({
   src: [
-    { path: "../public/fonts/forum-latin.woff2", weight: "400", style: "normal" },
-    { path: "../public/fonts/forum-latin-ext.woff2", weight: "400", style: "normal" },
+    { path: "../../public/fonts/forum-latin.woff2", weight: "400", style: "normal" },
+    { path: "../../public/fonts/forum-latin-ext.woff2", weight: "400", style: "normal" },
   ],
   variable: "--font-forum",
   display: "swap",
@@ -16,7 +16,7 @@ export const forum = localFont({
 
 /** Body text. Variable font, 100–900; the site uses 300 for copy and 500/600 for labels. */
 export const ttHoves = localFont({
-  src: [{ path: "../public/fonts/tt-hoves-variable.woff2", weight: "100 900", style: "normal" }],
+  src: [{ path: "../../public/fonts/tt-hoves-variable.woff2", weight: "100 900", style: "normal" }],
   variable: "--font-hoves",
   display: "swap",
 });
@@ -27,7 +27,7 @@ export const ttHoves = localFont({
  * `swap` falls back to Forum, which has the same tone, until it arrives.
  */
 export const fratresDisplay = localFont({
-  src: [{ path: "../public/fonts/fratres-display.woff2", weight: "400", style: "normal" }],
+  src: [{ path: "../../public/fonts/fratres-display.woff2", weight: "400", style: "normal" }],
   variable: "--font-fratres",
   display: "swap",
   preload: false,
