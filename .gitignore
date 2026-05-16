@@ -34,6 +34,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# payload (uploads written locally when there is no Vercel Blob token)
+/media/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
