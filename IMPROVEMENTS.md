@@ -49,3 +49,24 @@ trackpad this can open rows while scrolling past them. Consider limiting hover e
 `(hover: hover) and (pointer: fine)`.
 
 ## LOW priority
+
+### 7. Storybook for the shared pieces — [DX]
+
+The reference project pilots Storybook on one component. Worth it here only if the design keeps
+evolving; otherwise the sections are small enough to review in the page.
+
+---
+
+## Resolved
+
+### ~~Horizontal overflow on phones~~ — RESOLVED (2026-05-14)
+
+The repertoire head was a wrapping column flex container, so its single line took the filters'
+full row width and pushed the page to 531 px on a 390 px screen. `flex-wrap: nowrap` on the head
+and `min-width: 0` on the filters fixed it; `AGENTS.md` now asks for real mobile emulation when
+checking layout.
+
+### ~~Hero cards overflowing under 480 px~~ — RESOLVED (2026-05-14)
+
+The two event cards kept their 188 px desktop width. They are now a two-column grid with
+`minmax(0, 1fr)` and the card takes 100 % of its cell.
