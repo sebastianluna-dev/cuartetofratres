@@ -2,7 +2,7 @@
 
 Small, mechanical tasks that need no design decision. Bigger items live in `IMPROVEMENTS.md`.
 
-- [ ] Run `npm run format` once and commit the result on its own.
+- [x] Run `npm run format` once and commit the result on its own (2026-05-15).
 - [ ] Add `og:image` alt text review: `app/opengraph-image.tsx` uses the generator's default serif; check how it renders on Facebook and WhatsApp previews.
 - [ ] Replace `CURRENT_YEAR` in `footer.section.tsx` with the build year if the site is still up in 2027.
 - [ ] Add a `humans.txt` or a credits line for the photographer once the name is confirmed (the footer says "archivo del cuarteto").
