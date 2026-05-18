@@ -1,0 +1,4 @@
+/* Overrides of the admin panel. Kept to the brand accent: the rest is Payload's. */
+:root {
+  --theme-success-500: #4d5610;
+}
