@@ -6,6 +6,7 @@ import { buildConfig } from "payload";
 import { Users } from "@/payload/collections/Users";
 import { Media } from "@/payload/collections/Media";
 import { Members } from "@/payload/collections/Members";
+import { Events } from "@/payload/collections/Events";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -22,7 +23,7 @@ export default buildConfig({
       titleSuffix: " · Cuarteto Fratres",
     },
   },
-  collections: [Members, Media, Users],
+  collections: [Members, Events, Media, Users],
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI,
