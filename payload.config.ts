@@ -12,6 +12,7 @@ import { ContactRequests } from "@/payload/collections/ContactRequests";
 import { Hero } from "@/payload/globals/Hero";
 import { About } from "@/payload/globals/About";
 import { MembersSection } from "@/payload/globals/MembersSection";
+import { RepertoireSection } from "@/payload/globals/RepertoireSection";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -29,7 +30,7 @@ export default buildConfig({
     },
   },
   collections: [Members, Events, Tracks, Media, ContactRequests, Users],
-  globals: [Hero, About, MembersSection],
+  globals: [Hero, About, MembersSection, RepertoireSection],
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI,
