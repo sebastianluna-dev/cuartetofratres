@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import { buildConfig } from "payload";
+import sharp from "sharp";
 import { Users } from "@/payload/collections/Users";
 import { Media } from "@/payload/collections/Media";
 import { Members } from "@/payload/collections/Members";
@@ -33,6 +34,15 @@ export default buildConfig({
   },
   collections: [Members, Events, Tracks, Media, ContactRequests, Users],
   globals: [Hero, About, MembersSection, RepertoireSection, ContactSection, SiteSettings],
+  // Without `sharp`, Payload does not read the dimensions of what is uploaded
+  // and `Media.width`/`height` stay null: next/image needs them.
+  sharp,
+  // Weight cap per file uploaded to the CMS: the design's exports were 2 MB
+  // PNGs and nobody should have to know how to export light.
+  upload: {
+    limits: { fileSize: 8 * 1024 * 1024 },
+    abortOnLimit: true,
+  },
   // Nobody consumes the GraphQL API (the site reads Payload with the local API)
   // and building its schema is part of every cold start.
   graphQL: { disable: true },
