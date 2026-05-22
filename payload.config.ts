@@ -33,6 +33,9 @@ export default buildConfig({
   },
   collections: [Members, Events, Tracks, Media, ContactRequests, Users],
   globals: [Hero, About, MembersSection, RepertoireSection, ContactSection, SiteSettings],
+  // Nobody consumes the GraphQL API (the site reads Payload with the local API)
+  // and building its schema is part of every cold start.
+  graphQL: { disable: true },
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI,
