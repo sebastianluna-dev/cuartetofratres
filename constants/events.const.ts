@@ -8,12 +8,13 @@ export interface UpcomingEvent {
   city: string;
   image: {
     src: string;
+    alt: string;
     position: string;
   };
 }
 
-// Dates are edited here until the quartet has a calendar of its own. The hero
-// shows them in order and only the ones still ahead (see lib/date-ranges.ts).
+// Seed of the `events` collection and fallback while it is empty. The hero
+// shows them in order and only the ones still ahead (lib/upcoming-events.ts).
 export const UPCOMING_EVENTS: readonly UpcomingEvent[] = [
   {
     id: "temporada-2026",
@@ -21,7 +22,7 @@ export const UPCOMING_EVENTS: readonly UpcomingEvent[] = [
     date: "2026-10-24",
     time: "20:00",
     city: "Boca del Río, Veracruz",
-    image: { src: "/images/event-temporada.jpg", position: "46% 42%" },
+    image: { src: "/images/event-temporada.jpg", alt: "Próxima presentación del cuarteto", position: "46% 42%" },
   },
   {
     id: "borodin-schubert-2026",
@@ -29,6 +30,6 @@ export const UPCOMING_EVENTS: readonly UpcomingEvent[] = [
     date: "2026-11-08",
     time: "19:30",
     city: "Xalapa, Veracruz",
-    image: { src: "/images/event-borodin-schubert.jpg", position: "64% 50%" },
+    image: { src: "/images/event-borodin-schubert.jpg", alt: "Cuarteto Fratres en concierto", position: "64% 50%" },
   },
 ];
