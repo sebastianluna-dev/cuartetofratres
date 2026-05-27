@@ -1,21 +1,23 @@
-import type { Track } from "@/constants/repertoire.const";
 import { CATEGORY_LABELS } from "@/constants/repertoire.const";
+import type { TrackContent } from "@/services/repertoire/repertoire.types";
 import { formatTrackTime } from "@/lib/format-track-time";
 import { StaffProgress } from "./staff-progress.comp";
 import "./now-playing-card.comp.css";
 
 interface NowPlayingCardProps {
-  track: Track;
+  track: TrackContent;
   number: number;
   playing: boolean;
   elapsed: number;
+  /** Small print under the transport, from the CMS. */
+  note: string;
   onTogglePlay: () => void;
   onSeek: (fraction: number) => void;
 }
 
 // Sticky card with the selected work, the staff-shaped progress bar and the
 // play/pause button. Nothing here starts on its own: the visitor presses play.
-export function NowPlayingCard({ track, number, playing, elapsed, onTogglePlay, onSeek }: NowPlayingCardProps) {
+export function NowPlayingCard({ track, number, playing, elapsed, note, onTogglePlay, onSeek }: NowPlayingCardProps) {
   const fraction = track.durationSeconds > 0 ? elapsed / track.durationSeconds : 0;
 
   return (
@@ -56,7 +58,7 @@ export function NowPlayingCard({ track, number, playing, elapsed, onTogglePlay, 
         </span>
       </div>
 
-      <p className="now-playing__note">Solo suena una pista a la vez y nunca arranca sola.</p>
+      <p className="now-playing__note">{note}</p>
     </div>
   );
 }

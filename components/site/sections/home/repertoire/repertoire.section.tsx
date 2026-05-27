@@ -1,14 +1,16 @@
 import { Reveal } from "@/components/site/shared/reveal.comp";
-import { TRACKS } from "@/constants/repertoire.const";
+import { getRepertoireData } from "@/services/repertoire/repertoire.service";
 import { RepertoirePlayer } from "./repertoire-player.comp";
 import "./repertoire.section.css";
 
-export function RepertoireSection() {
+export async function RepertoireSection() {
+  const repertoire = await getRepertoireData();
+
   return (
     <section id="repertorio" className="section section_theme_ink repertoire">
       <div className="section__inner">
         <Reveal className="repertoire__content">
-          <RepertoirePlayer tracks={TRACKS} />
+          <RepertoirePlayer content={repertoire} />
         </Reveal>
       </div>
     </section>

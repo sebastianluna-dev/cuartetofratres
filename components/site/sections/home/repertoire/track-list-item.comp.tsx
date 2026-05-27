@@ -1,8 +1,8 @@
-import type { Track } from "@/constants/repertoire.const";
+import type { TrackContent } from "@/services/repertoire/repertoire.types";
 import "./track-list-item.comp.css";
 
 interface TrackListItemProps {
-  track: Track;
+  track: TrackContent;
   number: number;
   selected: boolean;
   playing: boolean;
