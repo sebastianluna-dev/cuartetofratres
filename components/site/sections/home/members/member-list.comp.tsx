@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import type { Member } from "@/constants/members.const";
+import type { MemberContent } from "@/services/members/members.types";
 import { MemberRow } from "./member-row.comp";
 import "./member-list.comp.css";
 
 interface MemberListProps {
-  members: readonly Member[];
+  members: readonly MemberContent[];
 }
 
 // Accordion of the four musicians. More than one can stay open: each row

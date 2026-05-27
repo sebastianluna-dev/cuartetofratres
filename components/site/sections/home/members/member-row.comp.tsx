@@ -1,9 +1,9 @@
 import Image from "next/image";
-import type { Member } from "@/constants/members.const";
+import type { MemberContent } from "@/services/members/members.types";
 import "./member-row.comp.css";
 
 interface MemberRowProps {
-  member: Member;
+  member: MemberContent;
   index: number;
   open: boolean;
   onToggle: () => void;
@@ -31,11 +31,11 @@ export function MemberRow({ member, index, open, onToggle }: MemberRowProps) {
         <div className="member-row__portrait">
           <Image
             src={member.photo.src}
-            alt={member.name}
+            alt={member.photo.alt}
             fill
             sizes="(max-width: 767px) 100vw, 264px"
             className="member-row__photo"
-            style={{ objectPosition: member.photo.position }}
+            style={{ objectPosition: member.photoPosition }}
           />
           <div className="member-row__caption" aria-hidden="true">
             <span className="member-row__caption-meta">
