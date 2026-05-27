@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { UpcomingEvent } from "@/constants/events.const";
 import { formatEventDate, formatEventDateLong } from "@/lib/format-event-date";
+import type { EventContent } from "@/services/events/events.types";
 import "./event-card.comp.css";
 
 interface EventCardProps {
-  event: UpcomingEvent;
+  event: EventContent;
 }
 
 // Tall card with the date as a lime band on top and the title at the foot.
@@ -19,7 +19,7 @@ export function EventCard({ event }: EventCardProps) {
         fill
         sizes="188px"
         className="event-card__photo"
-        style={{ objectPosition: event.image.position }}
+        style={{ objectPosition: event.imagePosition }}
       />
       <span className="event-card__band">
         <time className="event-card__day" dateTime={event.date} aria-label={formatEventDateLong(event.date)}>

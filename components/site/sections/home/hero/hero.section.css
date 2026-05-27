@@ -5,9 +5,9 @@
   align-items: stretch;
   overflow: hidden;
 
+  /* `object-position` comes inline from the CMS (where the quartet sits in the photo). */
   & .hero__photo {
     object-fit: cover;
-    object-position: 78% 50%;
     filter: saturate(0.6) contrast(1.05);
   }
 
@@ -83,13 +83,15 @@
     gap: 22px;
   }
 
-  /* Round lime button: the only call to action that competes with the dates. */
+  /* Round lime button: the only call to action that competes with the dates.
+     Its label wraps inside the circle: two words per line at most. */
   & .hero__listen {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 136px;
     height: 136px;
+    padding: 0 22px;
     margin-top: clamp(0px, 4vw, 56px);
     border-radius: 50%;
     background: var(--color-lime);
@@ -133,10 +135,6 @@
   @media (max-width: 767px) {
     min-height: 100svh;
 
-    & .hero__photo {
-      object-position: 64% 46%;
-    }
-
     /* On the phone the photo is behind everything, so the shade comes from
        the bottom instead of the side. */
     & .hero__shade_side_left {
@@ -167,10 +165,6 @@
       border-radius: 0;
       font-size: 16px;
       line-height: 1.2;
-
-      & br {
-        display: none;
-      }
     }
   }
 
