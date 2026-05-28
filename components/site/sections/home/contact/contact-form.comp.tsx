@@ -10,20 +10,25 @@ import "./contact-form.comp.css";
 
 const INITIAL_STATE: ContactFormState = { status: "idle" };
 
+interface ContactFormProps {
+  /** Small print under the submit button. */
+  notice: string;
+  sentTitle: string;
+  sentText: string;
+}
+
 // Plain form posted to a server action: it works before hydration and the
 // browser keeps what was typed if validation sends it back. `useActionState`
 // only adds the pending flag and the message under the button.
-export function ContactForm() {
+export function ContactForm({ notice, sentTitle, sentText }: ContactFormProps) {
   const [state, formAction, pending] = useActionState(sendContactRequest, INITIAL_STATE);
   const errors = state.status === "error" ? (state.fields ?? {}) : {};
 
   if (state.status === "sent") {
     return (
       <div className="contact-form contact-form_sent" role="status">
-        <h3 className="contact-form__sent-title">Gracias.</h3>
-        <p className="contact-form__sent-text">
-          Te respondemos al correo o WhatsApp que dejaste, con propuesta de programa y duración.
-        </p>
+        <h3 className="contact-form__sent-title">{sentTitle}</h3>
+        <p className="contact-form__sent-text">{sentText}</p>
       </div>
     );
   }
@@ -66,7 +71,7 @@ export function ContactForm() {
         {pending ? "Enviando…" : "Enviar solicitud"}
       </button>
       <p className="contact-form__notice" aria-live="polite">
-        {state.status === "error" ? state.message : "Te respondemos con propuesta de programa y duración."}
+        {state.status === "error" ? state.message : notice}
       </p>
     </form>
   );
