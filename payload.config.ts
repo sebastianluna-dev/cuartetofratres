@@ -16,6 +16,7 @@ import { MembersSection } from "@/payload/globals/MembersSection";
 import { RepertoireSection } from "@/payload/globals/RepertoireSection";
 import { ContactSection } from "@/payload/globals/ContactSection";
 import { SiteSettings } from "@/payload/globals/SiteSettings";
+import { migrations } from "@/migrations";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -50,6 +51,15 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI,
     },
+    // The schema only changes through migrations, in every environment: a
+    // database touched by the dev push makes Payload stop and ask before
+    // migrating, and a build has nobody to answer. After editing a collection,
+    // `npm run cms:migrate -- create <nombre>` and then `npm run cms:migrate`.
+    push: false,
+    migrationDir: path.resolve(dirname, "migrations"),
+    // Run on start in production (NODE_ENV=production): a fresh Vercel database
+    // gets its tables on the first build without anyone running a command.
+    prodMigrations: migrations,
   }),
   plugins: [
     vercelBlobStorage({
