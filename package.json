@@ -11,6 +11,7 @@
     "cms:generate": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/alias-loader.mjs scripts/generate-payload.mts",
     "cms:seed": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/alias-loader.mjs scripts/seed-cms.mts",
     "cms:user": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/alias-loader.mjs scripts/cms-user.mts",
+    "cms:migrate": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/alias-loader.mjs scripts/cms-migrate.mts",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
