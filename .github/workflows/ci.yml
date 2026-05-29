@@ -1,5 +1,7 @@
 # Lint, types, tests and a production build on every push and pull request.
-# The site is fully static (no CMS, no database), so the build can run in CI.
+# The home is prerendered from Payload, so the build needs a database: an empty
+# Postgres service, where the build's own prodMigrations create the tables and
+# the page falls back to the default content of constants/.
 name: CI
 
 on:
@@ -10,6 +12,23 @@ on:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: cf
+          POSTGRES_PASSWORD: cf
+          POSTGRES_DB: cuartetofratres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U cf"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URI: postgres://cf:cf@localhost:5432/cuartetofratres
+      PAYLOAD_SECRET: ci-only-secret-not-used-anywhere-else
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
