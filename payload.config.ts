@@ -21,6 +21,10 @@ import { migrations } from "@/migrations";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+// DATABASE_URI locally; on Vercel, the Prisma Postgres integration names the
+// variable after the store, so its pooled URL is the fallback.
+const DATABASE_URI = process.env.DATABASE_URI || process.env.CUARTETO_FRATRES_DATABASE_POSTGRES_URL;
+
 // Uploads go to Vercel Blob whenever its token exists (every Vercel
 // deployment); locally they are written to `media/`, which git ignores.
 const BLOB_TOKEN = process.env.BLOB_READ_WRITE_TOKEN;
@@ -49,7 +53,7 @@ export default buildConfig({
   graphQL: { disable: true },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI,
+      connectionString: DATABASE_URI,
     },
     // The schema only changes through migrations, in every environment: a
     // database touched by the dev push makes Payload stop and ask before
