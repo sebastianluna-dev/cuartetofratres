@@ -5,41 +5,34 @@
   align-items: stretch;
   overflow: hidden;
 
-  /* `object-position` comes inline from the CMS (where the quartet sits in the photo). */
-  & .hero__photo {
-    object-fit: cover;
-    filter: saturate(0.6) contrast(1.05);
-  }
-
-  & .hero__shade {
+  /* Against the right edge and centred vertically, with the photo's own
+     ratio (--photo-width/--photo-height come inline from the CMS), so the
+     frame is exactly the picture and the vignette lands on its edges. */
+  & .hero__media {
     position: absolute;
-    inset: 0;
-    pointer-events: none;
+    top: 50%;
+    right: 0;
+    width: 64%;
+    max-height: 100%;
+    aspect-ratio: var(--photo-width) / var(--photo-height);
+    transform: translateY(-50%);
+
+    /* Elliptical vignette: a light veil of ink in the middle and solid ink at
+       the edges, so the photo melts into the background without a visible
+       border. It overhangs the photo by 2px to cover the antialiased edge
+       pixels. */
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: radial-gradient(ellipse 58% 50% at 72% 50%, rgba(18, 20, 24, 0.1) 60%, var(--color-ink) 100%);
+      pointer-events: none;
+    }
   }
 
-  /* Ink from the left so the text sits on a solid ground and the photo
-     emerges past the middle of the screen. */
-  & .hero__shade_side_left {
-    background: linear-gradient(
-      90deg,
-      var(--color-ink) 0%,
-      var(--color-ink) 28%,
-      rgba(18, 20, 24, 0.88) 42%,
-      rgba(18, 20, 24, 0.5) 52%,
-      rgba(18, 20, 24, 0) 62%
-    );
-  }
-
-  & .hero__shade_side_bottom {
-    background:
-      radial-gradient(
-        ellipse 140% 47% at calc(71% - 40px) 40%,
-        rgba(18, 20, 24, 0.15) 0%,
-        rgba(18, 20, 24, 0.18) 46%,
-        rgba(18, 20, 24, 0.4) 74%,
-        rgba(18, 20, 24, 0.85) 98%
-      ),
-      linear-gradient(0deg, rgba(18, 20, 24, 0.4) 0%, rgba(18, 20, 24, 0) 24%);
+  & .hero__photo {
+    object-fit: contain;
+    filter: saturate(0.6) contrast(1.05);
   }
 
   & .hero__inner {
@@ -132,30 +125,23 @@
     background: var(--color-lime);
   }
 
+  /* On the phone the photo goes first, across the screen under the header,
+     and the text follows it. */
   @media (max-width: 767px) {
-    min-height: 100svh;
+    flex-direction: column;
 
-    /* On the phone the photo is behind everything, so the shade comes from
-       the bottom instead of the side. */
-    & .hero__shade_side_left {
-      background: linear-gradient(
-        0deg,
-        var(--color-ink) 0%,
-        rgba(18, 20, 24, 0.92) 26%,
-        rgba(18, 20, 24, 0.4) 56%,
-        rgba(18, 20, 24, 0.55) 100%
-      );
-    }
-
-    & .hero__shade_side_bottom {
-      display: none;
+    & .hero__media {
+      position: relative;
+      top: auto;
+      width: 100%;
+      margin-top: 72px;
+      transform: none;
     }
 
     & .hero__inner {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding-top: 120px;
+      padding-top: 8px;
     }
 
     & .hero__listen {

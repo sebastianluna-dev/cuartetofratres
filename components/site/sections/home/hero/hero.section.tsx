@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getUpcomingEvents } from "@/services/events/events.service";
@@ -8,8 +9,8 @@ import "./hero.section.css";
 
 const MAX_EVENT_CARDS = 2;
 
-// First screen: the group photo to the right, the name and the next two
-// dates to the left. The photo is the LCP, hence `priority`.
+// First screen: the name and the next two dates on the left, the group photo
+// against the right edge, centred. The photo is the LCP, hence `priority`.
 export async function HeroSection() {
   const [hero, events, settings] = await Promise.all([
     getHeroData(),
@@ -19,17 +20,22 @@ export async function HeroSection() {
 
   return (
     <section id="inicio" className="section section_theme_ink hero">
-      <Image
-        src={hero.image.src}
-        alt={hero.image.alt}
-        fill
-        priority
-        sizes="100vw"
-        className="hero__photo"
-        style={{ objectPosition: hero.imagePosition }}
-      />
-      <div className="hero__shade hero__shade_side_left" />
-      <div className="hero__shade hero__shade_side_bottom" />
+      {/* The real size of the file gives the frame the photo's own ratio on
+          desktop, so the vignette lands exactly on its edges. */}
+      <div
+        className="hero__media"
+        style={{ "--photo-width": hero.image.width, "--photo-height": hero.image.height } as CSSProperties}
+      >
+        <Image
+          src={hero.image.src}
+          alt={hero.image.alt}
+          fill
+          priority
+          sizes={`(max-width: 767px) 100vw, min(64vw, ${hero.image.width}px)`}
+          className="hero__photo"
+          style={{ objectPosition: hero.imagePosition }}
+        />
+      </div>
 
       <div className="hero__inner">
         <h1 className="hero__title">{hero.title}</h1>
