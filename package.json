@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "cms:generate": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/alias-loader.mjs scripts/generate-payload.mts",
     "cms:seed": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/alias-loader.mjs scripts/seed-cms.mts",
     "cms:user": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/alias-loader.mjs scripts/cms-user.mts",

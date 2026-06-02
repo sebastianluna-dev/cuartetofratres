@@ -29,7 +29,7 @@ Con la base vacía el sitio también funciona: cada servicio cae al contenido de
 | `npm run build`                           | Build de producción.                                                      |
 | `npm run start`                           | Sirve el build de producción.                                             |
 | `npm run lint`                            | ESLint.                                                                   |
-| `npm run typecheck`                       | `tsc --noEmit`, lo mismo que corre CI.                                    |
+| `npm run typecheck`                       | `next typegen` + `tsc --noEmit`, lo mismo que corre CI.                   |
 | `npm run test`                            | Vitest, una pasada.                                                       |
 | `npm run test:watch`                      | Vitest en modo watch.                                                     |
 | `npm run test:coverage`                   | Vitest con cobertura (v8) sobre `lib`, `constants`, `hooks` y `services`. |
