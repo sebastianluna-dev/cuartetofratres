@@ -3,7 +3,7 @@
 Backlog of the project's technical debt and improvements. Every entry carries an **area**, a
 **priority** (low · medium · high) and a guide on how to approach it.
 
-> Last review: 2026-05-15. What is still open is at the top; what is already resolved is left
+> Last review: 2026-06-02. What is still open is at the top; what is already resolved is left
 > noted with what was done, so it is not reopened.
 
 ---
@@ -17,30 +17,33 @@ studio recordings exist: add an `audioSrc` to each `Track`, drive an `<audio>` e
 hook (play/pause/seek/ended) and keep the "only one track at a time, never autoplay" rules. The
 sample duration should then come from the file's metadata, not from the constant.
 
-### 2. Contact form delivery — [Integration]
+### 2. Notice of new contact requests — [Integration]
 
-`CONTACT_WEBHOOK_URL` is the only delivery path and it is not set in production yet. Decide the
-destination (a mail relay such as Resend, or a Make/Zapier hook that writes to a sheet) and add a
-retry or a fallback so a request is never lost silently. Until then the requests only exist in the
-server logs.
-
-## MEDIUM priority
+Requests are stored in `contact-requests`, but nobody is told one arrived: Payload has no email
+adapter configured (it logs "Email will be written to console"). Add `@payloadcms/email-resend`
+(or nodemailer over the quartet's Gmail) and an `afterChange` hook on create that mails the team
+the request and a link to `/admin/collections/contact-requests/<id>`. A failure in that mail must
+not fail the form: the request is already saved.
 
 ### 3. Rate limit on the contact action — [Security]
 
-`sendContactRequest` accepts unlimited requests. Without a database, a per-instance in-memory
-window is better than nothing; a shared store is only worth it once there is a delivery service to
-protect.
+`sendContactRequest` accepts unlimited requests and every one is now a row in Postgres. Add a
+honeypot field first (cheap, stops most bots) and then a window per IP; with a database already
+there, a small `contact-attempts` table or a count of the last minutes' requests is enough.
 
-### 4. Events calendar — [Content]
+## MEDIUM priority
 
-Dates are hand-edited in `constants/events.const.ts`. Fine for two concerts a season; if the
-quartet plays more often, consider a small headless CMS or a Google Calendar feed read at build time.
+### 4. Production content — [Content]
 
-### 5. Social links — [Content]
+The Prisma Postgres database has its schema but no content, so production shows the defaults of
+`constants/`. Once the Vercel Blob store exists, run `npm run cms:seed` against it with
+`BLOB_READ_WRITE_TOKEN` set (README › Despliegue en Vercel) and create the team's users.
 
-The footer lists Instagram, Facebook and YouTube as plain text because the accounts are not public
-yet. When they are, turn `SOCIAL_NETWORKS` into `{ label, href }` and render links.
+### 5. Draft and preview of the page — [CMS]
+
+A save publishes at once. If the quartet starts editing long texts, enable `versions: { drafts:
+true }` on the Globals and a preview route with `draftMode()`, so a change can be reviewed on the
+real page before it goes live.
 
 ### 6. Members accordion on hover — [UX]
 
@@ -58,6 +61,22 @@ evolving; otherwise the sections are small enough to review in the page.
 ---
 
 ## Resolved
+
+### ~~Contact form delivery~~ — RESOLVED (2026-05-28)
+
+The form no longer depends on a webhook: every request is a `contact-requests` document that the
+team triages in `/admin` (status and internal notes). `CONTACT_WEBHOOK_URL` is gone. The notice by
+email is a separate item (#2).
+
+### ~~Events calendar and editable content~~ — RESOLVED (2026-05-27)
+
+Payload CMS runs inside the app: dates are the `events` collection, the musicians and the works
+are collections and every section's texts are Globals. `constants/` stays as seed and fallback.
+
+### ~~Social links~~ — RESOLVED (2026-05-27)
+
+The networks are fields of the `site-settings` Global: a URL renders a link, an empty one the plain
+label. `SOCIAL_NETWORKS` was removed.
 
 ### ~~Horizontal overflow on phones~~ — RESOLVED (2026-05-14)
 
