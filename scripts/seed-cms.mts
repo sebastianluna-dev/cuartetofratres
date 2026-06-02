@@ -1,7 +1,7 @@
 import "./load-env.mts";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import type { Payload } from "payload";
+import type { GlobalSlug, Payload } from "payload";
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import { ABOUT_DEFAULTS } from "@/constants/about.const";
@@ -14,10 +14,10 @@ import { CONTACT_EMAIL, PHOTO_CREDIT, SITE_LOCATION, SITE_LOCATION_FULL, SITE_TA
 
 // Loads the CMS with the site's launch content (`npm run cms:seed`): the
 // photos from public/images as Media, the four musicians, the two dates, the
-// four works and every Global's texts. Idempotent on the collections: a row
-// that already exists (same name/title) is left alone, so re-running never
-// duplicates; the Globals are always rewritten because they are the seed's
-// source of truth until an editor changes them in /admin.
+// four works and every Global's texts. Idempotent: a row that already exists
+// (same name/title) is left alone and a Global is only written while it is
+// still empty, so re-running never duplicates and never overwrites what an
+// editor changed in /admin.
 //
 // Run through scripts/alias-loader.mjs:
 //   node --import ./scripts/alias-loader.mjs scripts/seed-cms.mts
@@ -35,6 +35,11 @@ async function uploadImage(payload: Payload, src: string, alt: string): Promise<
   const created = await payload.create({
     collection: "media",
     data: { alt },
+    // Payload renames an upload whose name is already on the local disk, even
+    // when it goes to Vercel Blob: seeding production from a machine with its
+    // own media/ would store "hero-1.jpg". The lookup above already rules out
+    // a real duplicate.
+    overwriteExistingFiles: true,
     file: {
       data,
       name: filename,
@@ -105,54 +110,85 @@ async function seedTracks(payload: Payload) {
   }
 }
 
+// A Global that nobody has saved comes back with its required fields empty;
+// `field` is one without a default value, so it tells "never saved" apart.
+async function isEmptyGlobal(payload: Payload, slug: GlobalSlug, field: string): Promise<boolean> {
+  const global = (await payload.findGlobal({ slug })) as unknown as Record<string, unknown>;
+  return !global[field];
+}
+
 async function seedGlobals(payload: Payload) {
-  const heroImage = await uploadImage(payload, HERO_DEFAULTS.image.src, HERO_DEFAULTS.image.alt);
-  await payload.updateGlobal({
-    slug: "hero",
-    data: {
-      title: HERO_DEFAULTS.title,
-      lead: HERO_DEFAULTS.lead,
-      image: heroImage,
-      imagePosition: HERO_DEFAULTS.image.position,
-      listenLabel: HERO_DEFAULTS.listenLabel,
-    },
-  });
+  const written: string[] = [];
 
-  const aboutPhoto = await uploadImage(payload, ABOUT_DEFAULTS.photo.src, ABOUT_DEFAULTS.photo.alt);
-  await payload.updateGlobal({
-    slug: "about",
-    data: {
-      eyebrow: ABOUT_DEFAULTS.eyebrow,
-      title: ABOUT_DEFAULTS.title,
-      lead: ABOUT_DEFAULTS.lead,
-      pillars: ABOUT_DEFAULTS.pillars.map((pillar) => ({ title: pillar.title, text: pillar.text })),
-      photo: aboutPhoto,
-      photoCaption: ABOUT_DEFAULTS.photoCaption,
-    },
-  });
+  if (await isEmptyGlobal(payload, "hero", "title")) {
+    const image = await uploadImage(payload, HERO_DEFAULTS.image.src, HERO_DEFAULTS.image.alt);
+    await payload.updateGlobal({
+      slug: "hero",
+      data: {
+        title: HERO_DEFAULTS.title,
+        lead: HERO_DEFAULTS.lead,
+        image,
+        imagePosition: HERO_DEFAULTS.image.position,
+        listenLabel: HERO_DEFAULTS.listenLabel,
+      },
+    });
+    written.push("hero");
+  }
 
-  await payload.updateGlobal({ slug: "members-section", data: { ...MEMBERS_SECTION_DEFAULTS } });
-  await payload.updateGlobal({
-    slug: "repertoire-section",
-    data: {
-      title: REPERTOIRE_SECTION_DEFAULTS.title,
-      note: REPERTOIRE_SECTION_DEFAULTS.note,
-      playerNote: REPERTOIRE_SECTION_DEFAULTS.playerNote,
-      emptyState: { ...REPERTOIRE_SECTION_DEFAULTS.emptyState },
-    },
-  });
-  await payload.updateGlobal({ slug: "contact-section", data: { ...CONTACT_SECTION_DEFAULTS } });
-  await payload.updateGlobal({
-    slug: "site-settings",
-    data: {
-      tagline: SITE_TAGLINE,
-      email: CONTACT_EMAIL,
-      location: SITE_LOCATION,
-      locationFull: SITE_LOCATION_FULL,
-      photoCredit: PHOTO_CREDIT,
-    },
-  });
-  console.log("globals  hero, about, members-section, repertoire-section, contact-section, site-settings");
+  if (await isEmptyGlobal(payload, "about", "title")) {
+    const photo = await uploadImage(payload, ABOUT_DEFAULTS.photo.src, ABOUT_DEFAULTS.photo.alt);
+    await payload.updateGlobal({
+      slug: "about",
+      data: {
+        eyebrow: ABOUT_DEFAULTS.eyebrow,
+        title: ABOUT_DEFAULTS.title,
+        lead: ABOUT_DEFAULTS.lead,
+        pillars: ABOUT_DEFAULTS.pillars.map((pillar) => ({ title: pillar.title, text: pillar.text })),
+        photo,
+        photoCaption: ABOUT_DEFAULTS.photoCaption,
+      },
+    });
+    written.push("about");
+  }
+
+  if (await isEmptyGlobal(payload, "members-section", "title")) {
+    await payload.updateGlobal({ slug: "members-section", data: { ...MEMBERS_SECTION_DEFAULTS } });
+    written.push("members-section");
+  }
+
+  if (await isEmptyGlobal(payload, "repertoire-section", "note")) {
+    await payload.updateGlobal({
+      slug: "repertoire-section",
+      data: {
+        title: REPERTOIRE_SECTION_DEFAULTS.title,
+        note: REPERTOIRE_SECTION_DEFAULTS.note,
+        playerNote: REPERTOIRE_SECTION_DEFAULTS.playerNote,
+        emptyState: { ...REPERTOIRE_SECTION_DEFAULTS.emptyState },
+      },
+    });
+    written.push("repertoire-section");
+  }
+
+  if (await isEmptyGlobal(payload, "contact-section", "title")) {
+    await payload.updateGlobal({ slug: "contact-section", data: { ...CONTACT_SECTION_DEFAULTS } });
+    written.push("contact-section");
+  }
+
+  if (await isEmptyGlobal(payload, "site-settings", "email")) {
+    await payload.updateGlobal({
+      slug: "site-settings",
+      data: {
+        tagline: SITE_TAGLINE,
+        email: CONTACT_EMAIL,
+        location: SITE_LOCATION,
+        locationFull: SITE_LOCATION_FULL,
+        photoCredit: PHOTO_CREDIT,
+      },
+    });
+    written.push("site-settings");
+  }
+
+  console.log(`globals  ${written.length > 0 ? written.join(", ") : "(ya tenían contenido)"}`);
 }
 
 async function main() {
