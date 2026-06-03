@@ -33,6 +33,7 @@ export async function HeroSection() {
           priority
           sizes={`(max-width: 767px) 100vw, min(64vw, ${hero.image.width}px)`}
           className="hero__photo"
+          quality={100}
           style={{ objectPosition: hero.imagePosition }}
         />
       </div>

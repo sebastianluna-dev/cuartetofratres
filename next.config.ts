@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
     // AVIF first: the portraits are large and mostly flat tones, where it wins
     // clearly over WebP.
     formats: ["image/avif", "image/webp"],
+    // 75 is the default for every photo; 100 only for the hero, the biggest
+    // photo on the page, where AVIF's smoothing at 75 shows on hair and wood.
+    qualities: [75, 100],
     // Uploads served by Vercel Blob in production; locally Payload serves
     // them from /api/media/file/*, a same-origin path that needs no entry.
     remotePatterns: [
