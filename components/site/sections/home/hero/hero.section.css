@@ -126,7 +126,10 @@
   }
 
   /* On the phone the photo goes first, across the screen under the header,
-     and the text follows it. */
+     and the text follows it. The frame is taller than the photo (11:10), so
+     it is cropped at the sides until the musicians fill the width; the CMS
+     framing (inline `object-position`) decides which part stays. Both sides
+     touch the screen's edges, so only the top and bottom fade into the ink. */
   @media (max-width: 767px) {
     flex-direction: column;
 
@@ -135,7 +138,22 @@
       top: auto;
       width: 100%;
       margin-top: 72px;
+      aspect-ratio: 11 / 10;
       transform: none;
+
+      &::after {
+        background: linear-gradient(
+          180deg,
+          var(--color-ink) 0%,
+          rgba(18, 20, 24, 0) 12%,
+          rgba(18, 20, 24, 0) 74%,
+          var(--color-ink) 100%
+        );
+      }
+    }
+
+    & .hero__photo {
+      object-fit: cover;
     }
 
     & .hero__inner {

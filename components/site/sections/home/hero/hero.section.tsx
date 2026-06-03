@@ -9,6 +9,9 @@ import "./hero.section.css";
 
 const MAX_EVENT_CARDS = 2;
 
+/** Width / height of the photo's frame on the phone; the same 11 / 10 as hero.section.css. */
+const PHONE_FRAME_RATIO = 11 / 10;
+
 // First screen: the name and the next two dates on the left, the group photo
 // against the right edge, centred. The photo is the LCP, hence `priority`.
 export async function HeroSection() {
@@ -17,6 +20,10 @@ export async function HeroSection() {
     getUpcomingEvents(MAX_EVENT_CARDS),
     getSiteSettingsData(),
   ]);
+
+  // On the phone the photo is cropped to fill a taller frame, so it is drawn
+  // wider than the screen: next/image must request that width, not 100vw.
+  const phoneWidthVw = Math.ceil((hero.image.width / hero.image.height / PHONE_FRAME_RATIO) * 100);
 
   return (
     <section id="inicio" className="section section_theme_ink hero">
@@ -31,7 +38,7 @@ export async function HeroSection() {
           alt={hero.image.alt}
           fill
           priority
-          sizes={`(max-width: 767px) 100vw, min(64vw, ${hero.image.width}px)`}
+          sizes={`(max-width: 767px) ${phoneWidthVw}vw, min(64vw, ${hero.image.width}px)`}
           className="hero__photo"
           quality={100}
           style={{ objectPosition: hero.imagePosition }}

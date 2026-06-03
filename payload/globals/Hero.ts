@@ -32,9 +32,12 @@ export const Hero: GlobalConfig = {
     {
       name: "imagePosition",
       type: "text",
-      label: "Encuadre en escritorio",
+      label: "Encuadre en teléfono",
       defaultValue: "78% 50%",
-      admin: { description: "Valor de object-position. El cuarteto debe quedar a la derecha del texto." },
+      admin: {
+        description:
+          "Valor de object-position del recorte en el teléfono, donde la foto se corta por los lados para que el cuarteto llene el ancho. El primer número mueve el recorte: más alto, más a la derecha. Ej.: «82% 50%». En escritorio la foto se ve completa.",
+      },
     },
     {
       name: "listenLabel",
