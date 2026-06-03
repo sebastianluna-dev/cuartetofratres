@@ -71,6 +71,12 @@
     margin-top: clamp(26px, 3.4vw, 38px);
   }
 
+  /* Heading of the dates: read by assistive tech everywhere (the list is
+     labelled by it), drawn only on the phone. */
+  & .hero__events-heading {
+    display: none;
+  }
+
   & .hero__events {
     display: flex;
     gap: 22px;
@@ -167,13 +173,27 @@
       font-size: clamp(42px, 13vw, 72px);
     }
 
+    /* One column: listen button first (visual order differs from the DOM on
+       purpose), then the heading and the cards. */
+    & .hero__row {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      gap: 18px;
+    }
+
     & .hero__listen {
+      order: -1;
       width: 100%;
       height: 52px;
       margin-top: 0;
       border-radius: 0;
       font-size: 16px;
       line-height: 1.2;
+    }
+
+    & .hero__events-heading {
+      display: block;
     }
   }
 

@@ -49,15 +49,22 @@ export async function HeroSection() {
         <h1 className="hero__title">{hero.title}</h1>
         <p className="hero__lead">{hero.lead}</p>
 
+        {/* DOM order is heading → cards → listen button (the tab order on
+            desktop); the phone shows the button first through CSS `order`. */}
         <div className="hero__row">
           {events.length > 0 && (
-            <ul className="hero__events" aria-label="Próximas presentaciones">
-              {events.map((event) => (
-                <li key={event.id}>
-                  <EventCard event={event} />
-                </li>
-              ))}
-            </ul>
+            <>
+              <h2 id="proximas-presentaciones" className="hero__events-heading">
+                {hero.eventsHeading}
+              </h2>
+              <ul className="hero__events" aria-labelledby="proximas-presentaciones">
+                {events.map((event) => (
+                  <li key={event.id}>
+                    <EventCard event={event} />
+                  </li>
+                ))}
+              </ul>
+            </>
           )}
           <Link href="#repertorio" className="hero__listen">
             {hero.listenLabel}
