@@ -56,8 +56,8 @@
 
   & .hero__lead {
     margin-top: clamp(18px, 2.4vw, 26px);
-    max-width: 24em;
-    font-size: clamp(18px, 1.7vw, 25px);
+    max-width: 30em;
+    font-size: clamp(18px, 1.7vw, 20px);
     line-height: 1.65;
     color: rgba(242, 244, 243, 0.88);
     text-wrap: pretty;
