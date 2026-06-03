@@ -8,16 +8,29 @@ interface EventCardProps {
   event: EventContent;
 }
 
+/** Card heights from event-card.comp.css: 334px, and 240px under 480px wide. */
+const CARD_HEIGHT = 334;
+const CARD_HEIGHT_SMALL = 240;
+/** The launch photos are 16:9; a CMS upload brings its own size. */
+const DEFAULT_RATIO = 16 / 9;
+
 // Tall card with the date as a lime band on top and the title at the foot.
 // It links to the contact section: there is no ticketing yet.
 export function EventCard({ event }: EventCardProps) {
+  // The card is tall and the photo wide, so `cover` draws it at the card's
+  // height and crops the sides: next/image must request that drawn width, not
+  // the card's, or it serves a thumbnail and the screen stretches it.
+  const { width, height } = event.image;
+  const ratio = width && height ? width / height : DEFAULT_RATIO;
+  const sizes = `(max-width: 479px) ${Math.ceil(CARD_HEIGHT_SMALL * ratio)}px, ${Math.ceil(CARD_HEIGHT * ratio)}px`;
+
   return (
     <Link href="#contacto" className="event-card">
       <Image
         src={event.image.src}
         alt=""
         fill
-        sizes="188px"
+        sizes={sizes}
         className="event-card__photo"
         style={{ objectPosition: event.imagePosition }}
       />
