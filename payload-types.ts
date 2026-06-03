@@ -514,9 +514,13 @@ export interface Hero {
   lead: string;
   image: number | Media;
   /**
-   * Valor de object-position. El cuarteto debe quedar a la derecha del texto.
+   * Valor de object-position del recorte en el teléfono, donde la foto se corta por los lados para que el cuarteto llene el ancho. El primer número mueve el recorte: más alto, más a la derecha. Ej.: «82% 50%». En escritorio la foto se ve completa.
    */
   imagePosition?: string | null;
+  /**
+   * Sólo se ve en el teléfono, entre el botón «Escuchar» y las tarjetas. En escritorio nombra la lista para los lectores de pantalla.
+   */
+  eventsHeading: string;
   listenLabel: string;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -627,6 +631,7 @@ export interface HeroSelect<T extends boolean = true> {
   lead?: T;
   image?: T;
   imagePosition?: T;
+  eventsHeading?: T;
   listenLabel?: T;
   updatedAt?: T;
   createdAt?: T;

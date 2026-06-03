@@ -40,6 +40,17 @@ export const Hero: GlobalConfig = {
       },
     },
     {
+      name: "eventsHeading",
+      type: "text",
+      label: "Rótulo de las próximas presentaciones",
+      required: true,
+      defaultValue: "Próximas presentaciones",
+      admin: {
+        description:
+          "Sólo se ve en el teléfono, entre el botón «Escuchar» y las tarjetas. En escritorio nombra la lista para los lectores de pantalla.",
+      },
+    },
+    {
       name: "listenLabel",
       type: "text",
       label: "Texto del botón «Escuchar»",
