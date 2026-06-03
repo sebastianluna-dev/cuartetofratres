@@ -15,5 +15,6 @@ export function mapHero(hero: Hero): HeroContent {
       : { src: fallback.src, alt: fallback.alt, width: fallback.width, height: fallback.height },
     imagePosition: hero.imagePosition || HERO_DEFAULTS.image.position,
     listenLabel: hero.listenLabel || HERO_DEFAULTS.listenLabel,
+    eventsHeading: hero.eventsHeading || HERO_DEFAULTS.eventsHeading,
   };
 }

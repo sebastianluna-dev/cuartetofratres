@@ -130,6 +130,7 @@ async function seedGlobals(payload: Payload) {
         image,
         imagePosition: HERO_DEFAULTS.image.position,
         listenLabel: HERO_DEFAULTS.listenLabel,
+        eventsHeading: HERO_DEFAULTS.eventsHeading,
       },
     });
     written.push("hero");

@@ -4,6 +4,8 @@ export interface HeroDefaults {
   /** `width`/`height`: real pixels of the file, which cap how big the hero draws it. */
   image: { src: string; alt: string; position: string; width: number; height: number };
   listenLabel: string;
+  /** Heading of the upcoming events, shown on the phone only. */
+  eventsHeading: string;
 }
 
 // Default content of the hero: what the seed writes to the CMS and what the
@@ -19,4 +21,5 @@ export const HERO_DEFAULTS: HeroDefaults = {
     height: 941,
   },
   listenLabel: "Escuchar al cuarteto",
+  eventsHeading: "Próximas presentaciones",
 };

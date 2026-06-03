@@ -7,4 +7,5 @@ export interface HeroContent {
   image: Required<ContentImage>;
   imagePosition: string;
   listenLabel: string;
+  eventsHeading: string;
 }
