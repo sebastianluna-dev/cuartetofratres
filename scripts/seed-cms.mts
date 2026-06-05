@@ -86,6 +86,10 @@ async function seedEvents(payload: Payload) {
         city: event.city,
         image,
         imagePosition: event.image.position,
+        description: event.description,
+        program: event.program?.map((item) => ({ title: item.title, composer: item.composer })),
+        venue: event.venue,
+        tickets: event.tickets,
       },
     });
     console.log(`event    ${event.title}`);
