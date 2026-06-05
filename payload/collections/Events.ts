@@ -70,5 +70,65 @@ export const Events: CollectionConfig = {
       defaultValue: "50% 50%",
       admin: { description: "Valor de object-position. Ej.: «46% 42%»." },
     },
+    // Everything below only shows in the window that opens from the card;
+    // all of it is optional so a date can be announced before the details.
+    {
+      name: "description",
+      type: "textarea",
+      label: "Descripción",
+      admin: { description: "Se muestra en la ventana que abre la tarjeta. Los saltos de línea se respetan." },
+    },
+    {
+      name: "program",
+      type: "array",
+      label: "Programa",
+      labels: { singular: "Obra", plural: "Obras" },
+      fields: [
+        {
+          type: "row",
+          fields: [
+            { name: "title", type: "text", label: "Obra", required: true, admin: { width: "60%" } },
+            { name: "composer", type: "text", label: "Compositor", admin: { width: "40%" } },
+          ],
+        },
+      ],
+    },
+    {
+      name: "venue",
+      type: "group",
+      label: "Lugar",
+      fields: [
+        { name: "name", type: "text", label: "Recinto" },
+        { name: "address", type: "text", label: "Dirección" },
+        {
+          name: "mapsUrl",
+          type: "text",
+          label: "Enlace a Google Maps",
+          admin: { description: "Opcional: vacío, el enlace «Cómo llegar» se arma con recinto, dirección y ciudad." },
+        },
+      ],
+    },
+    {
+      name: "tickets",
+      type: "group",
+      label: "Boletos",
+      fields: [
+        {
+          name: "url",
+          type: "text",
+          label: "Enlace de venta",
+          admin: {
+            description:
+              "Con enlace, la ventana muestra «Comprar boletos»; sin él, «Solicitar informes» lleva al formulario.",
+          },
+        },
+        {
+          name: "price",
+          type: "text",
+          label: "Precio (texto)",
+          admin: { description: "Ej.: «$250 general · $150 estudiantes»." },
+        },
+      ],
+    },
   ],
 };

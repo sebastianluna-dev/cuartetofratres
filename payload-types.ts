@@ -204,6 +204,35 @@ export interface Event {
    * Valor de object-position. Ej.: «46% 42%».
    */
   imagePosition?: string | null;
+  /**
+   * Se muestra en la ventana que abre la tarjeta. Los saltos de línea se respetan.
+   */
+  description?: string | null;
+  program?:
+    | {
+        title: string;
+        composer?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  venue?: {
+    name?: string | null;
+    address?: string | null;
+    /**
+     * Opcional: vacío, el enlace «Cómo llegar» se arma con recinto, dirección y ciudad.
+     */
+    mapsUrl?: string | null;
+  };
+  tickets?: {
+    /**
+     * Con enlace, la ventana muestra «Comprar boletos»; sin él, «Solicitar informes» lleva al formulario.
+     */
+    url?: string | null;
+    /**
+     * Ej.: «$250 general · $150 estudiantes».
+     */
+    price?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -387,6 +416,27 @@ export interface EventsSelect<T extends boolean = true> {
   city?: T;
   image?: T;
   imagePosition?: T;
+  description?: T;
+  program?:
+    | T
+    | {
+        title?: T;
+        composer?: T;
+        id?: T;
+      };
+  venue?:
+    | T
+    | {
+        name?: T;
+        address?: T;
+        mapsUrl?: T;
+      };
+  tickets?:
+    | T
+    | {
+        url?: T;
+        price?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
