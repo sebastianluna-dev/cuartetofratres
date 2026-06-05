@@ -11,6 +11,11 @@ export interface UpcomingEvent {
     alt: string;
     position: string;
   };
+  // Detail of the window that opens from the card; the seed may leave it out.
+  description?: string;
+  program?: { title: string; composer?: string }[];
+  venue?: { name?: string; address?: string; mapsUrl?: string };
+  tickets?: { url?: string; price?: string };
 }
 
 // Seed of the `events` collection and fallback while it is empty. The hero
@@ -23,6 +28,12 @@ export const UPCOMING_EVENTS: readonly UpcomingEvent[] = [
     time: "20:00",
     city: "Boca del Río, Veracruz",
     image: { src: "/images/event-temporada.jpg", alt: "Próxima presentación del cuarteto", position: "46% 42%" },
+    description:
+      "Programa de cámara con obras del repertorio clásico y latinoamericano del cuarteto. Entrada libre hasta completar aforo.",
+    program: [
+      { title: "Cuarteto núm. 2 en Re mayor", composer: "Aleksandr Borodín" },
+      { title: "Danzas Latinoamericanas", composer: "José Elizondo" },
+    ],
   },
   {
     id: "borodin-schubert-2026",
@@ -31,5 +42,19 @@ export const UPCOMING_EVENTS: readonly UpcomingEvent[] = [
     time: "19:30",
     city: "Xalapa, Veracruz",
     image: { src: "/images/event-borodin-schubert.jpg", alt: "Cuarteto Fratres en concierto", position: "64% 50%" },
+    program: [
+      { title: "Cuarteto núm. 2 en Re mayor", composer: "Aleksandr Borodín" },
+      { title: "Cuarteto núm. 14 «La muerte y la doncella»", composer: "Franz Schubert" },
+    ],
   },
 ];
+
+/** Fixed labels of the event window: structure, not content, so they stay in code. */
+export const EVENT_DIALOG_LABELS = {
+  program: "Programa",
+  venue: "Lugar",
+  directions: "Cómo llegar",
+  tickets: "Comprar boletos",
+  inquire: "Solicitar informes",
+  close: "Cerrar",
+} as const;

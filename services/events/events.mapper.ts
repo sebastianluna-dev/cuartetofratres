@@ -1,11 +1,31 @@
 import type { Event } from "@/payload-types";
 import type { UpcomingEvent } from "@/constants/events.const";
+import { buildMapsUrl } from "@/lib/build-maps-url";
 import { mapContentImage } from "@/services/shared/map-content-image";
-import type { EventContent } from "./events.types";
+import type { EventContent, EventProgramItem } from "./events.types";
 
 /** Payload stores dates as ISO timestamps; the site only cares about the day. */
 export function isoDay(value: string): string {
   return value.slice(0, 10);
+}
+
+function orNull(value: string | null | undefined): string | null {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : null;
+}
+
+function mapProgram(program: Event["program"]): EventProgramItem[] {
+  return (program ?? []).map((item) => ({ title: item.title, composer: orNull(item.composer) }));
+}
+
+/** The editor's link wins; otherwise a Maps search, but only when there is a venue to search for. */
+function resolveMapsUrl(venue: Event["venue"], city: string): string | null {
+  const explicit = orNull(venue?.mapsUrl);
+  if (explicit) return explicit;
+  const name = orNull(venue?.name);
+  const address = orNull(venue?.address);
+  if (!name && !address) return null;
+  return buildMapsUrl([name, address, city]);
 }
 
 export function mapEvent(event: Event): EventContent | null {
@@ -19,11 +39,19 @@ export function mapEvent(event: Event): EventContent | null {
     city: event.city,
     image,
     imagePosition: event.imagePosition || "50% 50%",
+    description: orNull(event.description),
+    program: mapProgram(event.program),
+    venueName: orNull(event.venue?.name),
+    venueAddress: orNull(event.venue?.address),
+    mapsUrl: resolveMapsUrl(event.venue, event.city),
+    ticketsUrl: orNull(event.tickets?.url),
+    ticketsPrice: orNull(event.tickets?.price),
   };
 }
 
 /** The constants, in the same shape, for when the collection is still empty. */
 export function mapDefaultEvent(event: UpcomingEvent): EventContent {
+  const venue = event.venue ?? {};
   return {
     id: event.id,
     title: event.title,
@@ -32,5 +60,12 @@ export function mapDefaultEvent(event: UpcomingEvent): EventContent {
     city: event.city,
     image: { src: event.image.src, alt: event.image.alt },
     imagePosition: event.image.position,
+    description: event.description ?? null,
+    program: (event.program ?? []).map((item) => ({ title: item.title, composer: item.composer ?? null })),
+    venueName: venue.name ?? null,
+    venueAddress: venue.address ?? null,
+    mapsUrl: resolveMapsUrl(venue, event.city),
+    ticketsUrl: event.tickets?.url ?? null,
+    ticketsPrice: event.tickets?.price ?? null,
   };
 }

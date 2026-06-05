@@ -38,4 +38,37 @@ describe("mapEvent", () => {
   it("drops an event whose photo was not populated", () => {
     expect(mapEvent(event({ image: 9 }))).toBeNull();
   });
+
+  it("leaves the detail empty when the editor filled nothing", () => {
+    const mapped = mapEvent(event());
+    expect(mapped).toMatchObject({
+      description: null,
+      program: [],
+      venueName: null,
+      venueAddress: null,
+      mapsUrl: null,
+      ticketsUrl: null,
+      ticketsPrice: null,
+    });
+  });
+
+  it("maps the program and blanks a missing composer", () => {
+    const mapped = mapEvent(event({ program: [{ title: "Notturno", composer: "" }, { title: "Fuga y Misterio" }] }));
+    expect(mapped?.program).toEqual([
+      { title: "Notturno", composer: null },
+      { title: "Fuga y Misterio", composer: null },
+    ]);
+  });
+
+  it("builds the maps link from venue and city when the editor gave none", () => {
+    const mapped = mapEvent(event({ venue: { name: "Teatro Clavijero", address: "Emparan 3" } }));
+    expect(mapped?.mapsUrl).toBe(
+      "https://www.google.com/maps/search/?api=1&query=Teatro%20Clavijero%2C%20Emparan%203%2C%20Boca%20del%20R%C3%ADo%2C%20Veracruz",
+    );
+  });
+
+  it("prefers the editor's maps link", () => {
+    const mapped = mapEvent(event({ venue: { name: "Teatro", mapsUrl: " https://maps.app.goo.gl/abc " } }));
+    expect(mapped?.mapsUrl).toBe("https://maps.app.goo.gl/abc");
+  });
 });
