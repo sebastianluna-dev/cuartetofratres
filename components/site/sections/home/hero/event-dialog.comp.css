@@ -1,4 +1,6 @@
 .event-dialog {
+  /* The global reset zeroes every margin; `auto` is what centres a modal dialog. */
+  margin: auto;
   width: min(100% - 2 * var(--site-gutter), 760px);
   max-width: none;
   max-height: min(100dvh - 48px, 900px);
