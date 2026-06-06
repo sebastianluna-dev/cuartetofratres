@@ -1,0 +1,82 @@
+.event-dialog {
+  width: min(100% - 2 * var(--site-gutter), 760px);
+  max-width: none;
+  max-height: min(100dvh - 48px, 900px);
+  padding: 0;
+  border: 0;
+  background: var(--color-ink);
+  color: var(--color-text-on-ink);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+
+  &::backdrop {
+    background: rgba(18, 20, 24, 0.72);
+    backdrop-filter: blur(4px);
+  }
+
+  /* Layout only while open: a closed <dialog> must keep `display: none`. */
+  &[open] .event-dialog__panel {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    max-height: inherit;
+  }
+
+  & .event-dialog__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(18, 20, 24, 0.7);
+    color: var(--color-text-on-ink);
+    transition: background 0.25s ease;
+
+    &:hover {
+      background: var(--color-lime);
+      color: var(--color-ink);
+    }
+  }
+
+  & .event-dialog__media {
+    position: relative;
+    min-height: 420px;
+    background: #191c22;
+  }
+
+  & .event-dialog__photo {
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.06);
+  }
+
+  & .event-dialog__body {
+    padding: clamp(24px, 3vw, 40px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  & .event-dialog__band {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-lime);
+  }
+
+  & .event-dialog__title {
+    margin-top: 14px;
+    font-family: var(--font-heading);
+    font-size: clamp(30px, 3vw, 38px);
+    line-height: 1.1;
+  }
+
+  & .event-dialog__city {
+    margin-top: 8px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted-on-ink);
+  }
+}
