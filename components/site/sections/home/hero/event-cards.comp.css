@@ -1,0 +1,13 @@
+.event-cards {
+  display: flex;
+  gap: 22px;
+
+  /* Two equal columns; `minmax(0, 1fr)` so the cards shrink below their
+     desktop width instead of pushing the hero past the screen edge. */
+  @media (max-width: 479px) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    width: 100%;
+    gap: 12px;
+  }
+}

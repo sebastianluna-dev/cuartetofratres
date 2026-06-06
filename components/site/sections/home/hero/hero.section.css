@@ -77,11 +77,6 @@
     display: none;
   }
 
-  & .hero__events {
-    display: flex;
-    gap: 22px;
-  }
-
   /* Round lime button: the only call to action that competes with the dates.
      Its label wraps inside the circle: two words per line at most. */
   & .hero__listen {
@@ -206,15 +201,6 @@
   @media (max-width: 479px) {
     & .hero__lead {
       max-width: none;
-    }
-
-    /* Two equal columns; `minmax(0, 1fr)` so the cards shrink below their
-       desktop width instead of pushing the hero past the screen edge. */
-    & .hero__events {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      width: 100%;
-      gap: 12px;
     }
   }
 }
