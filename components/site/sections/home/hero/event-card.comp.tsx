@@ -1,11 +1,12 @@
 import Image from "next/image";
-import Link from "next/link";
 import { formatEventDate, formatEventDateLong } from "@/lib/format-event-date";
 import type { EventContent } from "@/services/events/events.types";
 import "./event-card.comp.css";
 
 interface EventCardProps {
   event: EventContent;
+  /** Opens the detail window of this date. */
+  onOpen: () => void;
 }
 
 /** Card heights from event-card.comp.css: 334px, and 240px under 480px wide. */
@@ -15,8 +16,8 @@ const CARD_HEIGHT_SMALL = 240;
 const DEFAULT_RATIO = 16 / 9;
 
 // Tall card with the date as a lime band on top and the title at the foot.
-// It links to the contact section: there is no ticketing yet.
-export function EventCard({ event }: EventCardProps) {
+// The whole card is a button that opens the detail window.
+export function EventCard({ event, onOpen }: EventCardProps) {
   // The card is tall and the photo wide, so `cover` draws it at the card's
   // height and crops the sides: next/image must request that drawn width, not
   // the card's, or it serves a thumbnail and the screen stretches it.
@@ -25,7 +26,7 @@ export function EventCard({ event }: EventCardProps) {
   const sizes = `(max-width: 479px) ${Math.ceil(CARD_HEIGHT_SMALL * ratio)}px, ${Math.ceil(CARD_HEIGHT * ratio)}px`;
 
   return (
-    <Link href="#contacto" className="event-card">
+    <button type="button" className="event-card" aria-haspopup="dialog" onClick={onOpen}>
       <Image
         src={event.image.src}
         alt=""
@@ -45,6 +46,6 @@ export function EventCard({ event }: EventCardProps) {
         <span className="event-card__title">{event.title}</span>
         <span className="event-card__city">{event.city}</span>
       </span>
-    </Link>
+    </button>
   );
 }

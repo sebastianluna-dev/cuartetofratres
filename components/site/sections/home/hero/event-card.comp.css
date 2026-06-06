@@ -3,9 +3,12 @@
   display: block;
   width: 188px;
   height: 334px;
+  padding: 0;
+  border: 0;
   overflow: hidden;
   background: #191c22;
   color: inherit;
+  text-align: left;
 
   & .event-card__photo {
     object-fit: cover;
