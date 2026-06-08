@@ -181,4 +181,30 @@
     font-size: 14px;
     color: var(--color-text-on-ink);
   }
+
+  /* On the phone the dialog is a full-height sheet: photo on top, the rest
+     scrolls under it. */
+  @media (max-width: 767px) {
+    width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+
+    &[open] .event-dialog__panel {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: 220px minmax(0, 1fr);
+      height: 100dvh;
+    }
+
+    & .event-dialog__media {
+      min-height: 0;
+    }
+
+    & .event-dialog__body {
+      padding: 24px 20px 32px;
+    }
+
+    & .event-dialog__actions .button {
+      width: 100%;
+    }
+  }
 }
