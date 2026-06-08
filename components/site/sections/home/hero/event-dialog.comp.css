@@ -81,4 +81,104 @@
     text-transform: uppercase;
     color: var(--color-muted-on-ink);
   }
+
+  & .event-dialog__description {
+    margin-top: 22px;
+    font-size: 16px;
+    line-height: 1.65;
+    color: rgba(242, 244, 243, 0.86);
+    white-space: pre-line;
+    text-wrap: pretty;
+  }
+
+  & .event-dialog__block {
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px solid var(--color-divider-on-ink);
+  }
+
+  & .event-dialog__block-label {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-lime);
+  }
+
+  & .event-dialog__venue {
+    margin-top: 10px;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  & .event-dialog__address {
+    margin-top: 4px;
+    font-size: 14.5px;
+    color: var(--color-muted-on-ink);
+  }
+
+  & .event-dialog__link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-lime);
+    border-bottom: 1px solid currentColor;
+  }
+
+  & .event-dialog__program {
+    margin-top: 12px;
+    list-style: none;
+    counter-reset: obra;
+  }
+
+  & .event-dialog__program-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 14px;
+    padding: 10px 0;
+    border-top: 1px solid var(--color-divider-on-ink);
+    counter-increment: obra;
+
+    &:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    &::before {
+      content: counter(obra, decimal-leading-zero);
+      font-family: var(--font-heading);
+      font-size: 13px;
+      color: var(--color-muted-on-ink);
+      font-variant-numeric: tabular-nums;
+    }
+  }
+
+  & .event-dialog__program-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  & .event-dialog__program-composer {
+    font-size: 13px;
+    color: var(--color-muted-on-ink);
+  }
+
+  & .event-dialog__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px 20px;
+    margin-top: 30px;
+  }
+
+  & .event-dialog__price {
+    font-size: 14px;
+    color: var(--color-text-on-ink);
+  }
 }

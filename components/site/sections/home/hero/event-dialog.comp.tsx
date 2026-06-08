@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { EVENT_DIALOG_LABELS } from "@/constants/events.const";
 import { formatEventDateLong } from "@/lib/format-event-date";
 import type { EventContent } from "@/services/events/events.types";
@@ -88,6 +89,53 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
               {event.title}
             </h2>
             <p className="event-dialog__city">{event.city}</p>
+
+            {event.description && <p className="event-dialog__description">{event.description}</p>}
+
+            {(event.venueName || event.venueAddress) && (
+              <section className="event-dialog__block" aria-label={EVENT_DIALOG_LABELS.venue}>
+                <h3 className="event-dialog__block-label">{EVENT_DIALOG_LABELS.venue}</h3>
+                {event.venueName && <p className="event-dialog__venue">{event.venueName}</p>}
+                {event.venueAddress && <p className="event-dialog__address">{event.venueAddress}</p>}
+                {event.mapsUrl && (
+                  <a href={event.mapsUrl} className="event-dialog__link" target="_blank" rel="noopener noreferrer">
+                    {EVENT_DIALOG_LABELS.directions}
+                  </a>
+                )}
+              </section>
+            )}
+
+            {event.program.length > 0 && (
+              <section className="event-dialog__block" aria-label={EVENT_DIALOG_LABELS.program}>
+                <h3 className="event-dialog__block-label">{EVENT_DIALOG_LABELS.program}</h3>
+                <ol className="event-dialog__program">
+                  {event.program.map((item, index) => (
+                    <li key={`${item.title}-${index}`} className="event-dialog__program-item">
+                      <span className="event-dialog__program-title">{item.title}</span>
+                      {item.composer && <span className="event-dialog__program-composer">{item.composer}</span>}
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            )}
+
+            <div className="event-dialog__actions">
+              {event.ticketsPrice && <p className="event-dialog__price">{event.ticketsPrice}</p>}
+              {event.ticketsUrl ? (
+                <a
+                  href={event.ticketsUrl}
+                  className="button button_variant_lime"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {EVENT_DIALOG_LABELS.tickets}
+                </a>
+              ) : (
+                <Link href="#contacto" className="button button_variant_lime" onClick={close}>
+                  {EVENT_DIALOG_LABELS.inquire}
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       )}
