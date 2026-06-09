@@ -1,4 +1,3 @@
-import { CATEGORY_LABELS } from "@/constants/repertoire.const";
 import type { TrackContent } from "@/services/repertoire/repertoire.types";
 import { formatTrackTime } from "@/lib/format-track-time";
 import { StaffProgress } from "./staff-progress.comp";
@@ -30,7 +29,7 @@ export function NowPlayingCard({ track, number, playing, elapsed, note, onToggle
       </span>
       <h3 className="now-playing__title">{track.title}</h3>
       <p className="now-playing__composer">{track.composer}</p>
-      <p className="now-playing__category">{CATEGORY_LABELS[track.category]}</p>
+      {track.categoryLabel && <p className="now-playing__category">{track.categoryLabel}</p>}
 
       <StaffProgress fraction={fraction} onSeek={onSeek} />
 

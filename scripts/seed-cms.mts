@@ -2,6 +2,7 @@ import "./load-env.mts";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import type { GlobalSlug, Payload } from "payload";
+import type { Track } from "@/payload-types";
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import { ABOUT_DEFAULTS } from "@/constants/about.const";
@@ -106,7 +107,8 @@ async function seedTracks(payload: Payload) {
         order: index + 1,
         title: track.title,
         composer: track.composer,
-        category: track.category,
+        // The seed ids are the enum values until the categories become a collection.
+        category: track.categoryId as Track["category"],
         durationSeconds: track.durationSeconds,
       },
     });

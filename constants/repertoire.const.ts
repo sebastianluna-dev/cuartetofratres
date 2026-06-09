@@ -1,8 +1,19 @@
-export type RepertoireCategory = "clasico" | "latam" | "bodas" | "pop";
+/** The repertoire has at most this many categories; "Todo" is not one of them. */
+export const MAX_CATEGORIES = 5;
+
+/** Label of the tab that shows every track. */
+export const ALL_FILTER_LABEL = "Todo";
+
+export interface RepertoireCategorySeed {
+  id: string;
+  label: string;
+  /** What the filter tab reads; shorter than the label. */
+  shortLabel: string;
+}
 
 export interface RepertoireFilter {
   /** `null` is the "Todo" tab: no filtering. */
-  value: RepertoireCategory | null;
+  value: string | null;
   label: string;
 }
 
@@ -10,7 +21,8 @@ export interface Track {
   id: string;
   title: string;
   composer: string;
-  category: RepertoireCategory;
+  /** Id of one of `CATEGORIES`. */
+  categoryId: string;
   /** Length of the sample, in seconds. Until the studio recordings exist the player only simulates it. */
   durationSeconds: number;
 }
@@ -33,19 +45,12 @@ export const REPERTOIRE_SECTION_DEFAULTS: RepertoireSectionDefaults = {
   },
 };
 
-export const CATEGORY_LABELS: Record<RepertoireCategory, string> = {
-  clasico: "Clásico y cámara",
-  latam: "Mexicana y latinoamericana",
-  bodas: "Bodas y ceremonias",
-  pop: "Pop y contemporáneo",
-};
-
-export const REPERTOIRE_FILTERS: readonly RepertoireFilter[] = [
-  { value: null, label: "Todo" },
-  { value: "clasico", label: "Cámara" },
-  { value: "latam", label: "Latinoamericana" },
-  { value: "bodas", label: "Bodas" },
-  { value: "pop", label: "Pop" },
+// Seed of the categories and fallback while the CMS has none, in tab order.
+export const CATEGORIES: readonly RepertoireCategorySeed[] = [
+  { id: "clasico", label: "Clásico y cámara", shortLabel: "Cámara" },
+  { id: "latam", label: "Mexicana y latinoamericana", shortLabel: "Latinoamericana" },
+  { id: "bodas", label: "Bodas y ceremonias", shortLabel: "Bodas" },
+  { id: "pop", label: "Pop y contemporáneo", shortLabel: "Pop" },
 ];
 
 export const TRACKS: readonly Track[] = [
@@ -53,28 +58,28 @@ export const TRACKS: readonly Track[] = [
     id: "danzas-latinoamericanas",
     title: "Danzas Latinoamericanas",
     composer: "José Elizondo",
-    category: "latam",
+    categoryId: "latam",
     durationSeconds: 210,
   },
   {
     id: "fuga-y-misterio",
     title: "Fuga y Misterio",
     composer: "Astor Piazzolla",
-    category: "latam",
+    categoryId: "latam",
     durationSeconds: 210,
   },
   {
     id: "borodin-cuarteto-2",
     title: "Cuarteto núm. 2 en Re mayor",
     composer: "Alexander Borodin",
-    category: "clasico",
+    categoryId: "clasico",
     durationSeconds: 210,
   },
   {
     id: "schubert-cuarteto-14",
     title: "Cuarteto núm. 14 «La muerte y la doncella»",
     composer: "Franz Schubert",
-    category: "clasico",
+    categoryId: "clasico",
     durationSeconds: 210,
   },
 ];

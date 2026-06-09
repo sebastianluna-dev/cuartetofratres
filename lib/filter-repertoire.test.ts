@@ -10,10 +10,16 @@ describe("filterRepertoire", () => {
   it("keeps only the tracks of the category", () => {
     const latam = filterRepertoire(TRACKS, "latam");
     expect(latam.length).toBeGreaterThan(0);
-    expect(latam.every((track) => track.category === "latam")).toBe(true);
+    expect(latam.every((track) => track.categoryId === "latam")).toBe(true);
   });
 
   it("returns an empty list for a category with no recordings yet", () => {
     expect(filterRepertoire(TRACKS, "pop")).toEqual([]);
+  });
+
+  it("shows a track without category only under 'Todo'", () => {
+    const orphan = { id: "x", categoryId: null };
+    expect(filterRepertoire([orphan], null)).toEqual([orphan]);
+    expect(filterRepertoire([orphan], "latam")).toEqual([]);
   });
 });

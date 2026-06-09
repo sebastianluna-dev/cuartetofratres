@@ -1,10 +1,10 @@
-import type { RepertoireCategory, RepertoireFilter } from "@/constants/repertoire.const";
+import type { RepertoireFilter } from "@/constants/repertoire.const";
 import "./repertoire-filters.comp.css";
 
 interface RepertoireFiltersProps {
   filters: readonly RepertoireFilter[];
-  active: RepertoireCategory | null;
-  onChange: (category: RepertoireCategory | null) => void;
+  active: string | null;
+  onChange: (categoryId: string | null) => void;
 }
 
 // Underlined tabs on desktop, pills in a horizontal strip on the phone.
@@ -15,7 +15,7 @@ export function RepertoireFilters({ filters, active, onChange }: RepertoireFilte
         const isActive = filter.value === active;
         return (
           <button
-            key={filter.label}
+            key={filter.value ?? "todo"}
             type="button"
             className={`repertoire-filters__tab${isActive ? " repertoire-filters__tab_active" : ""}`}
             aria-pressed={isActive}

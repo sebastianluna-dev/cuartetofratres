@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { REPERTOIRE_FILTERS, type RepertoireCategory } from "@/constants/repertoire.const";
+import { buildRepertoireFilters } from "@/lib/build-repertoire-filters";
 import { filterRepertoire } from "@/lib/filter-repertoire";
 import { useSamplePlayer } from "@/hooks/use-sample-player.hook";
 import type { RepertoireContent } from "@/services/repertoire/repertoire.types";
@@ -19,17 +19,18 @@ interface RepertoirePlayerProps {
 // stays selected (and keeps playing) even when its category is filtered out.
 export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
   const { tracks } = content;
-  const [category, setCategory] = useState<RepertoireCategory | null>(null);
+  const [categoryId, setCategoryId] = useState<string | null>(null);
   const player = useSamplePlayer(tracks.map((track) => track.durationSeconds));
 
-  const visibleTracks = filterRepertoire(tracks, category);
+  const filters = buildRepertoireFilters(content.categories);
+  const visibleTracks = filterRepertoire(tracks, categoryId);
   const selectedTrack = tracks[player.selectedIndex];
 
   return (
     <div className="repertoire-player">
       <div className="repertoire-player__head">
         <h2 className="repertoire-player__title">{content.title}</h2>
-        <RepertoireFilters filters={REPERTOIRE_FILTERS} active={category} onChange={setCategory} />
+        <RepertoireFilters filters={filters} active={categoryId} onChange={setCategoryId} />
       </div>
 
       <div className="repertoire-player__body">
