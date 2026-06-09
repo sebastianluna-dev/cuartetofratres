@@ -53,7 +53,12 @@ trackpad this can open rows while scrolling past them. Consider limiting hover e
 
 ## LOW priority
 
-### 7. Storybook for the shared pieces — [DX]
+### 7. Deep link to an event — [UX]
+
+The detail window only opens from its card. A `/#evento-<id>` hash that opens it on load would let
+the quartet share a date on social media; read `location.hash` in `EventCards` and set `openId`.
+
+### 8. Storybook for the shared pieces — [DX]
 
 The reference project pilots Storybook on one component. Worth it here only if the design keeps
 evolving; otherwise the sections are small enough to review in the page.

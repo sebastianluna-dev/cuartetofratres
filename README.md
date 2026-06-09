@@ -49,23 +49,25 @@ Los scripts `cms:*` corren con `node --import ./scripts/alias-loader.mjs`, un ho
 
 Una sola URL, `/`, con anclas a cada sección: `#inicio`, `#cuarteto`, `#integrantes`, `#repertorio` y `#contacto`. Las anclas están en `constants/navigation.const.ts`, de donde las leen la cabecera, el menú móvil y el pie.
 
+Cada tarjeta de la portada abre una ventana con el detalle de la presentación (`components/site/sections/home/hero/event-dialog.comp.tsx`): un `<dialog>` nativo, así que el foco, la tecla Escape y el fondo los da el navegador. Sin enlace de boletos, el botón lleva al formulario de contacto.
+
 Además Next genera `/robots.txt`, `/sitemap.xml`, `/icon.svg` y `/opengraph-image`, y Payload sirve el panel en `/admin` y su API REST en `/api/*` (`app/(payload)`).
 
 ## Contenido
 
 Todo lo que ve el visitante se edita en `/admin`. Las **Globals** guardan los textos de cada sección y las **colecciones**, lo que se repite:
 
-| En el CMS                                       | Qué contiene                                                                                                       |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| Secciones › Portada (`hero`)                    | Título, texto, foto de fondo con su encuadre, el botón «Escuchar» y el rótulo de las fechas (sólo en el teléfono). |
-| Secciones › El cuarteto (`about`)               | Rótulo, título, texto, los tres pilares, foto del grupo y pie de foto.                                             |
-| Secciones › Integrantes / Repertorio / Contacto | Los textos de cada sección (títulos, notas, estado vacío, mensaje tras enviar).                                    |
-| Sitio › Datos del sitio (`site-settings`)       | Lema, correo, WhatsApp, ciudad, redes y crédito de fotografía. Una red sin URL se muestra como texto, sin enlace.  |
-| Contenido › Integrantes (`members`)             | Los cuatro músicos, con orden de atril, instrumento, resumen, semblanza, retrato y encuadre.                       |
-| Contenido › Presentaciones (`events`)           | Fechas con hora, ciudad y foto. La portada muestra las dos próximas; las pasadas se quedan como historial.         |
-| Contenido › Repertorio (`tracks`)               | Obras con compositor, categoría y duración del fragmento.                                                          |
-| Contenido › Imágenes (`media`)                  | Las fotos, con texto alternativo obligatorio. En local se guardan en `media/`; en Vercel, en Vercel Blob.          |
-| Solicitudes › Solicitudes de contacto           | Lo que llega del formulario (ver abajo).                                                                           |
+| En el CMS                                       | Qué contiene                                                                                                                                                                      |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Secciones › Portada (`hero`)                    | Título, texto, foto de fondo con su encuadre, el botón «Escuchar» y el rótulo de las fechas (sólo en el teléfono).                                                                |
+| Secciones › El cuarteto (`about`)               | Rótulo, título, texto, los tres pilares, foto del grupo y pie de foto.                                                                                                            |
+| Secciones › Integrantes / Repertorio / Contacto | Los textos de cada sección (títulos, notas, estado vacío, mensaje tras enviar).                                                                                                   |
+| Sitio › Datos del sitio (`site-settings`)       | Lema, correo, WhatsApp, ciudad, redes y crédito de fotografía. Una red sin URL se muestra como texto, sin enlace.                                                                 |
+| Contenido › Integrantes (`members`)             | Los cuatro músicos, con orden de atril, instrumento, resumen, semblanza, retrato y encuadre.                                                                                      |
+| Contenido › Presentaciones (`events`)           | Fechas con hora, ciudad y foto, más el detalle de la ventana (descripción, programa, lugar y boletos). La portada muestra las dos próximas; las pasadas se quedan como historial. |
+| Contenido › Repertorio (`tracks`)               | Obras con compositor, categoría y duración del fragmento.                                                                                                                         |
+| Contenido › Imágenes (`media`)                  | Las fotos, con texto alternativo obligatorio. En local se guardan en `media/`; en Vercel, en Vercel Blob.                                                                         |
+| Solicitudes › Solicitudes de contacto           | Lo que llega del formulario (ver abajo).                                                                                                                                          |
 
 `constants/` sigue siendo el contenido de lanzamiento: lo escribe `npm run cms:seed` y es el respaldo campo por campo mientras una Global o una colección está vacía, así que una base nueva nunca deja la página en blanco. `navigation.const.ts` (anclas) y `contact.const.ts` (tipos de evento y longitudes) son estructura, no contenido, y sólo cambian en código.
 
