@@ -9,6 +9,6 @@
 export const CACHE_TAGS = {
   /** Every Global of the page (hero, about, members, repertoire, contact) and the site settings. */
   site: "site-globals",
-  /** The `members`, `events` and `tracks` collections. */
+  /** The `members`, `events`, `tracks` and `categories` collections. */
   catalog: "site-catalog",
 } as const;

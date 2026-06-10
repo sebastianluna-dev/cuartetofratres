@@ -9,6 +9,7 @@ import { Media } from "@/payload/collections/Media";
 import { Members } from "@/payload/collections/Members";
 import { Events } from "@/payload/collections/Events";
 import { Tracks } from "@/payload/collections/Tracks";
+import { Categories } from "@/payload/collections/Categories";
 import { ContactRequests } from "@/payload/collections/ContactRequests";
 import { Hero } from "@/payload/globals/Hero";
 import { About } from "@/payload/globals/About";
@@ -37,7 +38,7 @@ export default buildConfig({
       titleSuffix: " · Cuarteto Fratres",
     },
   },
-  collections: [Members, Events, Tracks, Media, ContactRequests, Users],
+  collections: [Members, Events, Tracks, Categories, Media, ContactRequests, Users],
   globals: [Hero, About, MembersSection, RepertoireSection, ContactSection, SiteSettings],
   // Without `sharp`, Payload does not read the dimensions of what is uploaded
   // and `Media.width`/`height` stay null: next/image needs them.

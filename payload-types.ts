@@ -70,6 +70,7 @@ export interface Config {
     members: Member;
     events: Event;
     tracks: Track;
+    categories: Category;
     media: Media;
     "contact-requests": ContactRequest;
     users: User;
@@ -83,6 +84,7 @@ export interface Config {
     members: MembersSelect<false> | MembersSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     tracks: TracksSelect<false> | TracksSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     "contact-requests": ContactRequestsSelect<false> | ContactRequestsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -254,6 +256,29 @@ export interface Track {
   createdAt: string;
 }
 /**
+ * Las pestañas del repertorio, 5 como máximo. «Todo» siempre va primero y no se edita.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  /**
+   * Orden de las pestañas, de izquierda a derecha.
+   */
+  order: number;
+  /**
+   * Se muestra en la tarjeta de la obra que suena. Ej.: «Clásico y cámara».
+   */
+  label: string;
+  /**
+   * Lo que se lee en la pestaña del filtro; vacía, se usa el nombre completo. Ej.: «Cámara».
+   */
+  shortLabel?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-requests".
  */
@@ -335,6 +360,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: "tracks";
         value: number | Track;
+      } | null)
+    | ({
+        relationTo: "categories";
+        value: number | Category;
       } | null)
     | ({
         relationTo: "media";
@@ -450,6 +479,17 @@ export interface TracksSelect<T extends boolean = true> {
   composer?: T;
   category?: T;
   durationSeconds?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  order?: T;
+  label?: T;
+  shortLabel?: T;
   updatedAt?: T;
   createdAt?: T;
 }

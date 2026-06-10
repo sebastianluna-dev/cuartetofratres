@@ -24,7 +24,7 @@ export const revalidateSiteGlobals: GlobalAfterChangeHook = () => {
   expire(CACHE_TAGS.site);
 };
 
-/** For the `members`, `events` and `tracks` collections, on save and on delete. */
+/** For the `members`, `events`, `tracks` and `categories` collections, on save and on delete. */
 export const revalidateCatalog: CollectionAfterChangeHook = () => {
   expire(CACHE_TAGS.catalog);
 };
