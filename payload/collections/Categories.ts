@@ -2,6 +2,7 @@ import type { CollectionConfig } from "payload";
 import { MAX_CATEGORIES } from "@/constants/repertoire.const";
 import { anyone, isAdminOrEditor } from "@/lib/payload/access";
 import { limitDocuments } from "@/lib/payload/limit-documents";
+import { preventDeleteInUse } from "@/lib/payload/prevent-delete-in-use";
 import { revalidateCatalog, revalidateCatalogAfterDelete } from "@/lib/payload/revalidate-site";
 
 // The tabs of the repertoire. Capped because the filter strip only fits so
@@ -27,6 +28,14 @@ export const Categories: CollectionConfig = {
         "categories",
         MAX_CATEGORIES,
         `Sólo puede haber ${MAX_CATEGORIES} categorías. Edita o borra una existente.`,
+      ),
+    ],
+    beforeDelete: [
+      preventDeleteInUse(
+        "tracks",
+        "category",
+        (count) =>
+          `Esta categoría tiene ${count} obra${count === 1 ? "" : "s"}. Cámbialas de categoría antes de borrarla.`,
       ),
     ],
     afterChange: [revalidateCatalog],
