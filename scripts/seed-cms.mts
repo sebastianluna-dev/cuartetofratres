@@ -2,7 +2,6 @@ import "./load-env.mts";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import type { GlobalSlug, Payload } from "payload";
-import type { Track } from "@/payload-types";
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import { ABOUT_DEFAULTS } from "@/constants/about.const";
@@ -10,7 +9,7 @@ import { CONTACT_SECTION_DEFAULTS } from "@/constants/contact.const";
 import { UPCOMING_EVENTS } from "@/constants/events.const";
 import { HERO_DEFAULTS } from "@/constants/hero.const";
 import { MEMBERS, MEMBERS_SECTION_DEFAULTS } from "@/constants/members.const";
-import { REPERTOIRE_SECTION_DEFAULTS, TRACKS } from "@/constants/repertoire.const";
+import { CATEGORIES, REPERTOIRE_SECTION_DEFAULTS, TRACKS } from "@/constants/repertoire.const";
 import { CONTACT_EMAIL, PHOTO_CREDIT, SITE_LOCATION, SITE_LOCATION_FULL, SITE_TAGLINE } from "@/constants/site.const";
 
 // Loads the CMS with the site's launch content (`npm run cms:seed`): the
@@ -97,18 +96,43 @@ async function seedEvents(payload: Payload) {
   }
 }
 
-async function seedTracks(payload: Payload) {
+/** Seed id → CMS id, so the tracks can point at their category. */
+async function seedCategories(payload: Payload): Promise<Map<string, number>> {
+  const ids = new Map<string, number>();
+  for (const [index, category] of CATEGORIES.entries()) {
+    const existing = await payload.find({
+      collection: "categories",
+      where: { label: { equals: category.label } },
+      limit: 1,
+    });
+    const found = existing.docs[0];
+    if (found) {
+      ids.set(category.id, found.id);
+      continue;
+    }
+    const created = await payload.create({
+      collection: "categories",
+      data: { order: index + 1, label: category.label, shortLabel: category.shortLabel },
+    });
+    ids.set(category.id, created.id);
+    console.log(`category ${category.label}`);
+  }
+  return ids;
+}
+
+async function seedTracks(payload: Payload, categoryIds: Map<string, number>) {
   for (const [index, track] of TRACKS.entries()) {
     const existing = await payload.find({ collection: "tracks", where: { title: { equals: track.title } }, limit: 1 });
     if (existing.docs.length > 0) continue;
+    const category = categoryIds.get(track.categoryId);
+    if (!category) throw new Error(`La obra «${track.title}» apunta a una categoría desconocida: ${track.categoryId}`);
     await payload.create({
       collection: "tracks",
       data: {
         order: index + 1,
         title: track.title,
         composer: track.composer,
-        // The seed ids are the enum values until the categories become a collection.
-        category: track.categoryId as Track["category"],
+        category,
         durationSeconds: track.durationSeconds,
       },
     });
@@ -202,7 +226,7 @@ async function main() {
   const payload = await getPayload({ config: await configPromise });
   await seedMembers(payload);
   await seedEvents(payload);
-  await seedTracks(payload);
+  await seedTracks(payload, await seedCategories(payload));
   await seedGlobals(payload);
 }
 

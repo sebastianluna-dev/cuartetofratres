@@ -247,7 +247,10 @@ export interface Track {
   order: number;
   title: string;
   composer: string;
-  category: "clasico" | "latam" | "bodas" | "pop";
+  /**
+   * Las categorías se editan en Contenido › Categorías.
+   */
+  category: number | Category;
   /**
    * Hasta que existan las grabaciones, el reproductor sólo simula esta duración.
    */

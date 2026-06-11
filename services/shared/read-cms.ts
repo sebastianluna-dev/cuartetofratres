@@ -31,14 +31,17 @@ const readGlobals = unstable_cache(
 const readCatalog = unstable_cache(
   async () => {
     const payload = await getPayload();
-    const [members, events, tracks] = await Promise.all([
+    const [members, events, tracks, categories] = await Promise.all([
       payload.find({ collection: "members", sort: "order", limit: 20, pagination: false }),
       payload.find({ collection: "events", sort: "date", limit: 50, pagination: false }),
       payload.find({ collection: "tracks", sort: "order", limit: 100, pagination: false }),
+      payload.find({ collection: "categories", sort: "order", limit: 10, pagination: false }),
     ]);
-    return { members: members.docs, events: events.docs, tracks: tracks.docs };
+    return { members: members.docs, events: events.docs, tracks: tracks.docs, categories: categories.docs };
   },
-  ["site-catalog"],
+  // "v2": the shape gained `categories`; a Data Cache entry written by the
+  // previous deployment must not be served to the new code.
+  ["site-catalog", "v2"],
   { tags: [CACHE_TAGS.catalog], revalidate: CACHE_REVALIDATE_SECONDS },
 );
 
