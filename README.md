@@ -57,17 +57,18 @@ Además Next genera `/robots.txt`, `/sitemap.xml`, `/icon.svg` y `/opengraph-ima
 
 Todo lo que ve el visitante se edita en `/admin`. Las **Globals** guardan los textos de cada sección y las **colecciones**, lo que se repite:
 
-| En el CMS                                       | Qué contiene                                                                                                                                                                      |
-| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Secciones › Portada (`hero`)                    | Título, texto, foto de fondo con su encuadre, el botón «Escuchar» y el rótulo de las fechas (sólo en el teléfono).                                                                |
-| Secciones › El cuarteto (`about`)               | Rótulo, título, texto, los tres pilares, foto del grupo y pie de foto.                                                                                                            |
-| Secciones › Integrantes / Repertorio / Contacto | Los textos de cada sección (títulos, notas, estado vacío, mensaje tras enviar).                                                                                                   |
-| Sitio › Datos del sitio (`site-settings`)       | Lema, correo, WhatsApp, ciudad, redes y crédito de fotografía. Una red sin URL se muestra como texto, sin enlace.                                                                 |
-| Contenido › Integrantes (`members`)             | Los cuatro músicos, con orden de atril, instrumento, resumen, semblanza, retrato y encuadre.                                                                                      |
-| Contenido › Presentaciones (`events`)           | Fechas con hora, ciudad y foto, más el detalle de la ventana (descripción, programa, lugar y boletos). La portada muestra las dos próximas; las pasadas se quedan como historial. |
-| Contenido › Repertorio (`tracks`)               | Obras con compositor, categoría y duración del fragmento.                                                                                                                         |
-| Contenido › Imágenes (`media`)                  | Las fotos, con texto alternativo obligatorio. En local se guardan en `media/`; en Vercel, en Vercel Blob.                                                                         |
-| Solicitudes › Solicitudes de contacto           | Lo que llega del formulario (ver abajo).                                                                                                                                          |
+| En el CMS                                       | Qué contiene                                                                                                                                                                       |
+| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Secciones › Portada (`hero`)                    | Título, texto, foto de fondo con su encuadre, el botón «Escuchar» y el rótulo de las fechas (sólo en el teléfono).                                                                 |
+| Secciones › El cuarteto (`about`)               | Rótulo, título, texto, los tres pilares, foto del grupo y pie de foto.                                                                                                             |
+| Secciones › Integrantes / Repertorio / Contacto | Los textos de cada sección (títulos, notas, estado vacío, mensaje tras enviar).                                                                                                    |
+| Sitio › Datos del sitio (`site-settings`)       | Lema, correo, WhatsApp, ciudad, redes y crédito de fotografía. Una red sin URL se muestra como texto, sin enlace.                                                                  |
+| Contenido › Integrantes (`members`)             | Los cuatro músicos, con orden de atril, instrumento, resumen, semblanza, retrato y encuadre.                                                                                       |
+| Contenido › Presentaciones (`events`)           | Fechas con hora, ciudad y foto, más el detalle de la ventana (descripción, programa, lugar y boletos). La portada muestra las dos próximas; las pasadas se quedan como historial.  |
+| Contenido › Repertorio (`tracks`)               | Obras con compositor, categoría y duración del fragmento.                                                                                                                          |
+| Contenido › Categorías (`categories`)           | Las pestañas del repertorio, con nombre y etiqueta corta. Cinco como máximo (el filtro no cabe en el teléfono con más); «Todo» la pone el sitio. No se puede borrar una con obras. |
+| Contenido › Imágenes (`media`)                  | Las fotos, con texto alternativo obligatorio. En local se guardan en `media/`; en Vercel, en Vercel Blob.                                                                          |
+| Solicitudes › Solicitudes de contacto           | Lo que llega del formulario (ver abajo).                                                                                                                                           |
 
 `constants/` sigue siendo el contenido de lanzamiento: lo escribe `npm run cms:seed` y es el respaldo campo por campo mientras una Global o una colección está vacía, así que una base nueva nunca deja la página en blanco. `navigation.const.ts` (anclas) y `contact.const.ts` (tipos de evento y longitudes) son estructura, no contenido, y sólo cambian en código.
 
@@ -89,7 +90,7 @@ Cada solicitud válida se guarda como documento de la colección `contact-reques
 
 - **`app/(site)/`**: layout, página, `landing-page.tsx` (compone las secciones según `config/site.config.ts`), 404, error boundary y la imagen Open Graph. `robots.ts`, `sitemap.ts` y `global-not-found.tsx` quedan en `app/`: con dos layouts raíz, la 404 de rutas que no existen la sirve `global-not-found.tsx`.
 - **`app/(payload)/`**: panel y API de Payload, generados por su plantilla; sólo `custom.css` es nuestro.
-- **`payload.config.ts`** y **`payload/`**: la config del CMS, una colección o Global por archivo. Acceso en `lib/payload/access.ts` (dos roles, admin y editor; sólo admin gestiona usuarios y borra solicitudes).
+- **`payload.config.ts`** y **`payload/`**: la config del CMS, una colección o Global por archivo. Acceso en `lib/payload/access.ts` (dos roles, admin y editor; sólo admin gestiona usuarios y borra solicitudes); `lib/payload/limit-documents.ts` y `prevent-delete-in-use.ts` son los hooks que ponen en palabras los límites del diseño (máximo de categorías, categoría en uso).
 - **`migrations/`**: el esquema de la base. Nunca se usa el _push_ de desarrollo (`push: false`): tras cambiar una colección, `npm run cms:migrate -- create <nombre>` y `npm run cms:migrate`.
 - **`components/site/sections/`**: `shell/` (cabecera, menú móvil, pie, pantalla de aviso) y `home/` (una carpeta por sección: `hero`, `about`, `members`, `repertoire`, `contact`). Cada archivo `.section.tsx` o `.comp.tsx` importa su propio `.css`.
 - **`components/site/shared/`**: piezas que usan varias secciones (logo, pentagrama ornamental, eyebrow, `Reveal`, analítica).
