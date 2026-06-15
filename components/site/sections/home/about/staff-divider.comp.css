@@ -17,4 +17,10 @@
   & .staff-divider__notes {
     fill: currentColor;
   }
+
+  /* Desktop only: on the phone the staff shrinks to a strip of hairlines
+     between two sections and reads as noise. */
+  @media (max-width: 767px) {
+    display: none;
+  }
 }
