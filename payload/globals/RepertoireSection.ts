@@ -26,6 +26,14 @@ export const RepertoireSection: GlobalConfig = {
       defaultValue: "Solo suena una pista a la vez y nunca arranca sola.",
     },
     {
+      name: "unavailableLabel",
+      type: "text",
+      label: "Aviso de obra sin grabación",
+      required: true,
+      defaultValue: "Grabación próximamente",
+      admin: { description: "Junto a las obras que aún no tienen archivo de audio." },
+    },
+    {
       name: "emptyState",
       type: "group",
       label: "Categoría sin obras",

@@ -8,7 +8,7 @@ export const Tracks: CollectionConfig = {
   admin: {
     useAsTitle: "title",
     group: "Contenido",
-    defaultColumns: ["order", "title", "composer", "category"],
+    defaultColumns: ["order", "title", "composer", "category", "audio"],
   },
   access: {
     read: anyone,
@@ -63,13 +63,20 @@ export const Tracks: CollectionConfig = {
       ],
     },
     {
+      name: "audio",
+      type: "upload",
+      relationTo: "audio",
+      label: "Grabación",
+      admin: { description: "Sin grabación, la obra se lista pero no se puede reproducir." },
+    },
+    {
       name: "durationSeconds",
       type: "number",
-      label: "Duración del fragmento (segundos)",
+      label: "Duración (segundos), sólo hasta que cargue el archivo",
       required: true,
       defaultValue: 210,
       min: 1,
-      admin: { description: "Hasta que existan las grabaciones, el reproductor sólo simula esta duración." },
+      admin: { description: "Se muestra mientras el navegador lee la duración real; con grabación, manda el archivo." },
     },
   ],
 };

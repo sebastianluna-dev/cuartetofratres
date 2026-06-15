@@ -6,6 +6,7 @@ import { buildConfig } from "payload";
 import sharp from "sharp";
 import { Users } from "@/payload/collections/Users";
 import { Media } from "@/payload/collections/Media";
+import { Audio } from "@/payload/collections/Audio";
 import { Members } from "@/payload/collections/Members";
 import { Events } from "@/payload/collections/Events";
 import { Tracks } from "@/payload/collections/Tracks";
@@ -27,7 +28,8 @@ const dirname = path.dirname(filename);
 const DATABASE_URI = process.env.DATABASE_URI || process.env.CUARTETO_FRATRES_DATABASE_POSTGRES_URL;
 
 // Uploads go to Vercel Blob whenever its token exists (every Vercel
-// deployment); locally they are written to `media/`, which git ignores.
+// deployment); locally they are written to `media/` and `audio/`, which git
+// ignores.
 const BLOB_TOKEN = process.env.BLOB_READ_WRITE_TOKEN;
 
 export default buildConfig({
@@ -38,7 +40,7 @@ export default buildConfig({
       titleSuffix: " · Cuarteto Fratres",
     },
   },
-  collections: [Members, Events, Tracks, Categories, Media, ContactRequests, Users],
+  collections: [Members, Events, Tracks, Categories, Media, Audio, ContactRequests, Users],
   globals: [Hero, About, MembersSection, RepertoireSection, ContactSection, SiteSettings],
   // Without `sharp`, Payload does not read the dimensions of what is uploaded
   // and `Media.width`/`height` stay null: next/image needs them.
@@ -70,7 +72,7 @@ export default buildConfig({
     vercelBlobStorage({
       enabled: Boolean(BLOB_TOKEN),
       token: BLOB_TOKEN ?? "",
-      collections: { media: true },
+      collections: { media: true, audio: true },
     }),
   ],
   typescript: {

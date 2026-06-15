@@ -72,6 +72,7 @@ export interface Config {
     tracks: Track;
     categories: Category;
     media: Media;
+    audio: Audio;
     "contact-requests": ContactRequest;
     users: User;
     "payload-kv": PayloadKv;
@@ -86,6 +87,7 @@ export interface Config {
     tracks: TracksSelect<false> | TracksSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    audio: AudioSelect<false> | AudioSelect<true>;
     "contact-requests": ContactRequestsSelect<false> | ContactRequestsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     "payload-kv": PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -252,7 +254,11 @@ export interface Track {
    */
   category: number | Category;
   /**
-   * Hasta que existan las grabaciones, el reproductor sólo simula esta duración.
+   * Sin grabación, la obra se lista pero no se puede reproducir.
+   */
+  audio?: (number | null) | Audio;
+  /**
+   * Se muestra mientras el navegador lee la duración real; con grabación, manda el archivo.
    */
   durationSeconds: number;
   updatedAt: string;
@@ -280,6 +286,28 @@ export interface Category {
   shortLabel?: string | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * MP3, M4A, OGG o WAV. Se asignan a las obras en Contenido › Repertorio.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "audio".
+ */
+export interface Audio {
+  id: number;
+  /**
+   * Ej.: «Borodin — Notturno (fragmento)».
+   */
+  title: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -371,6 +399,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: "media";
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: "audio";
+        value: number | Audio;
       } | null)
     | ({
         relationTo: "contact-requests";
@@ -481,6 +513,7 @@ export interface TracksSelect<T extends boolean = true> {
   title?: T;
   composer?: T;
   category?: T;
+  audio?: T;
   durationSeconds?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -513,6 +546,22 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "audio_select".
+ */
+export interface AudioSelect<T extends boolean = true> {
+  title?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -669,6 +718,10 @@ export interface RepertoireSection {
    */
   note: string;
   playerNote: string;
+  /**
+   * Junto a las obras que aún no tienen archivo de audio.
+   */
+  unavailableLabel: string;
   emptyState: {
     title: string;
     text: string;
@@ -771,6 +824,7 @@ export interface RepertoireSectionSelect<T extends boolean = true> {
   title?: T;
   note?: T;
   playerNote?: T;
+  unavailableLabel?: T;
   emptyState?:
     | T
     | {

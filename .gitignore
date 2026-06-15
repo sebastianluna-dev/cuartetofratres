@@ -36,6 +36,7 @@ yarn-error.log*
 
 # payload (uploads written locally when there is no Vercel Blob token)
 /media/
+/audio/
 
 # typescript
 *.tsbuildinfo
