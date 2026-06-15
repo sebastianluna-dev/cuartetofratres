@@ -6,6 +6,9 @@
   max-height: min(100dvh - 48px, 900px);
   padding: 0;
   border: 0;
+  /* Nothing scrolls inside the panel: when the detail is taller than the
+     screen, the whole dialog scrolls, photo included. */
+  overflow-y: auto;
   background: var(--color-ink);
   color: var(--color-text-on-ink);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
@@ -16,15 +19,13 @@
   }
 
   /* Layout only while open: a closed <dialog> must keep `display: none`.
-     The photo column is a 9:16 portrait and sets the height of the whole
-     panel; the text scrolls inside that height. */
+     The photo column is a 9:16 portrait at least; a longer detail makes the
+     panel, and with it the photo, taller. */
   --media-width: 300px;
 
   &[open] .event-dialog__panel {
     display: grid;
     grid-template-columns: var(--media-width) minmax(0, 1fr);
-    grid-template-rows: calc(var(--media-width) * 16 / 9);
-    max-height: inherit;
   }
 
   & .event-dialog__close {
@@ -50,7 +51,7 @@
 
   & .event-dialog__media {
     position: relative;
-    min-height: 0;
+    min-height: calc(var(--media-width) * 16 / 9);
     background: #191c22;
   }
 
@@ -60,10 +61,7 @@
   }
 
   & .event-dialog__body {
-    min-height: 0;
     padding: clamp(24px, 3vw, 40px);
-    overflow-y: auto;
-    overscroll-behavior: contain;
   }
 
   & .event-dialog__band {
@@ -188,17 +186,20 @@
     color: var(--color-text-on-ink);
   }
 
-  /* On the phone the dialog is a full-height sheet: photo on top, the rest
-     scrolls under it. */
+  /* On the phone the dialog is a full-width sheet: photo on top, the rest
+     below; a long detail scrolls the sheet as a whole. */
   @media (max-width: 767px) {
     width: 100%;
-    height: 100dvh;
+    min-height: 100dvh;
     max-height: 100dvh;
 
     &[open] .event-dialog__panel {
       grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: 220px minmax(0, 1fr);
-      height: 100dvh;
+      grid-template-rows: 220px auto;
+    }
+
+    & .event-dialog__media {
+      min-height: 0;
     }
 
     & .event-dialog__body {
