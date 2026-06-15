@@ -1,9 +1,9 @@
 .event-dialog {
   /* The global reset zeroes every margin; `auto` is what centres a modal dialog. */
   margin: auto;
-  width: min(100% - 2 * var(--site-gutter), 760px);
+  width: min(100% - 2 * var(--site-gutter), 1080px);
   max-width: none;
-  max-height: min(100dvh - 48px, 900px);
+  max-height: min(100dvh - 48px, 960px);
   padding: 0;
   border: 0;
   /* Nothing scrolls inside the panel: when the detail is taller than the
@@ -19,29 +19,29 @@
   }
 
   /* Layout only while open: a closed <dialog> must keep `display: none`.
-     The photo column is a 9:16 portrait at least; a longer detail makes the
-     panel, and with it the photo, taller. */
-  --media-width: 300px;
-
+     The photo takes five twelfths and is a 9:16 portrait at least; a longer
+     detail makes the panel, and with it the photo, taller. */
   &[open] .event-dialog__panel {
     display: grid;
-    grid-template-columns: var(--media-width) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   }
 
   & .event-dialog__close {
     position: absolute;
-    top: 14px;
-    right: 14px;
+    top: 22px;
+    right: 22px;
     z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--color-lime);
     border-radius: 50%;
-    background: rgba(18, 20, 24, 0.7);
-    color: var(--color-text-on-ink);
-    transition: background 0.25s ease;
+    color: var(--color-lime);
+    transition:
+      background 0.25s ease,
+      color 0.25s ease;
 
     &:hover {
       background: var(--color-lime);
@@ -51,7 +51,8 @@
 
   & .event-dialog__media {
     position: relative;
-    min-height: calc(var(--media-width) * 16 / 9);
+    min-height: 0;
+    aspect-ratio: 9 / 16;
     background: #191c22;
   }
 
@@ -60,44 +61,74 @@
     filter: grayscale(1) contrast(1.06);
   }
 
+  /* Day and month, like the band on the card, pinned to the photo's corner. */
+  & .event-dialog__date-badge {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 14px 18px;
+    background: var(--color-lime);
+    color: var(--color-ink);
+    font-family: var(--font-heading);
+    font-size: 24px;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
   & .event-dialog__body {
-    padding: clamp(24px, 3vw, 40px);
+    padding: clamp(28px, 4vw, 56px) clamp(28px, 4vw, 60px) clamp(28px, 4vw, 48px);
   }
 
   & .event-dialog__band {
     font-size: 12px;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--color-lime);
   }
 
   & .event-dialog__title {
-    margin-top: 14px;
+    margin-top: 16px;
+    max-width: 10em;
     font-family: var(--font-heading);
-    font-size: clamp(30px, 3vw, 38px);
-    line-height: 1.1;
+    font-size: clamp(34px, 3.6vw, 52px);
+    line-height: 1.05;
+    text-wrap: balance;
   }
 
   & .event-dialog__city {
-    margin-top: 8px;
+    margin-top: 14px;
     font-size: 11px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--color-muted-on-ink);
   }
 
+  & .event-dialog__ornament {
+    margin-top: 26px;
+  }
+
   & .event-dialog__description {
-    margin-top: 22px;
-    font-size: 16px;
-    line-height: 1.65;
+    margin-top: 28px;
+    font-size: 16.5px;
+    line-height: 1.7;
     color: rgba(242, 244, 243, 0.86);
     white-space: pre-line;
     text-wrap: pretty;
   }
 
+  /* Venue and tickets side by side, each its own block. */
+  & .event-dialog__facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px 32px;
+    margin-top: 30px;
+    padding-top: 26px;
+    border-top: 1px solid var(--color-divider-on-ink);
+  }
+
   & .event-dialog__block {
-    margin-top: 26px;
-    padding-top: 18px;
+    margin-top: 30px;
+    padding-top: 26px;
     border-top: 1px solid var(--color-divider-on-ink);
   }
 
@@ -109,24 +140,24 @@
     color: var(--color-lime);
   }
 
-  & .event-dialog__venue {
-    margin-top: 10px;
+  & .event-dialog__fact-main {
+    margin-top: 14px;
     font-family: var(--font-heading);
-    font-size: 20px;
-    line-height: 1.2;
+    font-size: clamp(22px, 2vw, 28px);
+    line-height: 1.15;
   }
 
-  & .event-dialog__address {
-    margin-top: 4px;
-    font-size: 14.5px;
+  & .event-dialog__fact-detail {
+    margin-top: 6px;
+    font-size: 15px;
     color: var(--color-muted-on-ink);
   }
 
   & .event-dialog__link {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 12px;
     font-size: 13px;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--color-lime);
     border-bottom: 1px solid currentColor;
@@ -142,14 +173,14 @@
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 4px 14px;
-    padding: 10px 0;
+    gap: 4px 20px;
+    padding: 14px 0;
     border-top: 1px solid var(--color-divider-on-ink);
     counter-increment: obra;
 
     &:first-child {
       border-top: 0;
-      padding-top: 0;
+      padding-top: 6px;
     }
 
     &::before {
@@ -163,27 +194,22 @@
 
   & .event-dialog__program-title {
     font-family: var(--font-heading);
-    font-size: 18px;
+    font-size: clamp(19px, 1.6vw, 22px);
     line-height: 1.25;
   }
 
+  /* The composer sits against the right edge of the list. */
   & .event-dialog__program-composer {
-    font-size: 13px;
+    margin-left: auto;
+    font-size: 14px;
     color: var(--color-muted-on-ink);
   }
 
   & .event-dialog__actions {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
     gap: 14px 20px;
-    margin-top: 30px;
-  }
-
-  & .event-dialog__price {
-    font-size: 14px;
-    color: var(--color-text-on-ink);
+    margin-top: 34px;
   }
 
   /* On the phone the dialog is a full-width sheet: photo on top, the rest
@@ -195,15 +221,38 @@
 
     &[open] .event-dialog__panel {
       grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: 220px auto;
+      grid-template-rows: 240px auto;
+    }
+
+    & .event-dialog__close {
+      top: 14px;
+      right: 14px;
+      width: 42px;
+      height: 42px;
+      background: rgba(18, 20, 24, 0.55);
     }
 
     & .event-dialog__media {
-      min-height: 0;
+      aspect-ratio: auto;
+    }
+
+    & .event-dialog__date-badge {
+      padding: 10px 14px;
+      font-size: 20px;
     }
 
     & .event-dialog__body {
       padding: 24px 20px 32px;
+    }
+
+    & .event-dialog__facts {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    & .event-dialog__program-composer {
+      margin-left: 0;
+      flex-basis: 100%;
+      padding-left: 34px;
     }
 
     & .event-dialog__actions .button {

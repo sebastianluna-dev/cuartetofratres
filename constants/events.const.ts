@@ -54,6 +54,7 @@ export const EVENT_DIALOG_LABELS = {
   program: "Programa",
   venue: "Lugar",
   directions: "Cómo llegar",
+  ticketsHeading: "Entradas",
   tickets: "Comprar boletos",
   inquire: "Solicitar informes",
   close: "Cerrar",

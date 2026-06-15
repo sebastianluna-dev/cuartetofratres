@@ -3,8 +3,10 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { StaffOrnament } from "@/components/site/shared/staff-ornament.comp";
 import { EVENT_DIALOG_LABELS } from "@/constants/events.const";
-import { formatEventDateLong } from "@/lib/format-event-date";
+import { formatEventDate, formatEventDateLong } from "@/lib/format-event-date";
+import { splitPrice } from "@/lib/split-price";
 import type { EventContent } from "@/services/events/events.types";
 import "./event-dialog.comp.css";
 
@@ -41,6 +43,8 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
   }, [event]);
 
   const close = () => ref.current?.close();
+  const priceLines = event?.ticketsPrice ? splitPrice(event.ticketsPrice) : [];
+  const hasVenue = Boolean(event?.venueName || event?.venueAddress);
 
   return (
     <dialog
@@ -58,12 +62,12 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
         <div className="event-dialog__panel">
           <button type="button" className="event-dialog__close" aria-label={EVENT_DIALOG_LABELS.close} onClick={close}>
             <svg
-              width="18"
-              height="18"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="1.6"
+              strokeWidth="1.8"
               aria-hidden="true"
             >
               <path d="M6 6l12 12M18 6 6 18" />
@@ -75,10 +79,13 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
               src={event.image.src}
               alt={event.image.alt}
               fill
-              sizes="(max-width: 767px) 100vw, 300px"
+              sizes="(max-width: 767px) 100vw, 450px"
               className="event-dialog__photo"
               style={{ objectPosition: event.imagePosition }}
             />
+            <span className="event-dialog__date-badge" aria-hidden="true">
+              {formatEventDate(event.date)}
+            </span>
           </div>
 
           <div className="event-dialog__body">
@@ -89,20 +96,38 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
               {event.title}
             </h2>
             <p className="event-dialog__city">{event.city}</p>
+            <div className="event-dialog__ornament">
+              <StaffOrnament theme="ivory" width={260} />
+            </div>
 
             {event.description && <p className="event-dialog__description">{event.description}</p>}
 
-            {(event.venueName || event.venueAddress) && (
-              <section className="event-dialog__block" aria-label={EVENT_DIALOG_LABELS.venue}>
-                <h3 className="event-dialog__block-label">{EVENT_DIALOG_LABELS.venue}</h3>
-                {event.venueName && <p className="event-dialog__venue">{event.venueName}</p>}
-                {event.venueAddress && <p className="event-dialog__address">{event.venueAddress}</p>}
-                {event.mapsUrl && (
-                  <a href={event.mapsUrl} className="event-dialog__link" target="_blank" rel="noopener noreferrer">
-                    {EVENT_DIALOG_LABELS.directions}
-                  </a>
+            {(hasVenue || priceLines.length > 0) && (
+              <div className="event-dialog__facts">
+                {hasVenue && (
+                  <section className="event-dialog__fact" aria-label={EVENT_DIALOG_LABELS.venue}>
+                    <h3 className="event-dialog__block-label">{EVENT_DIALOG_LABELS.venue}</h3>
+                    {event.venueName && <p className="event-dialog__fact-main">{event.venueName}</p>}
+                    {event.venueAddress && <p className="event-dialog__fact-detail">{event.venueAddress}</p>}
+                    {event.mapsUrl && (
+                      <a href={event.mapsUrl} className="event-dialog__link" target="_blank" rel="noopener noreferrer">
+                        {EVENT_DIALOG_LABELS.directions}
+                      </a>
+                    )}
+                  </section>
                 )}
-              </section>
+                {priceLines.length > 0 && (
+                  <section className="event-dialog__fact" aria-label={EVENT_DIALOG_LABELS.ticketsHeading}>
+                    <h3 className="event-dialog__block-label">{EVENT_DIALOG_LABELS.ticketsHeading}</h3>
+                    <p className="event-dialog__fact-main">{priceLines[0]}</p>
+                    {priceLines.slice(1).map((line) => (
+                      <p key={line} className="event-dialog__fact-detail">
+                        {line}
+                      </p>
+                    ))}
+                  </section>
+                )}
+              </div>
             )}
 
             {event.program.length > 0 && (
@@ -120,7 +145,6 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
             )}
 
             <div className="event-dialog__actions">
-              {event.ticketsPrice && <p className="event-dialog__price">{event.ticketsPrice}</p>}
               {event.ticketsUrl ? (
                 <a
                   href={event.ticketsUrl}
