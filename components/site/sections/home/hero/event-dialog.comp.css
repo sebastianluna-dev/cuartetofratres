@@ -15,10 +15,15 @@
     backdrop-filter: blur(4px);
   }
 
-  /* Layout only while open: a closed <dialog> must keep `display: none`. */
+  /* Layout only while open: a closed <dialog> must keep `display: none`.
+     The photo column is a 9:16 portrait and sets the height of the whole
+     panel; the text scrolls inside that height. */
+  --media-width: 300px;
+
   &[open] .event-dialog__panel {
     display: grid;
-    grid-template-columns: 300px minmax(0, 1fr);
+    grid-template-columns: var(--media-width) minmax(0, 1fr);
+    grid-template-rows: calc(var(--media-width) * 16 / 9);
     max-height: inherit;
   }
 
@@ -45,7 +50,7 @@
 
   & .event-dialog__media {
     position: relative;
-    min-height: 420px;
+    min-height: 0;
     background: #191c22;
   }
 
@@ -55,6 +60,7 @@
   }
 
   & .event-dialog__body {
+    min-height: 0;
     padding: clamp(24px, 3vw, 40px);
     overflow-y: auto;
     overscroll-behavior: contain;
@@ -193,10 +199,6 @@
       grid-template-columns: minmax(0, 1fr);
       grid-template-rows: 220px minmax(0, 1fr);
       height: 100dvh;
-    }
-
-    & .event-dialog__media {
-      min-height: 0;
     }
 
     & .event-dialog__body {
