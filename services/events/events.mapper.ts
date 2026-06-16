@@ -28,7 +28,9 @@ function resolveMapsUrl(venue: Event["venue"], city: string): string | null {
   return buildMapsUrl([name, address, city]);
 }
 
+/** `null` for a date the site must not show: unpublished, or without a usable photo. */
 export function mapEvent(event: Event): EventContent | null {
+  if (event.published === false) return null;
   const image = mapContentImage(event.image);
   if (!image) return null;
   return {

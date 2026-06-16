@@ -39,6 +39,11 @@ describe("mapEvent", () => {
     expect(mapEvent(event({ image: 9 }))).toBeNull();
   });
 
+  it("drops an unpublished event and keeps one with the flag unset", () => {
+    expect(mapEvent(event({ published: false }))).toBeNull();
+    expect(mapEvent(event({ published: null }))).not.toBeNull();
+  });
+
   it("leaves the detail empty when the editor filled nothing", () => {
     const mapped = mapEvent(event());
     expect(mapped).toMatchObject({
