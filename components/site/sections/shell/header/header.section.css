@@ -32,12 +32,14 @@
     gap: clamp(14px, 3vw, 44px);
   }
 
+  /* Logo on the left, the links against the right edge; contact is the last
+     of them rather than a button of its own. */
   & .site-header__nav {
     flex: 1 1 auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     gap: clamp(12px, 2vw, 32px);
     font-size: 13px;
     font-weight: 500;
@@ -60,13 +62,8 @@
     }
   }
 
-  & .site-header__cta {
-    flex: 0 0 auto;
-  }
-
   @media (max-width: 767px) {
-    & .site-header__nav,
-    & .site-header__cta {
+    & .site-header__nav {
       display: none;
     }
 

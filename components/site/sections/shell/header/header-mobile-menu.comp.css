@@ -48,7 +48,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 32px;
   padding: 120px var(--site-gutter) 40px;
   background: var(--color-ink);
   color: var(--color-text-on-ink);
@@ -92,11 +91,6 @@
     font-size: 14px;
     color: var(--color-muted-on-ink);
     font-variant-numeric: tabular-nums;
-  }
-
-  & .header-mobile-menu__cta {
-    height: 56px;
-    font-size: 13px;
   }
 
   @media (min-width: 768px) {

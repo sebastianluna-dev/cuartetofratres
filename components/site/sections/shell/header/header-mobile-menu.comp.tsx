@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { CONTACT_NAV_ITEM, NAV_ITEMS } from "@/constants/navigation.const";
+import { NAV_ITEMS } from "@/constants/navigation.const";
 import "./header-mobile-menu.comp.css";
 
 interface HeaderMobileMenuProps {
@@ -48,13 +48,6 @@ export function HeaderMobileMenu({ theme }: HeaderMobileMenuProps) {
             </Link>
           ))}
         </nav>
-        <Link
-          href={CONTACT_NAV_ITEM.href}
-          className="button button_variant_lime header-mobile-menu__cta"
-          onClick={close}
-        >
-          {CONTACT_NAV_ITEM.label}
-        </Link>
       </div>
     </>
   );

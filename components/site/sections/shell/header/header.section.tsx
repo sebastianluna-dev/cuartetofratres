@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Logo } from "@/components/site/shared/logo.comp";
-import { CONTACT_NAV_ITEM, NAV_ITEMS } from "@/constants/navigation.const";
+import { NAV_ITEMS } from "@/constants/navigation.const";
 import { useHeaderScroll } from "@/hooks/use-header-scroll.hook";
 import { HeaderMobileMenu } from "./header-mobile-menu.comp";
 import "./header.section.css";
@@ -28,10 +28,6 @@ export function Header() {
             </Link>
           ))}
         </nav>
-
-        <Link href={CONTACT_NAV_ITEM.href} className="button button_variant_lime site-header__cta">
-          {CONTACT_NAV_ITEM.label}
-        </Link>
 
         <HeaderMobileMenu theme={theme} />
       </div>
