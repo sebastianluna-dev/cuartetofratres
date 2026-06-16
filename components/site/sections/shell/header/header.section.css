@@ -21,8 +21,10 @@
     border-bottom-color: rgba(32, 31, 29, 0.14);
   }
 
+  /* Same width as `.hero__inner` and `.section__inner`, so the logo lines up
+     with the titles below it. */
   & .site-header__inner {
-    max-width: 1400px;
+    max-width: var(--site-max-width);
     margin: 0 auto;
     padding: 14px var(--site-gutter);
     display: flex;
