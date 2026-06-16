@@ -10,7 +10,7 @@ export const Events: CollectionConfig = {
   admin: {
     useAsTitle: "title",
     group: "Contenido",
-    defaultColumns: ["date", "title", "city"],
+    defaultColumns: ["date", "title", "city", "published"],
   },
   access: {
     read: anyone,
@@ -24,6 +24,17 @@ export const Events: CollectionConfig = {
   },
   defaultSort: "date",
   fields: [
+    {
+      name: "published",
+      type: "checkbox",
+      label: "Publicada",
+      defaultValue: true,
+      admin: {
+        position: "sidebar",
+        description:
+          "Desmarcada, la presentación se guarda pero no aparece en la portada. Útil para prepararla antes de anunciarla.",
+      },
+    },
     {
       name: "title",
       type: "text",

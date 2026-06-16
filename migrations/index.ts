@@ -4,6 +4,7 @@ import * as migration_20260605_094820_event_details from "./20260605_094820_even
 import * as migration_20260610_104433_categories from "./20260610_104433_categories";
 import * as migration_20260611_101907_tracks_category_relationship from "./20260611_101907_tracks_category_relationship";
 import * as migration_20260615_100612_audio from "./20260615_100612_audio";
+import * as migration_20260616_094137_event_published from "./20260616_094137_event_published";
 
 export const migrations = [
   {
@@ -35,5 +36,10 @@ export const migrations = [
     up: migration_20260615_100612_audio.up,
     down: migration_20260615_100612_audio.down,
     name: "20260615_100612_audio",
+  },
+  {
+    up: migration_20260616_094137_event_published.up,
+    down: migration_20260616_094137_event_published.down,
+    name: "20260616_094137_event_published",
   },
 ];

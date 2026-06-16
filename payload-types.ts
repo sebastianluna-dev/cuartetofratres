@@ -196,6 +196,10 @@ export interface Media {
  */
 export interface Event {
   id: number;
+  /**
+   * Desmarcada, la presentación se guarda pero no aparece en la portada. Útil para prepararla antes de anunciarla.
+   */
+  published?: boolean | null;
   title: string;
   date: string;
   /**
@@ -474,6 +478,7 @@ export interface MembersSelect<T extends boolean = true> {
  * via the `definition` "events_select".
  */
 export interface EventsSelect<T extends boolean = true> {
+  published?: T;
   title?: T;
   date?: T;
   time?: T;
