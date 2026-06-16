@@ -1,5 +1,4 @@
 import type { Event } from "@/payload-types";
-import type { UpcomingEvent } from "@/constants/events.const";
 import { buildMapsUrl } from "@/lib/build-maps-url";
 import { mapContentImage } from "@/services/shared/map-content-image";
 import type { EventContent, EventProgramItem } from "./events.types";
@@ -48,26 +47,5 @@ export function mapEvent(event: Event): EventContent | null {
     mapsUrl: resolveMapsUrl(event.venue, event.city),
     ticketsUrl: orNull(event.tickets?.url),
     ticketsPrice: orNull(event.tickets?.price),
-  };
-}
-
-/** The constants, in the same shape, for when the collection is still empty. */
-export function mapDefaultEvent(event: UpcomingEvent): EventContent {
-  const venue = event.venue ?? {};
-  return {
-    id: event.id,
-    title: event.title,
-    date: event.date,
-    time: event.time,
-    city: event.city,
-    image: { src: event.image.src, alt: event.image.alt },
-    imagePosition: event.image.position,
-    description: event.description ?? null,
-    program: (event.program ?? []).map((item) => ({ title: item.title, composer: item.composer ?? null })),
-    venueName: venue.name ?? null,
-    venueAddress: venue.address ?? null,
-    mapsUrl: resolveMapsUrl(venue, event.city),
-    ticketsUrl: event.tickets?.url ?? null,
-    ticketsPrice: event.tickets?.price ?? null,
   };
 }

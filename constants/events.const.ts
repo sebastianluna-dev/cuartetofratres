@@ -18,8 +18,8 @@ export interface UpcomingEvent {
   tickets?: { url?: string; price?: string };
 }
 
-// Seed of the `events` collection and fallback while it is empty. The hero
-// shows them in order and only the ones still ahead (lib/upcoming-events.ts).
+// Seed of the `events` collection (`npm run cms:seed`) and nothing else: the
+// hero reads the CMS only, so with no published date it shows no dates.
 export const UPCOMING_EVENTS: readonly UpcomingEvent[] = [
   {
     id: "temporada-2026",
