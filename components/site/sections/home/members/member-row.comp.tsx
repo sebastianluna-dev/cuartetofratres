@@ -43,7 +43,7 @@ export function MemberRow({ member, index, open, onToggle }: MemberRowProps) {
               <span className="member-row__caption-instrument">{member.instrument}</span>
             </span>
             <span className="member-row__caption-name">{member.name}</span>
-            <span className="member-row__caption-short">{member.short}</span>
+            {member.origin && <span className="member-row__caption-short">{member.origin}</span>}
           </div>
         </div>
         <p className="member-row__bio">{member.bio}</p>

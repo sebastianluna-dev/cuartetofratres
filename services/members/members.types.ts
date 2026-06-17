@@ -5,7 +5,10 @@ export interface MemberContent {
   name: string;
   /** Already translated: "Violín", "Viola", "Violonchelo". */
   instrument: string;
-  short: string;
+  /** Given name and first surname. */
+  shortName: string;
+  /** City and state, or `null` when the editor left it out. */
+  origin: string | null;
   bio: string;
   photo: ContentImage;
   photoPosition: string;
