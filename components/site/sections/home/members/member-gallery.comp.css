@@ -1,0 +1,28 @@
+.member-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: clamp(26px, 3.4vw, 48px);
+  min-height: clamp(380px, 44vw, 600px);
+
+  /* The strips share the row with the card; the card (`.member-detail`) sets
+     its own flex basis and cap, so the strips take whatever is left. */
+  & .member-gallery__strips {
+    flex: 2 1 460px;
+    display: flex;
+    gap: 10px;
+    min-width: 0;
+    min-height: clamp(380px, 44vw, 600px);
+  }
+
+  @media (max-width: 767px) {
+    gap: 28px;
+    min-height: 0;
+
+    & .member-gallery__strips {
+      flex-basis: 100%;
+      gap: 6px;
+      min-height: 360px;
+    }
+  }
+}

@@ -15,11 +15,11 @@ export interface MembersSectionDefaults {
 export const MEMBERS_SECTION_DEFAULTS: MembersSectionDefaults = {
   eyebrow: "Integrantes",
   title: "Cuatro trayectorias, un mismo atril.",
-  hint: "Pasa el cursor o pulsa un nombre para ver su retrato y su semblanza.",
+  hint: "Pulsa un retrato para leer su semblanza.",
 };
 
 export interface Member {
-  /** Stable key for React lists and for the accordion state. */
+  /** Stable key for React lists and for the gallery state. */
   id: string;
   name: string;
   instrument: InstrumentCode;

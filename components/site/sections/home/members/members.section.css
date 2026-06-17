@@ -1,7 +1,7 @@
 .members {
   & .members__inner {
     padding-top: clamp(64px, 9vw, 130px);
-    padding-bottom: clamp(64px, 9vw, 130px);
+    padding-bottom: clamp(30px, 4vw, 52px);
   }
 
   & .members__head {
@@ -9,7 +9,7 @@
     flex-wrap: wrap;
     align-items: flex-end;
     gap: 24px;
-    margin-bottom: clamp(26px, 3.4vw, 44px);
+    margin-bottom: clamp(30px, 4vw, 52px);
   }
 
   & .members__intro {
@@ -21,11 +21,15 @@
     margin-bottom: 22px;
   }
 
+  /* Same display face and measure as the title of «El cuarteto». */
   & .members__title {
-    font-family: var(--font-heading);
-    font-size: clamp(34px, 4.6vw, 60px);
-    line-height: 1.06;
-    letter-spacing: -0.02em;
+    max-width: 15em;
+    font-family: var(--font-display);
+    font-size: clamp(38px, 5.6vw, 76px);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: var(--color-lime);
   }
 
   & .members__hint {
@@ -34,25 +38,27 @@
     max-width: 32em;
     font-size: 16px;
     line-height: 1.75;
-    color: var(--color-muted-on-ivory);
+    color: rgba(242, 244, 243, 0.7);
   }
 
   @media (max-width: 767px) {
     & .members__inner {
       padding-top: 34px;
-      padding-bottom: 0;
+      padding-bottom: 48px;
+    }
+
+    & .members__head {
+      gap: 14px;
+      margin-bottom: 24px;
     }
 
     & .members__title {
-      font-family: var(--font-display);
       font-size: 40px;
       line-height: 0.98;
-      letter-spacing: 0.01em;
-      text-transform: uppercase;
     }
 
     & .members__hint {
-      display: none;
+      font-size: 14px;
     }
   }
 }

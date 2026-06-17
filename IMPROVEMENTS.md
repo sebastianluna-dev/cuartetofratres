@@ -45,20 +45,14 @@ A save publishes at once. If the quartet starts editing long texts, enable `vers
 true }` on the Globals and a preview route with `draftMode()`, so a change can be reviewed on the
 real page before it goes live.
 
-### 6. Members accordion on hover — [UX]
-
-The rows expand on hover (`:hover` on `.member-row`) as well as on click, as in the design. On a
-trackpad this can open rows while scrolling past them. Consider limiting hover expansion to
-`(hover: hover) and (pointer: fine)`.
-
 ## LOW priority
 
-### 7. Deep link to an event — [UX]
+### 6. Deep link to an event — [UX]
 
 The detail window only opens from its card. A `/#evento-<id>` hash that opens it on load would let
 the quartet share a date on social media; read `location.hash` in `EventCards` and set `openId`.
 
-### 8. Storybook for the shared pieces — [DX]
+### 7. Storybook for the shared pieces — [DX]
 
 The reference project pilots Storybook on one component. Worth it here only if the design keeps
 evolving; otherwise the sections are small enough to review in the page.
