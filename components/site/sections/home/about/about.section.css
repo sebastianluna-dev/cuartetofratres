@@ -37,13 +37,6 @@
     text-wrap: pretty;
   }
 
-  & .about__pillars {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 46em;
-    margin-top: clamp(32px, 4vw, 48px);
-  }
-
   /* The figure starts above the text block so the photo overlaps the title's
      top edge, as in the design. */
   & .about__figure {
@@ -88,22 +81,6 @@
     & .about__lead {
       font-size: 17.5px;
       line-height: 1.65;
-    }
-
-    /* Horizontal strip of cards, bleeding to the right edge of the screen. */
-    & .about__pillars {
-      flex-wrap: nowrap;
-      gap: 14px;
-      max-width: none;
-      margin: 28px calc(-1 * var(--site-gutter)) 0 0;
-      padding-right: var(--site-gutter);
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
     }
 
     /* Bleeds to both screen edges: the basis has to include the two gutters

@@ -175,7 +175,6 @@ async function seedGlobals(payload: Payload) {
         eyebrow: ABOUT_DEFAULTS.eyebrow,
         title: ABOUT_DEFAULTS.title,
         lead: ABOUT_DEFAULTS.lead,
-        pillars: ABOUT_DEFAULTS.pillars.map((pillar) => ({ title: pillar.title, text: pillar.text })),
         photo,
         photoCaption: ABOUT_DEFAULTS.photoCaption,
       },

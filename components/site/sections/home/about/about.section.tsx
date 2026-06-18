@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Reveal } from "@/components/site/shared/reveal.comp";
 import { SectionEyebrow } from "@/components/site/shared/section-eyebrow.comp";
 import { getAboutData } from "@/services/about/about.service";
-import { Pillar } from "./pillar.comp";
 import { StaffDivider } from "./staff-divider.comp";
 import "./about.section.css";
 
@@ -20,11 +19,6 @@ export async function AboutSection() {
               </div>
               <h2 className="about__title">{about.title}</h2>
               <p className="about__lead">{about.lead}</p>
-              <ul className="about__pillars">
-                {about.pillars.map((pillar, index) => (
-                  <Pillar key={pillar.title} index={index} title={pillar.title} text={pillar.text} />
-                ))}
-              </ul>
             </div>
 
             <figure className="about__figure">

@@ -10,27 +10,12 @@ describe("mapAbout", () => {
     const about = mapAbout(EMPTY);
     expect(about.title).toBe(ABOUT_DEFAULTS.title);
     expect(about.photo.src).toBe(ABOUT_DEFAULTS.photo.src);
-    expect(about.pillars).toHaveLength(3);
   });
 
-  it("keeps the default pillars unless there are exactly three", () => {
-    const two = mapAbout({
-      ...EMPTY,
-      pillars: [
-        { title: "Uno", text: "…" },
-        { title: "Dos", text: "…" },
-      ],
-    });
-    expect(two.pillars.map((pillar) => pillar.title)).toEqual(ABOUT_DEFAULTS.pillars.map((pillar) => pillar.title));
-
-    const three = mapAbout({
-      ...EMPTY,
-      pillars: [
-        { title: "A", text: "a" },
-        { title: "B", text: "b" },
-        { title: "C", text: "c" },
-      ],
-    });
-    expect(three.pillars.map((pillar) => pillar.title)).toEqual(["A", "B", "C"]);
+  it("prefers what the editor wrote", () => {
+    const about = mapAbout({ ...EMPTY, title: "Otro título", photoCaption: "Otro pie" });
+    expect(about.title).toBe("Otro título");
+    expect(about.photoCaption).toBe("Otro pie");
+    expect(about.lead).toBe(ABOUT_DEFAULTS.lead);
   });
 });

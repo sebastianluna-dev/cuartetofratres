@@ -686,16 +686,6 @@ export interface About {
   eyebrow: string;
   title: string;
   lead: string;
-  /**
-   * Las tres columnas bajo el texto. Siempre son tres: el diseño no admite otro número.
-   */
-  pillars?:
-    | {
-        title: string;
-        text: string;
-        id?: string | null;
-      }[]
-    | null;
   photo: number | Media;
   photoCaption: string;
   updatedAt?: string | null;
@@ -797,13 +787,6 @@ export interface AboutSelect<T extends boolean = true> {
   eyebrow?: T;
   title?: T;
   lead?: T;
-  pillars?:
-    | T
-    | {
-        title?: T;
-        text?: T;
-        id?: T;
-      };
   photo?: T;
   photoCaption?: T;
   updatedAt?: T;
