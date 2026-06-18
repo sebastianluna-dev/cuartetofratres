@@ -118,6 +118,11 @@
       height: 392px;
     }
 
+    /* A near-square crop of a tall photo: keep the faces, let the feet go. */
+    & .about__photo {
+      object-position: 50% 22%;
+    }
+
     & .about__caption {
       padding: 0 var(--site-gutter);
     }
