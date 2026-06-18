@@ -31,8 +31,8 @@ export const ABOUT_DEFAULTS: AboutDefaults = {
     },
   ],
   photo: {
-    src: "/images/cuarteto-escalinata.jpg",
-    alt: "Los cuatro integrantes del Cuarteto Fratres en una escalinata",
+    src: "/images/cuarteto-estudio.jpg",
+    alt: "Los cuatro integrantes del Cuarteto Fratres con sus instrumentos",
   },
   photoCaption: "Cuarteto Fratres — Boca del Río, Veracruz",
 };
