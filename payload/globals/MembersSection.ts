@@ -13,12 +13,5 @@ export const MembersSection: GlobalConfig = {
   fields: [
     { name: "eyebrow", type: "text", label: "Rótulo", required: true, defaultValue: "Integrantes" },
     { name: "title", type: "text", label: "Título", required: true },
-    {
-      name: "hint",
-      type: "text",
-      label: "Indicación",
-      required: true,
-      admin: { description: "Sólo en escritorio, junto al título. Ej.: «Pasa el cursor o pulsa un nombre…»." },
-    },
   ],
 };

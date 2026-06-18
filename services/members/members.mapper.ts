@@ -41,7 +41,6 @@ export function mapMembersSection(section: MembersSection, members: MemberConten
   return {
     eyebrow: section.eyebrow || MEMBERS_SECTION_DEFAULTS.eyebrow,
     title: section.title || MEMBERS_SECTION_DEFAULTS.title,
-    hint: section.hint || MEMBERS_SECTION_DEFAULTS.hint,
     members,
   };
 }

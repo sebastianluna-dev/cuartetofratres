@@ -7,6 +7,7 @@ import * as migration_20260615_100612_audio from "./20260615_100612_audio";
 import * as migration_20260616_094137_event_published from "./20260616_094137_event_published";
 import * as migration_20260617_103512_member_short_name_origin from "./20260617_103512_member_short_name_origin";
 import * as migration_20260617_142210_members_hint from "./20260617_142210_members_hint";
+import * as migration_20260618_113045_members_hint_removed from "./20260618_113045_members_hint_removed";
 
 export const migrations = [
   {
@@ -53,5 +54,10 @@ export const migrations = [
     up: migration_20260617_142210_members_hint.up,
     down: migration_20260617_142210_members_hint.down,
     name: "20260617_142210_members_hint",
+  },
+  {
+    up: migration_20260618_113045_members_hint_removed.up,
+    down: migration_20260618_113045_members_hint_removed.down,
+    name: "20260618_113045_members_hint_removed",
   },
 ];

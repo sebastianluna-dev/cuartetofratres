@@ -17,6 +17,5 @@ export interface MemberContent {
 export interface MembersSectionContent {
   eyebrow: string;
   title: string;
-  hint: string;
   members: MemberContent[];
 }

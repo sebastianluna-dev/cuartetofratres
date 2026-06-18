@@ -11,13 +11,10 @@ export async function MembersSection() {
     <section id="integrantes" className="section section_theme_ink members">
       <div className="section__inner section__inner_width_narrow members__inner">
         <div className="members__head">
-          <div className="members__intro">
-            <div className="members__eyebrow">
-              <SectionEyebrow label={content.eyebrow} theme="ink" />
-            </div>
-            <h2 className="members__title">{content.title}</h2>
+          <div className="members__eyebrow">
+            <SectionEyebrow label={content.eyebrow} theme="ink" />
           </div>
-          <p className="members__hint">{content.hint}</p>
+          <h2 className="members__title">{content.title}</h2>
         </div>
 
         <Reveal>

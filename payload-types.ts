@@ -709,10 +709,6 @@ export interface MembersSection {
   id: number;
   eyebrow: string;
   title: string;
-  /**
-   * Sólo en escritorio, junto al título. Ej.: «Pasa el cursor o pulsa un nombre…».
-   */
-  hint: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -821,7 +817,6 @@ export interface AboutSelect<T extends boolean = true> {
 export interface MembersSectionSelect<T extends boolean = true> {
   eyebrow?: T;
   title?: T;
-  hint?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

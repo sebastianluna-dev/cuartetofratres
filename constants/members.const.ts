@@ -9,13 +9,11 @@ export const INSTRUMENT_LABELS: Record<InstrumentCode, string> = {
 export interface MembersSectionDefaults {
   eyebrow: string;
   title: string;
-  hint: string;
 }
 
 export const MEMBERS_SECTION_DEFAULTS: MembersSectionDefaults = {
   eyebrow: "Integrantes",
   title: "Cuatro trayectorias, un mismo atril.",
-  hint: "Pulsa un retrato para leer su semblanza.",
 };
 
 export interface Member {

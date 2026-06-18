@@ -5,16 +5,7 @@
   }
 
   & .members__head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    gap: 24px;
     margin-bottom: clamp(30px, 4vw, 52px);
-  }
-
-  & .members__intro {
-    flex: 1 1 380px;
-    min-width: 0;
   }
 
   & .members__eyebrow {
@@ -32,15 +23,6 @@
     color: var(--color-lime);
   }
 
-  & .members__hint {
-    flex: 1 1 280px;
-    min-width: 0;
-    max-width: 32em;
-    font-size: 16px;
-    line-height: 1.75;
-    color: rgba(242, 244, 243, 0.7);
-  }
-
   @media (max-width: 767px) {
     & .members__inner {
       padding-top: 34px;
@@ -48,17 +30,12 @@
     }
 
     & .members__head {
-      gap: 14px;
       margin-bottom: 24px;
     }
 
     & .members__title {
       font-size: 40px;
       line-height: 0.98;
-    }
-
-    & .members__hint {
-      font-size: 14px;
     }
   }
 }
