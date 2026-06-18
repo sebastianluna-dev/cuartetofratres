@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { forum, fratresDisplay, ttHoves } from "./fonts";
+import { forum, fratresDisplay, mulish } from "./fonts";
 import { GoogleAnalytics } from "@/components/site/shared/google-analytics.comp";
 import { SITE_NAME, SITE_TAGLINE } from "@/constants/site.const";
 import { SITE_URL } from "@/lib/site-url";
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es" className={`${forum.variable} ${ttHoves.variable} ${fratresDisplay.variable}`}>
+    <html lang="es" className={`${forum.variable} ${mulish.variable} ${fratresDisplay.variable}`}>
       <body>
         <a className="skip-link" href="#contenido">
           Saltar al contenido

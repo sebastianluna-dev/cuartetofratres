@@ -74,7 +74,7 @@ Todo lo que ve el visitante se edita en `/admin`. Las **Globals** guardan los te
 
 Los componentes nunca leen Payload: cada sección pide sus datos a `services/<dominio>/*.service.ts`, que mapea el documento de Payload a un tipo propio (`*.mapper.ts`, `*.types.ts`). Todas las lecturas pasan por `services/shared/read-cms.ts`, que agrupa las seis Globals y las tres colecciones en dos consultas, deduplicadas por petición con `cache()` y guardadas entre peticiones con `unstable_cache`. Al guardar en `/admin`, los hooks de `lib/payload/revalidate-site.ts` expiran esas etiquetas y la portada, así que el cambio se ve en la siguiente visita.
 
-Las fotos de lanzamiento están en `public/images` (JPEG a 82 de calidad; `next/image` sirve AVIF/WebP) y las fuentes en `public/fonts` (Forum, TT Hoves variable y Fratres Display).
+Las fotos de lanzamiento están en `public/images` (JPEG a 82 de calidad; `next/image` sirve AVIF/WebP) y las fuentes en `public/fonts` (Forum, Mulish variable y Fratres Display, las dos primeras subconjuntos latinos de Google Fonts).
 
 ## Reproductor de repertorio
 

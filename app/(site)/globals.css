@@ -23,7 +23,7 @@
 
   --font-heading: var(--font-forum), Georgia, serif;
   --font-display: var(--font-fratres), var(--font-forum), Georgia, serif;
-  --font-body: var(--font-hoves), system-ui, sans-serif;
+  --font-body: var(--font-mulish), system-ui, sans-serif;
 
   /* Horizontal padding of every section and the header: one value so the
      content edges line up from the top of the page to the footer. */

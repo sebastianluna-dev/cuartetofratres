@@ -14,10 +14,16 @@ export const forum = localFont({
   display: "swap",
 });
 
-/** Body text. Variable font, 100–900; the site uses 300 for copy and 500/600 for labels. */
-export const ttHoves = localFont({
-  src: [{ path: "../../public/fonts/tt-hoves-variable.woff2", weight: "100 900", style: "normal" }],
-  variable: "--font-hoves",
+/**
+ * Body text. Latin subsets of Google's Mulish, self-hosted like Forum. Variable
+ * font, 200–1000; the site uses 300 for copy and 500/600 for labels.
+ */
+export const mulish = localFont({
+  src: [
+    { path: "../../public/fonts/mulish-latin.woff2", weight: "200 1000", style: "normal" },
+    { path: "../../public/fonts/mulish-latin-ext.woff2", weight: "200 1000", style: "normal" },
+  ],
+  variable: "--font-mulish",
   display: "swap",
 });
 
