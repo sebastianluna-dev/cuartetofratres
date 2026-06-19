@@ -206,8 +206,9 @@ strong {
     color: var(--color-olive);
   }
 
+  /* On ink the staff stays lime and the label reads in ivory. */
   &.eyebrow_theme_ink .eyebrow__label {
-    color: var(--color-lime);
+    color: var(--color-text-on-ink);
   }
 }
 
