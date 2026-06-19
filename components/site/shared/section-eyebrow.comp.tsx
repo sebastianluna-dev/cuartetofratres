@@ -10,7 +10,7 @@ interface SectionEyebrowProps {
 export function SectionEyebrow({ label, theme = "ivory" }: SectionEyebrowProps) {
   return (
     <div className={`eyebrow eyebrow_theme_${theme}`}>
-      <StaffOrnament theme={theme === "ink" ? "ivory" : "ink"} />
+      <StaffOrnament theme={theme === "ink" ? "ivory" : "ink"} width={240} />
       <span className="eyebrow__label">{label}</span>
     </div>
   );

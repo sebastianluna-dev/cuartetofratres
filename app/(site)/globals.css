@@ -197,10 +197,10 @@ strong {
 .eyebrow {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
 
   & .eyebrow__label {
-    font-size: 11px;
+    font-size: 13.5px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
     color: var(--color-olive);
