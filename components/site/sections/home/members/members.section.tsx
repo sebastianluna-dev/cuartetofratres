@@ -9,7 +9,7 @@ export async function MembersSection() {
 
   return (
     <section id="integrantes" className="section section_theme_ink members">
-      <div className="section__inner section__inner_width_narrow members__inner">
+      <div className="section__inner members__inner">
         <div className="members__head">
           <div className="members__eyebrow">
             <SectionEyebrow label={content.eyebrow} theme="ink" />
