@@ -40,11 +40,8 @@
     color: var(--color-muted-on-ink);
   }
 
-  & .member-detail__ornament {
-    margin: 24px 0 20px;
-  }
-
   & .member-detail__bio {
+    margin-top: 26px;
     font-size: clamp(15.5px, 1.15vw, 17px);
     line-height: 1.72;
     color: rgba(242, 244, 243, 0.86);
