@@ -40,7 +40,8 @@ export async function AboutSection() {
                     src={about.photo.src}
                     alt={about.photo.alt}
                     fill
-                    sizes="(max-width: 767px) 100vw, 300px"
+                    sizes="(max-width: 767px) 100vw, 360px"
+                    quality={100}
                     className="about__photo"
                   />
                 </div>
