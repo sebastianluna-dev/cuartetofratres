@@ -28,6 +28,7 @@ export interface Track {
 }
 
 export interface RepertoireSectionDefaults {
+  eyebrow: string;
   title: string;
   note: string;
   playerNote: string;
@@ -35,7 +36,8 @@ export interface RepertoireSectionDefaults {
 }
 
 export const REPERTOIRE_SECTION_DEFAULTS: RepertoireSectionDefaults = {
-  title: "Repertorio",
+  eyebrow: "Repertorio",
+  title: "Del clásico al pop, con el mismo cuidado.",
   note: "Las cuatro obras están en repertorio; las grabaciones de estudio se subirán en cuanto estén listas.",
   playerNote: "Solo suena una pista a la vez y nunca arranca sola.",
   emptyState: {

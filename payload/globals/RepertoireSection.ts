@@ -10,7 +10,14 @@ export const RepertoireSection: GlobalConfig = {
   access: { read: anyone, update: isAdminOrEditor },
   hooks: { afterChange: [revalidateSiteGlobals] },
   fields: [
-    { name: "title", type: "text", label: "Título", required: true, defaultValue: "Repertorio" },
+    { name: "eyebrow", type: "text", label: "Rótulo", required: true, defaultValue: "Repertorio" },
+    {
+      name: "title",
+      type: "text",
+      label: "Título",
+      required: true,
+      defaultValue: "Del clásico al pop, con el mismo cuidado.",
+    },
     {
       name: "note",
       type: "textarea",

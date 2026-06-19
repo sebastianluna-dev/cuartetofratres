@@ -54,6 +54,7 @@ export function mapRepertoireSection(
 ): RepertoireContent {
   const defaults = REPERTOIRE_SECTION_DEFAULTS;
   return {
+    eyebrow: section.eyebrow || defaults.eyebrow,
     title: section.title || defaults.title,
     note: section.note || defaults.note,
     playerNote: section.playerNote || defaults.playerNote,

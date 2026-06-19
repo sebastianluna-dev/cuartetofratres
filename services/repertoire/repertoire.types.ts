@@ -17,6 +17,7 @@ export interface TrackContent {
 }
 
 export interface RepertoireContent {
+  eyebrow: string;
   title: string;
   note: string;
   playerNote: string;
