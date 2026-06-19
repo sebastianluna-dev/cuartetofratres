@@ -37,18 +37,25 @@
     text-wrap: pretty;
   }
 
-  /* The photo is never cropped: a fixed height a little over the text block
+  /* Photo and, to its right, the column of social icons. */
+  & .about__media {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: flex-start;
+    gap: clamp(16px, 2vw, 28px);
+  }
+
+  /* The photo is never cropped: a fixed height, taller than the text block,
      and the width follows from its own ratio (a 9:16 portrait by default). */
   & .about__figure {
     display: flex;
-    flex: 0 0 auto;
     flex-direction: column;
     align-items: flex-start;
   }
 
   & .about__frame {
     position: relative;
-    height: clamp(340px, 28vw, 420px);
+    height: clamp(440px, 40vw, 620px);
     aspect-ratio: var(--about-photo-ratio, 941 / 1672);
     overflow: hidden;
   }
@@ -83,12 +90,23 @@
       line-height: 1.65;
     }
 
-    /* Bleeds to both screen edges: the basis has to include the two gutters
-       the negative margins give back. */
-    & .about__figure {
+    /* Stacked: the photo bleeds to both screen edges (the basis has to
+       include the two gutters the negative margins give back) and the icons
+       go under the caption. */
+    & .about__media {
       flex-basis: calc(100% + 2 * var(--site-gutter));
+      flex-direction: column;
+      gap: 18px;
       min-width: 0;
       margin: 0 calc(-1 * var(--site-gutter));
+    }
+
+    & .about__figure {
+      align-self: stretch;
+    }
+
+    & .about__media > .social-column {
+      padding: 0 var(--site-gutter);
     }
 
     /* Full width on its own row; the height follows the ratio. */
