@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { getUpcomingEvents } from "@/services/events/events.service";
 import { getHeroData } from "@/services/hero/hero.service";
-import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
 import { EventCards } from "./event-cards.comp";
 import "./hero.section.css";
 
@@ -15,11 +14,7 @@ const PHONE_FRAME_RATIO = 11 / 10;
 // First screen: the name and the next two dates on the left, the group photo
 // against the right edge, centred. The photo is the LCP, hence `priority`.
 export async function HeroSection() {
-  const [hero, events, settings] = await Promise.all([
-    getHeroData(),
-    getUpcomingEvents(MAX_EVENT_CARDS),
-    getSiteSettingsData(),
-  ]);
+  const [hero, events] = await Promise.all([getHeroData(), getUpcomingEvents(MAX_EVENT_CARDS)]);
 
   // On the phone the photo is cropped to fill a taller frame, so it is drawn
   // wider than the screen: next/image must request that width, not 100vw.
@@ -64,11 +59,6 @@ export async function HeroSection() {
             {hero.listenLabel}
           </Link>
         </div>
-
-        <p className="hero__location">
-          <span className="hero__location-rule" aria-hidden="true" />
-          {settings.location}
-        </p>
       </div>
     </section>
   );

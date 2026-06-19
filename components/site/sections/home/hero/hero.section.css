@@ -108,24 +108,6 @@
     }
   }
 
-  & .hero__location {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    margin-top: clamp(28px, 4vh, 44px);
-    font-size: 14px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-text-on-ink);
-  }
-
-  & .hero__location-rule {
-    display: block;
-    width: 70px;
-    height: 2px;
-    background: var(--color-lime);
-  }
-
   /* On the phone the photo goes first, across the screen under the header,
      and the text follows it. The frame is taller than the photo (11:10), so
      it is cropped at the sides until the musicians fill the width; the CMS
