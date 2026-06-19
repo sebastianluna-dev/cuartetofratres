@@ -20,7 +20,7 @@
   }
 
   & .about__title {
-    max-width: 15em;
+    max-width: 11em;
     font-family: var(--font-display);
     font-size: clamp(38px, 5.6vw, 76px);
     line-height: 1;
