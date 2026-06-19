@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import { Reveal } from "@/components/site/shared/reveal.comp";
 import { SectionEyebrow } from "@/components/site/shared/section-eyebrow.comp";
@@ -22,12 +23,21 @@ export async function AboutSection() {
             </div>
 
             <figure className="about__figure">
-              <div className="about__frame">
+              {/* The frame keeps the photo's own proportions: the CMS knows them,
+                  the launch file falls back to the ratio in the stylesheet. */}
+              <div
+                className="about__frame"
+                style={
+                  about.photo.width && about.photo.height
+                    ? ({ "--about-photo-ratio": `${about.photo.width} / ${about.photo.height}` } as CSSProperties)
+                    : undefined
+                }
+              >
                 <Image
                   src={about.photo.src}
                   alt={about.photo.alt}
                   fill
-                  sizes="(max-width: 767px) 100vw, 460px"
+                  sizes="(max-width: 767px) 100vw, 300px"
                   className="about__photo"
                 />
               </div>

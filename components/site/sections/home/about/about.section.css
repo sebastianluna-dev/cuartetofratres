@@ -3,11 +3,10 @@
     padding: clamp(56px, 8vw, 124px) 0 clamp(48px, 6vw, 80px);
   }
 
-  /* Stretched, so the figure is exactly as tall as the text beside it. */
   & .about__grid {
     display: flex;
     flex-wrap: wrap;
-    align-items: stretch;
+    align-items: flex-start;
     gap: clamp(32px, 4.5vw, 64px);
   }
 
@@ -38,25 +37,24 @@
     text-wrap: pretty;
   }
 
-  /* A column: the frame takes the height the text leaves after the caption,
-     so a tall photo is cropped to the faces rather than towering over it. */
+  /* The photo is never cropped: a fixed height a little over the text block
+     and the width follows from its own ratio (a 9:16 portrait by default). */
   & .about__figure {
     display: flex;
-    flex: 0 1 460px;
+    flex: 0 0 auto;
     flex-direction: column;
-    min-width: 280px;
+    align-items: flex-start;
   }
 
   & .about__frame {
     position: relative;
-    flex: 1 1 auto;
-    min-height: 300px;
+    height: clamp(340px, 28vw, 420px);
+    aspect-ratio: var(--about-photo-ratio, 941 / 1672);
     overflow: hidden;
   }
 
   & .about__photo {
     object-fit: cover;
-    object-position: 50% 22%;
     filter: saturate(0.75);
   }
 
@@ -93,10 +91,10 @@
       margin: 0 calc(-1 * var(--site-gutter));
     }
 
-    /* On its own row the frame has nothing to stretch to: fixed height. */
+    /* Full width on its own row; the height follows the ratio. */
     & .about__frame {
-      flex: none;
-      height: 392px;
+      width: 100%;
+      height: auto;
     }
 
     & .about__caption {
