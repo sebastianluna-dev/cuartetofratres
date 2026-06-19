@@ -3,7 +3,6 @@ export interface AboutDefaults {
   title: string;
   lead: string;
   photo: { src: string; alt: string };
-  photoCaption: string;
 }
 
 export const ABOUT_DEFAULTS: AboutDefaults = {
@@ -14,5 +13,4 @@ export const ABOUT_DEFAULTS: AboutDefaults = {
     src: "/images/cuarteto-estudio.jpg",
     alt: "Los cuatro integrantes del Cuarteto Fratres con sus instrumentos",
   },
-  photoCaption: "Cuarteto Fratres — Boca del Río, Veracruz",
 };

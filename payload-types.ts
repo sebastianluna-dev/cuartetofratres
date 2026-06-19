@@ -687,7 +687,6 @@ export interface About {
   title: string;
   lead: string;
   photo: number | Media;
-  photoCaption: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -788,7 +787,6 @@ export interface AboutSelect<T extends boolean = true> {
   title?: T;
   lead?: T;
   photo?: T;
-  photoCaption?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

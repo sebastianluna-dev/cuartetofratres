@@ -176,7 +176,6 @@ async function seedGlobals(payload: Payload) {
         title: ABOUT_DEFAULTS.title,
         lead: ABOUT_DEFAULTS.lead,
         photo,
-        photoCaption: ABOUT_DEFAULTS.photoCaption,
       },
     });
     written.push("about");

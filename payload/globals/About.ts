@@ -13,6 +13,5 @@ export const About: GlobalConfig = {
     { name: "title", type: "text", label: "Título", required: true },
     { name: "lead", type: "textarea", label: "Texto de presentación", required: true },
     { name: "photo", type: "upload", relationTo: "media", label: "Foto del grupo", required: true },
-    { name: "photoCaption", type: "text", label: "Pie de foto", required: true },
   ],
 };

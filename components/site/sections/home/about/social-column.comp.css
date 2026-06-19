@@ -33,7 +33,7 @@
     cursor: default;
   }
 
-  /* On the phone the column becomes a row under the caption. */
+  /* On the phone the column becomes a row under the photo. */
   @media (max-width: 767px) {
     flex-direction: row;
     gap: 10px;

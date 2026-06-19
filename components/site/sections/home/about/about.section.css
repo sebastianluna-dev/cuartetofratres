@@ -66,19 +66,12 @@
   }
 
   /* The closing staff is pulled up so its lines run over the foot of the
-     photo, as in the design; it takes no pointer events, so the caption and
-     the icons under it stay usable. */
+     photo, as in the design; it takes no pointer events, so the icons under
+     it stay usable. */
   & .about__divider {
     position: relative;
     z-index: 1;
     margin-top: calc(-1 * clamp(120px, 13vw, 220px));
-  }
-
-  & .about__caption {
-    margin-top: 10px;
-    font-size: 11.5px;
-    letter-spacing: 0.06em;
-    color: var(--color-muted-on-ivory);
   }
 
   @media (max-width: 767px) {
@@ -105,7 +98,7 @@
 
     /* Stacked: the photo bleeds to both screen edges (the basis has to
        include the two gutters the negative margins give back) and the icons
-       go under the caption. */
+       go under it. */
     & .about__media {
       flex-basis: calc(100% + 2 * var(--site-gutter));
       flex-direction: column;
@@ -126,10 +119,6 @@
     & .about__frame {
       width: 100%;
       height: auto;
-    }
-
-    & .about__caption {
-      padding: 0 var(--site-gutter);
     }
   }
 }

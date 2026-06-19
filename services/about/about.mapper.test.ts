@@ -13,9 +13,8 @@ describe("mapAbout", () => {
   });
 
   it("prefers what the editor wrote", () => {
-    const about = mapAbout({ ...EMPTY, title: "Otro título", photoCaption: "Otro pie" });
+    const about = mapAbout({ ...EMPTY, title: "Otro título" });
     expect(about.title).toBe("Otro título");
-    expect(about.photoCaption).toBe("Otro pie");
     expect(about.lead).toBe(ABOUT_DEFAULTS.lead);
   });
 });

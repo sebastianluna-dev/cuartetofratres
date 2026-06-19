@@ -44,7 +44,6 @@ export async function AboutSection() {
                     className="about__photo"
                   />
                 </div>
-                <figcaption className="about__caption">{about.photoCaption}</figcaption>
               </figure>
               <SocialColumn links={settings.social} />
             </div>

@@ -5,5 +5,4 @@ export interface AboutContent {
   title: string;
   lead: string;
   photo: ContentImage;
-  photoCaption: string;
 }
