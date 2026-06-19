@@ -55,22 +55,11 @@ export const Members: CollectionConfig = {
       ],
     },
     {
-      type: "row",
-      fields: [
-        {
-          name: "shortName",
-          type: "text",
-          label: "Nombre corto",
-          required: true,
-          admin: { width: "50%", description: "Se lee en la tira del retrato. Ej.: «Jesús Medina»." },
-        },
-        {
-          name: "origin",
-          type: "text",
-          label: "Procedencia",
-          admin: { width: "50%", description: "Ciudad y estado, bajo el nombre. Ej.: «Culiacán, Sinaloa»." },
-        },
-      ],
+      name: "shortName",
+      type: "text",
+      label: "Nombre corto",
+      required: true,
+      admin: { description: "Se lee en la tira del retrato. Ej.: «Jesús Medina»." },
     },
     {
       name: "bio",

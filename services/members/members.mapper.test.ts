@@ -9,7 +9,6 @@ function member(overrides: Partial<Member> = {}): Member {
     name: "Lucía Montserrat Paredes García",
     instrument: "violin",
     shortName: "Lucía Paredes",
-    origin: "Tlaxcala",
     bio: "Originaria de Tlaxcala.",
     photo: {
       id: 5,
@@ -26,22 +25,17 @@ function member(overrides: Partial<Member> = {}): Member {
 }
 
 describe("mapMember", () => {
-  it("maps the instrument label, the short name and the origin", () => {
+  it("maps the instrument label and the short name", () => {
     expect(mapMember(member())).toMatchObject({
       id: "2",
       instrument: "Violín",
       shortName: "Lucía Paredes",
-      origin: "Tlaxcala",
       photoPosition: "50% 30%",
     });
   });
 
   it("shortens the full name when the editor left the short name blank", () => {
     expect(mapMember(member({ shortName: "  " }))?.shortName).toBe("Lucía Paredes");
-  });
-
-  it("leaves the origin null when it is missing", () => {
-    expect(mapMember(member({ origin: undefined }))?.origin).toBeNull();
   });
 
   it("drops a member whose portrait was not populated", () => {

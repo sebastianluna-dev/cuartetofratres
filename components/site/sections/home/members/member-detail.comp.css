@@ -31,15 +31,6 @@
     text-wrap: balance;
   }
 
-  & .member-detail__origin {
-    display: block;
-    margin-top: 10px;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--color-muted-on-ink);
-  }
-
   & .member-detail__bio {
     margin-top: 26px;
     font-size: clamp(15.5px, 1.15vw, 17px);

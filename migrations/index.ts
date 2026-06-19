@@ -12,6 +12,7 @@ import * as migration_20260618_160730_about_pillars_removed from "./20260618_160
 import * as migration_20260619_110842_about_caption_removed from "./20260619_110842_about_caption_removed";
 import * as migration_20260619_154020_repertoire_eyebrow from "./20260619_154020_repertoire_eyebrow";
 import * as migration_20260619_164510_repertoire_player_note_removed from "./20260619_164510_repertoire_player_note_removed";
+import * as migration_20260619_173355_member_origin_removed from "./20260619_173355_member_origin_removed";
 
 export const migrations = [
   {
@@ -83,5 +84,10 @@ export const migrations = [
     up: migration_20260619_164510_repertoire_player_note_removed.up,
     down: migration_20260619_164510_repertoire_player_note_removed.down,
     name: "20260619_164510_repertoire_player_note_removed",
+  },
+  {
+    up: migration_20260619_173355_member_origin_removed.up,
+    down: migration_20260619_173355_member_origin_removed.down,
+    name: "20260619_173355_member_origin_removed",
   },
 ];

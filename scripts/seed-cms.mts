@@ -63,7 +63,6 @@ async function seedMembers(payload: Payload) {
         name: member.name,
         instrument: member.instrument,
         shortName: member.shortName,
-        origin: member.origin,
         bio: member.bio,
         photo,
         photoPosition: member.photo.position,

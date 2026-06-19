@@ -7,8 +7,6 @@ export interface MemberContent {
   instrument: string;
   /** Given name and first surname. */
   shortName: string;
-  /** City and state, or `null` when the editor left it out. */
-  origin: string | null;
   bio: string;
   photo: ContentImage;
   photoPosition: string;

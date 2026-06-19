@@ -159,10 +159,6 @@ export interface Member {
    * Se lee en la tira del retrato. Ej.: «Jesús Medina».
    */
   shortName: string;
-  /**
-   * Ciudad y estado, bajo el nombre. Ej.: «Culiacán, Sinaloa».
-   */
-  origin?: string | null;
   bio: string;
   photo: number | Media;
   /**
@@ -471,7 +467,6 @@ export interface MembersSelect<T extends boolean = true> {
   name?: T;
   instrument?: T;
   shortName?: T;
-  origin?: T;
   bio?: T;
   photo?: T;
   photoPosition?: T;
