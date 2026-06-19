@@ -72,6 +72,7 @@
     position: relative;
     z-index: 1;
     margin-top: calc(-1 * clamp(120px, 13vw, 220px));
+    padding-bottom: clamp(40px, 5vw, 72px);
   }
 
   @media (max-width: 767px) {
@@ -81,6 +82,7 @@
 
     & .about__divider {
       margin-top: 0;
+      padding-bottom: 0;
     }
 
     & .about__title {
