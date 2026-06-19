@@ -51,7 +51,9 @@ export async function AboutSection() {
           </div>
         </Reveal>
       </div>
-      <StaffDivider />
+      <div className="about__divider">
+        <StaffDivider />
+      </div>
     </section>
   );
 }
