@@ -713,7 +713,6 @@ export interface RepertoireSection {
    * Ej.: «Las cuatro obras están en repertorio; las grabaciones se subirán…».
    */
   note: string;
-  playerNote: string;
   /**
    * Junto a las obras que aún no tienen archivo de audio.
    */
@@ -811,7 +810,6 @@ export interface RepertoireSectionSelect<T extends boolean = true> {
   eyebrow?: T;
   title?: T;
   note?: T;
-  playerNote?: T;
   unavailableLabel?: T;
   emptyState?:
     | T

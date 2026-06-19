@@ -40,7 +40,6 @@ export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
             number={player.selectedIndex + 1}
             playing={player.playing}
             elapsed={player.elapsed}
-            note={content.playerNote}
             onTogglePlay={player.togglePlay}
             onSeek={player.seek}
           />

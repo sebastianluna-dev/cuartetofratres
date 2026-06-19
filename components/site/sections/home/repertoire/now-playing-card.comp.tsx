@@ -9,14 +9,13 @@ interface NowPlayingCardProps {
   playing: boolean;
   elapsed: number;
   /** Small print under the transport, from the CMS. */
-  note: string;
   onTogglePlay: () => void;
   onSeek: (fraction: number) => void;
 }
 
 // Sticky card with the selected work, the staff-shaped progress bar and the
 // play/pause button. Nothing here starts on its own: the visitor presses play.
-export function NowPlayingCard({ track, number, playing, elapsed, note, onTogglePlay, onSeek }: NowPlayingCardProps) {
+export function NowPlayingCard({ track, number, playing, elapsed, onTogglePlay, onSeek }: NowPlayingCardProps) {
   const fraction = track.durationSeconds > 0 ? elapsed / track.durationSeconds : 0;
 
   return (
@@ -56,8 +55,6 @@ export function NowPlayingCard({ track, number, playing, elapsed, note, onToggle
           {formatTrackTime(track.durationSeconds)} · fragmento de muestra
         </span>
       </div>
-
-      <p className="now-playing__note">{note}</p>
     </div>
   );
 }

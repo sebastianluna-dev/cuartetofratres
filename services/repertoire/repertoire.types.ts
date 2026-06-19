@@ -20,7 +20,6 @@ export interface RepertoireContent {
   eyebrow: string;
   title: string;
   note: string;
-  playerNote: string;
   emptyState: { title: string; text: string; ctaLabel: string };
   /** In tab order. */
   categories: CategoryContent[];

@@ -26,13 +26,6 @@ export const RepertoireSection: GlobalConfig = {
       admin: { description: "Ej.: «Las cuatro obras están en repertorio; las grabaciones se subirán…»." },
     },
     {
-      name: "playerNote",
-      type: "text",
-      label: "Nota del reproductor",
-      required: true,
-      defaultValue: "Solo suena una pista a la vez y nunca arranca sola.",
-    },
-    {
       name: "unavailableLabel",
       type: "text",
       label: "Aviso de obra sin grabación",

@@ -31,7 +31,6 @@ export interface RepertoireSectionDefaults {
   eyebrow: string;
   title: string;
   note: string;
-  playerNote: string;
   emptyState: { title: string; text: string; ctaLabel: string };
 }
 
@@ -39,7 +38,6 @@ export const REPERTOIRE_SECTION_DEFAULTS: RepertoireSectionDefaults = {
   eyebrow: "Repertorio",
   title: "Del clásico al pop, con el mismo cuidado.",
   note: "Las cuatro obras están en repertorio; las grabaciones de estudio se subirán en cuanto estén listas.",
-  playerNote: "Solo suena una pista a la vez y nunca arranca sola.",
   emptyState: {
     title: "Repertorio en preparación",
     text: "Estamos integrando las obras de esta categoría. Escríbenos y te compartimos las piezas disponibles para tu ceremonia o evento.",

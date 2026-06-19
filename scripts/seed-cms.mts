@@ -193,7 +193,6 @@ async function seedGlobals(payload: Payload) {
         eyebrow: REPERTOIRE_SECTION_DEFAULTS.eyebrow,
         title: REPERTOIRE_SECTION_DEFAULTS.title,
         note: REPERTOIRE_SECTION_DEFAULTS.note,
-        playerNote: REPERTOIRE_SECTION_DEFAULTS.playerNote,
         emptyState: { ...REPERTOIRE_SECTION_DEFAULTS.emptyState },
       },
     });

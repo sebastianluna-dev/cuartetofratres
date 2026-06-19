@@ -57,7 +57,6 @@ export function mapRepertoireSection(
     eyebrow: section.eyebrow || defaults.eyebrow,
     title: section.title || defaults.title,
     note: section.note || defaults.note,
-    playerNote: section.playerNote || defaults.playerNote,
     emptyState: {
       title: section.emptyState?.title || defaults.emptyState.title,
       text: section.emptyState?.text || defaults.emptyState.text,
