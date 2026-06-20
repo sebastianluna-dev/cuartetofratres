@@ -6,21 +6,43 @@ interface SocialIconProps {
   size?: number;
 }
 
-const PATHS: Record<SocialLink["label"], string> = {
-  YouTube:
-    "M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z",
-  Instagram:
-    "M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.6-.1 4.8-.1ZM12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.1 1.4C1.3 2.6.9 3.3.6 4.1.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.3 2.2.6 3 .3.8.7 1.5 1.4 2.1.6.7 1.3 1.1 2.1 1.4.8.3 1.7.5 3 .6 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c1.3-.1 2.2-.3 3-.6.8-.3 1.5-.7 2.1-1.4.7-.6 1.1-1.3 1.4-2.1.3-.8.5-1.7.6-3 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.3-2.2-.6-3-.3-.8-.7-1.5-1.4-2.1-.6-.7-1.3-1.1-2.1-1.4-.8-.3-1.7-.5-3-.6C15.7 0 15.3 0 12 0Zm0 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9Z",
-  Facebook:
-    "M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12Z",
-};
+// Thin outlined glyphs, drawn with the current text colour. Decorative: the
+// link that wraps one carries the name.
+export function SocialIcon({ network, size = 18 }: SocialIconProps) {
+  const shared = {
+    width: size,
+    height: size,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.4,
+    "aria-hidden": true,
+    focusable: false,
+  } as const;
 
-// Glyph of a social network, drawn in the current text colour. Decorative:
-// the link that wraps it carries the name.
-export function SocialIcon({ network, size = 22 }: SocialIconProps) {
+  if (network === "Instagram") {
+    return (
+      <svg {...shared}>
+        <rect x="3.4" y="3.4" width="17.2" height="17.2" rx="4.4" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="16.8" cy="7.2" r="1.1" fill="currentColor" stroke="none" />
+      </svg>
+    );
+  }
+
+  if (network === "Facebook") {
+    return (
+      <svg {...shared} strokeLinecap="square">
+        <path d="M13.6 20.4V8.1c0-1.5.8-2.3 2.3-2.3h1.6" />
+        <path d="M10.4 11.8h7" />
+      </svg>
+    );
+  }
+
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path fill="currentColor" d={PATHS[network]} />
+    <svg {...shared}>
+      <rect x="2.8" y="5.8" width="18.4" height="12.4" rx="3.2" />
+      <path d="M10.4 9.5 15.5 12l-5.1 2.5z" strokeLinejoin="round" />
     </svg>
   );
 }
