@@ -156,7 +156,8 @@
     }
   }
 
-  /* The prices run in one wrapping line, each led by a dot except the first. */
+  /* The prices run in one wrapping line; the dot closes each price but the
+     last, so it stays at the end of a line instead of opening the next. */
   & .event-dialog__prices {
     display: flex;
     flex-wrap: wrap;
@@ -174,7 +175,7 @@
     align-items: baseline;
     gap: 8px;
 
-    & + .event-dialog__price::before {
+    &:not(:last-child)::after {
       content: "·";
     }
   }
