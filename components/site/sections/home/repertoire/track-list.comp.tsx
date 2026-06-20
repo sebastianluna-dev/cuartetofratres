@@ -35,7 +35,7 @@ export function TrackList({ tracks, visibleIds, selectedIndex, playing, emptySta
         <div className="track-list__empty">
           <h3 className="track-list__empty-title">{emptyState.title}</h3>
           <p className="track-list__empty-text">{emptyState.text}</p>
-          <Link href="#contacto" className="button button_variant_outline-lime">
+          <Link href="#contacto" className="button button_variant_outline-ivory">
             {emptyState.ctaLabel}
           </Link>
         </div>
