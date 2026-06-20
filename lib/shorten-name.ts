@@ -9,3 +9,14 @@ export function shortenName(fullName: string): string {
   if (words.length < 3) return words.join(" ");
   return `${words[0]} ${words[words.length - 2]}`;
 }
+
+/**
+ * The full name without its second surname: "Jesús Guadalupe Medina Corrales"
+ * → "Jesús Guadalupe Medina". With fewer than three words there is no second
+ * surname to drop.
+ */
+export function dropSecondSurname(fullName: string): string {
+  const words = fullName.trim().split(/\s+/).filter(Boolean);
+  if (words.length < 3) return words.join(" ");
+  return words.slice(0, -1).join(" ");
+}

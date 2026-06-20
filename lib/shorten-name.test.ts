@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { shortenName } from "./shorten-name";
+import { dropSecondSurname, shortenName } from "./shorten-name";
 
 describe("shortenName", () => {
   it("keeps the given name and the first surname of a four-word name", () => {
@@ -16,5 +16,19 @@ describe("shortenName", () => {
 
   it("ignores stray spaces", () => {
     expect(shortenName("  José  Ricardo Sánchez  Jiménez ")).toBe("José Sánchez");
+  });
+});
+
+describe("dropSecondSurname", () => {
+  it("keeps both given names and the first surname", () => {
+    expect(dropSecondSurname("Jesús Guadalupe Medina Corrales")).toBe("Jesús Guadalupe Medina");
+  });
+
+  it("drops only the last word of a three-word name", () => {
+    expect(dropSecondSurname("Alfonso Pérez Valencia")).toBe("Alfonso Pérez");
+  });
+
+  it("leaves a two-word name alone", () => {
+    expect(dropSecondSurname("Lucía Paredes")).toBe("Lucía Paredes");
   });
 });
