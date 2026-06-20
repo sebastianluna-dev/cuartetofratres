@@ -1,14 +1,16 @@
 .event-dialog {
   /* The global reset zeroes every margin; `auto` is what centres a modal dialog. */
   margin: auto;
-  width: min(100% - 2 * var(--site-gutter), 1080px);
+  width: min(100% - 2 * var(--site-gutter), 880px);
   max-width: none;
-  max-height: min(100dvh - 48px, 960px);
+  /* The height follows the width: the photo takes five twelfths and is a
+     9:16 portrait, so the box is 27:20. A short screen caps it and the
+     detail column scrolls on its own; the photo never moves. */
+  aspect-ratio: 27 / 20;
+  max-height: calc(100dvh - 64px);
   padding: 0;
   border: 0;
-  /* Nothing scrolls inside the panel: when the detail is taller than the
-     screen, the whole dialog scrolls, photo included. */
-  overflow-y: auto;
+  overflow: hidden;
   background: var(--color-ink);
   color: var(--color-text-on-ink);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
@@ -19,11 +21,12 @@
   }
 
   /* Layout only while open: a closed <dialog> must keep `display: none`.
-     The photo takes five twelfths and is a 9:16 portrait at least; a longer
-     detail makes the panel, and with it the photo, taller. */
+     One row as tall as the box; each column clips or scrolls its own content. */
   &[open] .event-dialog__panel {
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-rows: minmax(0, 1fr);
+    height: 100%;
   }
 
   & .event-dialog__close {
@@ -52,7 +55,6 @@
   & .event-dialog__media {
     position: relative;
     min-height: 0;
-    aspect-ratio: 9 / 16;
     background: #191c22;
   }
 
@@ -76,8 +78,12 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /* The only thing that scrolls: a long programme stays inside the box. */
   & .event-dialog__body {
-    padding: clamp(28px, 4vw, 56px) clamp(28px, 4vw, 60px) clamp(28px, 4vw, 48px);
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: clamp(24px, 3vw, 40px) clamp(24px, 3vw, 44px) clamp(24px, 3vw, 36px);
   }
 
   & .event-dialog__band {
@@ -91,7 +97,7 @@
     margin-top: 16px;
     max-width: 10em;
     font-family: var(--font-heading);
-    font-size: clamp(34px, 3.6vw, 52px);
+    font-size: clamp(30px, 3vw, 42px);
     line-height: 1.05;
     text-wrap: balance;
   }
@@ -120,7 +126,7 @@
   /* Venue and tickets side by side, each its own block. */
   & .event-dialog__facts {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 20px 32px;
     margin-top: 30px;
     padding-top: 26px;
@@ -219,10 +225,17 @@
     width: 100%;
     min-height: 100dvh;
     max-height: 100dvh;
+    aspect-ratio: auto;
+    overflow-y: auto;
 
     &[open] .event-dialog__panel {
       grid-template-columns: minmax(0, 1fr);
       grid-template-rows: 240px auto;
+      height: auto;
+    }
+
+    & .event-dialog__body {
+      overflow: visible;
     }
 
     & .event-dialog__close {
