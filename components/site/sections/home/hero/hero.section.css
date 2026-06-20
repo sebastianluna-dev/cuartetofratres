@@ -95,7 +95,7 @@
     display: none;
   }
 
-  /* Round lime button: the only call to action that competes with the dates.
+  /* Round ivory button: the only call to action that competes with the dates.
      Its label wraps inside the circle: two words per line at most. */
   & .hero__listen {
     display: flex;
@@ -106,7 +106,7 @@
     padding: 0 22px;
     margin-top: clamp(0px, 4vw, 56px);
     border-radius: 50%;
-    background: var(--color-lime);
+    background: var(--color-ivory);
     color: var(--color-ink);
     font-family: var(--font-heading);
     font-size: 17px;
@@ -118,7 +118,7 @@
       transform 0.3s ease;
 
     &:hover {
-      background: var(--color-lime-hover);
+      background: #ffffff;
     }
 
     &:active {
@@ -194,7 +194,7 @@
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--color-lime);
+      color: var(--color-text-on-ink);
     }
   }
 

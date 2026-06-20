@@ -30,7 +30,7 @@
     align-items: baseline;
     justify-content: space-between;
     padding: 8px 12px;
-    background: var(--color-lime);
+    background: var(--color-ivory);
     color: var(--color-ink);
   }
 
@@ -77,7 +77,7 @@
     font-size: 9.5px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-lime);
+    color: var(--color-muted-on-ink);
   }
 
   @media (max-width: 479px) {
