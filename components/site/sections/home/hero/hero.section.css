@@ -16,7 +16,8 @@
     z-index: 3;
     pointer-events: none;
     background-image: var(--grain-image);
-    background-size: var(--grain-size) var(--grain-size);
+    /* Coarser than on the photos: a bigger tile draws the same noise larger. */
+    background-size: 260px 260px;
     mix-blend-mode: screen;
     opacity: 0.14;
   }
