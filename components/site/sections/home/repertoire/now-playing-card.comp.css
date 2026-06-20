@@ -18,7 +18,7 @@
   & .now-playing__number {
     display: block;
     font-family: var(--font-heading);
-    font-size: clamp(48px, 5vw, 64px);
+    font-size: clamp(44px, 4vw, 54px);
     line-height: 1;
     color: rgba(242, 244, 243, 0.35);
     font-variant-numeric: tabular-nums;
