@@ -12,13 +12,6 @@ export const ContactSection: GlobalConfig = {
     { name: "title", type: "text", label: "Título", required: true },
     { name: "lead", type: "textarea", label: "Texto", required: true },
     {
-      name: "notice",
-      type: "text",
-      label: "Aviso bajo el botón",
-      required: true,
-      defaultValue: "Te respondemos con propuesta de programa y duración.",
-    },
-    {
       name: "sentTitle",
       type: "text",
       label: "Título tras enviar",

@@ -24,7 +24,6 @@ export const CONTACT_LIMITS = {
 export interface ContactSectionDefaults {
   title: string;
   lead: string;
-  notice: string;
   sentTitle: string;
   sentText: string;
 }
@@ -32,7 +31,6 @@ export interface ContactSectionDefaults {
 export const CONTACT_SECTION_DEFAULTS: ContactSectionDefaults = {
   title: "Cuéntanos qué ocasión quieres acompañar con música.",
   lead: "Conciertos y actividades culturales, bodas y ceremonias, eventos privados. Escríbenos con la fecha, el lugar y la duración prevista y te enviamos propuesta de programa.",
-  notice: "Te respondemos con propuesta de programa y duración.",
   sentTitle: "Gracias.",
   sentText: "Te respondemos al correo o WhatsApp que dejaste, con propuesta de programa y duración.",
 };

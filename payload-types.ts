@@ -727,7 +727,6 @@ export interface ContactSection {
   id: number;
   title: string;
   lead: string;
-  notice: string;
   sentTitle: string;
   sentText: string;
   updatedAt?: string | null;
@@ -808,7 +807,6 @@ export interface RepertoireSectionSelect<T extends boolean = true> {
 export interface ContactSectionSelect<T extends boolean = true> {
   title?: T;
   lead?: T;
-  notice?: T;
   sentTitle?: T;
   sentText?: T;
   updatedAt?: T;

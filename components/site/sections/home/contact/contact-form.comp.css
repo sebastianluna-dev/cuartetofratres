@@ -9,7 +9,7 @@
   }
 
   /* Every block of the form (rows, the event picker, the details field) is
-     separated by the same gap; the button and the notice set their own. */
+     separated by the same gap; the button and the error line set their own. */
   & > * + * {
     margin-top: 26px;
   }
@@ -28,6 +28,10 @@
     font-size: 13px;
     line-height: 1.6;
     color: var(--color-muted-on-ivory);
+
+    &:empty {
+      display: none;
+    }
   }
 
   &.contact-form_sent {

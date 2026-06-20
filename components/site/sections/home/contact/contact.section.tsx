@@ -35,7 +35,7 @@ export async function ContactSection() {
           </Reveal>
 
           <Reveal className="contact__form">
-            <ContactForm notice={content.notice} sentTitle={content.sentTitle} sentText={content.sentText} />
+            <ContactForm sentTitle={content.sentTitle} sentText={content.sentText} />
           </Reveal>
         </div>
       </div>

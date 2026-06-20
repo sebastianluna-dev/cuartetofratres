@@ -12,7 +12,6 @@ const INITIAL_STATE: ContactFormState = { status: "idle" };
 
 interface ContactFormProps {
   /** Small print under the submit button. */
-  notice: string;
   sentTitle: string;
   sentText: string;
 }
@@ -20,7 +19,7 @@ interface ContactFormProps {
 // Plain form posted to a server action: it works before hydration and the
 // browser keeps what was typed if validation sends it back. `useActionState`
 // only adds the pending flag and the message under the button.
-export function ContactForm({ notice, sentTitle, sentText }: ContactFormProps) {
+export function ContactForm({ sentTitle, sentText }: ContactFormProps) {
   const [state, formAction, pending] = useActionState(sendContactRequest, INITIAL_STATE);
   const errors = state.status === "error" ? (state.fields ?? {}) : {};
 
@@ -70,8 +69,9 @@ export function ContactForm({ notice, sentTitle, sentText }: ContactFormProps) {
       <button type="submit" className="button button_variant_ink contact-form__submit" disabled={pending}>
         {pending ? "Enviando…" : "Enviar solicitud"}
       </button>
+      {/* Only the error message lives here now; the region stays in the DOM so it is announced. */}
       <p className="contact-form__notice" aria-live="polite">
-        {state.status === "error" ? state.message : notice}
+        {state.status === "error" ? state.message : null}
       </p>
     </form>
   );

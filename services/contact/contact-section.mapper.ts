@@ -7,7 +7,6 @@ export function mapContactSection(section: ContactSection): ContactSectionConten
   return {
     title: section.title || defaults.title,
     lead: section.lead || defaults.lead,
-    notice: section.notice || defaults.notice,
     sentTitle: section.sentTitle || defaults.sentTitle,
     sentText: section.sentText || defaults.sentText,
   };
