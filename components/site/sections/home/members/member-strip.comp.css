@@ -22,12 +22,12 @@
   /* Every portrait is black and white; closed strips sit in the dark, the open one is lit. */
   & .member-strip__photo {
     object-fit: cover;
-    filter: grayscale(1) brightness(0.55) contrast(0.85);
+    filter: grayscale(1) brightness(0.42) contrast(0.85);
     transition: filter 0.6s ease;
   }
 
   &:hover .member-strip__photo {
-    filter: grayscale(1) brightness(0.7) contrast(0.85);
+    filter: grayscale(1) brightness(0.58) contrast(0.85);
   }
 
   &.member-strip_active .member-strip__photo {
