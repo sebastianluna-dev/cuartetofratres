@@ -34,6 +34,21 @@
     filter: grayscale(1) brightness(0.92) contrast(1.05);
   }
 
+  /* Film grain over the portrait: a tiled SVG turbulence blended into the
+     tones, so it reads as texture rather than a grey veil. Between the photo
+     and the name; it takes no pointer events. */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
+    background-size: 120px 120px;
+    mix-blend-mode: overlay;
+    opacity: 0.8;
+  }
+
   /* Read from the bottom up along the left edge, like the spine of a book. */
   & .member-strip__name {
     position: absolute;
