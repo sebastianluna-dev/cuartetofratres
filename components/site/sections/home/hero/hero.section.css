@@ -20,11 +20,12 @@
     /* Elliptical vignette: a light veil of ink in the middle and solid ink at
        the edges, so the photo melts into the background without a visible
        border. It overhangs the photo by 2px to cover the antialiased edge
-       pixels. */
+       pixels, and sits above the grain so the solid ink stays solid. */
     &::after {
       content: "";
       position: absolute;
       inset: -2px;
+      z-index: 2;
       background: radial-gradient(ellipse 70% 50% at 72% 50%, rgba(18, 20, 24, 0.1) 60%, var(--color-ink) 100%);
       pointer-events: none;
     }
@@ -32,7 +33,7 @@
 
   & .hero__photo {
     object-fit: contain;
-    filter: saturate(0.2) contrast(1);
+    filter: grayscale(1) contrast(1);
   }
 
   & .hero__inner {

@@ -29,7 +29,7 @@ export async function AboutSection() {
                 {/* The frame keeps the photo's own proportions: the CMS knows them,
                   the launch file falls back to the ratio in the stylesheet. */}
                 <div
-                  className="about__frame"
+                  className="about__frame grain"
                   style={
                     about.photo.width && about.photo.height
                       ? ({ "--about-photo-ratio": `${about.photo.width} / ${about.photo.height}` } as CSSProperties)

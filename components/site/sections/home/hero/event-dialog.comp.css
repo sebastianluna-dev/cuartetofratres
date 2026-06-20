@@ -64,6 +64,7 @@
   /* Day and month, like the band on the card, pinned to the photo's corner. */
   & .event-dialog__date-badge {
     position: absolute;
+    z-index: 2;
     left: 0;
     bottom: 0;
     padding: 14px 18px;

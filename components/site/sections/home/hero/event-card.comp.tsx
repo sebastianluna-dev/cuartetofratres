@@ -26,7 +26,7 @@ export function EventCard({ event, onOpen }: EventCardProps) {
   const sizes = `(max-width: 479px) ${Math.ceil(CARD_HEIGHT_SMALL * ratio)}px, ${Math.ceil(CARD_HEIGHT * ratio)}px`;
 
   return (
-    <button type="button" className="event-card" aria-haspopup="dialog" onClick={onOpen}>
+    <button type="button" className="event-card grain" aria-haspopup="dialog" onClick={onOpen}>
       <Image
         src={event.image.src}
         alt=""

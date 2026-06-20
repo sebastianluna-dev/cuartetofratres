@@ -62,7 +62,7 @@
 
   & .about__photo {
     object-fit: cover;
-    filter: saturate(0.75);
+    filter: grayscale(1);
   }
 
   /* The closing staff is pulled up so its lines run over the foot of the

@@ -25,7 +25,7 @@ export async function HeroSection() {
       {/* The real size of the file gives the frame the photo's own ratio on
           desktop, so the vignette lands exactly on its edges. */}
       <div
-        className="hero__media"
+        className="hero__media grain"
         style={{ "--photo-width": hero.image.width, "--photo-height": hero.image.height } as CSSProperties}
       >
         <Image

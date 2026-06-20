@@ -15,7 +15,7 @@ export function MemberStrip({ member, active, onSelect }: MemberStripProps) {
   return (
     <button
       type="button"
-      className={`member-strip${active ? " member-strip_active" : ""}`}
+      className={`member-strip grain${active ? " member-strip_active" : ""}`}
       aria-pressed={active}
       aria-label={member.name}
       onClick={onSelect}

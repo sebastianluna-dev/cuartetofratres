@@ -74,7 +74,7 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
             </svg>
           </button>
 
-          <div className="event-dialog__media">
+          <div className="event-dialog__media grain">
             <Image
               src={event.image.src}
               alt={event.image.alt}
