@@ -1,6 +1,11 @@
 .track-item {
   border-top: 1px solid var(--color-divider-on-ink);
 
+  /* The list opens without a rule; the hairlines only separate the works. */
+  &:first-child {
+    border-top: 0;
+  }
+
   & .track-item__button {
     position: relative;
     display: flex;
