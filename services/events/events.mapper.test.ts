@@ -53,7 +53,7 @@ describe("mapEvent", () => {
       venueAddress: null,
       mapsUrl: null,
       ticketsUrl: null,
-      ticketsPrice: null,
+      ticketPrices: [],
     });
   });
 
@@ -62,6 +62,23 @@ describe("mapEvent", () => {
     expect(mapped?.program).toEqual([
       { title: "Notturno", composer: null },
       { title: "Fuga y Misterio", composer: null },
+    ]);
+  });
+
+  it("maps the prices and blanks a missing label", () => {
+    const mapped = mapEvent(
+      event({
+        tickets: {
+          prices: [
+            { amount: "$250", label: "general" },
+            { amount: "Sin costo", label: " " },
+          ],
+        },
+      }),
+    );
+    expect(mapped?.ticketPrices).toEqual([
+      { amount: "$250", label: "general" },
+      { amount: "Sin costo", label: null },
     ]);
   });
 

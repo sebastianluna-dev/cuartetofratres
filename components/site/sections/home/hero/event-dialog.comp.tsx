@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { EVENT_DIALOG_LABELS } from "@/constants/events.const";
 import { formatEventDateLong } from "@/lib/format-event-date";
-import { splitPrice } from "@/lib/split-price";
 import type { EventContent } from "@/services/events/events.types";
 import "./event-dialog.comp.css";
 
@@ -61,7 +60,7 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
   }, [event]);
 
   const close = () => ref.current?.close();
-  const priceLines = event?.ticketsPrice ? splitPrice(event.ticketsPrice) : [];
+  const hasPrices = (event?.ticketPrices.length ?? 0) > 0;
   const hasVenue = Boolean(event?.venueName || event?.venueAddress);
 
   return (
@@ -113,29 +112,39 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
             </h2>
             {event.description && <p className="event-dialog__description">{event.description}</p>}
 
-            {(hasVenue || priceLines.length > 0) && (
+            {(hasVenue || hasPrices) && (
               <div className="event-dialog__facts">
                 {hasVenue && (
                   <section className="event-dialog__fact" aria-label={EVENT_DIALOG_LABELS.venue}>
                     <h3 className="event-dialog__block-label">{EVENT_DIALOG_LABELS.venue}</h3>
-                    {event.venueName && <p className="event-dialog__fact-main">{event.venueName}</p>}
-                    {event.venueAddress && <p className="event-dialog__fact-detail">{event.venueAddress}</p>}
-                    {event.mapsUrl && (
-                      <a href={event.mapsUrl} className="event-dialog__link" target="_blank" rel="noopener noreferrer">
-                        {EVENT_DIALOG_LABELS.directions}
-                      </a>
-                    )}
+                    <div className="event-dialog__fact-body">
+                      {event.venueName && <p className="event-dialog__fact-main">{event.venueName}</p>}
+                      {event.venueAddress && <p className="event-dialog__fact-detail">{event.venueAddress}</p>}
+                      {event.mapsUrl && (
+                        <a
+                          href={event.mapsUrl}
+                          className="event-dialog__link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {EVENT_DIALOG_LABELS.directions}
+                        </a>
+                      )}
+                    </div>
                   </section>
                 )}
-                {priceLines.length > 0 && (
+                {hasPrices && (
                   <section className="event-dialog__fact" aria-label={EVENT_DIALOG_LABELS.ticketsHeading}>
                     <h3 className="event-dialog__block-label">{EVENT_DIALOG_LABELS.ticketsHeading}</h3>
-                    <p className="event-dialog__fact-main">{priceLines[0]}</p>
-                    {priceLines.slice(1).map((line) => (
-                      <p key={line} className="event-dialog__fact-detail">
-                        {line}
-                      </p>
-                    ))}
+                    {/* One line that wraps: amount, who it is for, a dot, the next one. */}
+                    <ul className="event-dialog__prices">
+                      {event.ticketPrices.map((price, index) => (
+                        <li key={`${price.amount}-${index}`} className="event-dialog__price">
+                          <span className="event-dialog__price-amount">{price.amount}</span>
+                          {price.label && <span className="event-dialog__price-label">{price.label}</span>}
+                        </li>
+                      ))}
+                    </ul>
                   </section>
                 )}
               </div>

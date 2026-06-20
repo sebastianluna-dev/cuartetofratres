@@ -1,7 +1,7 @@
 import type { Event } from "@/payload-types";
 import { buildMapsUrl } from "@/lib/build-maps-url";
 import { mapContentImage } from "@/services/shared/map-content-image";
-import type { EventContent, EventProgramItem } from "./events.types";
+import type { EventContent, EventProgramItem, EventTicketPrice } from "./events.types";
 
 /** Payload stores dates as ISO timestamps; the site only cares about the day. */
 export function isoDay(value: string): string {
@@ -15,6 +15,10 @@ function orNull(value: string | null | undefined): string | null {
 
 function mapProgram(program: Event["program"]): EventProgramItem[] {
   return (program ?? []).map((item) => ({ title: item.title, composer: orNull(item.composer) }));
+}
+
+function mapPrices(prices: NonNullable<Event["tickets"]>["prices"]): EventTicketPrice[] {
+  return (prices ?? []).map((price) => ({ amount: price.amount, label: orNull(price.label) }));
 }
 
 /** The editor's link wins; otherwise a Maps search, but only when there is a venue to search for. */
@@ -46,6 +50,6 @@ export function mapEvent(event: Event): EventContent | null {
     venueAddress: orNull(event.venue?.address),
     mapsUrl: resolveMapsUrl(event.venue, event.city),
     ticketsUrl: orNull(event.tickets?.url),
-    ticketsPrice: orNull(event.tickets?.price),
+    ticketPrices: mapPrices(event.tickets?.prices),
   };
 }

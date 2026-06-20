@@ -96,13 +96,18 @@
     text-wrap: pretty;
   }
 
-  /* Venue and tickets side by side, each its own block. */
+  /* Venue and tickets as rows: the label in a narrow left column, the
+     content beside it, a hairline above each. */
   & .event-dialog__facts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    gap: 20px 32px;
     margin-top: 30px;
-    padding-top: 26px;
+  }
+
+  & .event-dialog__fact {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 8px 24px;
+    align-items: baseline;
+    padding: 22px 0;
     border-top: 1px solid var(--color-divider-on-ink);
   }
 
@@ -121,7 +126,6 @@
   }
 
   & .event-dialog__fact-main {
-    margin-top: 14px;
     font-family: var(--font-heading);
     font-size: clamp(22px, 2vw, 28px);
     line-height: 1.15;
@@ -133,6 +137,7 @@
     color: var(--color-muted-on-ink);
   }
 
+  /* Led by a dot, like the prices, and underlined only on hover. */
   & .event-dialog__link {
     display: inline-block;
     margin-top: 12px;
@@ -140,7 +145,45 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--color-text-on-ink);
-    border-bottom: 1px solid currentColor;
+
+    &::before {
+      content: "· ";
+    }
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  }
+
+  /* The prices run in one wrapping line, each led by a dot except the first. */
+  & .event-dialog__prices {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 10px;
+    row-gap: 6px;
+    list-style: none;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--color-muted-on-ink);
+  }
+
+  & .event-dialog__price {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+
+    & + .event-dialog__price::before {
+      content: "·";
+    }
+  }
+
+  & .event-dialog__price-amount {
+    font-family: var(--font-heading);
+    font-size: clamp(22px, 2vw, 26px);
+    line-height: 1;
+    color: var(--color-text-on-ink);
   }
 
   & .event-dialog__program {
@@ -227,8 +270,9 @@
       padding: 24px 20px 32px;
     }
 
-    & .event-dialog__facts {
+    & .event-dialog__fact {
       grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
     }
 
     & .event-dialog__program-composer {

@@ -235,9 +235,21 @@ export interface Event {
      */
     url?: string | null;
     /**
-     * Ej.: «$250 general · $150 estudiantes».
+     * Uno por tipo de entrada; se muestran en fila, separados por un punto.
      */
-    price?: string | null;
+    prices?:
+      | {
+          /**
+           * Ej.: «$250» o «Sin costo».
+           */
+          amount: string;
+          /**
+           * Ej.: «general», «estudiantes y maestros», «menores de 12 años».
+           */
+          label?: string | null;
+          id?: string | null;
+        }[]
+      | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -502,7 +514,13 @@ export interface EventsSelect<T extends boolean = true> {
     | T
     | {
         url?: T;
-        price?: T;
+        prices?:
+          | T
+          | {
+              amount?: T;
+              label?: T;
+              id?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;

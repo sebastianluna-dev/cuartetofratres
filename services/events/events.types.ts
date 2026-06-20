@@ -5,6 +5,13 @@ export interface EventProgramItem {
   composer: string | null;
 }
 
+export interface EventTicketPrice {
+  /** "$250" or "Sin costo". */
+  amount: string;
+  /** Who it applies to, or `null` for a single price. */
+  label: string | null;
+}
+
 export interface EventContent {
   id: string;
   title: string;
@@ -22,5 +29,6 @@ export interface EventContent {
   /** The CMS link when given, else a Maps search built from venue and city. */
   mapsUrl: string | null;
   ticketsUrl: string | null;
-  ticketsPrice: string | null;
+  /** In the editor's order; empty when the editor gave none. */
+  ticketPrices: EventTicketPrice[];
 }

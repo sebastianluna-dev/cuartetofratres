@@ -134,10 +134,34 @@ export const Events: CollectionConfig = {
           },
         },
         {
-          name: "price",
-          type: "text",
-          label: "Precio (texto)",
-          admin: { description: "Ej.: «$250 general · $150 estudiantes»." },
+          name: "prices",
+          type: "array",
+          label: "Precios",
+          labels: { singular: "Precio", plural: "Precios" },
+          admin: { description: "Uno por tipo de entrada; se muestran en fila, separados por un punto." },
+          fields: [
+            {
+              type: "row",
+              fields: [
+                {
+                  name: "amount",
+                  type: "text",
+                  label: "Importe",
+                  required: true,
+                  admin: { width: "35%", description: "Ej.: «$250» o «Sin costo»." },
+                },
+                {
+                  name: "label",
+                  type: "text",
+                  label: "A quién aplica",
+                  admin: {
+                    width: "65%",
+                    description: "Ej.: «general», «estudiantes y maestros», «menores de 12 años».",
+                  },
+                },
+              ],
+            },
+          ],
         },
       ],
     },

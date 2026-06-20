@@ -15,7 +15,7 @@ export interface UpcomingEvent {
   description?: string;
   program?: { title: string; composer?: string }[];
   venue?: { name?: string; address?: string; mapsUrl?: string };
-  tickets?: { url?: string; price?: string };
+  tickets?: { url?: string; prices?: { amount: string; label?: string }[] };
 }
 
 // Seed of the `events` collection (`npm run cms:seed`) and nothing else: the
