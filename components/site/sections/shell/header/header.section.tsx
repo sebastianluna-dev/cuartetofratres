@@ -19,7 +19,8 @@ export function Header() {
   return (
     <header className={`site-header site-header_theme_${theme}`}>
       <div className="site-header__inner">
-        <Logo theme={theme} height={46} />
+        {/* Lime over the hero; ink once the header turns ivory. */}
+        <Logo theme={pastHero ? "ink" : "lime"} height={46} />
 
         <nav className="site-header__nav" aria-label="Secciones">
           {NAV_ITEMS.map((item) => (

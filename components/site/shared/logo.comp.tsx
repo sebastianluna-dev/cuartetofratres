@@ -2,8 +2,8 @@ import Link from "next/link";
 import "./logo.comp.css";
 
 interface LogoProps {
-  /** `ink` paints the mark in ink (for ivory grounds); `ivory` for the dark ones. */
-  theme?: "ink" | "ivory";
+  /** `ink` paints the mark in ink (for ivory grounds); `ivory` or `lime` for the dark ones. */
+  theme?: "ink" | "ivory" | "lime";
   /** Height of the mark in px; the width follows the 310×345 ratio. */
   height?: number;
   href?: string;
@@ -11,7 +11,8 @@ interface LogoProps {
 
 // The "CF" monogram is inlined instead of loaded as a file so the stylesheet
 // can recolour it through `fill: currentColor`: the same mark is ink on the
-// ivory header and ivory on the hero, with no second file and no filter.
+// ivory header, lime over the hero and ivory in the footer, with no second
+// file and no filter.
 //
 // The link has no visible text (the SVG is aria-hidden), so its accessible
 // name is written here.

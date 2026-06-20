@@ -19,4 +19,8 @@
   &.logo_theme_ink {
     color: var(--color-ink);
   }
+
+  &.logo_theme_lime {
+    color: var(--color-lime);
+  }
 }
