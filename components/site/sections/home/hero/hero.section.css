@@ -69,7 +69,7 @@
     line-height: 0.96;
     letter-spacing: 0.01em;
     text-transform: uppercase;
-    color: var(--color-lime);
+    color: var(--color-text-on-ink);
   }
 
   & .hero__lead {
