@@ -5,6 +5,22 @@
   align-items: stretch;
   overflow: hidden;
 
+  /* One layer of grain over the whole first screen, photo, ground and text
+     alike, so the photo's box never reads as a different surface. `screen`
+     at low opacity: `overlay` does almost nothing on a colour this dark. It
+     takes no pointer events, so the cards and the button stay clickable. */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background-image: var(--grain-image);
+    background-size: var(--grain-size) var(--grain-size);
+    mix-blend-mode: screen;
+    opacity: 0.14;
+  }
+
   /* Against the right edge and centred vertically, with the photo's own
      ratio (--photo-width/--photo-height come inline from the CMS), so the
      frame is exactly the picture and the vignette lands on its edges. */
