@@ -9,7 +9,6 @@ export const About: GlobalConfig = {
   access: { read: anyone, update: isAdminOrEditor },
   hooks: { afterChange: [revalidateSiteGlobals] },
   fields: [
-    { name: "eyebrow", type: "text", label: "Rótulo", required: true, defaultValue: "El cuarteto" },
     { name: "title", type: "text", label: "Título", required: true },
     { name: "lead", type: "textarea", label: "Texto de presentación", required: true },
     { name: "photo", type: "upload", relationTo: "media", label: "Foto del grupo", required: true },

@@ -676,7 +676,6 @@ export interface Hero {
  */
 export interface About {
   id: number;
-  eyebrow: string;
   title: string;
   lead: string;
   photo: number | Media;
@@ -765,7 +764,6 @@ export interface HeroSelect<T extends boolean = true> {
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
-  eyebrow?: T;
   title?: T;
   lead?: T;
   photo?: T;

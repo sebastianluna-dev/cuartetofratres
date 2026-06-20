@@ -171,7 +171,6 @@ async function seedGlobals(payload: Payload) {
     await payload.updateGlobal({
       slug: "about",
       data: {
-        eyebrow: ABOUT_DEFAULTS.eyebrow,
         title: ABOUT_DEFAULTS.title,
         lead: ABOUT_DEFAULTS.lead,
         photo,

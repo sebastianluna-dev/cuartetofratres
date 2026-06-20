@@ -1,6 +1,6 @@
 .about {
   & .about__content {
-    padding: clamp(56px, 8vw, 124px) 0 clamp(48px, 6vw, 80px);
+    padding: clamp(56px, 8vw, 124px) 0 clamp(56px, 7vw, 104px);
   }
 
   & .about__grid {
@@ -65,24 +65,9 @@
     filter: grayscale(1);
   }
 
-  /* The closing staff is pulled up so its lines run over the foot of the
-     photo, as in the design; it takes no pointer events, so the icons under
-     it stay usable. */
-  & .about__divider {
-    position: relative;
-    z-index: 1;
-    margin-top: calc(-1 * clamp(120px, 13vw, 220px));
-    padding-bottom: clamp(40px, 5vw, 72px);
-  }
-
   @media (max-width: 767px) {
     & .about__content {
       padding-top: 38px;
-    }
-
-    & .about__divider {
-      margin-top: 0;
-      padding-bottom: 0;
     }
 
     & .about__title {

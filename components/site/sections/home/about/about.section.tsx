@@ -1,11 +1,10 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import { Reveal } from "@/components/site/shared/reveal.comp";
-import { SectionEyebrow } from "@/components/site/shared/section-eyebrow.comp";
+import { StaffOrnament } from "@/components/site/shared/staff-ornament.comp";
 import { getAboutData } from "@/services/about/about.service";
 import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
 import { SocialColumn } from "./social-column.comp";
-import { StaffDivider } from "./staff-divider.comp";
 import "./about.section.css";
 
 export async function AboutSection() {
@@ -18,7 +17,7 @@ export async function AboutSection() {
           <div className="about__grid">
             <div className="about__text">
               <div className="about__eyebrow">
-                <SectionEyebrow label={about.eyebrow} />
+                <StaffOrnament width={240} />
               </div>
               <h2 className="about__title">{about.title}</h2>
               <p className="about__lead">{about.lead}</p>
@@ -50,9 +49,6 @@ export async function AboutSection() {
             </div>
           </div>
         </Reveal>
-      </div>
-      <div className="about__divider">
-        <StaffDivider />
       </div>
     </section>
   );
