@@ -17,7 +17,7 @@ export async function Footer() {
       <div className="site-footer__inner">
         <div className="site-footer__grid">
           <div className="site-footer__brand">
-            <Logo theme="ivory" height={62} />
+            <Logo theme="lime" height={62} />
             <p className="site-footer__name">{SITE_NAME}</p>
             <p className="site-footer__description">{settings.tagline}</p>
           </div>
@@ -66,7 +66,7 @@ export async function Footer() {
           <span>
             © {CURRENT_YEAR} {SITE_NAME}. Todos los derechos reservados.
           </span>
-          <StaffOrnament theme="lime" width={160} />
+          <StaffOrnament theme="ivory" width={160} />
           <span>{settings.photoCredit}</span>
         </div>
       </div>
