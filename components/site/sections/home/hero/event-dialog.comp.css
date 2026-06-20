@@ -87,20 +87,8 @@
     text-wrap: balance;
   }
 
-  & .event-dialog__city {
-    margin-top: 14px;
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-muted-on-ink);
-  }
-
-  & .event-dialog__ornament {
-    margin-top: 26px;
-  }
-
   & .event-dialog__description {
-    margin-top: 28px;
+    margin-top: 14px;
     font-size: 16.5px;
     line-height: 1.7;
     color: rgba(242, 244, 243, 0.86);

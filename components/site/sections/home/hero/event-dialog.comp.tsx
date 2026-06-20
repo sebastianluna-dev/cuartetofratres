@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { StaffOrnament } from "@/components/site/shared/staff-ornament.comp";
 import { EVENT_DIALOG_LABELS } from "@/constants/events.const";
 import { formatEventDateLong } from "@/lib/format-event-date";
 import { splitPrice } from "@/lib/split-price";
@@ -112,11 +111,6 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
             <h2 id={TITLE_ID} className="event-dialog__title">
               {event.title}
             </h2>
-            <p className="event-dialog__city">{event.city}</p>
-            <div className="event-dialog__ornament">
-              <StaffOrnament theme="ivory" width={260} />
-            </div>
-
             {event.description && <p className="event-dialog__description">{event.description}</p>}
 
             {(hasVenue || priceLines.length > 0) && (
