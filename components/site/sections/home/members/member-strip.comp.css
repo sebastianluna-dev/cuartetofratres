@@ -43,9 +43,18 @@
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     font-family: var(--font-heading);
-    font-size: clamp(16px, 1.5vw, 21px);
+    font-size: clamp(20px, 1.9vw, 26px);
     white-space: nowrap;
     text-shadow: 0 1px 10px rgba(18, 20, 24, 0.7);
+    transition:
+      color 0.4s ease,
+      text-shadow 0.4s ease;
+  }
+
+  /* On the lit portrait the name reads in ink, without the halo. */
+  &.member-strip_active .member-strip__name {
+    color: var(--color-ink);
+    text-shadow: none;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -61,7 +70,7 @@
     & .member-strip__name {
       left: 8px;
       bottom: 18px;
-      font-size: 15px;
+      font-size: 18px;
     }
   }
 }
