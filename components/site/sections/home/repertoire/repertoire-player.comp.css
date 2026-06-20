@@ -16,7 +16,7 @@
     line-height: 1;
     letter-spacing: 0.01em;
     text-transform: uppercase;
-    color: var(--color-lime);
+    color: var(--color-text-on-ink);
   }
 
   & .repertoire-player__body {

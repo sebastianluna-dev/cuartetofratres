@@ -22,8 +22,8 @@
   }
 
   & .repertoire-filters__tab_active {
-    color: var(--color-lime);
-    border-bottom-color: var(--color-lime);
+    color: var(--color-text-on-ink);
+    border-bottom-color: var(--color-text-on-ink);
   }
 
   @media (max-width: 767px) {
@@ -50,8 +50,8 @@
     }
 
     & .repertoire-filters__tab_active {
-      background: var(--color-lime);
-      border-color: var(--color-lime);
+      background: var(--color-ivory);
+      border-color: var(--color-ivory);
       color: var(--color-ink);
     }
   }

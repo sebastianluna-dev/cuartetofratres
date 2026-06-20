@@ -58,7 +58,7 @@
     display: block;
     width: 2px;
     height: 100%;
-    background: var(--color-lime);
+    background: var(--color-text-on-ink);
     transform-origin: bottom;
     transform: scaleY(0.25);
   }
@@ -72,11 +72,11 @@
 
   &.track-item_selected {
     & .track-item__marker {
-      background: var(--color-lime);
+      background: var(--color-text-on-ink);
     }
 
     & .track-item__title {
-      color: var(--color-lime);
+      color: var(--color-text-on-ink);
     }
   }
 
