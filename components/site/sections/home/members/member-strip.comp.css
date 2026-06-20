@@ -3,19 +3,15 @@
   flex: 1 1 0;
   min-width: 0;
   overflow: hidden;
-  border: 1px solid rgba(230, 236, 158, 0.16);
   background: #171a1f;
   color: var(--color-text-on-ink);
   text-align: left;
   cursor: pointer;
-  transition:
-    flex-grow 0.7s var(--ease-out),
-    border-color 0.4s ease;
+  transition: flex-grow 0.7s var(--ease-out);
 
   /* The open strip takes two and a half times the width of a closed one. */
   &.member-strip_active {
     flex-grow: 2.6;
-    border-color: rgba(230, 236, 158, 0.38);
   }
 
   &:focus-visible {
