@@ -17,6 +17,14 @@
   }
 
   &.staff-ornament_theme_ivory {
+    color: var(--color-text-on-ink);
+
+    & .staff-ornament__lines {
+      opacity: 0.8;
+    }
+  }
+
+  &.staff-ornament_theme_lime {
     color: var(--color-lime);
 
     & .staff-ornament__lines {

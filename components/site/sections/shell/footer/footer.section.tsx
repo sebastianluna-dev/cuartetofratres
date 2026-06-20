@@ -66,7 +66,7 @@ export async function Footer() {
           <span>
             © {CURRENT_YEAR} {SITE_NAME}. Todos los derechos reservados.
           </span>
-          <StaffOrnament theme="ivory" width={160} />
+          <StaffOrnament theme="lime" width={160} />
           <span>{settings.photoCredit}</span>
         </div>
       </div>

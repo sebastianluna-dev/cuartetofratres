@@ -97,7 +97,7 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
             </h2>
             <p className="event-dialog__city">{event.city}</p>
             <div className="event-dialog__ornament">
-              <StaffOrnament theme="ivory" width={260} />
+              <StaffOrnament theme="lime" width={260} />
             </div>
 
             {event.description && <p className="event-dialog__description">{event.description}</p>}

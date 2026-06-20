@@ -21,7 +21,7 @@ export function SiteMessage({ eyebrow, title, description, children }: SiteMessa
     <section className="site-message">
       <div className="site-message__inner">
         <div className="site-message__eyebrow">
-          <StaffOrnament theme="ivory" width={160} />
+          <StaffOrnament theme="lime" width={160} />
           <span>{eyebrow}</span>
         </div>
         <h1 className="site-message__title">{title}</h1>

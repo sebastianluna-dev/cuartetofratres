@@ -1,8 +1,8 @@
 import "./staff-ornament.comp.css";
 
 interface StaffOrnamentProps {
-  /** Ink strokes on ivory, lime strokes on ink. */
-  theme?: "ink" | "ivory";
+  /** Colour of the strokes: ink on the light sections, ivory or lime on the dark ones. */
+  theme?: "ink" | "ivory" | "lime";
   /** Drawn width in px; the height keeps the 200×34 ratio. */
   width?: number;
 }
