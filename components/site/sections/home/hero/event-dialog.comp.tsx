@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { StaffOrnament } from "@/components/site/shared/staff-ornament.comp";
 import { EVENT_DIALOG_LABELS } from "@/constants/events.const";
-import { formatEventDate, formatEventDateLong } from "@/lib/format-event-date";
+import { formatEventDateLong } from "@/lib/format-event-date";
 import { splitPrice } from "@/lib/split-price";
 import type { EventContent } from "@/services/events/events.types";
 import "./event-dialog.comp.css";
@@ -20,6 +20,25 @@ const TITLE_ID = "detalle-presentacion-titulo";
 
 // Native <dialog> opened with `showModal()`: the browser gives the focus trap,
 // Escape, the top layer and the focus return for free. Closing by any means
+/** Height of the photo column on desktop (a 920px box at 3:2) and on the phone; the same numbers as the stylesheet. */
+const MEDIA_HEIGHT = 613;
+const MEDIA_WIDTH = 345;
+const MEDIA_HEIGHT_PHONE = 240;
+const PHONE_WIDTH = 430;
+/** The launch photos are 16:9; a CMS upload brings its own size. */
+const DEFAULT_RATIO = 16 / 9;
+
+// The column is a tall portrait and most photos are wide, so `cover` draws
+// them at the column's height and crops the sides: next/image must request
+// that drawn width, not the column's, or it serves a small file and the
+// screen stretches it.
+function photoSizes(width?: number, height?: number): string {
+  const ratio = width && height ? width / height : DEFAULT_RATIO;
+  const phone = Math.ceil(Math.max(PHONE_WIDTH, MEDIA_HEIGHT_PHONE * ratio));
+  const desktop = Math.ceil(Math.max(MEDIA_WIDTH, MEDIA_HEIGHT * ratio));
+  return `(max-width: 767px) ${phone}px, ${desktop}px`;
+}
+
 // (Escape, the button, the backdrop) fires `onClose`, which clears the open
 // event in the parent.
 export function EventDialog({ event, onClose }: EventDialogProps) {
@@ -79,13 +98,11 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
               src={event.image.src}
               alt={event.image.alt}
               fill
-              sizes="(max-width: 767px) 100vw, 450px"
+              sizes={photoSizes(event.image.width, event.image.height)}
+              quality={100}
               className="event-dialog__photo"
               style={{ objectPosition: event.imagePosition }}
             />
-            <span className="event-dialog__date-badge" aria-hidden="true">
-              {formatEventDate(event.date)}
-            </span>
           </div>
 
           <div className="event-dialog__body">
@@ -97,7 +114,7 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
             </h2>
             <p className="event-dialog__city">{event.city}</p>
             <div className="event-dialog__ornament">
-              <StaffOrnament theme="lime" width={260} />
+              <StaffOrnament theme="ivory" width={260} />
             </div>
 
             {event.description && <p className="event-dialog__description">{event.description}</p>}
@@ -148,14 +165,14 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
               {event.ticketsUrl ? (
                 <a
                   href={event.ticketsUrl}
-                  className="button button_variant_lime"
+                  className="button button_variant_outline-ivory"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   {EVENT_DIALOG_LABELS.tickets}
                 </a>
               ) : (
-                <Link href="#contacto" className="button button_variant_lime" onClick={close}>
+                <Link href="#contacto" className="button button_variant_outline-ivory" onClick={close}>
                   {EVENT_DIALOG_LABELS.inquire}
                 </Link>
               )}
