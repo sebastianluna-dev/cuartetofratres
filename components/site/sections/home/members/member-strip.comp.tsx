@@ -8,9 +8,8 @@ interface MemberStripProps {
   onSelect: () => void;
 }
 
-// One tall strip of the gallery: the portrait as ground, the short name
-// written upwards along the left edge and a lime rule at the foot when it is
-// the one open. The button carries the full name, so the portrait itself is
+// One tall strip of the gallery: the portrait as ground and the short name
+// written upwards along the left edge; the open one is simply wider and lit. The button carries the full name, so the portrait itself is
 // decorative.
 export function MemberStrip({ member, active, onSelect }: MemberStripProps) {
   return (
@@ -32,7 +31,6 @@ export function MemberStrip({ member, active, onSelect }: MemberStripProps) {
       <span className="member-strip__name" aria-hidden="true">
         {member.shortName}
       </span>
-      <span className="member-strip__edge" aria-hidden="true" />
     </button>
   );
 }

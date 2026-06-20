@@ -46,36 +46,13 @@
     font-size: clamp(16px, 1.5vw, 21px);
     white-space: nowrap;
     text-shadow: 0 1px 10px rgba(18, 20, 24, 0.7);
-    transition: color 0.4s ease;
-  }
-
-  &.member-strip_active .member-strip__name {
-    color: var(--color-lime);
-  }
-
-  & .member-strip__edge {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    height: 5px;
-    background: var(--color-lime);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s var(--ease-out);
-  }
-
-  &.member-strip_active .member-strip__edge {
-    transform: scaleX(1);
   }
 
   @media (prefers-reduced-motion: reduce) {
     transition: none;
 
     & .member-strip__photo,
-    & .member-strip__name,
-    & .member-strip__edge {
+    & .member-strip__name {
       transition: none;
     }
   }
