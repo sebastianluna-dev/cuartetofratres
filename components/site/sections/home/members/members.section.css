@@ -1,41 +1,13 @@
 .members {
   & .members__inner {
-    padding-top: clamp(64px, 9vw, 130px);
+    padding-top: clamp(40px, 4.5vw, 64px);
     padding-bottom: clamp(30px, 4vw, 52px);
-  }
-
-  & .members__head {
-    margin-bottom: clamp(30px, 4vw, 52px);
-  }
-
-  & .members__eyebrow {
-    margin-bottom: 22px;
-  }
-
-  /* Same display face and measure as the title of «El cuarteto». */
-  & .members__title {
-    max-width: 15em;
-    font-family: var(--font-display);
-    font-size: clamp(38px, 5.6vw, 76px);
-    line-height: 1;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
-    color: var(--color-lime);
   }
 
   @media (max-width: 767px) {
     & .members__inner {
-      padding-top: 34px;
+      padding-top: 28px;
       padding-bottom: 48px;
-    }
-
-    & .members__head {
-      margin-bottom: 24px;
-    }
-
-    & .members__title {
-      font-size: 40px;
-      line-height: 0.98;
     }
   }
 }

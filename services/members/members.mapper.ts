@@ -1,8 +1,8 @@
-import type { Member, MembersSection } from "@/payload-types";
-import { INSTRUMENT_LABELS, MEMBERS_SECTION_DEFAULTS, type Member as MemberDefault } from "@/constants/members.const";
-import { shortenName } from "@/lib/shorten-name";
+import type { Member } from "@/payload-types";
+import { INSTRUMENT_LABELS, type Member as MemberDefault } from "@/constants/members.const";
+import { dropSecondSurname, shortenName } from "@/lib/shorten-name";
 import { mapContentImage } from "@/services/shared/map-content-image";
-import type { MemberContent, MembersSectionContent } from "./members.types";
+import type { MemberContent } from "./members.types";
 
 function orNull(value: string | null | undefined): string | null {
   const trimmed = value?.trim();
@@ -15,6 +15,7 @@ export function mapMember(member: Member): MemberContent | null {
   return {
     id: String(member.id),
     name: member.name,
+    displayName: dropSecondSurname(member.name),
     instrument: INSTRUMENT_LABELS[member.instrument],
     shortName: orNull(member.shortName) ?? shortenName(member.name),
     bio: member.bio,
@@ -27,18 +28,11 @@ export function mapDefaultMember(member: MemberDefault): MemberContent {
   return {
     id: member.id,
     name: member.name,
+    displayName: dropSecondSurname(member.name),
     instrument: INSTRUMENT_LABELS[member.instrument],
     shortName: member.shortName,
     bio: member.bio,
     photo: { src: member.photo.src, alt: member.photo.alt },
     photoPosition: member.photo.position,
-  };
-}
-
-export function mapMembersSection(section: MembersSection, members: MemberContent[]): MembersSectionContent {
-  return {
-    eyebrow: section.eyebrow || MEMBERS_SECTION_DEFAULTS.eyebrow,
-    title: section.title || MEMBERS_SECTION_DEFAULTS.title,
-    members,
   };
 }

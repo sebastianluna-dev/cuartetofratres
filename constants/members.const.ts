@@ -6,16 +6,6 @@ export const INSTRUMENT_LABELS: Record<InstrumentCode, string> = {
   cello: "Violonchelo",
 };
 
-export interface MembersSectionDefaults {
-  eyebrow: string;
-  title: string;
-}
-
-export const MEMBERS_SECTION_DEFAULTS: MembersSectionDefaults = {
-  eyebrow: "Integrantes",
-  title: "Cuatro trayectorias, un mismo atril.",
-};
-
 export interface Member {
   /** Stable key for React lists and for the gallery state. */
   id: string;

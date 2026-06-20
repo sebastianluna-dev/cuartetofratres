@@ -14,7 +14,6 @@ import { Categories } from "@/payload/collections/Categories";
 import { ContactRequests } from "@/payload/collections/ContactRequests";
 import { Hero } from "@/payload/globals/Hero";
 import { About } from "@/payload/globals/About";
-import { MembersSection } from "@/payload/globals/MembersSection";
 import { RepertoireSection } from "@/payload/globals/RepertoireSection";
 import { ContactSection } from "@/payload/globals/ContactSection";
 import { SiteSettings } from "@/payload/globals/SiteSettings";
@@ -41,7 +40,7 @@ export default buildConfig({
     },
   },
   collections: [Members, Events, Tracks, Categories, Media, Audio, ContactRequests, Users],
-  globals: [Hero, About, MembersSection, RepertoireSection, ContactSection, SiteSettings],
+  globals: [Hero, About, RepertoireSection, ContactSection, SiteSettings],
   // Without `sharp`, Payload does not read the dimensions of what is uploaded
   // and `Media.width`/`height` stay null: next/image needs them.
   sharp,

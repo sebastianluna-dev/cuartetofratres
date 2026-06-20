@@ -8,7 +8,7 @@ import { ABOUT_DEFAULTS } from "@/constants/about.const";
 import { CONTACT_SECTION_DEFAULTS } from "@/constants/contact.const";
 import { UPCOMING_EVENTS } from "@/constants/events.const";
 import { HERO_DEFAULTS } from "@/constants/hero.const";
-import { MEMBERS, MEMBERS_SECTION_DEFAULTS } from "@/constants/members.const";
+import { MEMBERS } from "@/constants/members.const";
 import { CATEGORIES, REPERTOIRE_SECTION_DEFAULTS, TRACKS } from "@/constants/repertoire.const";
 import { CONTACT_EMAIL, PHOTO_CREDIT, SITE_LOCATION, SITE_LOCATION_FULL, SITE_TAGLINE } from "@/constants/site.const";
 
@@ -178,11 +178,6 @@ async function seedGlobals(payload: Payload) {
       },
     });
     written.push("about");
-  }
-
-  if (await isEmptyGlobal(payload, "members-section", "title")) {
-    await payload.updateGlobal({ slug: "members-section", data: { ...MEMBERS_SECTION_DEFAULTS } });
-    written.push("members-section");
   }
 
   if (await isEmptyGlobal(payload, "repertoire-section", "note")) {

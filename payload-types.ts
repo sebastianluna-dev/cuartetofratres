@@ -102,7 +102,6 @@ export interface Config {
   globals: {
     hero: Hero;
     about: About;
-    'members-section': MembersSection;
     'repertoire-section': RepertoireSection;
     'contact-section': ContactSection;
     'site-settings': SiteSetting;
@@ -110,7 +109,6 @@ export interface Config {
   globalsSelect: {
     hero: HeroSelect<false> | HeroSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
-    'members-section': MembersSectionSelect<false> | MembersSectionSelect<true>;
     'repertoire-section': RepertoireSectionSelect<false> | RepertoireSectionSelect<true>;
     'contact-section': ContactSectionSelect<false> | ContactSectionSelect<true>;
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
@@ -687,17 +685,6 @@ export interface About {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "members-section".
- */
-export interface MembersSection {
-  id: number;
-  eyebrow: string;
-  title: string;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "repertoire-section".
  */
 export interface RepertoireSection {
@@ -782,17 +769,6 @@ export interface AboutSelect<T extends boolean = true> {
   title?: T;
   lead?: T;
   photo?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "members-section_select".
- */
-export interface MembersSectionSelect<T extends boolean = true> {
-  eyebrow?: T;
-  title?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

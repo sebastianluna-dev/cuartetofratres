@@ -12,7 +12,7 @@ export function MemberDetail({ member }: MemberDetailProps) {
   return (
     <article className="member-detail" aria-live="polite">
       <span className="member-detail__role">{member.instrument}</span>
-      <h3 className="member-detail__name">{member.name}</h3>
+      <h3 className="member-detail__name">{member.displayName}</h3>
       <p className="member-detail__bio">{member.bio}</p>
     </article>
   );

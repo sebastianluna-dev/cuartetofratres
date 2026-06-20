@@ -14,15 +14,14 @@ const CACHE_REVALIDATE_SECONDS = 3600;
 const readGlobals = unstable_cache(
   async () => {
     const payload = await getPayload();
-    const [hero, about, membersSection, repertoireSection, contactSection, siteSettings] = await Promise.all([
+    const [hero, about, repertoireSection, contactSection, siteSettings] = await Promise.all([
       payload.findGlobal({ slug: "hero" }),
       payload.findGlobal({ slug: "about" }),
-      payload.findGlobal({ slug: "members-section" }),
       payload.findGlobal({ slug: "repertoire-section" }),
       payload.findGlobal({ slug: "contact-section" }),
       payload.findGlobal({ slug: "site-settings" }),
     ]);
-    return { hero, about, membersSection, repertoireSection, contactSection, siteSettings };
+    return { hero, about, repertoireSection, contactSection, siteSettings };
   },
   ["site-globals"],
   { tags: [CACHE_TAGS.site], revalidate: CACHE_REVALIDATE_SECONDS },
