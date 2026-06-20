@@ -183,7 +183,6 @@ async function seedGlobals(payload: Payload) {
     await payload.updateGlobal({
       slug: "repertoire-section",
       data: {
-        eyebrow: REPERTOIRE_SECTION_DEFAULTS.eyebrow,
         title: REPERTOIRE_SECTION_DEFAULTS.title,
         note: REPERTOIRE_SECTION_DEFAULTS.note,
         emptyState: { ...REPERTOIRE_SECTION_DEFAULTS.emptyState },

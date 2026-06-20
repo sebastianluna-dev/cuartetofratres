@@ -28,14 +28,12 @@ export interface Track {
 }
 
 export interface RepertoireSectionDefaults {
-  eyebrow: string;
   title: string;
   note: string;
   emptyState: { title: string; text: string; ctaLabel: string };
 }
 
 export const REPERTOIRE_SECTION_DEFAULTS: RepertoireSectionDefaults = {
-  eyebrow: "Repertorio",
   title: "Del clásico al pop, con el mismo cuidado.",
   note: "Las cuatro obras están en repertorio; las grabaciones de estudio se subirán en cuanto estén listas.",
   emptyState: {

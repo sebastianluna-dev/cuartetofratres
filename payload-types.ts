@@ -688,7 +688,6 @@ export interface About {
  */
 export interface RepertoireSection {
   id: number;
-  eyebrow: string;
   title: string;
   /**
    * Ej.: «Las cuatro obras están en repertorio; las grabaciones se subirán…».
@@ -776,7 +775,6 @@ export interface AboutSelect<T extends boolean = true> {
  * via the `definition` "repertoire-section_select".
  */
 export interface RepertoireSectionSelect<T extends boolean = true> {
-  eyebrow?: T;
   title?: T;
   note?: T;
   unavailableLabel?: T;

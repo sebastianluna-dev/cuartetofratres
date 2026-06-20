@@ -3,10 +3,6 @@
     padding: clamp(56px, 7vw, 104px) 0 clamp(64px, 8vw, 110px);
   }
 
-  & .repertoire__eyebrow {
-    margin-bottom: 22px;
-  }
-
   @media (max-width: 767px) {
     & .repertoire__content {
       padding-top: 34px;

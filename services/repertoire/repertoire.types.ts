@@ -17,7 +17,6 @@ export interface TrackContent {
 }
 
 export interface RepertoireContent {
-  eyebrow: string;
   title: string;
   note: string;
   emptyState: { title: string; text: string; ctaLabel: string };
