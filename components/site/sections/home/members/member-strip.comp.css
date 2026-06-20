@@ -38,31 +38,6 @@
     filter: grayscale(0.25) brightness(0.92);
   }
 
-  & .member-strip__index {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 30px;
-    background: rgba(18, 20, 24, 0.72);
-    color: var(--color-lime);
-    font-family: var(--font-heading);
-    font-size: 14px;
-    font-variant-numeric: tabular-nums;
-    transition:
-      background 0.4s ease,
-      color 0.4s ease;
-  }
-
-  &.member-strip_active .member-strip__index {
-    background: var(--color-lime);
-    color: var(--color-ink);
-  }
-
   /* Read from the bottom up along the left edge, like the spine of a book. */
   & .member-strip__name {
     position: absolute;
@@ -103,7 +78,6 @@
     transition: none;
 
     & .member-strip__photo,
-    & .member-strip__index,
     & .member-strip__name,
     & .member-strip__edge {
       transition: none;
@@ -111,12 +85,6 @@
   }
 
   @media (max-width: 767px) {
-    & .member-strip__index {
-      width: 30px;
-      height: 26px;
-      font-size: 12px;
-    }
-
     & .member-strip__name {
       left: 8px;
       bottom: 18px;

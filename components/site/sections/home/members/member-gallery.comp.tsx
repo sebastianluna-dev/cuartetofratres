@@ -26,7 +26,6 @@ export function MemberGallery({ members }: MemberGalleryProps) {
           <MemberStrip
             key={member.id}
             member={member}
-            index={index}
             active={member.id === selected.id}
             onSelect={() => setSelectedIndex(index)}
           />
