@@ -190,10 +190,6 @@ strong {
     margin: 0 auto;
     padding: 0 var(--site-gutter);
   }
-
-  & .section__inner_width_narrow {
-    max-width: 1400px;
-  }
 }
 
 /* Small uppercase label above a title, next to the staff ornament. */
@@ -294,7 +290,7 @@ strong {
   &.button_variant_ink {
     padding: 16px 30px;
     background: var(--color-ink);
-    color: var(--color-lime);
+    color: var(--color-text-on-ink);
     font-family: var(--font-heading);
     font-size: 16px;
 

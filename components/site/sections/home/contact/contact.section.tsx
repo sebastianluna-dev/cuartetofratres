@@ -14,7 +14,7 @@ export async function ContactSection() {
 
   return (
     <section id="contacto" className="section section_theme_ivory contact">
-      <div className="section__inner section__inner_width_narrow contact__inner">
+      <div className="section__inner contact__inner">
         <div className="contact__grid">
           <Reveal className="contact__intro">
             <div className="contact__eyebrow">
