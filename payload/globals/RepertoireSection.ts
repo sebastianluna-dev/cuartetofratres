@@ -18,13 +18,6 @@ export const RepertoireSection: GlobalConfig = {
       defaultValue: "Del clásico al pop, con el mismo cuidado.",
     },
     {
-      name: "note",
-      type: "textarea",
-      label: "Nota bajo la lista",
-      required: true,
-      admin: { description: "Ej.: «Las cuatro obras están en repertorio; las grabaciones se subirán…»." },
-    },
-    {
       name: "unavailableLabel",
       type: "text",
       label: "Aviso de obra sin grabación",

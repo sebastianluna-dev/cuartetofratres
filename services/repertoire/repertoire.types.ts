@@ -18,7 +18,6 @@ export interface TrackContent {
 
 export interface RepertoireContent {
   title: string;
-  note: string;
   emptyState: { title: string; text: string; ctaLabel: string };
   /** In tab order. */
   categories: CategoryContent[];

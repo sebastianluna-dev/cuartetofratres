@@ -55,7 +55,6 @@ export function mapRepertoireSection(
   const defaults = REPERTOIRE_SECTION_DEFAULTS;
   return {
     title: section.title || defaults.title,
-    note: section.note || defaults.note,
     emptyState: {
       title: section.emptyState?.title || defaults.emptyState.title,
       text: section.emptyState?.text || defaults.emptyState.text,

@@ -29,13 +29,11 @@ export interface Track {
 
 export interface RepertoireSectionDefaults {
   title: string;
-  note: string;
   emptyState: { title: string; text: string; ctaLabel: string };
 }
 
 export const REPERTOIRE_SECTION_DEFAULTS: RepertoireSectionDefaults = {
   title: "Del clásico al pop, con el mismo cuidado.",
-  note: "Las cuatro obras están en repertorio; las grabaciones de estudio se subirán en cuanto estén listas.",
   emptyState: {
     title: "Repertorio en preparación",
     text: "Estamos integrando las obras de esta categoría. Escríbenos y te compartimos las piezas disponibles para tu ceremonia o evento.",

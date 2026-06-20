@@ -26,13 +26,6 @@
     color: rgba(242, 244, 243, 0.68);
   }
 
-  & .track-list__note {
-    margin-top: 20px;
-    font-size: 12.5px;
-    line-height: 1.7;
-    color: rgba(242, 244, 243, 0.5);
-  }
-
   @media (max-width: 767px) {
     flex-basis: 100%;
   }

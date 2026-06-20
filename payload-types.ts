@@ -690,10 +690,6 @@ export interface RepertoireSection {
   id: number;
   title: string;
   /**
-   * Ej.: «Las cuatro obras están en repertorio; las grabaciones se subirán…».
-   */
-  note: string;
-  /**
    * Junto a las obras que aún no tienen archivo de audio.
    */
   unavailableLabel: string;
@@ -776,7 +772,6 @@ export interface AboutSelect<T extends boolean = true> {
  */
 export interface RepertoireSectionSelect<T extends boolean = true> {
   title?: T;
-  note?: T;
   unavailableLabel?: T;
   emptyState?:
     | T

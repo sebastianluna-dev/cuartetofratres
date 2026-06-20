@@ -9,12 +9,11 @@ interface TrackListProps {
   visibleIds: readonly string[];
   selectedIndex: number;
   playing: boolean;
-  note: string;
   emptyState: RepertoireContent["emptyState"];
   onSelect: (index: number) => void;
 }
 
-export function TrackList({ tracks, visibleIds, selectedIndex, playing, note, emptyState, onSelect }: TrackListProps) {
+export function TrackList({ tracks, visibleIds, selectedIndex, playing, emptyState, onSelect }: TrackListProps) {
   const rows = tracks.map((track, index) => ({ track, index })).filter(({ track }) => visibleIds.includes(track.id));
 
   return (
@@ -41,7 +40,6 @@ export function TrackList({ tracks, visibleIds, selectedIndex, playing, note, em
           </Link>
         </div>
       )}
-      <p className="track-list__note">{note}</p>
     </div>
   );
 }

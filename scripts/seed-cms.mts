@@ -141,10 +141,14 @@ async function seedTracks(payload: Payload, categoryIds: Map<string, number>) {
 }
 
 // A Global that nobody has saved comes back with its required fields empty;
-// `field` is one without a default value, so it tells "never saved" apart.
+// `field` is one without a default value (dotted for a field inside a group),
+// so it tells "never saved" apart.
 async function isEmptyGlobal(payload: Payload, slug: GlobalSlug, field: string): Promise<boolean> {
   const global = (await payload.findGlobal({ slug })) as unknown as Record<string, unknown>;
-  return !global[field];
+  const value = field
+    .split(".")
+    .reduce<unknown>((current, key) => (current as Record<string, unknown> | undefined)?.[key], global);
+  return !value;
 }
 
 async function seedGlobals(payload: Payload) {
@@ -179,12 +183,11 @@ async function seedGlobals(payload: Payload) {
     written.push("about");
   }
 
-  if (await isEmptyGlobal(payload, "repertoire-section", "note")) {
+  if (await isEmptyGlobal(payload, "repertoire-section", "emptyState.text")) {
     await payload.updateGlobal({
       slug: "repertoire-section",
       data: {
         title: REPERTOIRE_SECTION_DEFAULTS.title,
-        note: REPERTOIRE_SECTION_DEFAULTS.note,
         emptyState: { ...REPERTOIRE_SECTION_DEFAULTS.emptyState },
       },
     });

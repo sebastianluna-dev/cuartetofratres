@@ -16,6 +16,7 @@ import * as migration_20260619_173355_member_origin_removed from "./20260619_173
 import * as migration_20260620_093018_members_section_removed from "./20260620_093018_members_section_removed";
 import * as migration_20260620_104433_about_eyebrow_removed from "./20260620_104433_about_eyebrow_removed";
 import * as migration_20260620_114207_repertoire_eyebrow_removed from "./20260620_114207_repertoire_eyebrow_removed";
+import * as migration_20260620_124910_repertoire_note_removed from "./20260620_124910_repertoire_note_removed";
 
 export const migrations = [
   {
@@ -107,5 +108,10 @@ export const migrations = [
     up: migration_20260620_114207_repertoire_eyebrow_removed.up,
     down: migration_20260620_114207_repertoire_eyebrow_removed.down,
     name: "20260620_114207_repertoire_eyebrow_removed",
+  },
+  {
+    up: migration_20260620_124910_repertoire_note_removed.up,
+    down: migration_20260620_124910_repertoire_note_removed.down,
+    name: "20260620_124910_repertoire_note_removed",
   },
 ];

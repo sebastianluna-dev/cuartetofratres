@@ -49,7 +49,6 @@ export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
           visibleIds={visibleTracks.map((track) => track.id)}
           selectedIndex={player.selectedIndex}
           playing={player.playing}
-          note={content.note}
           emptyState={content.emptyState}
           onSelect={player.select}
         />
