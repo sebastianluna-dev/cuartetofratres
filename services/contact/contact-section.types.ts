@@ -1,5 +1,4 @@
 export interface ContactSectionContent {
-  eyebrow: string;
   title: string;
   lead: string;
   notice: string;

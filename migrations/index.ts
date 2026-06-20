@@ -18,6 +18,7 @@ import * as migration_20260620_104433_about_eyebrow_removed from "./20260620_104
 import * as migration_20260620_114207_repertoire_eyebrow_removed from "./20260620_114207_repertoire_eyebrow_removed";
 import * as migration_20260620_124910_repertoire_note_removed from "./20260620_124910_repertoire_note_removed";
 import * as migration_20260620_153255_event_ticket_prices from "./20260620_153255_event_ticket_prices";
+import * as migration_20260620_162215_contact_eyebrow_removed from "./20260620_162215_contact_eyebrow_removed";
 
 export const migrations = [
   {
@@ -119,5 +120,10 @@ export const migrations = [
     up: migration_20260620_153255_event_ticket_prices.up,
     down: migration_20260620_153255_event_ticket_prices.down,
     name: "20260620_153255_event_ticket_prices",
+  },
+  {
+    up: migration_20260620_162215_contact_eyebrow_removed.up,
+    down: migration_20260620_162215_contact_eyebrow_removed.down,
+    name: "20260620_162215_contact_eyebrow_removed",
   },
 ];

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Reveal } from "@/components/site/shared/reveal.comp";
-import { SectionEyebrow } from "@/components/site/shared/section-eyebrow.comp";
+import { StaffOrnament } from "@/components/site/shared/staff-ornament.comp";
 import { buildMailtoUrl } from "@/lib/build-mailto-url";
 import { getContactSectionData } from "@/services/contact/contact-section.service";
 import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
@@ -18,7 +18,7 @@ export async function ContactSection() {
         <div className="contact__grid">
           <Reveal className="contact__intro">
             <div className="contact__eyebrow">
-              <SectionEyebrow label={content.eyebrow} />
+              <StaffOrnament width={240} />
             </div>
             <h2 className="contact__title">{content.title}</h2>
             <p className="contact__lead">{content.lead}</p>

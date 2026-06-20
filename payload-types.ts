@@ -725,7 +725,6 @@ export interface RepertoireSection {
  */
 export interface ContactSection {
   id: number;
-  eyebrow: string;
   title: string;
   lead: string;
   notice: string;
@@ -807,7 +806,6 @@ export interface RepertoireSectionSelect<T extends boolean = true> {
  * via the `definition` "contact-section_select".
  */
 export interface ContactSectionSelect<T extends boolean = true> {
-  eyebrow?: T;
   title?: T;
   lead?: T;
   notice?: T;
