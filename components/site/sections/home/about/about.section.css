@@ -1,6 +1,9 @@
 .about {
+  --about-pad-top: clamp(56px, 8vw, 124px);
+  --about-pad-bottom: clamp(56px, 7vw, 104px);
+
   & .about__content {
-    padding: clamp(56px, 8vw, 124px) 0 clamp(56px, 7vw, 104px);
+    padding: var(--about-pad-top) 0 var(--about-pad-bottom);
   }
 
   & .about__grid {
@@ -37,16 +40,27 @@
     text-wrap: pretty;
   }
 
-  /* Photo and, to its right, the column of social icons. */
+  /* Photo and, to its right, the column of social icons. The block cancels
+     the section's vertical padding and the photo is taller than the text
+     block plus that padding, so it is the photo that sets the section's
+     height and runs from the section above to the section below. The icons
+     keep the padding and align with the staff. */
   & .about__media {
     display: flex;
     flex: 0 0 auto;
     align-items: flex-start;
     gap: clamp(16px, 2vw, 28px);
+    margin-top: calc(-1 * var(--about-pad-top));
+    margin-bottom: calc(-1 * var(--about-pad-bottom));
   }
 
-  /* The photo is never cropped: a fixed height, taller than the text block,
-     and the width follows from its own ratio (a 9:16 portrait by default). */
+  & .about__media > .social-column {
+    align-self: flex-start;
+    margin-top: var(--about-pad-top);
+  }
+
+  /* The photo is never cropped: a fixed height and the width follows from
+     its own ratio (a 9:16 portrait by default). */
   & .about__figure {
     display: flex;
     flex-direction: column;
@@ -55,7 +69,7 @@
 
   & .about__frame {
     position: relative;
-    height: clamp(440px, 40vw, 620px);
+    height: clamp(560px, 46vw, 760px);
     aspect-ratio: var(--about-photo-ratio, 941 / 1672);
     overflow: hidden;
   }
@@ -94,12 +108,13 @@
       margin: 0 calc(-1 * var(--site-gutter));
     }
 
-    & .about__figure {
-      align-self: stretch;
+    & .about__media > .social-column {
+      margin-top: 0;
+      padding: 0 var(--site-gutter);
     }
 
-    & .about__media > .social-column {
-      padding: 0 var(--site-gutter);
+    & .about__figure {
+      align-self: stretch;
     }
 
     /* Full width on its own row; the height follows the ratio. */
