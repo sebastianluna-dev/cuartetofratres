@@ -19,7 +19,7 @@
     outline-offset: 2px;
   }
 
-  /* Closed strips sit in the dark; the open one keeps most of its colour. */
+  /* Every portrait is black and white; closed strips sit in the dark, the open one is lit. */
   & .member-strip__photo {
     object-fit: cover;
     filter: grayscale(1) brightness(0.5) contrast(1.05);
@@ -31,7 +31,7 @@
   }
 
   &.member-strip_active .member-strip__photo {
-    filter: grayscale(0.25) brightness(0.92);
+    filter: grayscale(1) brightness(0.92) contrast(1.05);
   }
 
   /* Read from the bottom up along the left edge, like the spine of a book. */
