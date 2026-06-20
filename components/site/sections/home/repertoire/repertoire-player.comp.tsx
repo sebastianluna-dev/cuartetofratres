@@ -30,7 +30,6 @@ export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
     <div className="repertoire-player">
       <div className="repertoire-player__head">
         <h2 className="repertoire-player__title">{content.title}</h2>
-        <RepertoireFilters filters={filters} active={categoryId} onChange={setCategoryId} />
       </div>
 
       <div className="repertoire-player__body">
@@ -44,14 +43,20 @@ export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
             onSeek={player.seek}
           />
         )}
-        <TrackList
-          tracks={tracks}
-          visibleIds={visibleTracks.map((track) => track.id)}
-          selectedIndex={player.selectedIndex}
-          playing={player.playing}
-          emptyState={content.emptyState}
-          onSelect={player.select}
-        />
+        {/* The genre tabs sit over the list they filter, beside the card. */}
+        <div className="repertoire-player__list">
+          <div className="repertoire-player__filters">
+            <RepertoireFilters filters={filters} active={categoryId} onChange={setCategoryId} />
+          </div>
+          <TrackList
+            tracks={tracks}
+            visibleIds={visibleTracks.map((track) => track.id)}
+            selectedIndex={player.selectedIndex}
+            playing={player.playing}
+            emptyState={content.emptyState}
+            onSelect={player.select}
+          />
+        </div>
       </div>
     </div>
   );
