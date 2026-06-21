@@ -43,7 +43,7 @@
     flex: 1 1 auto;
     min-width: 0;
     font-family: var(--font-heading);
-    font-size: clamp(21px, 2.1vw, 26px);
+    font-size: clamp(21px, 2.1vw, 24px);
     line-height: 1.2;
     color: var(--color-text-on-ink);
     transition: color 0.3s ease;
