@@ -71,6 +71,30 @@
     padding: clamp(24px, 3vw, 40px) clamp(24px, 3vw, 44px) clamp(24px, 3vw, 36px);
   }
 
+  /* Scrollbar in the window's own colours: ink track, ivory thumb. The
+     standard properties are inherited by the body column (and by the whole
+     sheet on the phone); the -webkit- pseudo-elements are for Safari. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ivory) var(--color-ink);
+
+  &::-webkit-scrollbar,
+  & .event-dialog__body::-webkit-scrollbar {
+    width: 8px;
+    background: var(--color-ink);
+  }
+
+  &::-webkit-scrollbar-track,
+  & .event-dialog__body::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+
+  &::-webkit-scrollbar-thumb,
+  & .event-dialog__body::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: var(--color-ivory);
+    border: 2px solid var(--color-ink);
+  }
+
   & .event-dialog__band {
     font-size: 12px;
     letter-spacing: 0.18em;
