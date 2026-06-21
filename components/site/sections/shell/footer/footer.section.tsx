@@ -25,9 +25,9 @@ export async function Footer() {
           <nav className="site-footer__column" aria-label="Secciones">
             <span className="site-footer__heading">Secciones</span>
             {NAV_ITEMS.map((item) => (
-              <Link key={item.href} href={item.href} className="site-footer__link">
+              <a key={item.href} href={item.href} className="site-footer__link">
                 {item.label}
-              </Link>
+              </a>
             ))}
           </nav>
 

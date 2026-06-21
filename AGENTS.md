@@ -4,7 +4,7 @@ Resumen de lo que explica `README.md`. Si algo de aquí y el código discrepan, 
 
 - **Una app Next 16, una sola página y su CMS**: `app/(site)/page.tsx` renderiza `app/(site)/landing-page.tsx`, que compone las secciones según `config/site.config.ts`; Payload vive en `app/(payload)` (`/admin`, `/api`) sobre Postgres (`DATABASE_URI`). El contenido se edita en el CMS; `constants/` es el seed y el respaldo mientras la base está vacía.
 - **Archivos**: kebab-case con sufijos `.section.tsx`, `.comp.tsx`, `.hook.ts`, `.const.ts`, `.types.ts`, `.actions.ts`; named exports (default sólo en archivos de App Router); sin barrels, imports `@/...`.
-- **Componentes**: Server Components por defecto; `"use client"` sólo en la hoja que tiene el estado (cabecera, lista de integrantes, reproductor, formulario). Imágenes con `next/image`, nunca `<img>`. Copy en español. `components/site/` es espejo de la página: `sections/shell/` (cabecera, pie, avisos), `sections/home/<sección>/` (una carpeta por sección con su `.section.tsx` y sus `.comp.tsx`) y `shared/` (piezas que reutilizan varias secciones). Sin carpetas `common`.
+- **Componentes**: Server Components por defecto; `"use client"` sólo en la hoja que tiene el estado (cabecera, lista de integrantes, reproductor, formulario). Imágenes con `next/image`, nunca `<img>`. Las anclas de la misma página (`#contacto`…) van con `<a>`, nunca con `Link` de `next/link`: el router de Next, si la página se abrió ya con un ancla en la URL, concatena la nueva en vez de sustituirla (`/#contacto#integrantes`). Copy en español. `components/site/` es espejo de la página: `sections/shell/` (cabecera, pie, avisos), `sections/home/<sección>/` (una carpeta por sección con su `.section.tsx` y sus `.comp.tsx`) y `shared/` (piezas que reutilizan varias secciones). Sin carpetas `common`.
 - **Idioma**: los comentarios del código van en inglés, como los identificadores; el copy que ve el usuario (y las anclas) sigue en español, así que un comentario que cite un rótulo lo cita tal cual.
 - **CSS**: BEM estricto (`bloque__elemento`, modificador `_clave_valor`), un archivo por componente y TODAS sus reglas anidadas bajo el selector raíz con nesting nativo (`&`), media queries dentro del bloque, desktop-first. Excepción: `@keyframes` no se puede anidar y va al nivel superior, con el nombre del bloque como prefijo. Tokens `--color-*`, `--font-*` y `--site-*` en `app/(site)/globals.css`, que también tiene las clases compartidas (`section`, `eyebrow`, `reveal`, `button`, `grain`). Sin Tailwind ni CSS-in-JS.
 - **Datos y lógica**: lo que se puede probar sin React va a `lib/` (función pura + `*.test.ts` al lado) o a `services/`. Los componentes no formatean fechas ni filtran listas por su cuenta.
@@ -14,3 +14,13 @@ Resumen de lo que explica `README.md`. Si algo de aquí y el código discrepan, 
 - **Deuda**: lo que se encuentra y no se arregla va a `IMPROVEMENTS.md` (área, prioridad y cómo abordarlo); las tareas mecánicas, a `todos.md`. Los dos están en inglés.
 - **Documentación**: **todo cambio importante se documenta en el mismo commit**, no después: `README.md` si cambian puesta en marcha, scripts, contenido o rutas; `AGENTS.md` si el cambio ES una convención; `IMPROVEMENTS.md`/`todos.md` para la deuda encontrada o resuelta.
 - **Antes de dar algo por terminado**: `npm run typecheck`, `npm run lint`, `npm test` y `npm run build` en verde (el build necesita una `DATABASE_URI` alcanzable). Rendimiento y layout, siempre contra `npm run build && npm run start`, nunca contra `next dev`; en móvil, con emulación real de 390 px (Chrome sin emular no baja de ~500 px de ancho y no dispara las media queries de teléfono).
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

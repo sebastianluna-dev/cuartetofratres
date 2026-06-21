@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { EVENT_DIALOG_LABELS } from "@/constants/events.const";
 import { formatEventDateLong } from "@/lib/format-event-date";
 import type { EventContent } from "@/services/events/events.types";
@@ -175,9 +174,9 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
                   {EVENT_DIALOG_LABELS.tickets}
                 </a>
               ) : (
-                <Link href="#contacto" className="button button_variant_outline-ivory" onClick={close}>
+                <a href="#contacto" className="button button_variant_outline-ivory" onClick={close}>
                   {EVENT_DIALOG_LABELS.inquire}
-                </Link>
+                </a>
               )}
             </div>
           </div>

@@ -1,6 +1,5 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { getUpcomingEvents } from "@/services/events/events.service";
 import { getHeroData } from "@/services/hero/hero.service";
 import { EventCards } from "./event-cards.comp";
@@ -55,9 +54,9 @@ export async function HeroSection() {
               <EventCards events={events} labelledBy="proximas-presentaciones" />
             </>
           )}
-          <Link href="#repertorio" className="hero__listen">
+          <a href="#repertorio" className="hero__listen">
             {hero.listenLabel}
-          </Link>
+          </a>
         </div>
       </div>
     </section>

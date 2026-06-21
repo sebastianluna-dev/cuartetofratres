@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { RepertoireContent, TrackContent } from "@/services/repertoire/repertoire.types";
 import { TrackListItem } from "./track-list-item.comp";
 import "./track-list.comp.css";
@@ -35,9 +34,9 @@ export function TrackList({ tracks, visibleIds, selectedIndex, playing, emptySta
         <div className="track-list__empty">
           <h3 className="track-list__empty-title">{emptyState.title}</h3>
           <p className="track-list__empty-text">{emptyState.text}</p>
-          <Link href="#contacto" className="button button_variant_outline-ivory">
+          <a href="#contacto" className="button button_variant_outline-ivory">
             {emptyState.ctaLabel}
-          </Link>
+          </a>
         </div>
       )}
     </div>

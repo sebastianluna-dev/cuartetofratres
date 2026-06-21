@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { NAV_ITEMS } from "@/constants/navigation.const";
 import "./header-mobile-menu.comp.css";
 
@@ -42,10 +41,10 @@ export function HeaderMobileMenu({ theme }: HeaderMobileMenuProps) {
       <div id="menu-movil" className={`header-mobile-menu${open ? " header-mobile-menu_open" : ""}`}>
         <nav className="header-mobile-menu__links" aria-label="Secciones">
           {NAV_ITEMS.map((item, index) => (
-            <Link key={item.href} href={item.href} className="header-mobile-menu__link" onClick={close}>
+            <a key={item.href} href={item.href} className="header-mobile-menu__link" onClick={close}>
               <span className="header-mobile-menu__index">0{index + 1}</span>
               {item.label}
-            </Link>
+            </a>
           ))}
         </nav>
       </div>

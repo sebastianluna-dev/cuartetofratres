@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Logo } from "@/components/site/shared/logo.comp";
 import { NAV_ITEMS } from "@/constants/navigation.const";
 import { useHeaderScroll } from "@/hooks/use-header-scroll.hook";
@@ -24,9 +23,9 @@ export function Header() {
 
         <nav className="site-header__nav" aria-label="Secciones">
           {NAV_ITEMS.map((item) => (
-            <Link key={item.href} href={item.href} className="site-header__link">
+            <a key={item.href} href={item.href} className="site-header__link">
               {item.label}
-            </Link>
+            </a>
           ))}
         </nav>
 
