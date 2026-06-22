@@ -13,6 +13,7 @@
     align-items: center;
     height: 26px;
     padding: 0 11px;
+    border-radius: 4px;
     background: var(--color-lime);
     color: var(--color-ink);
     font-size: 11px;
