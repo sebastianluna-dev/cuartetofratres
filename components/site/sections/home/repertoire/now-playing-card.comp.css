@@ -16,18 +16,6 @@
     max-width: 100%;
   }
 
-  & .now-playing__status {
-    display: block;
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(242, 244, 243, 0.5);
-  }
-
-  & .staff-tile {
-    margin-top: 12px;
-  }
-
   & .marquee-box {
     margin-top: 10px;
   }
