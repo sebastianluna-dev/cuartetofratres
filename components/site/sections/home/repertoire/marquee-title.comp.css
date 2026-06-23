@@ -1,0 +1,35 @@
+.marquee-box {
+  overflow: hidden;
+}
+
+.marquee {
+  display: flex;
+  gap: 48px;
+  white-space: nowrap;
+
+  & .marquee__copy {
+    flex: 0 0 auto;
+  }
+
+  & .marquee__copy_role_echo {
+    display: none;
+  }
+
+  &.marquee_scrolling {
+    animation: marquee-loop var(--marquee-duration, 8s) linear infinite;
+
+    & .marquee__copy_role_echo {
+      display: block;
+    }
+  }
+}
+
+@keyframes marquee-loop {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(var(--marquee-shift, 0px));
+  }
+}
