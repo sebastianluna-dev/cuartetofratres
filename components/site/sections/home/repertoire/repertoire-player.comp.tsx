@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useInView } from "@/hooks/use-in-view.hook";
+import { useSamplePlayer } from "@/hooks/use-sample-player.hook";
 import { buildRepertoireFilters } from "@/lib/build-repertoire-filters";
 import { filterRepertoire } from "@/lib/filter-repertoire";
-import { useSamplePlayer } from "@/hooks/use-sample-player.hook";
 import type { RepertoireContent } from "@/services/repertoire/repertoire.types";
+import { MiniPlayer } from "./mini-player.comp";
 import { NowPlayingCard } from "./now-playing-card.comp";
 import { RepertoireFilters } from "./repertoire-filters.comp";
 import { TrackList } from "./track-list.comp";
@@ -14,17 +16,30 @@ interface RepertoirePlayerProps {
   content: RepertoireContent;
 }
 
+/** The card counts as gone once its bottom 80 px have left the screen. */
+const CARD_MARGIN = "0px 0px -80px 0px";
+
 // Owns the two pieces of state of the section: which filter is active and
 // what the player is doing. The filter only hides rows: the selected track
 // stays selected (and keeps playing) even when its category is filtered out.
+// While a track plays and the card is off screen, the mini player takes over.
 export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
   const { tracks } = content;
   const [categoryId, setCategoryId] = useState<string | null>(null);
   const player = useSamplePlayer(tracks.map((track) => track.durationSeconds));
+  const [cardRef, cardInView] = useInView<HTMLDivElement>(CARD_MARGIN);
 
   const filters = buildRepertoireFilters(content.categories);
   const visibleTracks = filterRepertoire(tracks, categoryId);
   const selectedTrack = tracks[player.selectedIndex];
+  const transport = {
+    playing: player.playing,
+    elapsed: player.elapsed,
+    onTogglePlay: player.togglePlay,
+    onPrevious: player.previous,
+    onNext: player.next,
+    onSeek: player.seek,
+  };
 
   return (
     <div className="repertoire-player">
@@ -33,21 +48,9 @@ export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
       </div>
 
       <div className="repertoire-player__body">
-        {selectedTrack && (
-          <NowPlayingCard
-            track={selectedTrack}
-            number={player.selectedIndex + 1}
-            playing={player.playing}
-            elapsed={player.elapsed}
-            onTogglePlay={player.togglePlay}
-            onSeek={player.seek}
-          />
-        )}
-        {/* The genre tabs sit over the list they filter, beside the card. */}
+        {selectedTrack && <NowPlayingCard ref={cardRef} track={selectedTrack} {...transport} />}
         <div className="repertoire-player__list">
-          <div className="repertoire-player__filters">
-            <RepertoireFilters filters={filters} active={categoryId} onChange={setCategoryId} />
-          </div>
+          <RepertoireFilters filters={filters} active={categoryId} onChange={setCategoryId} />
           <TrackList
             tracks={tracks}
             visibleIds={visibleTracks.map((track) => track.id)}
@@ -58,6 +61,8 @@ export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
           />
         </div>
       </div>
+
+      {selectedTrack && player.playing && !cardInView && <MiniPlayer track={selectedTrack} {...transport} />}
     </div>
   );
 }

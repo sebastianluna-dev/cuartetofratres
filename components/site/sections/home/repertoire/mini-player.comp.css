@@ -1,0 +1,99 @@
+.mini-player {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Under the fixed header (60) and the phone menu (70). */
+  z-index: 50;
+  background: #1b1f25;
+  color: var(--color-text-on-ink);
+  box-shadow: 0 -18px 40px rgba(10, 11, 13, 0.45);
+  animation: mini-player-rise 0.35s var(--ease-out);
+
+  & .mini-player__inner {
+    display: flex;
+    align-items: center;
+    gap: clamp(14px, 2vw, 26px);
+    max-width: var(--site-max-width);
+    margin: 0 auto;
+    padding: 12px var(--site-gutter);
+  }
+
+  & .mini-player__work {
+    flex: 1 1 180px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  & .mini-player__status {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(242, 244, 243, 0.45);
+  }
+
+  & .marquee-box {
+    margin-top: 5px;
+  }
+
+  & .mini-player__title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  & .mini-player__composer {
+    display: block;
+    margin-top: 3px;
+    font-size: 11.5px;
+    color: rgba(242, 244, 243, 0.55);
+  }
+
+  & .mini-player__progress {
+    flex: 2 1 240px;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    & .staff-progress {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+  }
+
+  & .mini-player__clock {
+    font-size: 11.5px;
+    color: rgba(242, 244, 243, 0.55);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Phone: the work and the transport on one row, the staff below. */
+  @media (max-width: 767px) {
+    & .mini-player__inner {
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      padding-top: 10px;
+      padding-bottom: 14px;
+    }
+
+    & .mini-player__work {
+      flex-basis: 0;
+    }
+
+    & .mini-player__progress {
+      flex-basis: 100%;
+    }
+  }
+}
+
+@keyframes mini-player-rise {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
