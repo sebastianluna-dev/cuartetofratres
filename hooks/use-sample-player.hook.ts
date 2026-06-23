@@ -8,6 +8,9 @@ export interface SamplePlayer {
   /** Selects a track; selecting the current one toggles play/pause. */
   select: (index: number) => void;
   togglePlay: () => void;
+  /** Move to the neighbouring track and play it; both wrap around the list. */
+  next: () => void;
+  previous: () => void;
   /** Jumps to a fraction (0–1) of the track. */
   seek: (fraction: number) => void;
 }
@@ -60,6 +63,19 @@ export function useSamplePlayer(durations: readonly number[], tickMs = 250): Sam
 
   const togglePlay = useCallback(() => setPlaying((current) => !current), []);
 
+  const step = useCallback(
+    (delta: number) => {
+      const count = durations.length;
+      if (count === 0) return;
+      setSelectedIndex((current) => (current + delta + count) % count);
+      setElapsed(0);
+      setPlaying(true);
+    },
+    [durations.length],
+  );
+  const next = useCallback(() => step(1), [step]);
+  const previous = useCallback(() => step(-1), [step]);
+
   const seek = useCallback(
     (fraction: number) => {
       const clamped = Math.min(1, Math.max(0, fraction));
@@ -68,5 +84,5 @@ export function useSamplePlayer(durations: readonly number[], tickMs = 250): Sam
     [duration],
   );
 
-  return { selectedIndex, playing, elapsed, select, togglePlay, seek };
+  return { selectedIndex, playing, elapsed, select, togglePlay, next, previous, seek };
 }
