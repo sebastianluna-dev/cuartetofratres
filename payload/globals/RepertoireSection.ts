@@ -15,7 +15,7 @@ export const RepertoireSection: GlobalConfig = {
       type: "text",
       label: "Título",
       required: true,
-      defaultValue: "Del clásico al pop, con el mismo cuidado.",
+      defaultValue: "Repertorio",
     },
     {
       name: "unavailableLabel",

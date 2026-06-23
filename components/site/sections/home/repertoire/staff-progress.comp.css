@@ -1,53 +1,100 @@
 .staff-progress {
-  --staff-progress-line: 1.4px;
-  --staff-progress-track: rgba(242, 244, 243, 0.2);
+  --staff-progress-line: 1.2px;
 
   position: relative;
-  height: 60px;
+  height: 35px;
   cursor: pointer;
-  /* Four lines, drawn as background gradients so they need no markup. */
-  background-image:
-    linear-gradient(var(--staff-progress-track), var(--staff-progress-track)),
-    linear-gradient(var(--staff-progress-track), var(--staff-progress-track)),
-    linear-gradient(var(--staff-progress-track), var(--staff-progress-track)),
-    linear-gradient(var(--staff-progress-track), var(--staff-progress-track));
-  background-size: 100% var(--staff-progress-line);
-  background-position:
-    0 10px,
-    0 24px,
-    0 40px,
-    0 54px;
-  background-repeat: no-repeat;
 
-  & .staff-progress__played {
+  /* The four lines, drawn as background gradients so they need no markup. */
+  & .staff-progress__staff {
     position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
+    inset: 0;
     background-image:
-      linear-gradient(var(--color-lime), var(--color-lime)), linear-gradient(var(--color-lime), var(--color-lime)),
-      linear-gradient(var(--color-lime), var(--color-lime)), linear-gradient(var(--color-lime), var(--color-lime));
+      linear-gradient(var(--color-ivory), var(--color-ivory)), linear-gradient(var(--color-ivory), var(--color-ivory)),
+      linear-gradient(var(--color-ivory), var(--color-ivory)), linear-gradient(var(--color-ivory), var(--color-ivory));
     background-size: 100% var(--staff-progress-line);
     background-position:
-      0 10px,
-      0 24px,
-      0 40px,
-      0 54px;
+      0 6px,
+      0 13px,
+      0 22px,
+      0 29px;
     background-repeat: no-repeat;
+    pointer-events: none;
+
+    &.staff-progress__staff_tone_faint {
+      opacity: 0.32;
+    }
+  }
+
+  & .staff-progress__note {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    background: var(--color-ivory);
+
+    &:nth-child(1) {
+      left: 10%;
+      top: 15px;
+      transform: rotate(3deg);
+    }
+
+    &:nth-child(2) {
+      left: 27%;
+      top: 4px;
+      transform: rotate(-3deg);
+    }
+
+    &:nth-child(3) {
+      left: 45%;
+      top: 17px;
+      transform: rotate(3deg);
+    }
+
+    &:nth-child(4) {
+      left: 63%;
+      top: 2px;
+      transform: rotate(-3deg);
+    }
+
+    &:nth-child(5) {
+      left: 80%;
+      top: 13px;
+      transform: rotate(3deg);
+    }
+  }
+
+  /* The closing double bar of the staff. */
+  & .staff-progress__end {
+    position: absolute;
+    right: 6%;
+    top: 1px;
+    bottom: 1px;
+    width: 1.4px;
+    background: var(--color-ivory);
+
+    &.staff-progress__end_second {
+      right: calc(6% + 5px);
+    }
+  }
+
+  /* The bright copy; its clip-path follows the elapsed time. */
+  & .staff-progress__played {
+    position: absolute;
+    inset: 0;
     pointer-events: none;
   }
 
   /* The playhead is a double bar line. */
   & .staff-progress__head {
     position: absolute;
-    top: 3px;
-    bottom: 3px;
-    width: var(--staff-progress-line);
-    background: var(--color-lime);
+    top: 0;
+    bottom: 0;
+    width: 1.6px;
+    background: var(--color-ivory);
     pointer-events: none;
-  }
 
-  & .staff-progress__head_second {
-    margin-left: 7px;
+    &.staff-progress__head_second {
+      margin-left: 5px;
+    }
   }
 }

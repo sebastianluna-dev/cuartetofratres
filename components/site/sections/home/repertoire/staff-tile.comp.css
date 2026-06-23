@@ -1,0 +1,25 @@
+.staff-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  background: var(--color-ink-raised);
+  color: var(--color-text-on-ink);
+  overflow: hidden;
+
+  & svg {
+    display: block;
+  }
+
+  &.staff-tile_kind_clef {
+    width: clamp(104px, 11vw, 126px);
+    height: clamp(104px, 11vw, 126px);
+    color: rgba(242, 244, 243, 0.72);
+  }
+
+  &.staff-tile_kind_notes {
+    width: 44px;
+    height: 44px;
+  }
+}

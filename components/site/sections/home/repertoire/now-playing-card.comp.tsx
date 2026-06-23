@@ -1,60 +1,56 @@
-import type { TrackContent } from "@/services/repertoire/repertoire.types";
+"use client";
+
+import { forwardRef } from "react";
+import { PLAYER_COPY } from "@/constants/repertoire.const";
 import { formatTrackTime } from "@/lib/format-track-time";
+import type { TrackContent } from "@/services/repertoire/repertoire.types";
+import { MarqueeTitle } from "./marquee-title.comp";
 import { StaffProgress } from "./staff-progress.comp";
+import { StaffTile } from "./staff-tile.comp";
+import { TransportControls } from "./transport-controls.comp";
 import "./now-playing-card.comp.css";
 
 interface NowPlayingCardProps {
   track: TrackContent;
-  number: number;
   playing: boolean;
   elapsed: number;
-  /** Small print under the transport, from the CMS. */
   onTogglePlay: () => void;
+  onPrevious: () => void;
+  onNext: () => void;
   onSeek: (fraction: number) => void;
 }
 
-// Sticky card with the selected work, the staff-shaped progress bar and the
-// play/pause button. Nothing here starts on its own: the visitor presses play.
-export function NowPlayingCard({ track, number, playing, elapsed, onTogglePlay, onSeek }: NowPlayingCardProps) {
+// The dark card with the selected work: clef tile, scrolling title, composer
+// and category, the staff-shaped progress, the clocks and the transport.
+// Nothing here starts on its own: the visitor presses play. The ref lets the
+// player watch when the card scrolls out of view.
+export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(function NowPlayingCard(
+  { track, playing, elapsed, onTogglePlay, onPrevious, onNext, onSeek },
+  ref,
+) {
   const fraction = track.durationSeconds > 0 ? elapsed / track.durationSeconds : 0;
 
   return (
-    <div className="now-playing">
-      <span className="now-playing__status" aria-live="polite">
-        {playing ? "Reproduciendo" : "Pista seleccionada · en pausa"}
-      </span>
-      <span className="now-playing__number" aria-hidden="true">
-        {number < 10 ? `0${number}` : number}
-      </span>
-      <h3 className="now-playing__title">{track.title}</h3>
-      <p className="now-playing__composer">{track.composer}</p>
-      {track.categoryLabel && <p className="now-playing__category">{track.categoryLabel}</p>}
-
-      <StaffProgress fraction={fraction} onSeek={onSeek} />
-
-      <div className="now-playing__transport">
-        <button
-          type="button"
-          className="now-playing__toggle"
-          aria-label={playing ? "Pausar" : "Reproducir"}
-          onClick={onTogglePlay}
-        >
-          {playing ? (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <rect x="6" y="5" width="4" height="14" />
-              <rect x="14" y="5" width="4" height="14" />
-            </svg>
-          ) : (
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M8 5.5 19 12 8 18.5z" />
-            </svg>
-          )}
-        </button>
-        <span className="now-playing__time">
-          <span className="now-playing__clock">{formatTrackTime(elapsed)}</span> /{" "}
-          {formatTrackTime(track.durationSeconds)} · fragmento de muestra
+    <div ref={ref} className="now-playing">
+      <div className="now-playing__work">
+        <span className="now-playing__status" aria-live="polite">
+          {playing ? PLAYER_COPY.playingStatus : PLAYER_COPY.pausedStatus}
         </span>
+        <StaffTile kind="clef" />
+        <MarqueeTitle text={track.title} className="now-playing__title" />
+        <p className="now-playing__composer">{track.composer}</p>
+        {track.categoryLabel && <p className="now-playing__category">{track.categoryLabel}</p>}
+      </div>
+
+      <div className="now-playing__controls">
+        <StaffProgress fraction={fraction} onSeek={onSeek} />
+        <div className="now-playing__clocks">
+          <span>{formatTrackTime(elapsed)}</span>
+          <span>−{formatTrackTime(track.durationSeconds - elapsed)}</span>
+        </div>
+        <TransportControls playing={playing} onPrevious={onPrevious} onToggle={onTogglePlay} onNext={onNext} />
+        <p className="now-playing__note">{PLAYER_COPY.cardNote}</p>
       </div>
     </div>
   );
-}
+});

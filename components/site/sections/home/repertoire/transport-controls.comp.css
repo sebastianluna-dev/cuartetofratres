@@ -1,0 +1,91 @@
+.transport {
+  --transport-glyph: rgba(242, 244, 243, 0.7);
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  & .transport__step {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 4px;
+  }
+
+  & .transport__bar {
+    width: 2px;
+    height: 12px;
+    background: var(--transport-glyph);
+  }
+
+  & .transport__triangle {
+    width: 0;
+    height: 0;
+    border-left: 9px solid var(--transport-glyph);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+
+    &.transport__triangle_dir_back {
+      border-left: 0;
+      border-right: 9px solid var(--transport-glyph);
+    }
+  }
+
+  & .transport__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-ivory);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.06);
+    }
+
+    &:active {
+      transform: scale(0.96);
+    }
+  }
+
+  & .transport__play {
+    width: 0;
+    height: 0;
+    margin-left: 3px;
+    border-left: 13px solid var(--color-ink);
+    border-top: 8.5px solid transparent;
+    border-bottom: 8.5px solid transparent;
+  }
+
+  & .transport__pause {
+    display: flex;
+    gap: 3.5px;
+
+    & span {
+      width: 3.5px;
+      height: 15px;
+      background: var(--color-ink);
+    }
+  }
+
+  &.transport_size_compact {
+    gap: 14px;
+
+    & .transport__toggle {
+      width: 44px;
+      height: 44px;
+    }
+
+    & .transport__play {
+      border-left-width: 12px;
+      border-top-width: 8px;
+      border-bottom-width: 8px;
+    }
+
+    & .transport__pause span {
+      height: 14px;
+    }
+  }
+}
