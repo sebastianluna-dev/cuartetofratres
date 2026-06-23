@@ -49,7 +49,6 @@ export const PLAYER_COPY = {
   playingStatus: "Sonando ahora",
   pausedStatus: "Pista seleccionada · en pausa",
   programLabel: "Programa",
-  cardNote: "Fragmento de muestra. Solo suena una pista a la vez y nunca arranca sola.",
   listNote: "Las cuatro obras están en repertorio; las grabaciones de estudio se subirán en cuanto estén listas.",
   previous: "Obra anterior",
   next: "Obra siguiente",

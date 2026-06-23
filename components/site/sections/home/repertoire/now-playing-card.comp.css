@@ -56,12 +56,6 @@
     font-variant-numeric: tabular-nums;
   }
 
-  & .now-playing__note {
-    font-size: 12px;
-    line-height: 1.7;
-    color: rgba(242, 244, 243, 0.45);
-  }
-
   @media (max-width: 767px) {
     flex-basis: 100%;
     max-width: none;
