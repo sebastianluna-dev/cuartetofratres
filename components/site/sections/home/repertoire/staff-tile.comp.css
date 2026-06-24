@@ -13,9 +13,14 @@
   }
 
   &.staff-tile_kind_clef {
-    width: clamp(104px, 11vw, 126px);
-    height: clamp(104px, 11vw, 126px);
+    width: clamp(136px, 14vw, 168px);
+    height: clamp(136px, 14vw, 168px);
     color: rgba(242, 244, 243, 0.72);
+
+    & svg {
+      width: 44px;
+      height: 110px;
+    }
   }
 
   &.staff-tile_kind_notes {
