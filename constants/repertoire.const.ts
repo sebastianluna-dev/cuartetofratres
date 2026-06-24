@@ -48,8 +48,6 @@ export const REPERTOIRE_SECTION_DEFAULTS: RepertoireSectionDefaults = {
 export const PLAYER_COPY = {
   playingStatus: "Sonando ahora",
   pausedStatus: "Pista seleccionada · en pausa",
-  programLabel: "Programa",
-  listNote: "Las cuatro obras están en repertorio; las grabaciones de estudio se subirán en cuanto estén listas.",
   previous: "Obra anterior",
   next: "Obra siguiente",
   toggle: "Reproducir o pausar",

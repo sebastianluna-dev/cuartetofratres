@@ -4,14 +4,6 @@
   gap: 14px;
   min-width: 0;
 
-  & .track-list__label {
-    padding: 0 10px;
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(242, 244, 243, 0.42);
-  }
-
   & .track-list__items {
     display: flex;
     flex-direction: column;
@@ -37,22 +29,5 @@
     font-size: 16px;
     line-height: 1.75;
     color: rgba(242, 244, 243, 0.68);
-  }
-
-  & .track-list__note {
-    margin: 6px 10px 0;
-    font-size: 12.5px;
-    line-height: 1.7;
-    color: rgba(242, 244, 243, 0.5);
-  }
-
-  @media (max-width: 767px) {
-    & .track-list__label {
-      padding-left: 8px;
-    }
-
-    & .track-list__note {
-      margin-inline: 8px;
-    }
   }
 }
