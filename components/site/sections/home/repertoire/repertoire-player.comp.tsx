@@ -17,8 +17,8 @@ interface RepertoirePlayerProps {
   content: RepertoireContent;
 }
 
-/** The card counts as gone once its bottom 80 px have left the screen. */
-const CARD_MARGIN = "0px 0px -80px 0px";
+/** The card counts as on screen while at least half of it is visible. */
+const CARD_VISIBLE_SHARE = 0.5;
 
 // Owns the two pieces of state of the section: which filter is active and
 // what the player is doing. The filter only hides rows: the selected track
@@ -29,7 +29,7 @@ export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
   const { tracks } = content;
   const [categoryId, setCategoryId] = useState<string | null>(null);
   const player = useSamplePlayer(tracks.map((track) => track.durationSeconds));
-  const [cardRef, cardInView] = useInView<HTMLDivElement>(CARD_MARGIN);
+  const [cardRef, cardInView] = useInView<HTMLDivElement>(CARD_VISIBLE_SHARE);
   const miniPhase = useMiniPlayerPresence(player.playing, cardInView);
 
   const filters = buildRepertoireFilters(content.categories);
