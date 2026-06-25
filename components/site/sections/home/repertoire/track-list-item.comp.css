@@ -82,8 +82,9 @@
   }
 
   &.track-item_selected {
+    /* Solid ink over the grainy ground, like the card. */
     & .track-item__button {
-      background: var(--color-ink-raised);
+      background: var(--color-ink);
     }
 
     & .track-item__title {

@@ -6,7 +6,8 @@
   & .repertoire-filters__pill {
     padding: 8px 14px;
     border-radius: 8px;
-    background: var(--color-ink-panel);
+    /* Solid ink over the grainy ground. */
+    background: var(--color-ink);
     font-size: 11.5px;
     font-weight: 500;
     letter-spacing: 0.1em;
