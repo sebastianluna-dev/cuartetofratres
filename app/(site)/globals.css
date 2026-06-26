@@ -5,8 +5,9 @@
   --color-ivory-soft: #eae9e9;
   --color-ink: #121418;
   --color-ink-soft: #20242c;
-  /* The player's tiles: the shade the ivory wash reaches over the card, made
-     solid so no grain shows through the cover. */
+  /* The player's card and its tiles: the shades the ivory wash reaches over
+     the grainy ground, made solid so no grain shows through them. */
+  --color-ink-card: #27292d;
   --color-ink-tile: #37393d;
   --color-lime: #e6ec9e;
   --color-lime-hover: #f1f6bd;
