@@ -4,7 +4,8 @@
   justify-content: center;
   flex: 0 0 auto;
   border-radius: 8px;
-  background: var(--color-ink-raised);
+  /* The same ivory wash as the card, a step stronger so it reads inside it. */
+  background: rgba(242, 244, 243, 0.08);
   color: var(--color-text-on-ink);
   overflow: hidden;
 
