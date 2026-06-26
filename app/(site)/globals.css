@@ -5,6 +5,9 @@
   --color-ivory-soft: #eae9e9;
   --color-ink: #121418;
   --color-ink-soft: #20242c;
+  /* The player's tiles: the shade the ivory wash reaches over the card, made
+     solid so no grain shows through the cover. */
+  --color-ink-tile: #37393d;
   --color-lime: #e6ec9e;
   --color-lime-hover: #f1f6bd;
   --color-olive: #4d5610;
