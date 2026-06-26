@@ -5,8 +5,7 @@
   --color-ivory-soft: #eae9e9;
   --color-ink: #121418;
   --color-ink-soft: #20242c;
-  /* The two surfaces of the player over ink: a card and the raised row/tile. */
-  --color-ink-panel: #23272e;
+  /* The raised tiles of the player over ink. */
   --color-ink-raised: #2c313a;
   --color-lime: #e6ec9e;
   --color-lime-hover: #f1f6bd;
