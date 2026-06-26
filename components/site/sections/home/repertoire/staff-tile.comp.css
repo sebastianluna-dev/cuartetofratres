@@ -15,7 +15,7 @@
   &.staff-tile_kind_clef {
     width: clamp(156px, 16vw, 192px);
     height: clamp(156px, 16vw, 192px);
-    color: rgba(242, 244, 243, 0.72);
+    color: var(--color-lime);
 
     & svg {
       width: 50px;
