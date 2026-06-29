@@ -17,9 +17,22 @@
     max-width: 100%;
   }
 
-  /* The tile is centred over the title. */
-  & .staff-tile {
+  /* The cover, centred over the title: the group photo, washed to grey and
+     darkened so the lime clef on top reads. */
+  & .now-playing__cover {
+    position: relative;
+    width: clamp(156px, 16vw, 192px);
+    height: clamp(156px, 16vw, 192px);
     margin-inline: auto;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  & .now-playing__cover-photo {
+    object-fit: cover;
+    /* The group photo is a tall portrait: keep the faces in the square. */
+    object-position: 50% 22%;
+    filter: grayscale(1) contrast(0.9) brightness(0.7);
   }
 
   & .marquee-box {

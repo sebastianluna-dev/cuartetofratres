@@ -3,13 +3,15 @@ import "./staff-tile.comp.css";
 interface StaffTileProps {
   /** The treble clef of the card or the three lines with two notes of a row. */
   kind: "clef" | "notes";
+  /** "cover" lays the clef over the card's photo instead of on its own tile. */
+  place?: "tile" | "cover";
 }
 
-// The square "cover art" of a work: there are no album covers, so a bit of
-// staff stands in. Decorative.
-export function StaffTile({ kind }: StaffTileProps) {
+// A bit of staff as the "cover art" of a work: the clef over the quartet's
+// photo on the card, three lines with two notes on each row. Decorative.
+export function StaffTile({ kind, place = "tile" }: StaffTileProps) {
   return (
-    <span className={`staff-tile staff-tile_kind_${kind}`} aria-hidden="true">
+    <span className={`staff-tile staff-tile_kind_${kind} staff-tile_place_${place}`} aria-hidden="true">
       {kind === "clef" ? (
         <svg width="34" height="84" viewBox="0 0 64 160" focusable="false">
           <path
