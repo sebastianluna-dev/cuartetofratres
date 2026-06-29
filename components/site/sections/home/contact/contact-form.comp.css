@@ -1,6 +1,7 @@
 .contact-form {
   padding: clamp(24px, 3vw, 36px);
   border: 1px solid rgba(18, 20, 24, 0.24);
+  border-radius: 8px;
 
   & .contact-form__row {
     display: flex;
