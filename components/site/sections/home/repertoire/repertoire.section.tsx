@@ -7,7 +7,7 @@ export async function RepertoireSection() {
   const repertoire = await getRepertoireData();
 
   return (
-    <section id="repertorio" className="section section_theme_ink repertoire">
+    <section id="repertorio" className="section section_theme_ink ink-grain repertoire">
       <div className="section__inner">
         <Reveal className="repertoire__content">
           <RepertoirePlayer content={repertoire} />
