@@ -76,6 +76,10 @@ Los componentes nunca leen Payload: cada sección pide sus datos a `services/<do
 
 Las fotos de lanzamiento están en `public/images` (JPEG a 82 de calidad, la foto del grupo a 92; `next/image` sirve AVIF/WebP) y las fuentes en `public/fonts` (Forum, Mulish variable y Fratres Display, las dos primeras subconjuntos latinos de Google Fonts).
 
+## Grano
+
+Toda la página lleva una capa de grano (`body::after` en `app/(site)/globals.css`): el mismo tile grueso de 300 px sobre fondos, fotos, tarjetas y cabecera, con mezcla `exclusion` para que se vea igual sobre tinta que sobre marfil. Las fotos llevan además su propio grano fino (`.grain`).
+
 ## Reproductor de repertorio
 
 Todavía no hay grabaciones de estudio. El reproductor (`hooks/use-sample-player.hook.ts`) simula la reproducción: avanza un reloj sobre la duración de la obra, nunca arranca solo y sólo "suena" una pista a la vez; anterior y siguiente recorren la lista en círculo. Cuando existan los archivos de audio, ese hook es el único sitio que hay que cambiar; la interfaz ya está hecha: la tarjeta oscura de la obra (con la foto del grupo de «El cuarteto» como portada bajo una clave de sol, y el título en marquesina si no cabe, `hooks/use-marquee.hook.ts`), la barra de progreso en forma de pentagrama con notas que se iluminan al pasar, los filtros en píldoras, el programa con miniatura por obra y ecualizador, y un mini reproductor fijo al pie de la pantalla que aparece mientras una obra suena y la tarjeta ya no se ve (`hooks/use-in-view.hook.ts`); se retira hacia abajo en cuanto la tarjeta vuelve a verse y, si lo que pasa es que se pausa, espera cinco segundos antes de irse (`hooks/use-mini-player-presence.hook.ts`). Los rótulos fijos del reproductor («Sonando ahora» del mini reproductor, los `aria-label` de los controles) están en `PLAYER_COPY` de `constants/repertoire.const.ts`, no en el CMS.
