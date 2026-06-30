@@ -34,6 +34,9 @@
 
   & .mini-player__status {
     display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-size: 10px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
