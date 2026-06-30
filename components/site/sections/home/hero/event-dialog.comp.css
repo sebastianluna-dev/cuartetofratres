@@ -21,7 +21,9 @@
   }
 
   /* Layout only while open: a closed <dialog> must keep `display: none`.
-     One row as tall as the box; each column clips or scrolls its own content. */
+     One row as tall as the box; each column clips or scrolls its own content.
+     The panel, not the dialog, carries the grain (`ink-grain`): the class
+     positions its block, and a modal dialog must keep the browser's. */
   &[open] .event-dialog__panel {
     display: grid;
     grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
@@ -60,7 +62,8 @@
 
   & .event-dialog__photo {
     object-fit: cover;
-    filter: grayscale(1) contrast(1.06);
+    /* Softer than the cards: the photo sits next to text, not under it. */
+    filter: grayscale(1) contrast(0.85);
   }
 
   /* The only thing that scrolls: a long programme stays inside the box. */
