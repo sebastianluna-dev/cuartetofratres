@@ -3,7 +3,7 @@ export type InstrumentCode = "violin" | "viola" | "cello";
 export const INSTRUMENT_LABELS: Record<InstrumentCode, string> = {
   violin: "Violín",
   viola: "Viola",
-  cello: "Violonchelo",
+  cello: "Violoncello",
 };
 
 export interface Member {
@@ -54,7 +54,7 @@ export const MEMBERS: readonly Member[] = [
     name: "Alfonso Pérez Valencia",
     instrument: "cello",
     shortName: "Alfonso Pérez",
-    bio: "Originario de Xalapa, Veracruz. Comenzó sus estudios a los tres años y se formó en el CIMI y en la Universidad Veracruzana. Es violonchelista principal de la Filarmónica de Boca del Río y director artístico de Ensamble Carmesí. Ha sido finalista en dos ediciones del Concurso Nacional de Violonchelo del INBAL y ha participado en festivales de América, Europa y Asia, entre ellos Prisma Festival en Canadá y Esker Festival en Irlanda, con maestros como Thomas Mesa, Pablo Ferrández y Álvaro Bitrán.",
+    bio: "Originario de Xalapa, Veracruz. Comenzó sus estudios a los tres años y se formó en el CIMI y en la Universidad Veracruzana. Es violoncellista principal de la Filarmónica de Boca del Río y director artístico de Ensamble Carmesí. Ha sido finalista en dos ediciones del Concurso Nacional de Violoncello del INBAL y ha participado en festivales de América, Europa y Asia, entre ellos Prisma Festival en Canadá y Esker Festival en Irlanda, con maestros como Thomas Mesa, Pablo Ferrández y Álvaro Bitrán.",
     photo: { src: "/images/alfonso-perez.jpg", alt: "Alfonso Pérez Valencia", position: "50% 30%" },
   },
 ];

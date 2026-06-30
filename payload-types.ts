@@ -148,7 +148,7 @@ export interface UserAuthOperations {
 export interface Member {
   id: number;
   /**
-   * 1 = primer violín, 2 = segundo violín, 3 = viola, 4 = violonchelo.
+   * 1 = primer violín, 2 = segundo violín, 3 = viola, 4 = violoncello.
    */
   order: number;
   name: string;

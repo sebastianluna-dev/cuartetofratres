@@ -31,7 +31,7 @@ export const Members: CollectionConfig = {
           label: "Orden",
           required: true,
           defaultValue: 1,
-          admin: { width: "25%", description: "1 = primer violín, 2 = segundo violín, 3 = viola, 4 = violonchelo." },
+          admin: { width: "25%", description: "1 = primer violín, 2 = segundo violín, 3 = viola, 4 = violoncello." },
         },
         {
           name: "name",
@@ -48,7 +48,7 @@ export const Members: CollectionConfig = {
           options: [
             { label: "Violín", value: "violin" },
             { label: "Viola", value: "viola" },
-            { label: "Violonchelo", value: "cello" },
+            { label: "Violoncello", value: "cello" },
           ],
           admin: { width: "30%" },
         },

@@ -6,7 +6,7 @@ export interface MemberContent {
   name: string;
   /** The name as shown: given names and the first surname. */
   displayName: string;
-  /** Already translated: "Violín", "Viola", "Violonchelo". */
+  /** Already translated: "Violín", "Viola", "Violoncello". */
   instrument: string;
   /** Given name and first surname. */
   shortName: string;
