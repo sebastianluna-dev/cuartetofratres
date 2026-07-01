@@ -1,12 +1,12 @@
 .repertoire {
   & .repertoire__content {
-    padding: clamp(56px, 7vw, 104px) 0 clamp(64px, 8vw, 110px);
+    padding: calc(var(--site-ink-space) / 2) 0 var(--site-ink-space);
   }
 
   @media (max-width: 767px) {
     & .repertoire__content {
-      padding-top: 34px;
-      padding-bottom: 48px;
+      padding-top: calc(var(--site-ink-space-phone) / 2);
+      padding-bottom: var(--site-ink-space-phone);
     }
   }
 }
