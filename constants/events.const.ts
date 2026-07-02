@@ -46,6 +46,7 @@ export const UPCOMING_EVENTS: readonly UpcomingEvent[] = [
       { title: "Cuarteto núm. 2 en Re mayor", composer: "Aleksandr Borodín" },
       { title: "Cuarteto núm. 14 «La muerte y la doncella»", composer: "Franz Schubert" },
     ],
+    tickets: { url: "https://www.boletia.com/eventos/cuarteto-fratres-borodin-schubert" },
   },
 ];
 
