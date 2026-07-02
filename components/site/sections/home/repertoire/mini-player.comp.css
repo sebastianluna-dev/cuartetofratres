@@ -79,8 +79,8 @@
     font-variant-numeric: tabular-nums;
   }
 
-  /* Phone: the work and a lone play button on one row, the staff below;
-     no status line and no previous/next. */
+  /* Phone: the work and a lone play button on one row; no status line and no
+     previous/next, and the position is one line along the bottom edge. */
   @media (max-width: 767px) {
     & .mini-player__inner {
       flex-wrap: wrap;
@@ -105,8 +105,48 @@
       display: none;
     }
 
+    /* Out of the row and pinned to the bar's own bottom edge, so it runs the
+       width of the screen instead of the width of the inner column. */
     & .mini-player__progress {
-      flex-basis: 100%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      gap: 0;
+    }
+
+    & .mini-player__clock {
+      display: none;
+    }
+
+    /* The staff gives way to a plain rule. The root keeps its slider role and
+       its handlers, so seeking, the keyboard and the announcements are the
+       same; only the drawing changes. It stays taller than the line it shows
+       so there is something to hit with a thumb. */
+    & .staff-progress {
+      height: 16px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 3px;
+        background: rgba(242, 244, 243, 0.22);
+      }
+    }
+
+    & .staff-progress__staff,
+    & .staff-progress__head {
+      display: none;
+    }
+
+    /* The elapsed part: the inline clip-path still trims it from the right. */
+    & .staff-progress__played {
+      top: auto;
+      height: 3px;
+      background: var(--color-ivory);
     }
   }
 }
