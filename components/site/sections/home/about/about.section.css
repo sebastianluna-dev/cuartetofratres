@@ -1,6 +1,10 @@
 .about {
   --about-pad-top: clamp(56px, 8vw, 124px);
   --about-pad-bottom: clamp(56px, 7vw, 104px);
+  /* What the column of social links used to take to the right of the photo:
+     its widest caption («Instagram», 10 px with 0.2em of tracking) plus the
+     gap. The column is gone; the space stays, so the photo did not move. */
+  --about-media-inset: calc(70px + clamp(16px, 2vw, 28px));
 
   & .about__content {
     padding: var(--about-pad-top) 0 var(--about-pad-bottom);
@@ -40,23 +44,17 @@
     text-wrap: pretty;
   }
 
-  /* Photo and, to its right, the column of social icons. The block cancels
-     the section's vertical padding and the photo is taller than the text
-     block plus that padding, so it is the photo that sets the section's
-     height and runs from the section above to the section below. The icons
-     keep the padding and align with the staff. */
+  /* The block cancels the section's vertical padding and the photo is taller
+     than the text block plus that padding, so it is the photo that sets the
+     section's height and runs from the section above to the section below. */
   & .about__media {
     display: flex;
     flex: 0 0 auto;
     align-items: flex-start;
     gap: clamp(16px, 2vw, 28px);
+    padding-right: var(--about-media-inset);
     margin-top: calc(-1 * var(--about-pad-top));
     margin-bottom: calc(-1 * var(--about-pad-bottom));
-  }
-
-  & .about__media > .social-column {
-    align-self: flex-start;
-    margin-top: var(--about-pad-top);
   }
 
   /* The photo is never cropped: a fixed height and the width follows from
@@ -80,16 +78,16 @@
   }
 
   @media (max-width: 767px) {
+    /* Stacked, the photo is the last thing in the section: with no padding
+       under it, it runs straight into the section that follows, the way it
+       already does on the desktop through the block's negative margin. */
     & .about__content {
       padding-top: 38px;
+      padding-bottom: 0;
     }
 
     & .about__title {
-      font-family: var(--font-heading);
       font-size: 36px;
-      line-height: 1.06;
-      letter-spacing: -0.01em;
-      text-transform: none;
     }
 
     & .about__lead {
@@ -105,12 +103,8 @@
       flex-direction: column;
       gap: 18px;
       min-width: 0;
+      padding-right: 0;
       margin: 0 calc(-1 * var(--site-gutter));
-    }
-
-    & .about__media > .social-column {
-      margin-top: 0;
-      padding: 0 var(--site-gutter);
     }
 
     & .about__figure {

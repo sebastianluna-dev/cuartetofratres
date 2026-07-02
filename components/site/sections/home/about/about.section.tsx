@@ -3,12 +3,10 @@ import Image from "next/image";
 import { Reveal } from "@/components/site/shared/reveal.comp";
 import { StaffOrnament } from "@/components/site/shared/staff-ornament.comp";
 import { getAboutData } from "@/services/about/about.service";
-import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
-import { SocialColumn } from "./social-column.comp";
 import "./about.section.css";
 
 export async function AboutSection() {
-  const [about, settings] = await Promise.all([getAboutData(), getSiteSettingsData()]);
+  const about = await getAboutData();
 
   return (
     <section id="cuarteto" className="section section_theme_ivory about">
@@ -45,7 +43,6 @@ export async function AboutSection() {
                   />
                 </div>
               </figure>
-              <SocialColumn links={settings.social} />
             </div>
           </div>
         </Reveal>
