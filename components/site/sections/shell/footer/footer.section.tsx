@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/site/shared/logo.comp";
 import { StaffOrnament } from "@/components/site/shared/staff-ornament.comp";
-import { NAV_ITEMS } from "@/constants/navigation.const";
 import { SITE_NAME } from "@/constants/site.const";
 import { buildMailtoUrl } from "@/lib/build-mailto-url";
 import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
@@ -19,17 +18,11 @@ export async function Footer() {
           <div className="site-footer__brand">
             <Logo theme="lime" height={62} />
             <p className="site-footer__name">{SITE_NAME}</p>
-            <p className="site-footer__description">{settings.tagline}</p>
           </div>
 
-          <nav className="site-footer__column" aria-label="Secciones">
-            <span className="site-footer__heading">Secciones</span>
-            {NAV_ITEMS.map((item) => (
-              <a key={item.href} href={item.href} className="site-footer__link">
-                {item.label}
-              </a>
-            ))}
-          </nav>
+          <div className="site-footer__about">
+            <p className="site-footer__description">{settings.tagline}</p>
+          </div>
 
           <div className="site-footer__column">
             <span className="site-footer__heading">Contacto</span>

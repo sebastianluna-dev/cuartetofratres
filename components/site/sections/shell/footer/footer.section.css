@@ -19,25 +19,32 @@
     align-items: flex-start;
   }
 
+  /* The wordmark no longer takes the free space: the paragraph beside it does,
+     in the column the section links used to fill. */
   & .site-footer__brand {
-    flex: 1 1 260px;
+    flex: 0 1 260px;
     min-width: 0;
+  }
+
+  & .site-footer__about {
+    flex: 1 1 280px;
+    min-width: 150px;
+    max-width: 36em;
   }
 
   & .site-footer__name {
     margin-top: 16px;
     font-family: var(--font-display);
-    font-size: 26px;
+    font-size: clamp(30px, 3.4vw, 40px);
     line-height: 1;
     letter-spacing: 0.02em;
     text-transform: uppercase;
   }
 
+  /* Its top lines up with the headings of the columns beside it. */
   & .site-footer__description {
-    margin-top: 10px;
-    max-width: 26em;
-    font-size: 13.5px;
-    line-height: 1.8;
+    font-size: 16px;
+    line-height: 1.75;
     color: rgba(242, 244, 243, 0.55);
   }
 
@@ -47,13 +54,13 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    font-size: 13px;
+    font-size: 15px;
   }
 
   & .site-footer__heading {
     margin-bottom: 4px;
-    font-size: 11px;
-    letter-spacing: 0.2em;
+    font-size: 12.5px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--color-text-on-ink);
   }
@@ -80,8 +87,8 @@
     margin-top: clamp(32px, 4vw, 56px);
     padding-top: 20px;
     border-top: 1px solid rgba(242, 244, 243, 0.14);
-    font-size: 11.5px;
-    letter-spacing: 0.08em;
+    font-size: 13px;
+    letter-spacing: 0.07em;
     color: var(--color-muted-on-ink);
   }
 
