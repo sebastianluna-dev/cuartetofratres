@@ -10,6 +10,7 @@
   max-height: calc(100dvh - 64px);
   padding: 0;
   border: 0;
+  border-radius: 8px;
   overflow: hidden;
   background: var(--color-ink);
   color: var(--color-text-on-ink);
@@ -270,6 +271,8 @@
     min-height: 100dvh;
     max-height: 100dvh;
     aspect-ratio: auto;
+    /* Full-bleed sheet: rounded corners would leave gaps at the screen edge. */
+    border-radius: 0;
     overflow-y: auto;
 
     &[open] .event-dialog__panel {

@@ -174,7 +174,7 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
                   {EVENT_DIALOG_LABELS.tickets}
                 </a>
               ) : (
-                <a href="#contacto" className="button button_variant_outline-ivory" onClick={close}>
+                <a href="#contacto" className="button button_variant_lime" onClick={close}>
                   {EVENT_DIALOG_LABELS.inquire}
                 </a>
               )}
