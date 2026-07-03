@@ -1,23 +1,18 @@
 .contact-form {
-  padding: clamp(24px, 3vw, 36px);
-  border: 1px solid rgba(18, 20, 24, 0.24);
-  border-radius: 8px;
-
-  & .contact-form__row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  /* One field under the next, each with its caption over its box. */
+  & > * + * {
+    margin-top: 20px;
   }
 
-  /* Every block of the form (rows, the event picker, the details field) is
-     separated by the same gap; the button and the error line set their own. */
-  & > * + * {
-    margin-top: 26px;
+  & .contact-form__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 28px;
+    margin-top: clamp(24px, 3vw, 32px);
   }
 
   & .contact-form__submit {
-    margin-top: clamp(26px, 3vw, 32px);
-
     &:disabled {
       opacity: 0.6;
       cursor: progress;
@@ -25,7 +20,8 @@
   }
 
   & .contact-form__notice {
-    margin-top: 16px;
+    flex: 1 1 220px;
+    min-width: 0;
     font-size: 13px;
     line-height: 1.6;
     color: var(--color-muted-on-ivory);
@@ -35,10 +31,13 @@
     }
   }
 
+
+  /* The only card left: the panel that replaces the form once it is sent. */
   &.contact-form_sent {
+    padding: clamp(24px, 3vw, 36px);
+    border-radius: 8px;
     background: var(--color-ink);
     color: var(--color-text-on-ink);
-    border-color: var(--color-ink);
   }
 
   & .contact-form__sent-title {

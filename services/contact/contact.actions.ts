@@ -28,9 +28,6 @@ export async function sendContactRequest(_previous: ContactFormState, formData: 
         status: "new",
         name: request.name,
         contact: request.contact,
-        eventType: request.eventType,
-        date: request.date || null,
-        place: request.place || null,
         details: request.details || null,
       },
     });

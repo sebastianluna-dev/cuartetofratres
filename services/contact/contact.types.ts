@@ -1,11 +1,6 @@
-import type { EventType } from "@/constants/contact.const";
-
 export interface ContactRequest {
   name: string;
   contact: string;
-  eventType: EventType;
-  date: string;
-  place: string;
   details: string;
 }
 

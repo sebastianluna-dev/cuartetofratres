@@ -1,11 +1,10 @@
 "use client";
 
 import { useActionState } from "react";
-import { CONTACT_LIMITS, EVENT_TYPES } from "@/constants/contact.const";
+import { CONTACT_LIMITS } from "@/constants/contact.const";
 import { sendContactRequest } from "@/services/contact/contact.actions";
 import type { ContactFormState } from "@/services/contact/contact.types";
 import { ContactField } from "./contact-field.comp";
-import { EventTypePicker } from "./event-type-picker.comp";
 import "./contact-form.comp.css";
 
 const INITIAL_STATE: ContactFormState = { status: "idle" };
@@ -34,29 +33,20 @@ export function ContactForm({ sentTitle, sentText }: ContactFormProps) {
 
   return (
     <form action={formAction} className="contact-form" noValidate>
-      <div className="contact-form__row">
-        <ContactField
-          label="Nombre"
-          name="name"
-          maxLength={CONTACT_LIMITS.name}
-          error={errors.name}
-          autoComplete="name"
-        />
-        <ContactField
-          label="Correo o WhatsApp"
-          name="contact"
-          maxLength={CONTACT_LIMITS.contact}
-          error={errors.contact}
-          autoComplete="email"
-        />
-      </div>
-
-      <EventTypePicker options={EVENT_TYPES} error={errors.eventType} />
-
-      <div className="contact-form__row">
-        <ContactField label="Fecha" name="date" maxLength={CONTACT_LIMITS.date} error={errors.date} />
-        <ContactField label="Lugar" name="place" maxLength={CONTACT_LIMITS.place} error={errors.place} />
-      </div>
+      <ContactField
+        label="Nombre"
+        name="name"
+        maxLength={CONTACT_LIMITS.name}
+        error={errors.name}
+        autoComplete="name"
+      />
+      <ContactField
+        label="Correo o WhatsApp"
+        name="contact"
+        maxLength={CONTACT_LIMITS.contact}
+        error={errors.contact}
+        autoComplete="email"
+      />
 
       <ContactField
         label="Detalles"
@@ -66,13 +56,16 @@ export function ContactForm({ sentTitle, sentText }: ContactFormProps) {
         multiline
       />
 
-      <button type="submit" className="button button_variant_ink ink-grain contact-form__submit" disabled={pending}>
-        {pending ? "Enviando…" : "Enviar solicitud"}
-      </button>
-      {/* Only the error message lives here now; the region stays in the DOM so it is announced. */}
-      <p className="contact-form__notice" aria-live="polite">
-        {state.status === "error" ? state.message : null}
-      </p>
+      {/* Last line of the table: the button on the left, the message beside it. */}
+      <div className="contact-form__footer">
+        <button type="submit" className="button button_variant_ink ink-grain contact-form__submit" disabled={pending}>
+          {pending ? "Enviando…" : "Enviar solicitud"}
+        </button>
+        {/* Only the error message lives here now; the region stays in the DOM so it is announced. */}
+        <p className="contact-form__notice" aria-live="polite">
+          {state.status === "error" ? state.message : null}
+        </p>
+      </div>
     </form>
   );
 }

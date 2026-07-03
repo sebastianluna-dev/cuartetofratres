@@ -10,7 +10,7 @@ export const ContactRequests: CollectionConfig = {
   admin: {
     useAsTitle: "name",
     group: "Solicitudes",
-    defaultColumns: ["createdAt", "name", "eventType", "date", "status"],
+    defaultColumns: ["createdAt", "name", "contact", "status"],
   },
   access: {
     read: isAdminOrEditor,
@@ -44,26 +44,6 @@ export const ContactRequests: CollectionConfig = {
           required: true,
           admin: { width: "50%", readOnly: true },
         },
-      ],
-    },
-    {
-      type: "row",
-      fields: [
-        {
-          name: "eventType",
-          type: "select",
-          label: "Tipo de evento",
-          required: true,
-          options: [
-            { label: "Concierto", value: "concierto" },
-            { label: "Boda", value: "boda" },
-            { label: "Ceremonia", value: "ceremonia" },
-            { label: "Privado", value: "privado" },
-          ],
-          admin: { width: "34%", readOnly: true },
-        },
-        { name: "date", type: "text", label: "Fecha", admin: { width: "33%", readOnly: true } },
-        { name: "place", type: "text", label: "Lugar", admin: { width: "33%", readOnly: true } },
       ],
     },
     {

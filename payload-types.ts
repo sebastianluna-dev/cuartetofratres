@@ -332,9 +332,6 @@ export interface ContactRequest {
   status: 'new' | 'answered' | 'discarded';
   name: string;
   contact: string;
-  eventType: 'concierto' | 'boda' | 'ceremonia' | 'privado';
-  date?: string | null;
-  place?: string | null;
   details?: string | null;
   /**
    * Sólo las ve el equipo: qué se respondió, propuesta enviada, etc.
@@ -592,9 +589,6 @@ export interface ContactRequestsSelect<T extends boolean = true> {
   status?: T;
   name?: T;
   contact?: T;
-  eventType?: T;
-  date?: T;
-  place?: T;
   details?: T;
   notes?: T;
   updatedAt?: T;
@@ -726,6 +720,9 @@ export interface RepertoireSection {
 export interface ContactSection {
   id: number;
   title: string;
+  /**
+   * Escribe {correo} donde deba ir la dirección: se convierte en un enlace para escribir.
+   */
   lead: string;
   sentTitle: string;
   sentText: string;
