@@ -29,7 +29,9 @@ const PHONE_QUERY = "(max-width: 767px)";
 // While a track plays and the card is off screen, the mini player takes over
 // (hooks/use-mini-player-presence.hook.ts decides when it comes and goes). On
 // the phone there is no card: the bar is the whole player, so it shows as
-// soon as a work is in progress and stays through a pause.
+// soon as a work is in progress and stays through a pause. There the list
+// also starts with no row marked, because nothing on screen would explain why
+// one of them looks chosen before the visitor has chosen it.
 export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
   const { tracks } = content;
   const [categoryId, setCategoryId] = useState<string | null>(null);
@@ -64,7 +66,7 @@ export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
           <TrackList
             tracks={tracks}
             visibleIds={visibleTracks.map((track) => track.id)}
-            selectedIndex={player.selectedIndex}
+            selectedIndex={!phone || player.chosen ? player.selectedIndex : null}
             playing={player.playing}
             emptyState={content.emptyState}
             onSelect={player.select}

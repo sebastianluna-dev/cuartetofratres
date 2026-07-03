@@ -6,7 +6,8 @@ interface TrackListProps {
   tracks: readonly TrackContent[];
   /** Ids that pass the active filter; the rest are not rendered. */
   visibleIds: readonly string[];
-  selectedIndex: number;
+  /** `null` while no track has been chosen: no row is marked. */
+  selectedIndex: number | null;
   playing: boolean;
   emptyState: RepertoireContent["emptyState"];
   onSelect: (index: number) => void;
@@ -36,7 +37,7 @@ export function TrackList({ tracks, visibleIds, selectedIndex, playing, emptySta
         <div className="track-list__empty">
           <h3 className="track-list__empty-title">{emptyState.title}</h3>
           <p className="track-list__empty-text">{emptyState.text}</p>
-          <a href="#contacto" className="button button_variant_ivory">
+          <a href="#contacto" className="button button_variant_lime">
             {emptyState.ctaLabel}
           </a>
         </div>

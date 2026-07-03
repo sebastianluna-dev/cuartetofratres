@@ -2,6 +2,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 export interface SamplePlayer {
   selectedIndex: number;
+  /** False until the visitor touches the transport: nothing is marked as chosen yet. */
+  chosen: boolean;
   playing: boolean;
   /** Elapsed seconds of the selected track. */
   elapsed: number;
@@ -23,6 +25,9 @@ export interface SamplePlayer {
  */
 export function useSamplePlayer(durations: readonly number[], tickMs = 250): SamplePlayer {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  // The first track is the one the card is ready to play; the phone has no
+  // card, so its list marks nothing until this turns true.
+  const [chosen, setChosen] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const lastTick = useRef(0);
@@ -50,6 +55,7 @@ export function useSamplePlayer(durations: readonly number[], tickMs = 250): Sam
 
   const select = useCallback(
     (index: number) => {
+      setChosen(true);
       if (index === selectedIndex) {
         setPlaying((current) => !current);
         return;
@@ -61,12 +67,16 @@ export function useSamplePlayer(durations: readonly number[], tickMs = 250): Sam
     [selectedIndex],
   );
 
-  const togglePlay = useCallback(() => setPlaying((current) => !current), []);
+  const togglePlay = useCallback(() => {
+    setChosen(true);
+    setPlaying((current) => !current);
+  }, []);
 
   const step = useCallback(
     (delta: number) => {
       const count = durations.length;
       if (count === 0) return;
+      setChosen(true);
       setSelectedIndex((current) => (current + delta + count) % count);
       setElapsed(0);
       setPlaying(true);
@@ -78,11 +88,12 @@ export function useSamplePlayer(durations: readonly number[], tickMs = 250): Sam
 
   const seek = useCallback(
     (fraction: number) => {
+      setChosen(true);
       const clamped = Math.min(1, Math.max(0, fraction));
       setElapsed(clamped * duration);
     },
     [duration],
   );
 
-  return { selectedIndex, playing, elapsed, select, togglePlay, next, previous, seek };
+  return { selectedIndex, chosen, playing, elapsed, select, togglePlay, next, previous, seek };
 }
