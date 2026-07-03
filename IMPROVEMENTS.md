@@ -89,3 +89,21 @@ checking layout.
 
 The two event cards kept their 188 px desktop width. They are now a two-column grid with
 `minmax(0, 1fr)` and the card takes 100 % of its cell.
+
+## Shared `SocialIcon` left without a caller
+
+**Area**: `components/site/shared/social-icon.comp.tsx` · **Priority**: low
+
+The glyphs were only drawn by the about section's social column, which was
+removed; the footer lists the networks as text. Either draw them in the
+footer's "Redes" column or delete the component.
+
+## `repertoire_section.title` default drifted from the config
+
+**Area**: `migrations/` · **Priority**: low
+
+The generator folded an unrelated `SET DEFAULT 'Repertorio'` into
+`20260916_054325_contact_event_fields_removed`: the column default predated a
+change to the global's `defaultValue`. The schema is now in line with the
+config, but the migration does two things at once. Worth a look if another
+default ever drifts.
