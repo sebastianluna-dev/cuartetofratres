@@ -121,9 +121,30 @@
   /* Phone: no number; title and composer stack in one column next to the
      tile, the play glyph at the end. */
   @media (max-width: 767px) {
+    /* The row is narrow enough that a title would take two or three lines and
+       push the rows out of rhythm: one line, cut with an ellipsis. */
+    & .track-item__title {
+      flex: none;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* No wash behind the chosen track here: at this width it reads as a block
+       of a different colour rather than as a mark. The lime title marks it. */
+    &.track-item_selected .track-item__button {
+      background: transparent;
+    }
+
+    &.track-item_selected .track-item__title {
+      color: var(--color-lime);
+    }
+
+    /* Edge to edge here: the row is narrow enough already. */
     & .track-item__button {
       gap: 12px;
-      padding: 12px 8px;
+      padding-inline: 0;
     }
 
     & .track-item__number {
