@@ -13,13 +13,13 @@
   }
 
   &.staff-tile_kind_clef {
-    width: clamp(136px, 14vw, 168px);
-    height: clamp(136px, 14vw, 168px);
+    width: clamp(176px, 18vw, 216px);
+    height: clamp(176px, 18vw, 216px);
     color: rgba(242, 244, 243, 0.72);
 
     & svg {
-      width: 44px;
-      height: 110px;
+      width: 56px;
+      height: 140px;
     }
   }
 
