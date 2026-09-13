@@ -8,7 +8,7 @@ export async function MembersSection() {
   const members = await getMembers();
 
   return (
-    <section id="integrantes" className="section section_theme_ink section_grain members">
+    <section id="integrantes" className="section section_theme_ink members">
       <div className="section__inner members__inner">
         <Reveal>
           <MemberGallery members={members} />
