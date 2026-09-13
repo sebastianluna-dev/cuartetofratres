@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { PLAYER_COPY } from "@/constants/repertoire.const";
 import { formatTrackTime } from "@/lib/format-track-time";
 import type { TrackContent } from "@/services/repertoire/repertoire.types";
@@ -20,9 +21,14 @@ interface MiniPlayerProps {
   leaving?: boolean;
 }
 
+/** Read by the footer (footer.section.css) to keep its content above the bar. */
+const HEIGHT_VAR = "--mini-player-height";
+
 // The bar pinned to the bottom of the screen while a track plays and the
 // card has scrolled away: the visitor can keep reading and still pause,
-// skip or seek. Slides up when it appears and down when it leaves.
+// skip or seek. Slides up when it appears and down when it leaves. While it
+// is mounted it publishes its height on <body>, so the footer can pad itself
+// and nothing ends up covered at the end of the page.
 export function MiniPlayer({
   track,
   playing,
@@ -34,10 +40,25 @@ export function MiniPlayer({
   leaving = false,
 }: MiniPlayerProps) {
   const fraction = track.durationSeconds > 0 ? elapsed / track.durationSeconds : 0;
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+    const publish = () => document.body.style.setProperty(HEIGHT_VAR, `${element.offsetHeight}px`);
+    publish();
+    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(publish);
+    observer?.observe(element);
+    return () => {
+      observer?.disconnect();
+      document.body.style.removeProperty(HEIGHT_VAR);
+    };
+  }, []);
 
   return (
     <div
-      className={["mini-player", leaving && "mini-player_leaving"].filter(Boolean).join(" ")}
+      ref={ref}
+      className={["mini-player ink-grain", leaving && "mini-player_leaving"].filter(Boolean).join(" ")}
       role="region"
       aria-label={PLAYER_COPY.playingStatus}
     >

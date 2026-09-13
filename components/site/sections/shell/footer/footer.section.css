@@ -1,9 +1,13 @@
 .site-footer {
   background: var(--color-ink);
   color: var(--color-text-on-ink);
+  /* Room for the repertoire's mini player while it is on screen: the bar
+     publishes its height on <body> (mini-player.comp.tsx); without it the
+     variable is unset and this is zero. */
+  padding-bottom: var(--mini-player-height, 0px);
 
   & .site-footer__inner {
-    max-width: 1400px;
+    max-width: var(--site-max-width);
     margin: 0 auto;
     padding: clamp(48px, 6vw, 84px) var(--site-gutter) clamp(28px, 3vw, 44px);
   }
