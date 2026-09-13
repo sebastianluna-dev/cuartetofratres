@@ -51,7 +51,7 @@ export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
       </div>
 
       <div className="repertoire-player__body">
-        {selectedTrack && <NowPlayingCard ref={cardRef} track={selectedTrack} {...transport} />}
+        {selectedTrack && <NowPlayingCard ref={cardRef} track={selectedTrack} cover={content.cover} {...transport} />}
         <div className="repertoire-player__list">
           <RepertoireFilters filters={filters} active={categoryId} onChange={setCategoryId} />
           <TrackList

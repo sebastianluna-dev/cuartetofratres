@@ -13,14 +13,20 @@
   }
 
   &.staff-tile_kind_clef {
-    width: clamp(156px, 16vw, 192px);
-    height: clamp(156px, 16vw, 192px);
     color: var(--color-lime);
 
     & svg {
       width: 50px;
       height: 124px;
     }
+  }
+
+  /* Over the photo: fills the cover, no tile colour of its own. */
+  &.staff-tile_place_cover {
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+    background: transparent;
   }
 
   &.staff-tile_kind_notes {
