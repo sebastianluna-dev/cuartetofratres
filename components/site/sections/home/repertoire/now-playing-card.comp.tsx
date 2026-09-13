@@ -21,7 +21,8 @@ interface NowPlayingCardProps {
 }
 
 // The dark card with the selected work: clef tile, scrolling title, composer
-// and category, the staff-shaped progress, the clocks and the transport.
+// and category, the staff-shaped progress, the clocks and the transport. The
+// play button's pressed state says whether it is playing; no status line.
 // Nothing here starts on its own: the visitor presses play. The ref lets the
 // player watch when the card scrolls out of view.
 export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(function NowPlayingCard(
@@ -33,9 +34,6 @@ export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(fu
   return (
     <div ref={ref} className="now-playing">
       <div className="now-playing__work">
-        <span className="now-playing__status" aria-live="polite">
-          {playing ? PLAYER_COPY.playingStatus : PLAYER_COPY.pausedStatus}
-        </span>
         <StaffTile kind="clef" />
         <MarqueeTitle text={track.title} className="now-playing__title" />
         <p className="now-playing__composer">{track.composer}</p>
