@@ -78,7 +78,7 @@ Las fotos de lanzamiento están en `public/images` (JPEG a 82 de calidad, la fot
 
 ## Grano
 
-Las secciones sobre tinta (portada, integrantes, repertorio) llevan una capa de grano por encima de todo su contenido (`.section_theme_ink::after` en `app/(site)/globals.css`): el mismo tile grueso de 300 px sobre fondo, fotos y tarjetas. Las secciones sobre marfil van limpias. Las fotos llevan además su propio grano fino (`.grain`).
+Los bloques sobre tinta (portada, integrantes, repertorio y pie) llevan una capa de grano por encima de todo su contenido (clase `ink-grain` en `app/(site)/globals.css`): el mismo tile grueso de 300 px sobre fondo, fotos y tarjetas. Las secciones sobre marfil van limpias. Las fotos llevan además su propio grano fino (`.grain`).
 
 ## Reproductor de repertorio
 

@@ -20,7 +20,7 @@ export async function HeroSection() {
   const phoneWidthVw = Math.ceil((hero.image.width / hero.image.height / PHONE_FRAME_RATIO) * 100);
 
   return (
-    <section id="inicio" className="section section_theme_ink hero">
+    <section id="inicio" className="section section_theme_ink ink-grain hero">
       {/* The real size of the file gives the frame the photo's own ratio on
           desktop, so the vignette lands exactly on its edges. */}
       <div

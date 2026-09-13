@@ -13,7 +13,7 @@ export async function Footer() {
   const settings = await getSiteSettingsData();
 
   return (
-    <footer className="site-footer">
+    <footer className="site-footer ink-grain">
       <div className="site-footer__inner">
         <div className="site-footer__grid">
           <div className="site-footer__brand">
