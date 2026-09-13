@@ -21,7 +21,7 @@ export function EventTypePicker({ options, error }: EventTypePickerProps) {
         {options.map((option) => (
           <label
             key={option.value}
-            className={`event-type-picker__chip${selected === option.value ? " event-type-picker__chip_selected" : ""}`}
+            className={`event-type-picker__chip${selected === option.value ? " event-type-picker__chip_selected ink-grain" : ""}`}
           >
             <input
               type="radio"

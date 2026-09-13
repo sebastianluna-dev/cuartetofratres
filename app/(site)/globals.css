@@ -229,8 +229,8 @@ strong {
   }
 }
 
-/* Coarse film grain over a whole ink block (the ink sections and the
-   footer): one layer above everything in it, ground, photos, cards and text
+/* Coarse film grain over an ink block (the ink sections, the footer, the
+   contact form's ink buttons): one layer above everything in it, ground, photos, cards and text
    alike, so nothing reads as a different surface; the ivory blocks stay
    clean. `screen` at low opacity: `overlay` does almost nothing on a colour
    this dark. It takes no pointer events, so everything under it stays
@@ -243,6 +243,8 @@ strong {
     position: absolute;
     inset: 0;
     z-index: 5;
+    /* Follows a rounded block (the ink buttons of the contact form). */
+    border-radius: inherit;
     pointer-events: none;
     background-image: var(--grain-image);
     background-size: 300px 300px;

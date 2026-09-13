@@ -66,7 +66,7 @@ export function ContactForm({ sentTitle, sentText }: ContactFormProps) {
         multiline
       />
 
-      <button type="submit" className="button button_variant_ink contact-form__submit" disabled={pending}>
+      <button type="submit" className="button button_variant_ink ink-grain contact-form__submit" disabled={pending}>
         {pending ? "Enviando…" : "Enviar solicitud"}
       </button>
       {/* Only the error message lives here now; the region stays in the DOM so it is announced. */}
