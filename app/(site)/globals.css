@@ -329,6 +329,7 @@ strong {
 
   &.button_variant_ink {
     padding: 16px 30px;
+    border-radius: 8px;
     background: var(--color-ink);
     color: var(--color-text-on-ink);
     font-family: var(--font-heading);
