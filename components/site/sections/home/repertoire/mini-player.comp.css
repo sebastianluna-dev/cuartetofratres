@@ -79,17 +79,30 @@
     font-variant-numeric: tabular-nums;
   }
 
-  /* Phone: the work and the transport on one row, the staff below. */
+  /* Phone: the work and a lone play button on one row, the staff below;
+     no status line and no previous/next. */
   @media (max-width: 767px) {
     & .mini-player__inner {
       flex-wrap: wrap;
       gap: 10px 14px;
-      padding-top: 10px;
+      padding-top: 12px;
       padding-bottom: 14px;
     }
 
     & .mini-player__work {
       flex-basis: 0;
+    }
+
+    & .mini-player__status {
+      display: none;
+    }
+
+    & .marquee-box {
+      margin-top: 0;
+    }
+
+    & .transport__step {
+      display: none;
     }
 
     & .mini-player__progress {
