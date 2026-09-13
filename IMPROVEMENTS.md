@@ -16,8 +16,7 @@ The player only simulates playback (`hooks/use-sample-player.hook.ts` advances a
 `tracks` collection already has the `audio` upload, but the mapper does not read it yet. When the
 studio recordings exist: map the file URL into `TrackContent`, drive an `<audio>` element from the
 hook (play/pause/seek/previous/next/ended) and keep the "only one track at a time, never autoplay"
-rules. The sample duration should then come from the file's metadata, not from the constant, and
-`PLAYER_COPY.listNote` ("las grabaciones de estudio se subirán…") should go.
+rules. The sample duration should then come from the file's metadata, not from the constant.
 
 ### 2. Notice of new contact requests — [Integration]
 

@@ -1,4 +1,3 @@
-import { PLAYER_COPY } from "@/constants/repertoire.const";
 import type { RepertoireContent, TrackContent } from "@/services/repertoire/repertoire.types";
 import { TrackListItem } from "./track-list-item.comp";
 import "./track-list.comp.css";
@@ -13,14 +12,13 @@ interface TrackListProps {
   onSelect: (index: number) => void;
 }
 
-// The programme: the "Programa" label, one row per work that passes the
-// filter (or the empty-state card) and the note about the recordings.
+// The programme: one row per work that passes the filter, or the
+// empty-state card.
 export function TrackList({ tracks, visibleIds, selectedIndex, playing, emptyState, onSelect }: TrackListProps) {
   const rows = tracks.map((track, index) => ({ track, index })).filter(({ track }) => visibleIds.includes(track.id));
 
   return (
     <div className="track-list">
-      <span className="track-list__label">{PLAYER_COPY.programLabel}</span>
       {rows.length > 0 ? (
         <ol className="track-list__items">
           {rows.map(({ track, index }) => (
@@ -43,7 +41,6 @@ export function TrackList({ tracks, visibleIds, selectedIndex, playing, emptySta
           </a>
         </div>
       )}
-      <p className="track-list__note">{PLAYER_COPY.listNote}</p>
     </div>
   );
 }
