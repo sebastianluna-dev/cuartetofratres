@@ -15,7 +15,8 @@ const CARD_HEIGHT_SMALL = 240;
 /** The launch photos are 16:9; a CMS upload brings its own size. */
 const DEFAULT_RATIO = 16 / 9;
 
-// Tall card with the date as a lime band on top and the title at the foot.
+// Tall card over the photo, with the title, the city and the date at the
+// foot.
 // The whole card is a button that opens the detail window.
 export function EventCard({ event, onOpen }: EventCardProps) {
   // The card is tall and the photo wide, so `cover` draws it at the card's
@@ -35,16 +36,16 @@ export function EventCard({ event, onOpen }: EventCardProps) {
         className="event-card__photo"
         style={{ objectPosition: event.imagePosition }}
       />
-      <span className="event-card__band">
-        <time className="event-card__day" dateTime={event.date} aria-label={formatEventDateLong(event.date)}>
-          {formatEventDate(event.date)}
-        </time>
-        <span className="event-card__time">{event.time}</span>
-      </span>
       <span className="event-card__shade" />
       <span className="event-card__foot">
         <span className="event-card__title">{event.title}</span>
         <span className="event-card__city">{event.city}</span>
+        <span className="event-card__when">
+          <time className="event-card__day" dateTime={event.date} aria-label={formatEventDateLong(event.date)}>
+            {formatEventDate(event.date)}
+          </time>
+          <span className="event-card__time">{event.time}</span>
+        </span>
       </span>
     </button>
   );
