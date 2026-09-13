@@ -10,7 +10,7 @@
     transition: background 0.3s ease;
 
     &:hover {
-      background: var(--color-ink-panel);
+      background: rgba(242, 244, 243, 0.035);
     }
   }
 
@@ -82,9 +82,9 @@
   }
 
   &.track-item_selected {
-    /* Solid ink over the grainy ground, like the card. */
+    /* A faint ivory wash over the grain, like the card. */
     & .track-item__button {
-      background: var(--color-ink);
+      background: rgba(242, 244, 243, 0.05);
     }
 
     & .track-item__title {
