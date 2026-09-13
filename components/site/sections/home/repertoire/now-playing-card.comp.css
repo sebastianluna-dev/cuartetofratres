@@ -8,7 +8,8 @@
   max-width: 360px;
   padding: clamp(36px, 3.8vw, 48px) clamp(32px, 3.4vw, 44px);
   border-radius: 8px;
-  background: var(--color-ink-card);
+  /* A faint ivory wash over the grain. */
+  background: rgba(242, 244, 243, 0.05);
   overflow: hidden;
 
   & .now-playing__work {
