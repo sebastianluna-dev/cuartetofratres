@@ -1,13 +1,13 @@
 .members {
   & .members__inner {
-    padding-top: clamp(40px, 4.5vw, 64px);
-    padding-bottom: clamp(30px, 4vw, 52px);
+    padding-top: var(--site-ink-space);
+    padding-bottom: calc(var(--site-ink-space) / 2);
   }
 
   @media (max-width: 767px) {
     & .members__inner {
-      padding-top: 28px;
-      padding-bottom: 48px;
+      padding-top: var(--site-ink-space-phone);
+      padding-bottom: calc(var(--site-ink-space-phone) / 2);
     }
   }
 }
