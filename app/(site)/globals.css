@@ -188,6 +188,29 @@ strong {
     color: var(--color-text-on-ink);
   }
 
+  /* Film grain over the ink ground (members, repertoire). The layer sits
+     between the background and the content (negative z-index inside the
+     section's own stacking context), so the text stays crisp. */
+  &.section_grain {
+    position: relative;
+    isolation: isolate;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image: var(--grain-image);
+      /* The same coarse tile and blend as the hero's ground: `screen` lifts
+         the light specks, where `overlay` (the photo grain) would vanish on
+         flat ink. */
+      background-size: 300px 300px;
+      mix-blend-mode: screen;
+      opacity: 0.14;
+    }
+  }
+
   & .section__inner {
     max-width: var(--site-max-width);
     margin: 0 auto;
