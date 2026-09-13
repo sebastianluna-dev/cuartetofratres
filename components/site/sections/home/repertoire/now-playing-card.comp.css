@@ -47,6 +47,11 @@
     gap: 14px;
   }
 
+  /* The transport sits centred under the staff. */
+  & .transport {
+    justify-content: center;
+  }
+
   & .now-playing__clocks {
     display: flex;
     align-items: center;
