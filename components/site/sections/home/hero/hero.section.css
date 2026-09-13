@@ -20,7 +20,7 @@
     /* Elliptical vignette: a light veil of ink in the middle and solid ink at
        the edges, so the photo melts into the background without a visible
        border. It overhangs the photo by 2px to cover the antialiased edge
-       pixels. The page's grain (globals.css) lies over everything. */
+       pixels. The section's grain (globals.css) lies over everything. */
     &::after {
       content: "";
       position: absolute;
