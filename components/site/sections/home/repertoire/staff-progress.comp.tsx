@@ -1,6 +1,7 @@
 "use client";
 
 import type { KeyboardEvent, MouseEvent } from "react";
+import { PLAYER_COPY } from "@/constants/repertoire.const";
 import "./staff-progress.comp.css";
 
 interface StaffProgressProps {
@@ -11,8 +12,10 @@ interface StaffProgressProps {
 
 const KEY_STEP = 0.05;
 
-// Progress bar drawn as four staff lines: the played part in lime, the rest
-// in a faint ivory, and a double bar as the playhead. Click to seek; with the
+// Four staff lines, five note heads and the closing double bar. The whole
+// staff is drawn twice: faint underneath and bright on top, and the bright
+// copy is clipped to the played part, so the notes light up as the music
+// passes them. A double bar line is the playhead. Click to seek; with the
 // keyboard it is a slider (arrows move 5 %, Home/End jump).
 export function StaffProgress({ fraction, onSeek }: StaffProgressProps) {
   const percent = Math.round(Math.min(1, Math.max(0, fraction)) * 1000) / 10;
@@ -31,19 +34,34 @@ export function StaffProgress({ fraction, onSeek }: StaffProgressProps) {
     event.preventDefault();
   };
 
+  const staff = (
+    <>
+      <span className="staff-progress__note" />
+      <span className="staff-progress__note" />
+      <span className="staff-progress__note" />
+      <span className="staff-progress__note" />
+      <span className="staff-progress__note" />
+      <span className="staff-progress__end" />
+      <span className="staff-progress__end staff-progress__end_second" />
+    </>
+  );
+
   return (
     <div
       className="staff-progress"
       role="slider"
       tabIndex={0}
-      aria-label="Posición en la pista"
+      aria-label={PLAYER_COPY.position}
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={Math.round(percent)}
       onClick={onClick}
       onKeyDown={onKeyDown}
     >
-      <span className="staff-progress__played" style={{ width: `${percent}%` }} />
+      <span className="staff-progress__staff staff-progress__staff_tone_faint">{staff}</span>
+      <span className="staff-progress__played" style={{ clipPath: `inset(0 ${100 - percent}% 0 0)` }}>
+        <span className="staff-progress__staff">{staff}</span>
+      </span>
       <span className="staff-progress__head" style={{ left: `${percent}%` }} />
       <span className="staff-progress__head staff-progress__head_second" style={{ left: `${percent}%` }} />
     </div>

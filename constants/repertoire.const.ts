@@ -33,13 +33,30 @@ export interface RepertoireSectionDefaults {
 }
 
 export const REPERTOIRE_SECTION_DEFAULTS: RepertoireSectionDefaults = {
-  title: "Del clásico al pop, con el mismo cuidado.",
+  title: "Repertorio",
   emptyState: {
     title: "Repertorio en preparación",
     text: "Estamos integrando las obras de esta categoría. Escríbenos y te compartimos las piezas disponibles para tu ceremonia o evento.",
     ctaLabel: "Consultar repertorio",
   },
 };
+
+/**
+ * Fixed copy of the player. It is not in the CMS on purpose: the labels
+ * describe how the player behaves, not the quartet's content.
+ */
+export const PLAYER_COPY = {
+  playingStatus: "Sonando ahora",
+  pausedStatus: "Pista seleccionada · en pausa",
+  programLabel: "Programa",
+  cardNote: "Fragmento de muestra. Solo suena una pista a la vez y nunca arranca sola.",
+  listNote: "Las cuatro obras están en repertorio; las grabaciones de estudio se subirán en cuanto estén listas.",
+  previous: "Obra anterior",
+  next: "Obra siguiente",
+  toggle: "Reproducir o pausar",
+  position: "Posición en la pista",
+  filters: "Filtrar repertorio",
+} as const;
 
 // Seed of the categories and fallback while the CMS has none, in tab order.
 export const CATEGORIES: readonly RepertoireCategorySeed[] = [

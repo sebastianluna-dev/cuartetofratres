@@ -1,37 +1,37 @@
 .repertoire-filters {
   display: flex;
   flex-wrap: wrap;
+  gap: 8px;
 
-  & .repertoire-filters__tab {
-    padding: 12px 18px;
-    border-bottom: 2px solid transparent;
-    /* Sits on the head's own hairline. */
-    margin-bottom: -1px;
-    font-size: 13.5px;
+  & .repertoire-filters__pill {
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: var(--color-ink-panel);
+    font-size: 11.5px;
     font-weight: 500;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(242, 244, 243, 0.65);
+    color: rgba(242, 244, 243, 0.7);
     transition:
-      color 0.25s ease,
-      border-color 0.25s ease;
+      background 0.25s ease,
+      color 0.25s ease;
 
-    &:hover {
+    /* The active pill keeps its ink text under the cursor. */
+    &:hover:not(.repertoire-filters__pill_active) {
       color: var(--color-text-on-ink);
     }
-  }
 
-  & .repertoire-filters__tab_active {
-    color: var(--color-text-on-ink);
-    border-bottom-color: var(--color-text-on-ink);
+    &.repertoire-filters__pill_active {
+      background: var(--color-ivory);
+      color: var(--color-ink);
+    }
   }
 
   @media (max-width: 767px) {
     flex-wrap: nowrap;
-    /* A flex item's `min-width: auto` would size it to the sum of the tabs
+    /* A flex item's `min-width: auto` would size it to the sum of the pills
        and push the page past the screen; zero lets it clip and scroll. */
     min-width: 0;
-    gap: 8px;
     margin-right: calc(-1 * var(--site-gutter));
     padding-right: var(--site-gutter);
     overflow-x: auto;
@@ -41,18 +41,8 @@
       display: none;
     }
 
-    & .repertoire-filters__tab {
+    & .repertoire-filters__pill {
       flex: 0 0 auto;
-      margin-bottom: 0;
-      padding: 9px 14px;
-      border: 1px solid rgba(242, 244, 243, 0.3);
-      color: rgba(242, 244, 243, 0.72);
-    }
-
-    & .repertoire-filters__tab_active {
-      background: var(--color-ivory);
-      border-color: var(--color-ivory);
-      color: var(--color-ink);
     }
   }
 }
