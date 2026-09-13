@@ -6,7 +6,7 @@
   flex: 1 1 300px;
   min-width: 0;
   max-width: 360px;
-  padding: clamp(20px, 2.4vw, 26px);
+  padding: clamp(28px, 3vw, 36px) clamp(26px, 2.8vw, 34px);
   border-radius: 8px;
   background: var(--color-ink-panel);
   overflow: hidden;
@@ -69,6 +69,6 @@
   @media (max-width: 767px) {
     flex-basis: 100%;
     max-width: none;
-    padding: 20px 18px 22px;
+    padding: 28px 24px 30px;
   }
 }
