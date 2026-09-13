@@ -12,10 +12,12 @@ Backlog of the project's technical debt and improvements. Every entry carries an
 
 ### 1. Real audio in the repertoire player — [Content]
 
-The player only simulates playback (`hooks/use-sample-player.hook.ts` advances a clock). When the
-studio recordings exist: add an `audioSrc` to each `Track`, drive an `<audio>` element from the
-hook (play/pause/seek/ended) and keep the "only one track at a time, never autoplay" rules. The
-sample duration should then come from the file's metadata, not from the constant.
+The player only simulates playback (`hooks/use-sample-player.hook.ts` advances a clock). The
+`tracks` collection already has the `audio` upload, but the mapper does not read it yet. When the
+studio recordings exist: map the file URL into `TrackContent`, drive an `<audio>` element from the
+hook (play/pause/seek/previous/next/ended) and keep the "only one track at a time, never autoplay"
+rules. The sample duration should then come from the file's metadata, not from the constant, and
+`PLAYER_COPY.listNote` ("las grabaciones de estudio se subirán…") should go.
 
 ### 2. Notice of new contact requests — [Integration]
 
