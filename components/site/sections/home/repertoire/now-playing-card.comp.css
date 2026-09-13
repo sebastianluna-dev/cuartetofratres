@@ -84,10 +84,8 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /* Phone: no card; the mini player is the whole player. */
   @media (max-width: 767px) {
-    position: static;
-    flex-basis: 100%;
-    max-width: none;
-    padding: 36px 28px 38px;
+    display: none;
   }
 }
