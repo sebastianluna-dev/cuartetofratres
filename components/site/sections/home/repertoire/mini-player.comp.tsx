@@ -16,16 +16,31 @@ interface MiniPlayerProps {
   onPrevious: () => void;
   onNext: () => void;
   onSeek: (fraction: number) => void;
+  /** Plays the exit animation; the player unmounts it when that ends. */
+  leaving?: boolean;
 }
 
 // The bar pinned to the bottom of the screen while a track plays and the
 // card has scrolled away: the visitor can keep reading and still pause,
-// skip or seek. Slides up when it appears.
-export function MiniPlayer({ track, playing, elapsed, onTogglePlay, onPrevious, onNext, onSeek }: MiniPlayerProps) {
+// skip or seek. Slides up when it appears and down when it leaves.
+export function MiniPlayer({
+  track,
+  playing,
+  elapsed,
+  onTogglePlay,
+  onPrevious,
+  onNext,
+  onSeek,
+  leaving = false,
+}: MiniPlayerProps) {
   const fraction = track.durationSeconds > 0 ? elapsed / track.durationSeconds : 0;
 
   return (
-    <div className="mini-player" role="region" aria-label={PLAYER_COPY.playingStatus}>
+    <div
+      className={["mini-player", leaving && "mini-player_leaving"].filter(Boolean).join(" ")}
+      role="region"
+      aria-label={PLAYER_COPY.playingStatus}
+    >
       <div className="mini-player__inner">
         <div className="mini-player__work">
           <span className="mini-player__status">{playing ? PLAYER_COPY.playingStatus : PLAYER_COPY.pausedStatus}</span>

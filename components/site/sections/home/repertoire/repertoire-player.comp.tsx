@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useInView } from "@/hooks/use-in-view.hook";
+import { useMiniPlayerPresence } from "@/hooks/use-mini-player-presence.hook";
 import { useSamplePlayer } from "@/hooks/use-sample-player.hook";
 import { buildRepertoireFilters } from "@/lib/build-repertoire-filters";
 import { filterRepertoire } from "@/lib/filter-repertoire";
@@ -22,12 +23,14 @@ const CARD_MARGIN = "0px 0px -80px 0px";
 // Owns the two pieces of state of the section: which filter is active and
 // what the player is doing. The filter only hides rows: the selected track
 // stays selected (and keeps playing) even when its category is filtered out.
-// While a track plays and the card is off screen, the mini player takes over.
+// While a track plays and the card is off screen, the mini player takes over
+// (hooks/use-mini-player-presence.hook.ts decides when it comes and goes).
 export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
   const { tracks } = content;
   const [categoryId, setCategoryId] = useState<string | null>(null);
   const player = useSamplePlayer(tracks.map((track) => track.durationSeconds));
   const [cardRef, cardInView] = useInView<HTMLDivElement>(CARD_MARGIN);
+  const miniPhase = useMiniPlayerPresence(player.playing, cardInView);
 
   const filters = buildRepertoireFilters(content.categories);
   const visibleTracks = filterRepertoire(tracks, categoryId);
@@ -62,7 +65,9 @@ export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
         </div>
       </div>
 
-      {selectedTrack && player.playing && !cardInView && <MiniPlayer track={selectedTrack} {...transport} />}
+      {selectedTrack && miniPhase !== "hidden" && (
+        <MiniPlayer track={selectedTrack} leaving={miniPhase === "leaving"} {...transport} />
+      )}
     </div>
   );
 }
