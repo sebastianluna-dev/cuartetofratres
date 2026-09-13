@@ -16,6 +16,11 @@
     max-width: 100%;
   }
 
+  /* The tile is centred over the title. */
+  & .staff-tile {
+    margin-inline: auto;
+  }
+
   & .marquee-box {
     margin-top: 10px;
   }
