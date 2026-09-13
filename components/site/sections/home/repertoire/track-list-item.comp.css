@@ -22,6 +22,10 @@
     font-variant-numeric: tabular-nums;
   }
 
+  & .track-item__text {
+    display: contents;
+  }
+
   & .track-item__title {
     flex: 1 1 auto;
     min-width: 0;
@@ -114,30 +118,28 @@
     }
   }
 
-  /* Phone: the composer moves to a row of its own under the title; the
-     play glyph stays at the end of the first row. */
+  /* Phone: no number; title and composer stack in one column next to the
+     tile, the play glyph at the end. */
   @media (max-width: 767px) {
     & .track-item__button {
-      flex-wrap: wrap;
-      gap: 6px 12px;
+      gap: 12px;
       padding: 12px 8px;
     }
 
-    /* A zero basis keeps a long title in its column, wrapping inside it,
-       instead of dropping under the tile. */
-    & .track-item__title {
-      flex-basis: 0;
-    }
-
-    /* No numbers on the phone: the row starts at the tile. */
     & .track-item__number {
       display: none;
     }
 
+    & .track-item__text {
+      display: flex;
+      flex: 1 1 0;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
     & .track-item__composer {
-      order: 1;
-      flex-basis: 100%;
-      padding-left: calc(44px + 12px);
+      flex: none;
       white-space: normal;
     }
   }

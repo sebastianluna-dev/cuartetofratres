@@ -23,8 +23,12 @@ export function TrackListItem({ track, number, selected, playing, onSelect }: Tr
       <button type="button" className="track-item__button" aria-pressed={selected} onClick={onSelect}>
         <span className="track-item__number">{number < 10 ? `0${number}` : number}</span>
         <StaffTile kind="notes" />
-        <span className="track-item__title">{track.title}</span>
-        <span className="track-item__composer">{track.composer}</span>
+        {/* One box for both texts: a row on the desktop (`display: contents`),
+            a column under the phone breakpoint. */}
+        <span className="track-item__text">
+          <span className="track-item__title">{track.title}</span>
+          <span className="track-item__composer">{track.composer}</span>
+        </span>
         <span className="track-item__state" aria-hidden="true">
           <span className="track-item__equalizer">
             <span className="track-item__bar" />
