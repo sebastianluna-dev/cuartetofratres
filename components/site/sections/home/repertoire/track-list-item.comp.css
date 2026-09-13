@@ -129,10 +129,15 @@
       flex-basis: 0;
     }
 
+    /* No numbers on the phone: the row starts at the tile. */
+    & .track-item__number {
+      display: none;
+    }
+
     & .track-item__composer {
       order: 1;
       flex-basis: 100%;
-      padding-left: calc(18px + 44px + 2 * 12px);
+      padding-left: calc(44px + 12px);
       white-space: normal;
     }
   }
