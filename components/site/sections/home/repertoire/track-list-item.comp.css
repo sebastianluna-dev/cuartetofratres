@@ -10,7 +10,7 @@
     transition: background 0.3s ease;
 
     &:hover {
-      background: rgba(242, 244, 243, 0.035);
+      background: rgba(255, 255, 255, 0.035);
     }
   }
 
@@ -82,9 +82,9 @@
   }
 
   &.track-item_selected {
-    /* A faint ivory wash over the grain, like the card. */
+    /* A faint white wash over the grain, like the card. */
     & .track-item__button {
-      background: rgba(242, 244, 243, 0.05);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     & .track-item__title {

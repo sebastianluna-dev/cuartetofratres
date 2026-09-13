@@ -13,7 +13,7 @@
   & .track-list__empty {
     padding: clamp(24px, 3vw, 34px);
     border-radius: 8px;
-    background: rgba(242, 244, 243, 0.05);
+    background: rgba(255, 255, 255, 0.05);
   }
 
   & .track-list__empty-title {
