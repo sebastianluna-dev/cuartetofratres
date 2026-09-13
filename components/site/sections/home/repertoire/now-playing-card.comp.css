@@ -27,7 +27,7 @@
 
   & .now-playing__title {
     font-family: var(--font-heading);
-    font-size: clamp(23px, 2.3vw, 28px);
+    font-size: clamp(21px, 2vw, 25px);
     line-height: 1.15;
     color: var(--color-text-on-ink);
   }
