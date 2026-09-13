@@ -1,7 +1,6 @@
 "use client";
 
 import { forwardRef } from "react";
-import { PLAYER_COPY } from "@/constants/repertoire.const";
 import { formatTrackTime } from "@/lib/format-track-time";
 import type { TrackContent } from "@/services/repertoire/repertoire.types";
 import { MarqueeTitle } from "./marquee-title.comp";
@@ -47,7 +46,6 @@ export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(fu
           <span>−{formatTrackTime(track.durationSeconds - elapsed)}</span>
         </div>
         <TransportControls playing={playing} onPrevious={onPrevious} onToggle={onTogglePlay} onNext={onNext} />
-        <p className="now-playing__note">{PLAYER_COPY.cardNote}</p>
       </div>
     </div>
   );
