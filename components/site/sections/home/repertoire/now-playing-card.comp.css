@@ -1,4 +1,8 @@
 .now-playing {
+  /* Stays under the header while the programme scrolls past it. */
+  position: sticky;
+  top: calc(var(--site-header-offset) + 12px);
+  align-self: flex-start;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -81,6 +85,7 @@
   }
 
   @media (max-width: 767px) {
+    position: static;
     flex-basis: 100%;
     max-width: none;
     padding: 36px 28px 38px;
