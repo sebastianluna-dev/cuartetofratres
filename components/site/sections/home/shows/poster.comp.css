@@ -1,0 +1,245 @@
+.poster {
+  /* --a and --b: the light and the deep shade of the ground. */
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  aspect-ratio: 4 / 5.4;
+  border-radius: var(--site-radius);
+  background: radial-gradient(110% 80% at 50% 26%, var(--a), var(--b) 72%);
+  box-shadow: 0 30px 60px -36px rgba(18, 20, 24, 0.6);
+  color: var(--color-text-on-ink);
+
+  &.poster_palette_olive {
+    --a: #47511a;
+    --b: #14180a;
+  }
+
+  &.poster_palette_graphite {
+    --a: #33373d;
+    --b: #0e1012;
+  }
+
+  &.poster_palette_lime {
+    --a: #eef3b4;
+    --b: #dbe289;
+    color: var(--color-ink);
+  }
+
+  /* Dark veil under the text of a date; the lime poster needs none. */
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    height: 62%;
+    background: linear-gradient(180deg, transparent, var(--b) 62%);
+    pointer-events: none;
+  }
+
+  &.poster_palette_lime::after {
+    display: none;
+  }
+
+  /* The photo takes the ground's colour and dissolves into it downwards. */
+  & .poster__photo {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 0;
+    height: 74%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(180deg, #000 40%, transparent);
+    mask-image: linear-gradient(180deg, #000 40%, transparent);
+  }
+
+  & .poster__photo-image {
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.05);
+    mix-blend-mode: luminosity;
+    opacity: 0.6;
+    transition: transform 1.4s var(--ease-stage);
+  }
+
+  &:hover .poster__photo-image,
+  &:focus-within .poster__photo-image {
+    transform: scale(1.05);
+  }
+
+  & .poster__mark {
+    position: absolute;
+    right: -6%;
+    top: 16%;
+    z-index: 1;
+    width: 62%;
+    fill: currentColor;
+    opacity: 0.1;
+  }
+
+  & .poster__staff {
+    inset: 0;
+    z-index: 1;
+    opacity: 0.22;
+    -webkit-mask-image: radial-gradient(60% 46% at 52% 34%, #000 22%, transparent 100%);
+    mask-image: radial-gradient(60% 46% at 52% 34%, #000 22%, transparent 100%);
+  }
+
+  &.poster_palette_lime .poster__staff {
+    color: var(--color-olive);
+    opacity: 0.5;
+  }
+
+  & .poster__top {
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    top: 6%;
+    z-index: 6;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  & .poster__day {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(58px, 5.4vw, 82px);
+    line-height: 0.8;
+  }
+
+  & .poster__month {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--font-label);
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Read from the bottom up, like the spine of a book. */
+  & .poster__side {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: var(--font-label);
+    font-size: clamp(18px, 1.6vw, 24px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  & .poster__bottom {
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    bottom: 6%;
+    z-index: 6;
+  }
+
+  & .poster__kicker {
+    display: block;
+    margin: 0 0 0.5em 0.06em;
+    font-family: var(--font-label);
+    font-size: clamp(16px, 1.3vw, 19px);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  & .poster__syllables {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(56px, 5.6vw, 92px);
+    line-height: 0.84;
+    text-transform: uppercase;
+  }
+
+  & .poster__syllable {
+    display: block;
+  }
+
+  & .poster__where {
+    margin-top: 14px;
+    font-family: var(--font-label);
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  & .poster__note {
+    margin-top: 2px;
+    font-family: var(--font-label);
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.3;
+    opacity: 0.92;
+  }
+
+  & .poster__action {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    margin-top: 16px;
+    padding: 0 18px;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+    font-family: var(--font-label);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition:
+      background 0.3s ease,
+      color 0.3s ease;
+
+    &:hover {
+      background: var(--color-lime);
+      box-shadow: none;
+      color: var(--color-ink);
+    }
+
+    /* The section is on ivory, but the poster's ground is dark. */
+    &:focus-visible {
+      outline-color: var(--color-lime);
+    }
+  }
+
+  &.poster_palette_lime .poster__action {
+    background: var(--color-ink);
+    box-shadow: none;
+    color: var(--color-ivory);
+
+    &:hover {
+      background: var(--color-ink-soft);
+    }
+
+    &:focus-visible {
+      outline-color: var(--color-ink);
+    }
+  }
+
+  & .poster__action-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  @media (max-width: 900px) {
+    & .poster__syllables {
+      font-size: clamp(56px, 15vw, 80px);
+    }
+  }
+}

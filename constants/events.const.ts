@@ -60,3 +60,29 @@ export const EVENT_DIALOG_LABELS = {
   inquire: "Solicitar informes",
   close: "Cerrar",
 } as const;
+
+/** Dates shown as posters; the invitation poster always closes the row. */
+export const MAX_SHOW_POSTERS = 2;
+
+/**
+ * Fixed copy of the dates section: the button of a poster, the invitation
+ * poster that leads to the contact form and the poster shown while no date is
+ * published.
+ */
+export const SHOWS_COPY = {
+  program: "Ver programa",
+  invitation: {
+    top: "Tu",
+    topNote: "Fecha · Tu lugar",
+    side: "Programa a la medida",
+    title: "Bodas, ceremonias y eventos",
+    where: "Conciertos · Bodas · Eventos privados",
+    note: "Te respondemos con una propuesta de programa.",
+    action: "Solicitar informes",
+  },
+  pending: {
+    top: "Pronto",
+    topNote: "Nuevas fechas",
+    title: "Próximas fechas por anunciar",
+  },
+} as const;
