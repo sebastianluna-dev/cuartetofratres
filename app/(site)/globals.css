@@ -5,6 +5,8 @@
   --color-ivory-soft: #eae9e9;
   --color-ink: #121418;
   --color-ink-soft: #20242c;
+  /* The floor of the stages: the hero and the members fade into it. */
+  --color-ink-deep: #0d0f12;
   /* The player's tiles: the shade the ivory wash reaches over the card, made
      solid so no grain shows through the cover. */
   --color-ink-tile: #37393d;
@@ -27,20 +29,27 @@
   --font-heading: var(--font-forum), Georgia, serif;
   --font-display: var(--font-fratres), var(--font-forum), Georgia, serif;
   --font-body: var(--font-mulish), system-ui, sans-serif;
+  /* Labels, names and buttons, in condensed capitals. */
+  --font-label: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
+  /* The italic accent of the titles; always used with `font-style: italic`. */
+  --font-accent: var(--font-instrument-serif), Georgia, serif;
 
   /* Horizontal padding of every section and the header: one value so the
      content edges line up from the top of the page to the footer. */
   --site-gutter: clamp(20px, 4.5vw, 72px);
   --site-max-width: 1500px;
-  /* Anchor offset: the fixed header must not cover a section's title when a
-     nav link scrolls to it. */
-  --site-header-offset: 84px;
+  /* Anchor offset. The top bar scrolls away with the hero and the floating nav
+     sits at the bottom, so nothing covers a section's title. */
+  --site-header-offset: 0px;
+  --site-radius: 16px;
   /* Vertical rhythm of the two ink sections that follow each other (members,
      repertoire): the outer padding of the block and the gap between their
      contents are this one value, split in half at the seam. */
   --site-ink-space: clamp(64px, 8vw, 110px);
   --site-ink-space-phone: 48px;
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* Slower start, long tail: the figures of the stages and the floating nav. */
+  --ease-stage: cubic-bezier(0.2, 0.7, 0.1, 1);
   /* Tiled monochrome turbulence: the film grain of `.grain` and `.ink-grain`. */
   --grain-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
   --grain-size: 170px;
@@ -200,25 +209,6 @@ strong {
   }
 }
 
-/* Small uppercase label above a title, next to the staff ornament. */
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-
-  & .eyebrow__label {
-    font-size: 13.5px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--color-olive);
-  }
-
-  /* On ink the staff stays lime and the label reads in ivory. */
-  &.eyebrow_theme_ink .eyebrow__label {
-    color: var(--color-text-on-ink);
-  }
-}
-
 /* Blocks fade in the first time they enter the viewport (hooks/use-reveal.hook.ts).
    Without JavaScript the class never applies and everything is visible. */
 .reveal {
@@ -329,6 +319,103 @@ strong {
     color: var(--color-text-on-ink);
     font-family: var(--font-heading);
     font-size: 16px;
+
+    &:hover {
+      background: var(--color-ink-soft);
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Pieces of the redesign («punto medio»): shared by the hero, the dates, the
+   members and the about section.
+   --------------------------------------------------------------------------- */
+
+/* Small condensed label in capitals: eyebrows, section numbers, foot notes. */
+.label {
+  font-family: var(--font-label);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(242, 244, 243, 0.84);
+
+  &.label_ground_ivory {
+    color: var(--color-muted-on-ivory);
+  }
+}
+
+/* Centred section title in the italic accent («Próximas presentaciones»). */
+.section-title {
+  font-family: var(--font-accent);
+  font-size: clamp(52px, 7vw, 104px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* Pill call to action. Lime on any ground; `ghost` is the outline on ink. */
+.pill-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: var(--color-lime);
+  color: var(--color-ink);
+  font-family: var(--font-label);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+
+  &:hover {
+    background: var(--color-lime-hover);
+  }
+
+  & .pill-button__icon {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    transition: transform 0.45s var(--ease-stage);
+  }
+
+  &:hover .pill-button__icon,
+  &:focus-visible .pill-button__icon {
+    transform: translateX(4px);
+  }
+
+  &.pill-button_size_small {
+    min-height: 44px;
+    padding: 0 18px;
+    font-size: 14px;
+  }
+
+  &.pill-button_variant_ghost {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+    color: var(--color-text-on-ink);
+
+    &:hover {
+      background: var(--color-lime);
+      box-shadow: none;
+      color: var(--color-ink);
+    }
+  }
+
+  &.pill-button_variant_ink {
+    background: var(--color-ink);
+    color: var(--color-ivory);
 
     &:hover {
       background: var(--color-ink-soft);
