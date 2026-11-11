@@ -1,13 +1,23 @@
 .members {
-  & .members__inner {
-    padding-top: var(--site-ink-space);
-    padding-bottom: calc(var(--site-ink-space) / 2);
+  padding: clamp(64px, 7vw, 104px) 0 clamp(56px, 6vw, 96px);
+  background: radial-gradient(70% 50% at 50% 26%, #1d2127, var(--color-ink) 72%);
+  overflow: clip;
+
+  & .members__staff {
+    left: 0;
+    right: 0;
+    top: 4%;
+    height: 52%;
+    opacity: 0.1;
+    -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent);
+    mask-image: linear-gradient(180deg, #000 30%, transparent);
   }
 
-  @media (max-width: 767px) {
-    & .members__inner {
-      padding-top: var(--site-ink-space-phone);
-      padding-bottom: calc(var(--site-ink-space-phone) / 2);
-    }
+  & .members__inner {
+    position: relative;
+  }
+
+  & .section-title {
+    margin-bottom: clamp(24px, 3vw, 44px);
   }
 }
