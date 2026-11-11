@@ -23,7 +23,12 @@ import { CONTACT_EMAIL, PHOTO_CREDIT, SITE_LOCATION, SITE_LOCATION_FULL, SITE_TA
 //   node --import ./scripts/alias-loader.mjs scripts/seed-cms.mts
 
 const IMAGES_DIR = path.resolve(process.cwd(), "public/images");
-const MIME_BY_EXT: Record<string, string> = { ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png" };
+const MIME_BY_EXT: Record<string, string> = {
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".png": "image/png",
+  ".webp": "image/webp",
+};
 
 async function uploadImage(payload: Payload, src: string, alt: string): Promise<number> {
   const filename = path.basename(src);
