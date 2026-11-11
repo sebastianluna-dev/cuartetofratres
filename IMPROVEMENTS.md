@@ -46,12 +46,29 @@ A save publishes at once. If the quartet starts editing long texts, enable `vers
 true }` on the Globals and a preview route with `draftMode()`, so a change can be reviewed on the
 real page before it goes live.
 
+### 8. Redesign «punto medio»: what is left — [Design]
+
+The hero, the dates, the members and the about section follow the approved redesign
+(`propuestas-rediseno/05-punto-medio.html`). Still in the earlier look:
+
+- **Repertoire and contact**: waiting for the pick among the five options of each
+  (`propuestas-rediseno/06-repertorio.html`, `07-contacto.html`). The repertoire keeps its
+  distribution and behaviour; only the look changes.
+- **Footer and event window**: restyle with the new type (`--font-label`, `--font-accent`) once
+  the contact section is settled, since the closing band may absorb the footer.
+- **Forum** (`--font-heading`) goes away with the last section that uses it; so do the
+  `button_variant_*` classes, replaced by `pill-button`.
+- **Hero Global**: `image` and `imagePosition` are no longer drawn. Either reuse the photo in the
+  closing band or drop the fields with a migration.
+- **Fixed copy**: the hero's frame, the posters' labels and «Conoce al cuarteto» live in
+  `constants/`. Move them to the Globals (with a migration) if the quartet needs to edit them.
+
 ## LOW priority
 
 ### 6. Deep link to an event — [UX]
 
 The detail window only opens from its card. A `/#evento-<id>` hash that opens it on load would let
-the quartet share a date on social media; read `location.hash` in `EventCards` and set `openId`.
+the quartet share a date on social media; read `location.hash` in `ShowPosters` and set `openId`.
 
 ### 7. Storybook for the shared pieces — [DX]
 

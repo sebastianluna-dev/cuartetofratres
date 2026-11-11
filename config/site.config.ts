@@ -7,9 +7,10 @@ export const siteConfig: SiteConfig = {
   home: {
     sections: {
       hero: true,
-      about: true,
+      shows: true,
       members: true,
       repertoire: true,
+      about: true,
       contact: true,
     },
   },

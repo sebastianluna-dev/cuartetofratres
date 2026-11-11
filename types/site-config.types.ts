@@ -1,8 +1,9 @@
 export interface HomeSectionsConfig {
   hero: boolean;
-  about: boolean;
+  shows: boolean;
   members: boolean;
   repertoire: boolean;
+  about: boolean;
   contact: boolean;
 }
 

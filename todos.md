@@ -13,3 +13,6 @@ Small, mechanical tasks that need no design decision. Bigger items live in `IMPR
 - [ ] Add a `humans.txt` or a credits line for the photographer once the name is confirmed (the footer says "archivo del cuarteto").
 - [x] Convert the design's PNG exports (2 MB each) to JPEG before committing them (2026-04-20).
 - [x] Strip the C2PA metadata from the logo SVG and inline it as a component (2026-04-21).
+- [ ] In `/admin › Integrantes` (production), replace the four portraits with the cut-outs in `public/images/<slug>.webp`: the stored photos are the earlier opaque ones and the redesigned section fades a transparent portrait into the stage.
+- [ ] Confirm with the quartet which cut-out is whose: `ricardo-sanchez` and `jesus-medina` were told apart by the instrument only (the one held upright as the viola).
+- [ ] Publish at least one future date in `/admin › Presentaciones`: both seeded dates are past, so the dates section shows the «por anunciar» poster.
