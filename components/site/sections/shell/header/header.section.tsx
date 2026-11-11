@@ -1,35 +1,43 @@
-"use client";
-
+import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
 import { Logo } from "@/components/site/shared/logo.comp";
-import { NAV_ITEMS } from "@/constants/navigation.const";
-import { useHeaderScroll } from "@/hooks/use-header-scroll.hook";
-import { HeaderMobileMenu } from "./header-mobile-menu.comp";
+import { HERO_COPY } from "@/constants/hero.const";
+import { CONTACT_ANCHOR, NAV_ITEMS } from "@/constants/navigation.const";
+import { SITE_NAME } from "@/constants/site.const";
 import "./header.section.css";
 
-const HERO_ID = "inicio";
-
-// Fixed over the page. Transparent (ivory text) while the dark hero is under
-// it and solid ivory (ink text) from the first light section on; the whole
-// header is a Client Component because that state drives every child colour.
+// Thin bar over the top of the hero: it scrolls away with it, and from there
+// on the floating nav takes over. Contact is set apart as the call to action;
+// under 1100px the section links leave and only the name and contact stay.
 export function Header() {
-  const pastHero = useHeaderScroll(HERO_ID);
-  const theme = pastHero ? "ink" : "ivory";
+  const contact = NAV_ITEMS.find((item) => item.href === CONTACT_ANCHOR);
 
   return (
-    <header className={`site-header site-header_theme_${theme}`}>
+    <header className="site-header">
       <div className="site-header__inner">
-        {/* Lime over the hero; ink once the header turns ivory. */}
-        <Logo theme={pastHero ? "ink" : "lime"} height={46} />
+        <div className="site-header__brand">
+          <Logo theme="lime" height={42} />
+          <p className="site-header__name">
+            {SITE_NAME}
+            <span className="site-header__kind">{HERO_COPY.kicker}</span>
+          </p>
+        </div>
 
         <nav className="site-header__nav" aria-label="Secciones">
-          {NAV_ITEMS.map((item) => (
+          {NAV_ITEMS.filter((item) => item.href !== CONTACT_ANCHOR).map((item) => (
             <a key={item.href} href={item.href} className="site-header__link">
               {item.label}
             </a>
           ))}
         </nav>
 
-        <HeaderMobileMenu theme={theme} />
+        {contact && (
+          <a href={contact.href} className="site-header__contact">
+            {contact.label}
+            <span className="site-header__contact-mark">
+              <ArrowIcon direction="up-right" className="site-header__contact-icon" />
+            </span>
+          </a>
+        )}
       </div>
     </header>
   );
