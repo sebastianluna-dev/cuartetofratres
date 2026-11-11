@@ -38,3 +38,35 @@ export const fratresDisplay = localFont({
   display: "swap",
   preload: false,
 });
+
+/**
+ * Labels, names and buttons: the condensed uppercase voice of the page. Latin
+ * subsets of Google's Barlow Condensed, self-hosted like the rest.
+ */
+export const barlowCondensed = localFont({
+  src: [
+    { path: "../../public/fonts/barlow-condensed-500-latin.woff2", weight: "500", style: "normal" },
+    { path: "../../public/fonts/barlow-condensed-500-latin-ext.woff2", weight: "500", style: "normal" },
+    { path: "../../public/fonts/barlow-condensed-600-latin.woff2", weight: "600", style: "normal" },
+    { path: "../../public/fonts/barlow-condensed-600-latin-ext.woff2", weight: "600", style: "normal" },
+    { path: "../../public/fonts/barlow-condensed-400-italic-latin.woff2", weight: "400", style: "italic" },
+    { path: "../../public/fonts/barlow-condensed-400-italic-latin-ext.woff2", weight: "400", style: "italic" },
+    { path: "../../public/fonts/barlow-condensed-500-italic-latin.woff2", weight: "500", style: "italic" },
+    { path: "../../public/fonts/barlow-condensed-500-italic-latin-ext.woff2", weight: "500", style: "italic" },
+  ],
+  variable: "--font-barlow-condensed",
+  display: "swap",
+});
+
+/**
+ * The italic accent: centred section titles and the word that answers a title
+ * in capitals. Only the italic of Google's Instrument Serif is used.
+ */
+export const instrumentSerif = localFont({
+  src: [
+    { path: "../../public/fonts/instrument-serif-400-italic-latin.woff2", weight: "400", style: "italic" },
+    { path: "../../public/fonts/instrument-serif-400-italic-latin-ext.woff2", weight: "400", style: "italic" },
+  ],
+  variable: "--font-instrument-serif",
+  display: "swap",
+});
