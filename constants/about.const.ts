@@ -12,3 +12,16 @@ export const ABOUT_DEFAULTS: AboutDefaults = {
     alt: "Los cuatro integrantes del Cuarteto Fratres con sus instrumentos",
   },
 };
+
+/** Fixed copy of the about section's frame. */
+export const ABOUT_COPY = {
+  heading: "El cuarteto",
+  label: "(04) · Quiénes somos",
+} as const;
+
+/** What the quartet plays for, as the contact section lists it. */
+export const OCCASIONS: readonly string[] = [
+  "Conciertos y actividades culturales",
+  "Bodas y ceremonias",
+  "Eventos privados",
+];
