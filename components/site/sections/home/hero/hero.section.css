@@ -7,7 +7,7 @@
   min-height: var(--hero-height);
   display: flex;
   flex-direction: column;
-  background: radial-gradient(ellipse 66% 78% at 73% 42%, #1c2023 0, var(--color-ink-deep) 64%) var(--color-ink-deep);
+  background: radial-gradient(ellipse 66% 78% at 73% 42%, #20242a 0, var(--color-ink-deep) 64%) var(--color-ink-deep);
 
   @supports (height: 100svh) {
     --hero-height: max(680px, 100svh);

@@ -3,11 +3,11 @@
      olive that the accent becomes when it has to be read on ivory. */
   --color-ivory: #f3f2f2;
   --color-ivory-soft: #eae9e9;
-  /* The same near-black as the Filarmónica's page. */
-  --color-ink: #070809;
-  --color-ink-soft: #15191d;
+  /* Halfway between the quartet's first ink (#121418) and the Filarmónica's (#070809). */
+  --color-ink: #0c0e10;
+  --color-ink-soft: #1b1f25;
   /* The floor of the stages: the hero and the members fade into it. */
-  --color-ink-deep: #0b0c0d;
+  --color-ink-deep: #0a0b0e;
   /* The tiles of the player and the ground behind a photo while it loads. */
   --color-ink-tile: #37393d;
   --color-lime: #e6ec9e;
@@ -15,7 +15,7 @@
   --color-olive: #4d5610;
   --color-olive-hover: #3a4110;
   /* Text. */
-  --color-text-on-ivory: #070809;
+  --color-text-on-ivory: #0c0e10;
   --color-text-soft-on-ivory: #3a3d42;
   --color-muted-on-ivory: #605d5d;
   --color-text-on-ink: #f2f4f3;
@@ -155,6 +155,16 @@ strong {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Read by screen readers, never drawn. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 /* Skip link to the content: off-screen until it receives focus. */
