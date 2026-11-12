@@ -35,4 +35,28 @@
     line-height: 1.7;
     color: var(--color-text-soft-on-ivory);
   }
+
+  /* After a change of filter: the rows rise and fade in one after the other,
+     the empty card all at once. */
+  &.track-list_entering {
+    & .track-item {
+      animation: track-list-enter 0.55s var(--ease-stage) calc(var(--order, 0) * 70ms) both;
+    }
+
+    & .track-list__empty {
+      animation: track-list-enter 0.55s var(--ease-stage) both;
+    }
+  }
+}
+
+@keyframes track-list-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
 }

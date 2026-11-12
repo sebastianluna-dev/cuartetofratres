@@ -38,6 +38,12 @@ const PHONE_QUERY = "(max-width: 767px)";
 export function RepertoirePlayer({ content, titleId }: RepertoirePlayerProps) {
   const { tracks } = content;
   const [categoryId, setCategoryId] = useState<string | null>(null);
+  // Counts the filter changes: each one remounts the list so its entrance plays again.
+  const [filterChanges, setFilterChanges] = useState(0);
+  const changeFilter = (next: string | null) => {
+    setCategoryId(next);
+    setFilterChanges((count) => count + 1);
+  };
   const player = useSamplePlayer(tracks);
   const [cardRef, cardInView] = useInView<HTMLDivElement>(CARD_VISIBLE_SHARE);
   const phone = useMediaQuery(PHONE_QUERY);
@@ -69,8 +75,10 @@ export function RepertoirePlayer({ content, titleId }: RepertoirePlayerProps) {
       <div className="repertoire-player__body">
         {selectedTrack && <NowPlayingCard ref={cardRef} track={selectedTrack} cover={content.cover} {...transport} />}
         <div className="repertoire-player__list">
-          <RepertoireFilters filters={filters} active={categoryId} onChange={setCategoryId} />
+          <RepertoireFilters filters={filters} active={categoryId} onChange={changeFilter} />
           <TrackList
+            key={filterChanges}
+            entering={filterChanges > 0}
             tracks={tracks}
             visibleIds={visibleTracks.map((track) => track.id)}
             selectedIndex={!phone || player.chosen ? player.selectedIndex : null}

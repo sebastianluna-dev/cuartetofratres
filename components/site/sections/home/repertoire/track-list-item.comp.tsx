@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import type { TrackContent } from "@/services/repertoire/repertoire.types";
 import { StaffTile } from "./staff-tile.comp";
 import "./track-list-item.comp.css";
@@ -7,18 +8,20 @@ interface TrackListItemProps {
   selected: boolean;
   playing: boolean;
   onSelect: () => void;
+  /** Custom properties from the list: the row's place in the entrance. */
+  style?: CSSProperties;
 }
 
 // One row of the programme: the play glyph (the equaliser while this row
 // plays), the staff tile, the title and the composer. The whole row is the
 // button; the chosen one is only told by its glyph, in olive.
-export function TrackListItem({ track, selected, playing, onSelect }: TrackListItemProps) {
+export function TrackListItem({ track, selected, playing, onSelect, style }: TrackListItemProps) {
   const classes = ["track-item", selected ? "track-item_selected" : "", playing ? "track-item_playing" : ""]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <li className={classes}>
+    <li className={classes} style={style}>
       <button type="button" className="track-item__button" aria-pressed={selected} onClick={onSelect}>
         <span className="track-item__state" aria-hidden="true">
           <span className="track-item__equalizer">

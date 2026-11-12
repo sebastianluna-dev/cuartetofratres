@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
 import type { RepertoireContent, TrackContent } from "@/services/repertoire/repertoire.types";
 import { TrackListItem } from "./track-list-item.comp";
@@ -12,20 +13,32 @@ interface TrackListProps {
   playing: boolean;
   emptyState: RepertoireContent["emptyState"];
   onSelect: (index: number) => void;
+  /** Plays the entrance of the rows (or of the empty card); set after the visitor changes the filter. */
+  entering?: boolean;
 }
 
 // The programme: one row per work that passes the filter, or the
-// empty-state card.
-export function TrackList({ tracks, visibleIds, selectedIndex, playing, emptyState, onSelect }: TrackListProps) {
+// empty-state card. After a change of filter the parent remounts it with
+// `entering`, and the rows rise into place one after the other.
+export function TrackList({
+  tracks,
+  visibleIds,
+  selectedIndex,
+  playing,
+  emptyState,
+  onSelect,
+  entering = false,
+}: TrackListProps) {
   const rows = tracks.map((track, index) => ({ track, index })).filter(({ track }) => visibleIds.includes(track.id));
 
   return (
-    <div className="track-list">
+    <div className={`track-list${entering ? " track-list_entering" : ""}`}>
       {rows.length > 0 ? (
         <ol className="track-list__items">
-          {rows.map(({ track, index }) => (
+          {rows.map(({ track, index }, order) => (
             <TrackListItem
               key={track.id}
+              style={{ "--order": order } as CSSProperties}
               track={track}
               selected={index === selectedIndex}
               playing={playing && index === selectedIndex}
