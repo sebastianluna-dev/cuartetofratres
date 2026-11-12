@@ -4,11 +4,11 @@
   gap: 14px;
   min-width: 0;
 
-  /* Ruled like a programme: a hairline over the first row and under each one. */
+  /* No rules between the rows: only the one under the pointer shows a ground. */
   & .track-list__items {
     display: flex;
     flex-direction: column;
-    border-top: 1px solid var(--color-divider-soft-on-ivory);
+    gap: 2px;
   }
 
   & .track-list__empty {
