@@ -1,7 +1,8 @@
 .floating-nav {
   position: fixed;
   left: 50%;
-  bottom: 18px;
+  /* Rides above the repertoire's mini player, which publishes its height on <body>. */
+  bottom: calc(18px + var(--mini-player-height, 0px));
   z-index: 60;
   display: flex;
   max-width: calc(100vw - 16px);
@@ -97,7 +98,7 @@
   @media (max-width: 760px) {
     left: 8px;
     right: 8px;
-    bottom: 8px;
+    bottom: calc(8px + var(--mini-player-height, 0px));
     max-width: none;
     transform: translateY(24px);
 
