@@ -65,6 +65,28 @@
     gap: 6px;
   }
 
+  & .font-preview__size {
+    margin-top: 14px;
+
+    & .font-preview__heading {
+      display: block;
+      margin-top: 0;
+    }
+  }
+
+  & .font-preview__size-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  & .font-preview__range {
+    flex: 1;
+    min-width: 0;
+    height: 32px;
+    accent-color: var(--color-ink);
+  }
+
   & .font-preview__chip {
     display: inline-flex;
     align-items: center;
@@ -75,8 +97,13 @@
     font-size: 13px;
     font-weight: 500;
 
-    &:hover {
+    &:hover:not(:disabled) {
       background: #d6d5d3;
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.45;
     }
   }
 
