@@ -17,7 +17,7 @@ export async function ShowsSection() {
     <section id="cartelera" className="section section_theme_ivory shows" aria-labelledby={TITLE_ID}>
       <div className="section__inner">
         <Reveal>
-          <h2 id={TITLE_ID} className="section-title">
+          <h2 id={TITLE_ID} className="section-title section-title_face_display">
             {SHOWS_COPY.title}
           </h2>
         </Reveal>
