@@ -23,9 +23,10 @@
 
   /* Layout only while open: a closed <dialog> must keep `display: none`.
      One row as tall as the box; each column clips or scrolls its own content.
-     The panel, not the dialog, carries the grain (`ink-grain`): the class
-     positions its block, and a modal dialog must keep the browser's. */
+     The panel, not the dialog, is the positioned block of the close button: a
+     modal dialog must keep the browser's own positioning. */
   &[open] .event-dialog__panel {
+    position: relative;
     display: grid;
     grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
     grid-template-rows: minmax(0, 1fr);

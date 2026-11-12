@@ -7,8 +7,7 @@
   --color-ink-soft: #20242c;
   /* The floor of the stages: the hero and the members fade into it. */
   --color-ink-deep: #0d0f12;
-  /* The player's tiles: the shade the ivory wash reaches over the card, made
-     solid so no grain shows through the cover. */
+  /* The tiles of the player and the ground behind a photo while it loads. */
   --color-ink-tile: #37393d;
   --color-lime: #e6ec9e;
   --color-lime-hover: #f1f6bd;
@@ -44,9 +43,6 @@
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   /* Slower start, long tail: the figures of the stages and the floating nav. */
   --ease-stage: cubic-bezier(0.2, 0.7, 0.1, 1);
-  /* Tiled monochrome turbulence: the film grain of `.grain` and `.ink-grain`. */
-  --grain-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
-  --grain-size: 170px;
 }
 
 /* ---------------------------------------------------------------------------
@@ -223,47 +219,6 @@ strong {
     opacity: 1;
     transform: none;
   }
-}
-
-/* Coarse film grain over an ink block (the ink sections, the footer, the
-   contact form's ink buttons): one layer above everything in it, ground, photos, cards and text
-   alike, so nothing reads as a different surface; the ivory blocks stay
-   clean. `screen` at low opacity: `overlay` does almost nothing on a colour
-   this dark. It takes no pointer events, so everything under it stays
-   clickable. */
-.ink-grain {
-  position: relative;
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 5;
-    /* Follows a rounded block (the ink buttons of the contact form). */
-    border-radius: inherit;
-    pointer-events: none;
-    background-image: var(--grain-image);
-    background-size: 300px 300px;
-    mix-blend-mode: screen;
-    opacity: 0.14;
-  }
-}
-
-/* Film grain over a photo. Goes on the positioned, clipping block that holds
-   a `fill` image: a tiled SVG turbulence blended into the tones, so it reads
-   as texture rather than a grey veil. It sits at z-index 1, above the photo
-   and any decoration without a z-index; text laid over the photo takes
-   z-index 2 to stay crisp. No pointer events. */
-.grain::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background-image: var(--grain-image);
-  background-size: var(--grain-size) var(--grain-size);
-  mix-blend-mode: overlay;
-  opacity: 0.8;
 }
 
 /* ---------------------------------------------------------------------------

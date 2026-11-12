@@ -43,7 +43,7 @@ export async function AboutSection() {
           </Reveal>
 
           <Reveal className="about__media">
-            <figure className="about__frame grain">
+            <figure className="about__frame">
               {/* Five twelfths of the page on desktop, the whole width on the phone. */}
               <Image
                 src={about.photo.src}

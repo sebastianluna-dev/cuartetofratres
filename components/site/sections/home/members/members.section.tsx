@@ -11,7 +11,7 @@ export async function MembersSection() {
   const members = await getMembers();
 
   return (
-    <section id="integrantes" className="section section_theme_ink ink-grain members" aria-labelledby={TITLE_ID}>
+    <section id="integrantes" className="section section_theme_ink members" aria-labelledby={TITLE_ID}>
       <StaffLines kind="wide" className="members__staff" />
       <div className="section__inner members__inner">
         <Reveal>

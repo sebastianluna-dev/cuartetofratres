@@ -17,7 +17,7 @@ export async function HeroSection() {
   const titleWords = hero.title.trim().split(/\s+/);
 
   return (
-    <section id="inicio" className="section section_theme_ink ink-grain hero">
+    <section id="inicio" className="section section_theme_ink hero">
       <div className="hero__inner">
         <div className="hero__content">
           <p className="hero__eyebrow">

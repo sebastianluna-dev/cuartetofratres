@@ -76,7 +76,7 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
       }}
     >
       {event && (
-        <div className="event-dialog__panel ink-grain">
+        <div className="event-dialog__panel">
           <button type="button" className="event-dialog__close" aria-label={EVENT_DIALOG_LABELS.close} onClick={close}>
             <svg
               width="16"
@@ -91,7 +91,7 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
             </svg>
           </button>
 
-          <div className="event-dialog__media grain">
+          <div className="event-dialog__media">
             <Image
               src={event.image.src}
               alt={event.image.alt}
