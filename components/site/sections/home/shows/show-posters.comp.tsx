@@ -21,9 +21,6 @@ interface ShowPostersProps {
   labelledBy: string;
 }
 
-/** Ground of each date's poster, in turn. */
-const PALETTES = ["olive", "graphite"] as const;
-
 // The row of posters. A Client Component so it can own which date is open;
 // one dialog for all the posters, since only one can be open at a time.
 export function ShowPosters({ events, location, labelledBy }: ShowPostersProps) {
@@ -34,13 +31,13 @@ export function ShowPosters({ events, location, labelledBy }: ShowPostersProps) 
   return (
     <>
       <ul className="show-posters" aria-labelledby={labelledBy}>
-        {events.map((event, index) => {
+        {events.map((event) => {
           const date = formatEventPosterDate(event.date);
           return (
             <li key={event.id} className="show-posters__item">
               <Reveal>
                 <Poster
-                  palette={PALETTES[index % PALETTES.length] ?? "olive"}
+                  palette="graphite"
                   top={
                     <time dateTime={event.date} aria-label={formatEventDateLong(event.date)}>
                       {date.day}
