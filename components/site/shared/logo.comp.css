@@ -23,4 +23,8 @@
   &.logo_theme_lime {
     color: var(--color-lime);
   }
+
+  &.logo_theme_olive {
+    color: var(--color-olive);
+  }
 }

@@ -1,58 +1,45 @@
 .contact-form {
-  /* One field under the next, each with its caption over its box. */
-  & > * + * {
-    margin-top: 20px;
-  }
-
   & .contact-form__footer {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 16px 28px;
-    margin-top: clamp(24px, 3vw, 32px);
+    gap: 14px 20px;
+    margin-top: 28px;
   }
 
-  & .contact-form__submit {
-    &:disabled {
-      opacity: 0.6;
-      cursor: progress;
-    }
+  & .contact-form__submit:disabled {
+    cursor: progress;
+    opacity: 0.7;
   }
 
   & .contact-form__notice {
-    flex: 1 1 220px;
-    min-width: 0;
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--color-muted-on-ivory);
-
-    &:empty {
-      display: none;
-    }
+    font-family: var(--font-label);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    color: #9a2c1a;
   }
 
-
-  /* The only card left: the panel that replaces the form once it is sent. */
+  /* After sending, the form gives way to the thanks. */
   &.contact-form_sent {
-    padding: clamp(24px, 3vw, 36px);
-    border-radius: 8px;
-    background: var(--color-ink);
-    color: var(--color-text-on-ink);
+    padding: 28px 0 8px;
   }
 
   & .contact-form__sent-title {
     font-family: var(--font-display);
-    font-size: 40px;
-    line-height: 1;
+    font-size: clamp(48px, 5vw, 76px);
+    line-height: 0.9;
     text-transform: uppercase;
-    color: var(--color-lime);
+    color: var(--color-olive);
   }
 
   & .contact-form__sent-text {
-    margin-top: 16px;
-    max-width: 30em;
+    max-width: 44ch;
+    margin-top: 12px;
     font-size: 17px;
+    font-weight: 400;
     line-height: 1.7;
-    color: rgba(242, 244, 243, 0.86);
+    color: var(--color-text-soft-on-ivory);
   }
 }

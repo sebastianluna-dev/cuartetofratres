@@ -18,3 +18,18 @@ export const CONTACT_SECTION_DEFAULTS: ContactSectionDefaults = {
   sentTitle: "Gracias.",
   sentText: "Te respondemos al correo o WhatsApp que dejaste, con propuesta de programa y duración.",
 };
+
+/**
+ * Fixed copy of the contact section's frame: the letter the form is written
+ * on, its button and the captions of the contact details under it.
+ */
+export const CONTACT_COPY = {
+  label: "(05) · Contacto",
+  addressee: "Para: Cuarteto Fratres",
+  submit: "Enviar solicitud",
+  submitting: "Enviando…",
+  email: "Correo",
+  whatsapp: "WhatsApp",
+  whatsappPending: "Por confirmar",
+  social: "Redes",
+} as const;

@@ -3,7 +3,7 @@ import "./logo.comp.css";
 
 interface LogoProps {
   /** `ink` paints the mark in ink (for ivory grounds); `ivory` or `lime` for the dark ones. */
-  theme?: "ink" | "ivory" | "lime";
+  theme?: "ink" | "ivory" | "lime" | "olive";
   /** Height of the mark in px; the width follows the 310×345 ratio. */
   height?: number;
   href?: string;

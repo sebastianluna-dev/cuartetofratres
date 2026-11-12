@@ -1,77 +1,162 @@
 .contact {
-  & .contact__inner {
-    padding-top: clamp(64px, 8vw, 110px);
-    padding-bottom: clamp(74px, 11vw, 150px);
+  padding: clamp(48px, 6vw, 96px) 0 0;
+  border-top: 1px solid var(--color-divider-soft-on-ivory);
+
+  & .contact__label {
+    margin-bottom: 14px;
+    text-align: center;
   }
 
-  /* Side by side only where the form can hold its own rows: below that the
-     two columns would leave it about 450px, and the caption column plus the
-     four event chips do not fit in what is left. */
-  & .contact__grid {
+  & .section-title {
+    margin-bottom: clamp(44px, 5vw, 72px);
+  }
+
+  & .contact__desk {
+    position: relative;
+    max-width: 940px;
+    margin: 0 auto;
+  }
+
+  & .contact__under {
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+    background: var(--color-ivory-soft);
+    box-shadow: 0 0 0 1px rgba(18, 20, 24, 0.06);
+    transform: rotate(-1.4deg);
+  }
+
+  & .contact__sheet {
+    position: relative;
+    padding: clamp(24px, 5vw, 64px);
+    border-radius: 6px;
+    background: #fbfaf8;
+    box-shadow:
+      0 34px 60px -44px rgba(18, 20, 24, 0.5),
+      0 0 0 1px rgba(18, 20, 24, 0.07);
+  }
+
+  /* The monogram as the letter's seal: it turns a little when the sheet is hovered. */
+  & .contact__seal {
+    position: absolute;
+    right: clamp(14px, 4vw, 52px);
+    top: -36px;
+    display: grid;
+    place-items: center;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: var(--color-lime);
+    box-shadow: 0 12px 24px -14px rgba(18, 20, 24, 0.55);
+    transform: rotate(9deg);
+    transition: transform 0.9s var(--ease-stage);
+  }
+
+  & .contact__sheet:hover .contact__seal {
+    transform: rotate(-4deg);
+  }
+
+  & .contact__seal-mark {
+    width: 40px;
+    height: 45px;
+    fill: var(--color-ink);
+  }
+
+  /* Leaves room on the right for the seal. */
+  & .contact__head {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
-    gap: clamp(32px, 5vw, 72px);
-
-    @media (max-width: 1279px) {
-      flex-direction: column;
-      align-items: stretch;
-    }
-  }
-
-  & .contact__intro {
-    flex: 1 1 400px;
-    min-width: 0;
-  }
-
-  & .contact__eyebrow {
-    margin-bottom: 22px;
-  }
-
-  /* The display face, as in the other section headings: uppercase, set
-     tight. The measure is narrower than the serif's because the caps run
-     wider at the same size. */
-  & .contact__title {
-    max-width: 14em;
-    font-family: var(--font-display);
-    font-size: clamp(44px, 5.6vw, 72px);
-    line-height: 1;
-    letter-spacing: 0.01em;
+    justify-content: space-between;
+    gap: 10px 24px;
+    padding: 0 120px 18px 0;
+    border-bottom: 1px solid var(--color-divider-on-ivory);
+    font-family: var(--font-label);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
+    color: var(--color-muted-on-ivory);
   }
 
   & .contact__lead {
-    margin-top: 22px;
-    max-width: 32em;
-    font-size: 18px;
+    max-width: 62ch;
+    margin: 26px 0 4px;
+    font-size: clamp(16px, 1.2vw, 18px);
+    font-weight: 400;
     line-height: 1.75;
-    color: #444141;
+    color: var(--color-text-soft-on-ivory);
     text-wrap: pretty;
   }
 
-  & .contact__form {
-    flex: 1 1 420px;
-    min-width: 0;
+  & .contact__details {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px 32px;
+    margin-top: clamp(28px, 4vw, 48px);
+    padding-top: 26px;
+    border-top: 1px dashed rgba(18, 20, 24, 0.4);
   }
 
-  /* Stacked, the main axis is vertical and those bases would be read as
-     heights: the intro would be padded out to 400px whatever it says, and the
-     space would look like a gap before the form. */
-  @media (max-width: 1279px) {
-    & .contact__intro,
-    & .contact__form {
-      flex: 0 0 auto;
+  & .contact__detail-name {
+    margin-bottom: 10px;
+    font-family: var(--font-label);
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-on-ivory);
+  }
+
+  & .contact__detail-value {
+    font-family: var(--font-label);
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--color-text-soft-on-ivory);
+    overflow-wrap: anywhere;
+
+    &.contact__detail-value_kind_list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px 14px;
     }
   }
 
-  @media (max-width: 767px) {
-    & .contact__inner {
-      padding-top: 40px;
-      padding-bottom: 60px;
+  & .contact__link {
+    border-bottom: 1px solid currentColor;
+    color: var(--color-ink);
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--color-olive);
+    }
+  }
+
+  @media (max-width: 760px) {
+    & .contact__seal {
+      top: -30px;
+      width: 76px;
+      height: 76px;
     }
 
-    & .contact__title {
-      font-size: 38px;
+    & .contact__seal-mark {
+      width: 32px;
+      height: 36px;
+    }
+
+    & .contact__head {
+      padding-right: 96px;
+    }
+
+    & .contact__details {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    & .contact__detail:first-child {
+      grid-column: 1 / -1;
     }
   }
 }
