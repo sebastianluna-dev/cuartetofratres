@@ -28,6 +28,7 @@ describe("mapMember", () => {
   it("maps the instrument label and the short name", () => {
     expect(mapMember(member())).toMatchObject({
       id: "2",
+      slug: "lucia-paredes",
       instrument: "Violín",
       shortName: "Lucía Paredes",
       photoPosition: "50% 30%",
