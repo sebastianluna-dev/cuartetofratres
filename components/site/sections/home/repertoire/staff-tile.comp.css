@@ -4,9 +4,12 @@
   justify-content: center;
   flex: 0 0 auto;
   border-radius: 8px;
-  background: var(--color-ink-tile);
-  color: var(--color-text-on-ink);
+  background: var(--color-ivory-soft);
+  color: var(--color-ink);
   overflow: hidden;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 
   & svg {
     display: block;

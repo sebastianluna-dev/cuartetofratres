@@ -1,48 +1,62 @@
 .transport {
-  --transport-glyph: rgba(242, 244, 243, 0.7);
+  /* The step glyphs, the disc of the toggle and the glyph drawn on it. */
+  --transport-glyph: var(--color-ink);
+  --transport-disc: var(--color-ink);
+  --transport-disc-glyph: var(--color-ivory);
 
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
 
   & .transport__step {
     display: flex;
     align-items: center;
-    gap: 3px;
-    padding: 4px;
+    justify-content: center;
+    gap: 2px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    transition: background 0.25s ease;
+
+    &:hover {
+      background: rgba(18, 20, 24, 0.07);
+    }
   }
 
   & .transport__bar {
-    width: 3px;
-    height: 18px;
+    width: 2.5px;
+    height: 13px;
     background: var(--transport-glyph);
   }
 
   & .transport__triangle {
     width: 0;
     height: 0;
-    border-left: 13px solid var(--transport-glyph);
-    border-top: 9px solid transparent;
-    border-bottom: 9px solid transparent;
+    border-left: 10px solid var(--transport-glyph);
+    border-top: 6.5px solid transparent;
+    border-bottom: 6.5px solid transparent;
 
     &.transport__triangle_dir_back {
       border-left: 0;
-      border-right: 13px solid var(--transport-glyph);
+      border-right: 10px solid var(--transport-glyph);
     }
   }
 
-  /* No disc behind the glyph: play and pause are drawn in ivory, like the
-     step buttons, and keep a 48 px tap area. */
+  /* A solid disc: the one filled shape of the card. */
   & .transport__toggle {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 56px;
-    height: 56px;
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
-    transition: transform 0.3s ease;
+    background: var(--transport-disc);
+    transition:
+      transform 0.3s ease,
+      background 0.3s ease;
 
     &:hover {
+      background: var(--color-ink-soft);
       transform: scale(1.06);
     }
 
@@ -55,9 +69,9 @@
     width: 0;
     height: 0;
     margin-left: 4px;
-    border-left: 21px solid var(--color-ivory);
-    border-top: 13px solid transparent;
-    border-bottom: 13px solid transparent;
+    border-left: 15px solid var(--transport-disc-glyph);
+    border-top: 9.5px solid transparent;
+    border-bottom: 9.5px solid transparent;
   }
 
   & .transport__pause {
@@ -65,14 +79,14 @@
     gap: 5px;
 
     & span {
-      width: 5px;
-      height: 24px;
-      background: var(--color-ivory);
+      width: 4.5px;
+      height: 18px;
+      background: var(--transport-disc-glyph);
     }
   }
 
   &.transport_size_compact {
-    gap: 16px;
+    gap: 10px;
 
     & .transport__toggle {
       width: 48px;
@@ -80,14 +94,14 @@
     }
 
     & .transport__play {
-      border-left-width: 17px;
-      border-top-width: 10.5px;
-      border-bottom-width: 10.5px;
+      border-left-width: 13px;
+      border-top-width: 8px;
+      border-bottom-width: 8px;
     }
 
     & .transport__pause span {
       width: 4px;
-      height: 19px;
+      height: 15px;
     }
   }
 }

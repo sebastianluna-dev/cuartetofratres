@@ -11,7 +11,8 @@ interface TransportControlsProps {
 }
 
 // Previous, play/pause and next: the same trio on the card and on the mini
-// player. The glyphs are CSS shapes, so they take the current colours.
+// player. The glyphs are CSS shapes, so they take the block's colours: ink
+// steps and an ink disc with the play glyph in ivory.
 export function TransportControls({ playing, onPrevious, onToggle, onNext, size = "regular" }: TransportControlsProps) {
   return (
     <div className={`transport transport_size_${size}`}>

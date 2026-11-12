@@ -22,10 +22,11 @@ interface NowPlayingCardProps {
   onSeek: (fraction: number) => void;
 }
 
-// The dark card with the selected work: the quartet's photo under a lime
+// The white card with the selected work: the quartet's photo under a lime
 // clef as the cover, scrolling title, composer
 // and category, the staff-shaped progress, the clocks and the transport. The
 // play button's pressed state says whether it is playing; no status line.
+// While it plays, the cover's photo drifts closer, very slowly.
 // Nothing here starts on its own: the visitor presses play. The ref lets the
 // player watch when the card scrolls out of view.
 export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(function NowPlayingCard(
@@ -35,7 +36,7 @@ export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(fu
   const fraction = track.durationSeconds > 0 ? elapsed / track.durationSeconds : 0;
 
   return (
-    <div ref={ref} className="now-playing">
+    <div ref={ref} className={`now-playing${playing ? " now-playing_playing" : ""}`}>
       <div className="now-playing__work">
         <div className="now-playing__cover">
           <Image className="now-playing__cover-photo" src={cover.src} alt="" fill sizes="192px" />

@@ -53,6 +53,8 @@ export const PLAYER_COPY = {
   toggle: "Reproducir o pausar",
   position: "Posición en la pista",
   filters: "Filtrar repertorio",
+  /** Small print under the player while there are no studio recordings. */
+  simulated: "Reproducción simulada: las grabaciones están en preparación.",
 } as const;
 
 // Seed of the categories and fallback while the CMS has none, in tab order.

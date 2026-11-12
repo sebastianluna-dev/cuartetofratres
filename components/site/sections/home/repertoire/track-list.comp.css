@@ -4,30 +4,35 @@
   gap: 14px;
   min-width: 0;
 
+  /* Ruled like a programme: a hairline over the first row and under each one. */
   & .track-list__items {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    border-top: 1px solid var(--color-divider-soft-on-ivory);
   }
 
   & .track-list__empty {
     padding: clamp(24px, 3vw, 34px);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--site-radius);
+    background: #fff;
+    box-shadow: inset 0 0 0 1px var(--color-divider-soft-on-ivory);
   }
 
   & .track-list__empty-title {
     margin-bottom: 10px;
-    font-family: var(--font-heading);
-    font-size: 24px;
-    color: var(--color-text-on-ink);
+    font-family: var(--font-accent);
+    font-size: clamp(26px, 2.4vw, 32px);
+    font-style: italic;
+    line-height: 1.1;
+    color: var(--color-ink);
   }
 
   & .track-list__empty-text {
     max-width: 36em;
     margin-bottom: 20px;
     font-size: 16px;
-    line-height: 1.75;
-    color: rgba(242, 244, 243, 0.68);
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--color-text-soft-on-ivory);
   }
 }

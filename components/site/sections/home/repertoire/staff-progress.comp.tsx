@@ -12,10 +12,10 @@ interface StaffProgressProps {
 
 const KEY_STEP = 0.05;
 
-// Four staff lines, five note heads and the closing double bar. The whole
-// staff is drawn twice: faint underneath and bright on top, and the bright
-// copy is clipped to the played part, so the notes light up as the music
-// passes them. A double bar line is the playhead. Click to seek; with the
+// Five staff lines, five round note heads and the closing double bar. The
+// whole staff is drawn twice: faint ink underneath and olive on top, and the
+// olive copy is clipped to the played part, so the notes take colour as the
+// music passes them. A double bar line is the playhead. Click to seek; with the
 // keyboard it is a slider (arrows move 5 %, Home/End jump).
 export function StaffProgress({ fraction, onSeek }: StaffProgressProps) {
   const percent = Math.round(Math.min(1, Math.max(0, fraction)) * 1000) / 10;

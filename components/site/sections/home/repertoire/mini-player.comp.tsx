@@ -58,7 +58,7 @@ export function MiniPlayer({
   return (
     <div
       ref={ref}
-      className={["mini-player ink-grain", leaving && "mini-player_leaving"].filter(Boolean).join(" ")}
+      className={["mini-player", leaving && "mini-player_leaving"].filter(Boolean).join(" ")}
       role="region"
       aria-label={PLAYER_COPY.playingStatus}
     >

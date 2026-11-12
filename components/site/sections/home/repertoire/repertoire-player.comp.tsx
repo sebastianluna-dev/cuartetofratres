@@ -5,6 +5,7 @@ import { useInView } from "@/hooks/use-in-view.hook";
 import { useMediaQuery } from "@/hooks/use-media-query.hook";
 import { useMiniPlayerPresence } from "@/hooks/use-mini-player-presence.hook";
 import { useSamplePlayer } from "@/hooks/use-sample-player.hook";
+import { PLAYER_COPY } from "@/constants/repertoire.const";
 import { buildRepertoireFilters } from "@/lib/build-repertoire-filters";
 import { filterRepertoire } from "@/lib/filter-repertoire";
 import type { RepertoireContent } from "@/services/repertoire/repertoire.types";
@@ -16,6 +17,8 @@ import "./repertoire-player.comp.css";
 
 interface RepertoirePlayerProps {
   content: RepertoireContent;
+  /** Id of the title, which names the section. */
+  titleId: string;
 }
 
 /** The card counts as on screen while at least half of it is visible. */
@@ -32,7 +35,7 @@ const PHONE_QUERY = "(max-width: 767px)";
 // soon as a work is in progress and stays through a pause. There the list
 // also starts with no row marked, because nothing on screen would explain why
 // one of them looks chosen before the visitor has chosen it.
-export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
+export function RepertoirePlayer({ content, titleId }: RepertoirePlayerProps) {
   const { tracks } = content;
   const [categoryId, setCategoryId] = useState<string | null>(null);
   const player = useSamplePlayer(tracks.map((track) => track.durationSeconds));
@@ -56,7 +59,9 @@ export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
   return (
     <div className="repertoire-player">
       <div className="repertoire-player__head">
-        <h2 className="repertoire-player__title">{content.title}</h2>
+        <h2 id={titleId} className="section-title">
+          {content.title}
+        </h2>
       </div>
 
       <div className="repertoire-player__body">
@@ -73,6 +78,8 @@ export function RepertoirePlayer({ content }: RepertoirePlayerProps) {
           />
         </div>
       </div>
+
+      <p className="repertoire-player__note">{PLAYER_COPY.simulated}</p>
 
       {selectedTrack && miniPhase !== "hidden" && (
         <MiniPlayer track={selectedTrack} leaving={miniPhase === "leaving"} {...transport} />

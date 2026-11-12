@@ -10,9 +10,9 @@ interface TrackListItemProps {
   onSelect: () => void;
 }
 
-// One row of the programme: number, staff tile, title, composer and, at the
-// end, a play glyph that becomes the equaliser while this row plays. The
-// whole row is the button.
+// One ruled row of the programme: number, staff tile, title, composer and, at
+// the end, a play glyph that becomes the equaliser while this row plays. The
+// whole row is the button; the chosen one turns white, with its title in olive.
 export function TrackListItem({ track, number, selected, playing, onSelect }: TrackListItemProps) {
   const classes = ["track-item", selected ? "track-item_selected" : "", playing ? "track-item_playing" : ""]
     .filter(Boolean)

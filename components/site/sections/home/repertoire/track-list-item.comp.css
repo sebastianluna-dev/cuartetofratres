@@ -1,24 +1,35 @@
 .track-item {
+  /* Colour of the play glyph and the equaliser: ink, olive once chosen. */
+  --track-item-mark: var(--color-ink);
+
+  border-bottom: 1px solid var(--color-divider-soft-on-ivory);
+
   & .track-item__button {
     display: flex;
     align-items: center;
     gap: clamp(10px, 1.4vw, 16px);
     width: 100%;
-    padding: 12px 10px;
-    border-radius: 8px;
+    min-height: 68px;
+    padding: 14px 12px;
     text-align: left;
-    transition: background 0.3s ease;
+    transition:
+      background 0.3s ease,
+      padding 0.45s var(--ease-stage);
 
+    /* The row steps in a little under the cursor. */
     &:hover {
-      background: rgba(255, 255, 255, 0.035);
+      padding-left: 20px;
+      background: rgba(18, 20, 24, 0.04);
     }
   }
 
   & .track-item__number {
     flex: 0 0 auto;
-    width: 18px;
-    font-size: 12px;
-    color: rgba(242, 244, 243, 0.42);
+    width: 26px;
+    font-family: var(--font-display);
+    font-size: 24px;
+    line-height: 1;
+    color: var(--color-olive);
     font-variant-numeric: tabular-nums;
   }
 
@@ -29,29 +40,35 @@
   & .track-item__title {
     flex: 1 1 auto;
     min-width: 0;
-    font-family: var(--font-heading);
-    font-size: clamp(17px, 1.8vw, 20px);
-    line-height: 1.25;
-    color: var(--color-muted-on-ink);
+    font-family: var(--font-accent);
+    font-size: clamp(22px, 2.1vw, 28px);
+    font-style: italic;
+    line-height: 1.15;
+    color: var(--color-ink);
     transition: color 0.3s ease;
   }
 
   & .track-item__composer {
-    flex: 0 1 150px;
+    flex: 0 1 170px;
     min-width: 0;
-    font-size: 12.5px;
-    color: rgba(242, 244, 243, 0.55);
+    font-family: var(--font-label);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted-on-ivory);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  /* The play glyph and the equaliser share one 14 px square; only one shows. */
+  /* The play glyph and the equaliser share one 16 px square; only one shows. */
   & .track-item__state {
     position: relative;
     flex: 0 0 auto;
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
   }
 
   & .track-item__equalizer {
@@ -59,40 +76,47 @@
     inset: 0;
     display: flex;
     align-items: flex-end;
-    gap: 2.5px;
+    gap: 3px;
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 
   & .track-item__bar {
     display: block;
-    width: 2px;
+    width: 3px;
     height: 100%;
-    background: var(--color-text-on-ink);
+    background: var(--track-item-mark);
     transform-origin: bottom;
     transform: scaleY(0.25);
   }
 
   & .track-item__play {
     position: absolute;
-    top: 1px;
-    left: 2px;
+    top: 2px;
+    left: 4px;
     width: 0;
     height: 0;
-    border-left: 9px solid rgba(242, 244, 243, 0.55);
+    border-left: 9px solid var(--track-item-mark);
     border-top: 6px solid transparent;
     border-bottom: 6px solid transparent;
     transition: opacity 0.3s ease;
   }
 
   &.track-item_selected {
-    /* A faint white wash over the grain, like the card. */
+    --track-item-mark: var(--color-olive);
+
+    /* A sheet of white, like the card. */
     & .track-item__button {
-      background: rgba(255, 255, 255, 0.05);
+      background: #fff;
     }
 
     & .track-item__title {
-      color: var(--color-text-on-ink);
+      color: var(--color-olive);
+    }
+
+    & .staff-tile {
+      background: var(--color-olive);
+      color: var(--color-lime);
     }
   }
 
@@ -131,20 +155,23 @@
       text-overflow: ellipsis;
     }
 
-    /* No wash behind the chosen track here: at this width it reads as a block
-       of a different colour rather than as a mark. The lime title marks it. */
+    /* No sheet behind the chosen track here: at this width it reads as a
+       block of a different colour rather than as a mark. The olive title and
+       the olive tile mark it. */
     &.track-item_selected .track-item__button {
       background: transparent;
     }
 
-    &.track-item_selected .track-item__title {
-      color: var(--color-lime);
-    }
-
-    /* Edge to edge here: the row is narrow enough already. */
+    /* Edge to edge here, and still under the finger: the row is narrow
+       enough already. */
     & .track-item__button {
       gap: 12px;
       padding-inline: 0;
+
+      &:hover {
+        padding-left: 0;
+        background: transparent;
+      }
     }
 
     & .track-item__number {

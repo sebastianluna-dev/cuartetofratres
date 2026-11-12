@@ -1,3 +1,4 @@
+import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
 import type { RepertoireContent, TrackContent } from "@/services/repertoire/repertoire.types";
 import { TrackListItem } from "./track-list-item.comp";
 import "./track-list.comp.css";
@@ -37,8 +38,9 @@ export function TrackList({ tracks, visibleIds, selectedIndex, playing, emptySta
         <div className="track-list__empty">
           <h3 className="track-list__empty-title">{emptyState.title}</h3>
           <p className="track-list__empty-text">{emptyState.text}</p>
-          <a href="#contacto" className="button button_variant_lime">
+          <a href="#contacto" className="pill-button pill-button_variant_ink pill-button_size_small">
             {emptyState.ctaLabel}
+            <ArrowIcon className="pill-button__icon" />
           </a>
         </div>
       )}

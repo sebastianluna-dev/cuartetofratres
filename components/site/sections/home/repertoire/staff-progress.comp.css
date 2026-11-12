@@ -1,65 +1,64 @@
 .staff-progress {
-  --staff-progress-line: 1.2px;
+  /* The unplayed staff, faint, and the colour it takes once played. */
+  --staff-progress-ink: var(--color-ink);
+  --staff-progress-played: var(--color-olive);
 
   position: relative;
   height: 35px;
   cursor: pointer;
+  touch-action: none;
 
-  /* The four lines, drawn as background gradients so they need no markup. */
+  /* The five lines, drawn as one repeating gradient so they need no markup. */
   & .staff-progress__staff {
     position: absolute;
     inset: 0;
-    background-image:
-      linear-gradient(var(--color-ivory), var(--color-ivory)), linear-gradient(var(--color-ivory), var(--color-ivory)),
-      linear-gradient(var(--color-ivory), var(--color-ivory)), linear-gradient(var(--color-ivory), var(--color-ivory));
-    background-size: 100% var(--staff-progress-line);
-    background-position:
-      0 6px,
-      0 13px,
-      0 22px,
-      0 29px;
-    background-repeat: no-repeat;
+    color: var(--staff-progress-played);
+    background-image: repeating-linear-gradient(
+      180deg,
+      transparent 0 3px,
+      currentColor 3px 4.2px,
+      transparent 4.2px 7px
+    );
     pointer-events: none;
 
     &.staff-progress__staff_tone_faint {
+      color: var(--staff-progress-ink);
       opacity: 0.32;
     }
   }
 
+  /* Round heads, tilted the way a pen leaves them. */
   & .staff-progress__note {
     position: absolute;
-    width: 9px;
-    height: 9px;
-    background: var(--color-ivory);
+    width: 11px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    transform: rotate(-18deg);
 
     &:nth-child(1) {
       left: 10%;
-      top: 15px;
-      transform: rotate(3deg);
+      top: 13px;
     }
 
     &:nth-child(2) {
       left: 27%;
-      top: 4px;
-      transform: rotate(-3deg);
+      top: 2px;
     }
 
     &:nth-child(3) {
       left: 45%;
-      top: 17px;
-      transform: rotate(3deg);
+      top: 16px;
     }
 
     &:nth-child(4) {
       left: 63%;
-      top: 2px;
-      transform: rotate(-3deg);
+      top: 6px;
     }
 
     &:nth-child(5) {
       left: 80%;
-      top: 13px;
-      transform: rotate(3deg);
+      top: 20px;
     }
   }
 
@@ -67,17 +66,17 @@
   & .staff-progress__end {
     position: absolute;
     right: 6%;
-    top: 1px;
-    bottom: 1px;
+    top: 3px;
+    bottom: 3px;
     width: 1.4px;
-    background: var(--color-ivory);
+    background: currentColor;
 
     &.staff-progress__end_second {
       right: calc(6% + 5px);
     }
   }
 
-  /* The bright copy; its clip-path follows the elapsed time. */
+  /* The olive copy; its clip-path follows the elapsed time. */
   & .staff-progress__played {
     position: absolute;
     inset: 0;
@@ -90,7 +89,7 @@
     top: 0;
     bottom: 0;
     width: 1.6px;
-    background: var(--color-ivory);
+    background: var(--staff-progress-played);
     pointer-events: none;
 
     &.staff-progress__head_second {
