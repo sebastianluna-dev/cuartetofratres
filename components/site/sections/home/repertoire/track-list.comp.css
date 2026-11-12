@@ -4,6 +4,22 @@
   gap: 14px;
   min-width: 0;
 
+  /* The visible rows and the invisible full programme share one cell, so the
+     list is always as tall as «Todo». */
+  & .track-list__stage {
+    display: grid;
+    align-items: start;
+
+    & > * {
+      grid-area: 1 / 1;
+    }
+  }
+
+  & .track-list__ghost {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
   /* No rules between the rows: only the one under the pointer shows a ground. */
   & .track-list__items {
     display: flex;
@@ -39,7 +55,7 @@
   /* After a change of filter: the rows grow a little into their size and
      fade in, one after the other; the empty card all at once. */
   &.track-list_entering {
-    & .track-item {
+    & .track-list__items:not(.track-list__ghost) .track-item {
       animation: track-list-enter 0.6s var(--ease-stage) calc(var(--order, 0) * 70ms) both;
     }
 
