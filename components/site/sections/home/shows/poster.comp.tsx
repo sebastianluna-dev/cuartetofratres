@@ -6,8 +6,8 @@ import type { PosterTitle } from "@/lib/split-poster-title";
 import "./poster.comp.css";
 
 interface PosterProps {
-  /** `olive` and `graphite` are the dark grounds of a date; `paper` is the invitation. */
-  palette: "olive" | "graphite" | "paper";
+  /** `olive` and `graphite` are the dark grounds of a date; `lime` is the invitation. */
+  palette: "olive" | "graphite" | "lime";
   /** The big figure of the corner (the day) and the line under it. */
   top: ReactNode;
   topNote: string;

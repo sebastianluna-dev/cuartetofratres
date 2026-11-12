@@ -88,7 +88,7 @@ export function ShowPosters({ events, location, labelledBy }: ShowPostersProps) 
         <li className="show-posters__item">
           <Reveal>
             <Poster
-              palette="paper"
+              palette="lime"
               top={invitation.top}
               topNote={invitation.topNote}
               side={invitation.side}

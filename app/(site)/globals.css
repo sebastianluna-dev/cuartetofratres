@@ -254,7 +254,8 @@ strong {
 
 /* Pill call to action. Ivory on ink; `ghost` is the outline on ink and `ink`
    the one for the paper grounds. Lime stays out of the buttons: it is kept for
-   a few small marks (the monogram, the instrument tag, the letter's seal). */
+   the invitation poster and a few small marks (the monogram, the instrument
+   tag, the letter's seal). */
 .pill-button {
   display: inline-flex;
   align-items: center;

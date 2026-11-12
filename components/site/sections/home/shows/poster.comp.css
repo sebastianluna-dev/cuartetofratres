@@ -19,16 +19,13 @@
     --b: #0e1012;
   }
 
-  &.poster_palette_paper {
-    --a: #fff;
-    --b: #f7f6f3;
-    box-shadow:
-      0 30px 60px -36px rgba(18, 20, 24, 0.45),
-      inset 0 0 0 1px var(--color-divider-soft-on-ivory);
+  &.poster_palette_lime {
+    --a: #eef3b4;
+    --b: #dbe289;
     color: var(--color-ink);
   }
 
-  /* Dark veil under the text of a date; the paper poster needs none. */
+  /* Dark veil under the text of a date; the lime poster needs none. */
   &::after {
     content: "";
     position: absolute;
@@ -41,7 +38,7 @@
     pointer-events: none;
   }
 
-  &.poster_palette_paper::after {
+  &.poster_palette_lime::after {
     display: none;
   }
 
@@ -89,9 +86,9 @@
     mask-image: radial-gradient(60% 46% at 52% 34%, #000 22%, transparent 100%);
   }
 
-  &.poster_palette_paper .poster__staff {
+  &.poster_palette_lime .poster__staff {
     color: var(--color-olive);
-    opacity: 0.45;
+    opacity: 0.5;
   }
 
   & .poster__top {
@@ -221,7 +218,7 @@
     }
   }
 
-  &.poster_palette_paper .poster__action {
+  &.poster_palette_lime .poster__action {
     background: var(--color-ink);
     box-shadow: none;
     color: var(--color-ivory);
