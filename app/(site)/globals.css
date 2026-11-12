@@ -36,6 +36,9 @@
      content edges line up from the top of the page to the footer. */
   --site-gutter: clamp(20px, 4.5vw, 72px);
   --site-max-width: 1500px;
+  /* The top bar and the hero open wider than the sections under them, so the
+     first screen does not look small on a large display. */
+  --site-max-width-wide: 1760px;
   /* Anchor offset. The top bar scrolls away with the hero and the floating nav
      sits at the bottom, so nothing covers a section's title. */
   --site-header-offset: 0px;

@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    max-width: calc(var(--site-max-width) - 2 * var(--site-gutter));
+    max-width: calc(var(--site-max-width-wide) - 2 * var(--site-gutter));
     height: 86px;
     margin: 0 auto;
     border-bottom: 1px solid var(--color-divider-on-ink);
