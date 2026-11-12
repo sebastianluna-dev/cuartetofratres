@@ -3,7 +3,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  /* Under the floating nav (60). */
+  /* Under the phone menu (70). */
   z-index: 50;
   /* The paper of the section, lifted off the page by a hairline and a shadow. */
   border-top: 1px solid var(--color-divider-on-ivory);

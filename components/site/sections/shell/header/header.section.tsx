@@ -1,16 +1,17 @@
 import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
 import { Logo } from "@/components/site/shared/logo.comp";
 import { CONTACT_ANCHOR, NAV_ITEMS } from "@/constants/navigation.const";
+import { HeaderMobileMenu } from "./header-mobile-menu.comp";
 import "./header.section.css";
 
-// Thin bar over the top of the hero: it scrolls away with it, and from there
-// on the floating nav takes over. Contact is set apart as the call to action;
-// under 1100px the section links leave and only the monogram and contact stay.
 interface HeaderProps {
   /** "/" on the other pages, so the anchors lead back to the home page; empty on the home page itself. */
   homeHref?: string;
 }
 
+// Thin bar over the top of the hero, scrolling away with it. Contact is set
+// apart as the call to action; under 1100px the section links move into the
+// phone menu and only the monogram, contact and the menu's toggle stay.
 export function Header({ homeHref = "" }: HeaderProps) {
   const contact = NAV_ITEMS.find((item) => item.href === CONTACT_ANCHOR);
 
@@ -35,6 +36,7 @@ export function Header({ homeHref = "" }: HeaderProps) {
             </span>
           </a>
         )}
+        <HeaderMobileMenu homeHref={homeHref} />
       </div>
     </header>
   );

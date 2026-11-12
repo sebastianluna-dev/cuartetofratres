@@ -1,6 +1,5 @@
 import { siteConfig } from "@/config/site.config";
 import { Header } from "@/components/site/sections/shell/header/header.section";
-import { FloatingNav } from "@/components/site/sections/shell/floating-nav/floating-nav.section";
 import { Footer } from "@/components/site/sections/shell/footer/footer.section";
 import { HeroSection } from "@/components/site/sections/home/hero/hero.section";
 import { ShowsSection } from "@/components/site/sections/home/shows/shows.section";
@@ -24,7 +23,6 @@ export default function LandingPage() {
         {sections.contact && <ContactSection />}
       </main>
       <Footer />
-      <FloatingNav />
     </div>
   );
 }

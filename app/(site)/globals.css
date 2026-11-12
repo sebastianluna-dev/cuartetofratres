@@ -40,12 +40,12 @@
   /* The top bar and the hero open wider than the sections under them, so the
      first screen does not look small on a large display. */
   --site-max-width-wide: 1760px;
-  /* Anchor offset. The top bar scrolls away with the hero and the floating nav
-     sits at the bottom, so nothing covers a section's title. */
+  /* Anchor offset. The top bar scrolls away with the hero, so nothing covers a
+     section's title. */
   --site-header-offset: 0px;
   --site-radius: 16px;
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
-  /* Slower start, long tail: the figures of the stages and the floating nav. */
+  /* Slower start, long tail: the figures of the stages and the hover moves. */
   --ease-stage: cubic-bezier(0.2, 0.7, 0.1, 1);
 }
 
