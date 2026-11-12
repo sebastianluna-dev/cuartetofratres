@@ -313,6 +313,10 @@ export interface Audio {
    * Ej.: «Borodin — Notturno (fragmento)».
    */
   title: string;
+  /**
+   * Quién toca en la grabación. Déjalo vacío sólo si es el Cuarteto Fratres; si es otra agrupación, el reproductor lo dice.
+   */
+  performer?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -571,6 +575,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface AudioSelect<T extends boolean = true> {
   title?: T;
+  performer?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -720,9 +725,6 @@ export interface RepertoireSection {
 export interface ContactSection {
   id: number;
   title: string;
-  /**
-   * Escribe {correo} donde deba ir la dirección: se convierte en un enlace para escribir.
-   */
   lead: string;
   sentTitle: string;
   sentText: string;

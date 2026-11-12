@@ -21,6 +21,7 @@ import * as migration_20260620_153255_event_ticket_prices from './20260620_15325
 import * as migration_20260620_162215_contact_eyebrow_removed from './20260620_162215_contact_eyebrow_removed';
 import * as migration_20260620_165530_contact_notice_removed from './20260620_165530_contact_notice_removed';
 import * as migration_20260703_104512_contact_event_fields_removed from './20260703_104512_contact_event_fields_removed';
+import * as migration_20261112_045601_audio_performer from './20261112_045601_audio_performer';
 
 export const migrations = [
   {
@@ -136,6 +137,11 @@ export const migrations = [
   {
     up: migration_20260703_104512_contact_event_fields_removed.up,
     down: migration_20260703_104512_contact_event_fields_removed.down,
-    name: '20260703_104512_contact_event_fields_removed'
+    name: '20260703_104512_contact_event_fields_removed',
+  },
+  {
+    up: migration_20261112_045601_audio_performer.up,
+    down: migration_20261112_045601_audio_performer.down,
+    name: '20261112_045601_audio_performer'
   },
 ];

@@ -39,5 +39,14 @@ export const Audio: CollectionConfig = {
       required: true,
       admin: { description: "Ej.: «Borodin — Notturno (fragmento)»." },
     },
+    {
+      name: "performer",
+      type: "text",
+      label: "Intérpretes",
+      admin: {
+        description:
+          "Quién toca en la grabación. Déjalo vacío sólo si es el Cuarteto Fratres; si es otra agrupación, el reproductor lo dice.",
+      },
+    },
   ],
 };
