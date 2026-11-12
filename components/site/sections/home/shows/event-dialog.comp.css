@@ -10,7 +10,7 @@
   max-height: calc(100dvh - 64px);
   padding: 0;
   border: 0;
-  border-radius: 8px;
+  border-radius: var(--site-radius);
   overflow: hidden;
   background: var(--color-ink);
   color: var(--color-text-on-ink);
@@ -100,18 +100,21 @@
   }
 
   & .event-dialog__band {
-    font-size: 12px;
-    letter-spacing: 0.18em;
+    font-family: var(--font-label);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--color-muted-on-ink);
+    color: var(--color-lime);
   }
 
   & .event-dialog__title {
     margin-top: 16px;
-    max-width: 10em;
-    font-family: var(--font-heading);
-    font-size: clamp(30px, 3vw, 42px);
-    line-height: 1.05;
+    max-width: 9em;
+    font-family: var(--font-display);
+    font-size: clamp(40px, 4vw, 58px);
+    line-height: 0.92;
+    text-transform: uppercase;
     text-wrap: balance;
   }
 
@@ -146,7 +149,8 @@
   }
 
   & .event-dialog__block-label {
-    font-size: 10.5px;
+    font-family: var(--font-label);
+    font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -154,8 +158,9 @@
   }
 
   & .event-dialog__fact-main {
-    font-family: var(--font-heading);
+    font-family: var(--font-accent);
     font-size: clamp(22px, 2vw, 28px);
+    font-style: italic;
     line-height: 1.15;
   }
 
@@ -169,8 +174,10 @@
   & .event-dialog__link {
     display: inline-block;
     margin-top: 12px;
-    font-size: 13px;
-    letter-spacing: 0.1em;
+    font-family: var(--font-label);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--color-text-on-ink);
 
@@ -209,7 +216,7 @@
   }
 
   & .event-dialog__price-amount {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
     font-size: clamp(22px, 2vw, 26px);
     line-height: 1;
     color: var(--color-text-on-ink);
@@ -237,23 +244,29 @@
 
     &::before {
       content: counter(obra, decimal-leading-zero);
-      font-family: var(--font-heading);
-      font-size: 13px;
+      font-family: var(--font-label);
+      font-size: 14px;
+      font-weight: 500;
       color: var(--color-muted-on-ink);
       font-variant-numeric: tabular-nums;
     }
   }
 
   & .event-dialog__program-title {
-    font-family: var(--font-heading);
-    font-size: clamp(19px, 1.6vw, 22px);
-    line-height: 1.25;
+    font-family: var(--font-accent);
+    font-size: clamp(21px, 1.9vw, 26px);
+    font-style: italic;
+    line-height: 1.2;
   }
 
   /* The composer sits against the right edge of the list. */
   & .event-dialog__program-composer {
     margin-left: auto;
-    font-size: 14px;
+    font-family: var(--font-label);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--color-muted-on-ink);
   }
 
@@ -312,7 +325,8 @@
       padding-left: 34px;
     }
 
-    & .event-dialog__actions .button {
+    & .event-dialog__actions .pill-button {
+      justify-content: center;
       width: 100%;
     }
   }

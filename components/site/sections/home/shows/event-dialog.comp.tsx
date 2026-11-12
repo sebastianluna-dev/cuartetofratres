@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
 import { EVENT_DIALOG_LABELS } from "@/constants/events.const";
 import { formatEventDateLong } from "@/lib/format-event-date";
 import type { EventContent } from "@/services/events/events.types";
@@ -165,17 +166,14 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
 
             <div className="event-dialog__actions">
               {event.ticketsUrl ? (
-                <a
-                  href={event.ticketsUrl}
-                  className="button button_variant_outline-ivory"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={event.ticketsUrl} className="pill-button" target="_blank" rel="noopener noreferrer">
                   {EVENT_DIALOG_LABELS.tickets}
+                  <ArrowIcon direction="up-right" className="pill-button__icon" />
                 </a>
               ) : (
-                <a href="#contacto" className="button button_variant_lime" onClick={close}>
+                <a href="#contacto" className="pill-button" onClick={close}>
                   {EVENT_DIALOG_LABELS.inquire}
+                  <ArrowIcon className="pill-button__icon" />
                 </a>
               )}
             </div>
