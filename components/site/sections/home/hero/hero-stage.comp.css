@@ -7,13 +7,13 @@
   height: var(--hero-height);
   pointer-events: none;
 
-  /* The room: wider than the stage on its left, so the photo shows between
-     the name and the musicians and its right side runs behind them. Every
-     edge dissolves into the ground. */
+  /* The room: it lies mostly to the left of the stage, between the name and
+     the musicians, and only its right side runs behind the first of them.
+     Every edge dissolves into the ground. */
   & .hero-stage__room {
     position: absolute;
-    left: -36%;
-    right: 14%;
+    left: -58%;
+    right: 66%;
     top: 14%;
     bottom: 4%;
     translate: calc(var(--lean-x, 0px) * 0.25) calc(var(--lean-y, 0px) * 0.15);
@@ -23,6 +23,7 @@
 
   & .hero-stage__room-image {
     object-fit: cover;
+    object-position: 22% 50%;
     filter: grayscale(1) contrast(0.95) brightness(0.78);
     opacity: 0.56;
   }
@@ -76,11 +77,11 @@
     animation: hero-stage-rise 1.6s var(--ease-stage) calc(0.2s + var(--order) * 0.14s) both;
   }
 
-  /* The ground the figures sink into; as wide as the room, so its left side
-     sinks with them. */
+  /* The ground the figures sink into. It runs to the left edge of the hero
+     (which clips it), so the room sinks with them and no seam shows. */
   & .hero-stage__floor {
     position: absolute;
-    left: -36%;
+    left: -100vw;
     right: 0;
     bottom: 0;
     z-index: 5;
