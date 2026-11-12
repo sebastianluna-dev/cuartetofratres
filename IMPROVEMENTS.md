@@ -48,20 +48,17 @@ real page before it goes live.
 
 ### 8. Redesign «punto medio»: what is left — [Design]
 
-The hero, the dates, the members and the about section follow the approved redesign
-(`propuestas-rediseno/05-punto-medio.html`). Still in the earlier look:
+Every section now follows the approved redesign (`propuestas-rediseno/05-punto-medio.html`, with
+the repertoire of `06-repertorio.html` R1 «Papel» and the contact of `07-contacto.html` C1
+«Carta»). Left over:
 
-- **Repertoire and contact**: waiting for the pick among the five options of each
-  (`propuestas-rediseno/06-repertorio.html`, `07-contacto.html`). The repertoire keeps its
-  distribution and behaviour; only the look changes.
-- **Footer and event window**: restyle with the new type (`--font-label`, `--font-accent`) once
-  the contact section is settled, since the closing band may absorb the footer.
-- **Forum** (`--font-heading`) goes away with the last section that uses it; so do the
-  `button_variant_*` classes, replaced by `pill-button`.
-- **Hero Global**: `image` and `imagePosition` are no longer drawn. Either reuse the photo in the
-  closing band or drop the fields with a migration.
-- **Fixed copy**: the hero's frame, the posters' labels and «Conoce al cuarteto» live in
-  `constants/`. Move them to the Globals (with a migration) if the quartet needs to edit them.
+- **Hero Global**: `image` and `imagePosition` are no longer drawn. Reuse the photo somewhere or
+  drop the fields with a migration.
+- **Fixed copy**: the hero's frame, the posters' labels, «Conoce al cuarteto», the letter's
+  captions and the player's «Reproducción simulada» line live in `constants/`. Move them to the
+  Globals (with a migration) if the quartet needs to edit them.
+- **Three paper sections in a row** (repertoire, about, contact): the about section sits on the
+  darker paper (`section_theme_paper`) to set it apart. Revisit if the page needs a dark band there.
 
 ## LOW priority
 
