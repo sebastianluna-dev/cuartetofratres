@@ -3,31 +3,39 @@
   flex-wrap: wrap;
   gap: 8px;
 
+  /* Small solid chips, like a music app's: a soft ground for the others,
+     ink for the active one. */
   & .repertoire-filters__pill {
-    min-height: 44px;
-    padding: 0 20px;
+    position: relative;
+    min-height: 32px;
+    padding: 0 14px;
     border-radius: 999px;
-    box-shadow: inset 0 0 0 1px rgba(18, 20, 24, 0.4);
+    background: #e2e1df;
     /* The rounded face of the body copy (the hero's description), as written. */
     font-family: var(--font-body);
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1;
     white-space: nowrap;
     color: var(--color-ink);
     transition:
       background 0.25s ease,
-      color 0.25s ease,
-      box-shadow 0.25s ease;
+      color 0.25s ease;
 
-    /* The active pill keeps its ink ground under the cursor. */
+    /* The chip is drawn 32px tall; the finger still gets 44. */
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -6px 0;
+    }
+
+    /* The active chip keeps its ink ground under the cursor. */
     &:hover:not(.repertoire-filters__pill_active) {
-      background: rgba(18, 20, 24, 0.07);
+      background: #d6d5d3;
     }
 
     &.repertoire-filters__pill_active {
       background: var(--color-ink);
-      box-shadow: none;
       color: var(--color-ivory);
     }
   }
