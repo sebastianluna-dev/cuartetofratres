@@ -12,9 +12,11 @@ Backlog of the project's technical debt and improvements. Every entry carries an
 
 ### 1. Recordings of the repertoire — [Content]
 
-The player plays real files now (`hooks/use-sample-player.hook.ts`). The local database holds four
-reference recordings by other ensembles, supplied for development: their rights and most of their
-performers («Por confirmar») are unknown, so they must not be uploaded to production. Replace them
+The player plays real files now (`hooks/use-sample-player.hook.ts`). The local database holds eight
+reference recordings by other ensembles, supplied for development (four works of the programme
+plus two pop covers and two wedding covers: «Viva la Vida», «Skyfall», «Love Story», «Por una
+cabeza»): their rights are unknown and some performers are «Por confirmar», so they must not be
+uploaded to production. The pop covers are also songs under copyright. Replace them
 with the quartet's own recordings. The player does not credit performers (the user's call, 2026-11-12),
 so a recording by another ensemble would pass for the quartet's: do not publish one without their
 permission. Piazzolla's and Elizondo's works are under
