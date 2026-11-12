@@ -56,6 +56,11 @@ Every section now follows the approved redesign (`propuestas-rediseno/05-punto-m
 the repertoire of `06-repertorio.html` R1 «Papel» and the contact of `07-contacto.html` C1
 «Carta»). Left over:
 
+- **Font review panel** (`sections/shell/font-preview`, `constants/title-fonts.const.ts`): a
+  floating «Fuentes» panel, rendered only when `NEXT_PUBLIC_APP_ENV` is not `production`, that
+  tries 25 faces on the section titles. Once a face is chosen, set it in `globals.css` (a token
+  `--font-title` for `.section-title`, self-hosted in `public/fonts`) and delete the panel, its
+  constants and its line in `landing-page.tsx`.
 - **Hero Global**: `image`, `imagePosition` and `eventsHeading` are no longer drawn (the dates
   section is titled «Cartelera», fixed in `constants/events.const.ts`). Reuse them or drop the
   fields with a migration.

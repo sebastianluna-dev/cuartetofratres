@@ -1,6 +1,7 @@
 import { siteConfig } from "@/config/site.config";
 import { Header } from "@/components/site/sections/shell/header/header.section";
 import { Footer } from "@/components/site/sections/shell/footer/footer.section";
+import { FontPreview } from "@/components/site/sections/shell/font-preview/font-preview.section";
 import { HeroSection } from "@/components/site/sections/home/hero/hero.section";
 import { ShowsSection } from "@/components/site/sections/home/shows/shows.section";
 import { MembersSection } from "@/components/site/sections/home/members/members.section";
@@ -23,6 +24,8 @@ export default function LandingPage() {
         {sections.contact && <ContactSection />}
       </main>
       <Footer />
+      {/* Review tool for the titles' face; never in production. */}
+      {process.env.NEXT_PUBLIC_APP_ENV !== "production" && <FontPreview />}
     </div>
   );
 }
