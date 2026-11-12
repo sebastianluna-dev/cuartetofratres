@@ -92,7 +92,7 @@
   }
 
   & .site-header__contact:hover .site-header__contact-mark {
-    background: var(--color-lime);
+    background: var(--color-ivory);
     box-shadow: none;
     color: var(--color-ink);
   }

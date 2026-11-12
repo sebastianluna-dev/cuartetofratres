@@ -9,7 +9,7 @@ const HERO_ID = "inicio";
 const ANCHORS = NAV_ITEMS.map((item) => item.href);
 
 // Pill fixed to the bottom of the screen once the hero is behind: the sections
-// of the page with the current one marked by a lime pill that slides under the
+// of the page with the current one marked by an ivory pill that slides under the
 // links. On the phone the list scrolls sideways and follows the current link.
 export function FloatingNav() {
   const { pastHero, activeIndex } = useSectionSpy(HERO_ID, ANCHORS);

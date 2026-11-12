@@ -26,12 +26,11 @@ export const HERO_DEFAULTS: HeroDefaults = {
 
 /**
  * Fixed copy of the hero's frame. It is not in the CMS: these lines belong to
- * the composition (the label over the name, the answer under it, the seal),
+ * the composition (the label over the name, the link to the members, the seal),
  * not to what the quartet edits.
  */
 export const HERO_COPY = {
   kicker: "Cuarteto de cuerdas",
-  accent: "música de cámara.",
   membersLink: "Conoce al cuarteto",
   occasions: "Conciertos · Ceremonias · Eventos privados",
   /** Runs around the seal; the trailing separator closes the circle. */

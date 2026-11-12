@@ -30,7 +30,6 @@ export async function HeroSection() {
                 {word}{" "}
               </span>
             ))}
-            <em className="hero__title-accent">{HERO_COPY.accent}</em>
           </h1>
           <p className="hero__lead">{hero.lead}</p>
           <div className="hero__actions">

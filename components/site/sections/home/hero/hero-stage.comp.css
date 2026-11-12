@@ -14,7 +14,7 @@
     width: 96%;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: radial-gradient(closest-side, rgba(236, 240, 196, 0.13), transparent);
+    background: radial-gradient(closest-side, rgba(242, 244, 243, 0.11), transparent);
     transform: translate(-50%, -50%);
   }
 

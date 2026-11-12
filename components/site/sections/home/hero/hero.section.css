@@ -59,19 +59,6 @@
     white-space: nowrap;
   }
 
-  & .hero__title-accent {
-    display: block;
-    margin-top: 0.06em;
-    font-family: var(--font-accent);
-    font-size: 0.56em;
-    font-style: italic;
-    line-height: 1;
-    letter-spacing: -0.01em;
-    text-transform: none;
-    white-space: nowrap;
-    color: var(--color-lime);
-  }
-
   & .hero__lead {
     max-width: 40ch;
     margin-top: clamp(14px, 2.4vh, 26px);
@@ -107,7 +94,6 @@
     flex: none;
     width: 22px;
     height: 22px;
-    color: var(--color-lime);
   }
 
   & .hero__link-text {
@@ -139,7 +125,6 @@
     flex: none;
     width: 34px;
     height: 20px;
-    color: var(--color-lime);
   }
 
   /* Just left of the stage, level with the foot line. */
@@ -186,7 +171,7 @@
   }
 
   & .hero__seal-mark {
-    fill: var(--color-lime);
+    fill: var(--color-text-on-ink);
   }
 
   /* Tablet and phone: text first, the stage under it, the foot line over the

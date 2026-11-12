@@ -11,7 +11,7 @@
     width: 118%;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: radial-gradient(closest-side, rgba(236, 240, 196, 0.15), transparent);
+    background: radial-gradient(closest-side, rgba(242, 244, 243, 0.13), transparent);
     opacity: 0;
     transform: translate(-50%, -50%);
     transition: opacity 0.8s ease;
@@ -69,7 +69,7 @@
   }
 
   &.member-portrait_active .member-portrait__caption {
-    border-top-color: var(--color-lime);
+    border-top-color: var(--color-text-on-ink);
   }
 
   & .member-portrait__name {

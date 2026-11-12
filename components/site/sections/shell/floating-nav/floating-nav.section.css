@@ -50,7 +50,7 @@
     left: 0;
     width: 0;
     border-radius: 999px;
-    background: var(--color-lime);
+    background: var(--color-ivory);
     opacity: 0;
     transition:
       transform 0.6s var(--ease-stage),

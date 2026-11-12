@@ -76,7 +76,7 @@ The components never read Payload: each section asks `services/<domain>/*.servic
 
 The launch photos are in `public/images` (JPEG at quality 82, the group's photo at 92; the four portraits are transparent WebP cut-outs; `next/image` serves AVIF/WebP) and the fonts in `public/fonts` (Fratres Display for the titles in capitals, Instrument Serif italic for the accent, Barlow Condensed for labels and Mulish for copy; all but the first are Latin subsets from Google Fonts).
 
-The hero's stage is art direction, not content: the four full cut-outs in `public/images/stage` are placed by hand in `constants/hero-stage.const.ts`, so that the heads read the same size although the photos were framed differently. A new photo of a musician means a new cut-out there and new numbers in that file. The lines of the hero's frame (the label over the name, the italic answer under it, the seal) are fixed copy in `constants/hero.const.ts`, like the labels of the posters in `constants/events.const.ts`.
+The hero's stage is art direction, not content: the four full cut-outs in `public/images/stage` are placed by hand in `constants/hero-stage.const.ts`, so that the heads read the same size although the photos were framed differently. A new photo of a musician means a new cut-out there and new numbers in that file. The lines of the hero's frame (the label over the name, the link to the members, the seal) are fixed copy in `constants/hero.const.ts`, like the labels of the posters in `constants/events.const.ts`.
 
 ## Repertoire player
 

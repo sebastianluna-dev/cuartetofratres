@@ -252,7 +252,9 @@ strong {
   text-wrap: balance;
 }
 
-/* Pill call to action. Lime on any ground; `ghost` is the outline on ink. */
+/* Pill call to action. Ivory on ink; `ghost` is the outline on ink and `ink`
+   the one for the paper grounds. Lime stays out of the buttons: it is kept for
+   a few small marks (the monogram, the instrument tag, the letter's seal). */
 .pill-button {
   display: inline-flex;
   align-items: center;
@@ -260,7 +262,7 @@ strong {
   min-height: 48px;
   padding: 0 24px;
   border-radius: 999px;
-  background: var(--color-lime);
+  background: var(--color-ivory);
   color: var(--color-ink);
   font-family: var(--font-label);
   font-size: 15px;
@@ -274,7 +276,7 @@ strong {
     color 0.3s ease;
 
   &:hover {
-    background: var(--color-lime-hover);
+    background: #fff;
   }
 
   & .pill-button__icon {
@@ -301,7 +303,7 @@ strong {
     color: var(--color-text-on-ink);
 
     &:hover {
-      background: var(--color-lime);
+      background: var(--color-ivory);
       box-shadow: none;
       color: var(--color-ink);
     }
