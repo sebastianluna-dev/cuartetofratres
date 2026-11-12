@@ -15,8 +15,9 @@ Backlog of the project's technical debt and improvements. Every entry carries an
 The player plays real files now (`hooks/use-sample-player.hook.ts`). The local database holds four
 reference recordings by other ensembles, supplied for development: their rights and most of their
 performers («Por confirmar») are unknown, so they must not be uploaded to production. Replace them
-with the quartet's own recordings, or with recordings whose licence allows publishing them and
-whose performers are credited in «Intérpretes». Piazzolla's and Elizondo's works are under
+with the quartet's own recordings. The player does not credit performers (the user's call, 2026-11-12),
+so a recording by another ensemble would pass for the quartet's: do not publish one without their
+permission. Piazzolla's and Elizondo's works are under
 copyright as compositions too.
 
 ### 2. Notice of new contact requests — [Integration]

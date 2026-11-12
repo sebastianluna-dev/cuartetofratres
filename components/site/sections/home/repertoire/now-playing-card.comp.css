@@ -70,16 +70,6 @@
     color: var(--color-olive);
   }
 
-  & .now-playing__performer {
-    margin-top: 6px;
-    font-family: var(--font-label);
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.25;
-    letter-spacing: 0.04em;
-    color: var(--color-text-soft-on-ivory);
-  }
-
   & .now-playing__category {
     margin-top: 4px;
     font-family: var(--font-label);

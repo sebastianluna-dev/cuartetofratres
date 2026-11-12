@@ -19,8 +19,6 @@ export interface TrackContent {
   durationSeconds: number;
   /** URL of the recording, or `null` while there is none and the player simulates it. */
   audioSrc: string | null;
-  /** Who plays the recording when it is not the quartet; `null` for the quartet's own. */
-  performer: string | null;
 }
 
 export interface RepertoireContent {

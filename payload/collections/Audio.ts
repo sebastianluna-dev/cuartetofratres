@@ -45,7 +45,7 @@ export const Audio: CollectionConfig = {
       label: "Intérpretes",
       admin: {
         description:
-          "Quién toca en la grabación. Déjalo vacío sólo si es el Cuarteto Fratres; si es otra agrupación, el reproductor lo dice.",
+          "Registro interno de quién toca en la grabación; no se muestra en el sitio. Publica sólo grabaciones del Cuarteto Fratres o de otros con su permiso.",
       },
     },
   ],

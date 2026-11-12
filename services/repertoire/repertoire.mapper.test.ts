@@ -61,17 +61,12 @@ describe("mapTrack's recording", () => {
     createdAt: "2026-06-10T00:00:00.000Z",
   };
 
-  it("has no recording and no performer while the upload is empty", () => {
-    expect(mapTrack(track(CATEGORY))).toMatchObject({ audioSrc: null, performer: null });
+  it("has no recording while the upload is empty", () => {
+    expect(mapTrack(track(CATEGORY)).audioSrc).toBeNull();
   });
 
-  it("reads the file's URL and the performer of a populated upload", () => {
-    const mapped = mapTrack({ ...track(CATEGORY), audio: { ...AUDIO, performer: " Cuarteto Austral " } });
-    expect(mapped).toMatchObject({ audioSrc: "/api/audio/file/fuga.mp3", performer: "Cuarteto Austral" });
-  });
-
-  it("leaves the performer out when it is blank: the recording is the quartet's", () => {
-    expect(mapTrack({ ...track(CATEGORY), audio: { ...AUDIO, performer: "" } }).performer).toBeNull();
+  it("reads the file's URL of a populated upload", () => {
+    expect(mapTrack({ ...track(CATEGORY), audio: AUDIO }).audioSrc).toBe("/api/audio/file/fuga.mp3");
   });
 
   it("ignores an upload that arrives as a bare id", () => {

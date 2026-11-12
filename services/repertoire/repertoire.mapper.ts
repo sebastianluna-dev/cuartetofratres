@@ -37,7 +37,6 @@ export function mapTrack(track: Track): TrackContent {
     categoryLabel: category?.label ?? "",
     durationSeconds: track.durationSeconds,
     audioSrc: audio?.url ?? null,
-    performer: audio?.performer?.trim() || null,
   };
 }
 
@@ -50,7 +49,6 @@ export function mapDefaultTrack(track: TrackDefault): TrackContent {
     categoryLabel: labelOf(track.categoryId),
     durationSeconds: track.durationSeconds,
     audioSrc: null,
-    performer: null,
   };
 }
 
