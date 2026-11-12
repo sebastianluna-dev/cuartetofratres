@@ -1,6 +1,6 @@
 import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
 import { HERO_COPY } from "@/constants/hero.const";
-import { HERO_STAGE_FIGURES } from "@/constants/hero-stage.const";
+import { HERO_STAGE_BACKDROP, HERO_STAGE_FIGURES } from "@/constants/hero-stage.const";
 import { getHeroData } from "@/services/hero/hero.service";
 import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
 import { HeroStage } from "./hero-stage.comp";
@@ -57,7 +57,7 @@ export async function HeroSection() {
         </p>
       </div>
 
-      <HeroStage figures={HERO_STAGE_FIGURES} />
+      <HeroStage figures={HERO_STAGE_FIGURES} backdrop={HERO_STAGE_BACKDROP} />
     </section>
   );
 }

@@ -7,6 +7,26 @@
   height: var(--hero-height);
   pointer-events: none;
 
+  /* The room: wider than the stage on its left, so the photo shows between
+     the name and the musicians and its right side runs behind them. Every
+     edge dissolves into the ground. */
+  & .hero-stage__room {
+    position: absolute;
+    left: -36%;
+    right: 14%;
+    top: 14%;
+    bottom: 4%;
+    translate: calc(var(--lean-x, 0px) * 0.25) calc(var(--lean-y, 0px) * 0.15);
+    -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 54%, #000 34%, transparent 76%);
+    mask-image: radial-gradient(ellipse 50% 50% at 50% 54%, #000 34%, transparent 76%);
+  }
+
+  & .hero-stage__room-image {
+    object-fit: cover;
+    filter: grayscale(1) contrast(0.95) brightness(0.78);
+    opacity: 0.56;
+  }
+
   & .hero-stage__glow {
     position: absolute;
     left: 52%;
@@ -56,10 +76,11 @@
     animation: hero-stage-rise 1.6s var(--ease-stage) calc(0.2s + var(--order) * 0.14s) both;
   }
 
-  /* The ground the figures sink into. */
+  /* The ground the figures sink into; as wide as the room, so its left side
+     sinks with them. */
   & .hero-stage__floor {
     position: absolute;
-    left: 0;
+    left: -36%;
     right: 0;
     bottom: 0;
     z-index: 5;
@@ -76,6 +97,17 @@
     height: auto;
     aspect-ratio: 1 / 0.9;
     margin-top: 8px;
+
+    & .hero-stage__room {
+      left: -12%;
+      right: -12%;
+      top: 0;
+      bottom: 0;
+    }
+
+    & .hero-stage__floor {
+      left: 0;
+    }
   }
 }
 
