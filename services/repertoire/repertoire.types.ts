@@ -15,7 +15,12 @@ export interface TrackContent {
   categoryId: string | null;
   /** Full label of the category, for the now-playing card; empty when there is none. */
   categoryLabel: string;
+  /** Length shown until the recording's own length is known; the length of the simulated sample when there is none. */
   durationSeconds: number;
+  /** URL of the recording, or `null` while there is none and the player simulates it. */
+  audioSrc: string | null;
+  /** Who plays the recording when it is not the quartet; `null` for the quartet's own. */
+  performer: string | null;
 }
 
 export interface RepertoireContent {

@@ -66,7 +66,10 @@ export function MiniPlayer({
         <div className="mini-player__work">
           <span className="mini-player__status">{playing ? PLAYER_COPY.playingStatus : PLAYER_COPY.pausedStatus}</span>
           <MarqueeTitle text={track.title} as="span" className="mini-player__title" />
-          <span className="mini-player__composer">{track.composer}</span>
+          <span className="mini-player__composer">
+            {track.composer}
+            {track.performer && ` · ${PLAYER_COPY.performedBy}: ${track.performer}`}
+          </span>
         </div>
         <TransportControls
           playing={playing}

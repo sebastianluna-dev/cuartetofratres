@@ -55,6 +55,8 @@ export const PLAYER_COPY = {
   filters: "Filtrar repertorio",
   /** Small print under the player while there are no studio recordings. */
   simulated: "Reproducción simulada: las grabaciones están en preparación.",
+  /** Before the name of whoever plays a recording that is not the quartet's. */
+  performedBy: "Interpreta",
 } as const;
 
 // Seed of the categories and fallback while the CMS has none, in tab order.

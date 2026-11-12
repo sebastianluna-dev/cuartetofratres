@@ -27,6 +27,8 @@ function labelOf(categoryId: string | null): string {
  */
 export function mapTrack(track: Track): TrackContent {
   const category = typeof track.category === "object" && track.category ? mapCategory(track.category) : null;
+  // Like the category, the recording only carries its URL when populated.
+  const audio = typeof track.audio === "object" && track.audio?.url ? track.audio : null;
   return {
     id: String(track.id),
     title: track.title,
@@ -34,6 +36,8 @@ export function mapTrack(track: Track): TrackContent {
     categoryId: category?.id ?? null,
     categoryLabel: category?.label ?? "",
     durationSeconds: track.durationSeconds,
+    audioSrc: audio?.url ?? null,
+    performer: audio?.performer?.trim() || null,
   };
 }
 
@@ -45,6 +49,8 @@ export function mapDefaultTrack(track: TrackDefault): TrackContent {
     categoryId: track.categoryId,
     categoryLabel: labelOf(track.categoryId),
     durationSeconds: track.durationSeconds,
+    audioSrc: null,
+    performer: null,
   };
 }
 

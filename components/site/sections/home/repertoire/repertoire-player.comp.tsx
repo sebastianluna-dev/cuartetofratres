@@ -38,7 +38,7 @@ const PHONE_QUERY = "(max-width: 767px)";
 export function RepertoirePlayer({ content, titleId }: RepertoirePlayerProps) {
   const { tracks } = content;
   const [categoryId, setCategoryId] = useState<string | null>(null);
-  const player = useSamplePlayer(tracks.map((track) => track.durationSeconds));
+  const player = useSamplePlayer(tracks);
   const [cardRef, cardInView] = useInView<HTMLDivElement>(CARD_VISIBLE_SHARE);
   const phone = useMediaQuery(PHONE_QUERY);
   const inProgress = player.playing || player.elapsed > 0;
@@ -46,7 +46,9 @@ export function RepertoirePlayer({ content, titleId }: RepertoirePlayerProps) {
 
   const filters = buildRepertoireFilters(content.categories);
   const visibleTracks = filterRepertoire(tracks, categoryId);
-  const selectedTrack = tracks[player.selectedIndex];
+  // The card and the bar show the length the player knows: the file's own once it has loaded.
+  const current = tracks[player.selectedIndex];
+  const selectedTrack = current && { ...current, durationSeconds: player.duration };
   const transport = {
     playing: player.playing,
     elapsed: player.elapsed,
@@ -79,7 +81,8 @@ export function RepertoirePlayer({ content, titleId }: RepertoirePlayerProps) {
         </div>
       </div>
 
-      <p className="repertoire-player__note">{PLAYER_COPY.simulated}</p>
+      {/* Only while the chosen work has no recording yet. */}
+      {selectedTrack && !selectedTrack.audioSrc && <p className="repertoire-player__note">{PLAYER_COPY.simulated}</p>}
 
       {selectedTrack && miniPhase !== "hidden" && (
         <MiniPlayer track={selectedTrack} leaving={miniPhase === "leaving"} {...transport} />

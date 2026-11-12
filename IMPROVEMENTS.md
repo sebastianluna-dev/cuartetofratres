@@ -10,13 +10,14 @@ Backlog of the project's technical debt and improvements. Every entry carries an
 
 ## HIGH priority
 
-### 1. Real audio in the repertoire player — [Content]
+### 1. Recordings of the repertoire — [Content]
 
-The player only simulates playback (`hooks/use-sample-player.hook.ts` advances a clock). The
-`tracks` collection already has the `audio` upload, but the mapper does not read it yet. When the
-studio recordings exist: map the file URL into `TrackContent`, drive an `<audio>` element from the
-hook (play/pause/seek/previous/next/ended) and keep the "only one track at a time, never autoplay"
-rules. The sample duration should then come from the file's metadata, not from the constant.
+The player plays real files now (`hooks/use-sample-player.hook.ts`). The local database holds four
+reference recordings by other ensembles, supplied for development: their rights and most of their
+performers («Por confirmar») are unknown, so they must not be uploaded to production. Replace them
+with the quartet's own recordings, or with recordings whose licence allows publishing them and
+whose performers are credited in «Intérpretes». Piazzolla's and Elizondo's works are under
+copyright as compositions too.
 
 ### 2. Notice of new contact requests — [Integration]
 

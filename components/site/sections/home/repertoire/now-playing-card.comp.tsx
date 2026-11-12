@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { forwardRef } from "react";
+import { PLAYER_COPY } from "@/constants/repertoire.const";
 import { formatTrackTime } from "@/lib/format-track-time";
 import type { TrackContent } from "@/services/repertoire/repertoire.types";
 import type { ContentImage } from "@/services/shared/content-image.types";
@@ -45,6 +46,12 @@ export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(fu
         <MarqueeTitle text={track.title} className="now-playing__title" />
         <p className="now-playing__composer">{track.composer}</p>
         {track.categoryLabel && <p className="now-playing__category">{track.categoryLabel}</p>}
+        {/* A recording by another ensemble says so: it must not pass for the quartet. */}
+        {track.performer && (
+          <p className="now-playing__performer">
+            {PLAYER_COPY.performedBy}: {track.performer}
+          </p>
+        )}
       </div>
 
       <div className="now-playing__controls">
