@@ -110,13 +110,9 @@
       background: #fff;
     }
 
+    /* Only the title changes colour; the tile stays as it is. */
     & .track-item__title {
       color: var(--color-olive);
-    }
-
-    & .staff-tile {
-      background: var(--color-olive);
-      color: var(--color-lime);
     }
   }
 
@@ -156,8 +152,8 @@
     }
 
     /* No sheet behind the chosen track here: at this width it reads as a
-       block of a different colour rather than as a mark. The olive title and
-       the olive tile mark it. */
+       block of a different colour rather than as a mark. The olive title
+       marks it. */
     &.track-item_selected .track-item__button {
       background: transparent;
     }
