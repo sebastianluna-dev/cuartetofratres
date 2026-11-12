@@ -13,7 +13,7 @@ export default function GlobalError({ error, retry }: { error: Error & { digest?
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#121418",
+          background: "#070809",
           color: "#f2f4f3",
           fontFamily: "Georgia, serif",
           textAlign: "center",
@@ -32,7 +32,7 @@ export default function GlobalError({ error, retry }: { error: Error & { digest?
               padding: "14px 26px",
               border: 0,
               background: "#e6ec9e",
-              color: "#121418",
+              color: "#070809",
               fontSize: 15,
               cursor: "pointer",
             }}

@@ -3,10 +3,11 @@
      olive that the accent becomes when it has to be read on ivory. */
   --color-ivory: #f3f2f2;
   --color-ivory-soft: #eae9e9;
-  --color-ink: #121418;
-  --color-ink-soft: #20242c;
+  /* The same near-black as the Filarmónica's page. */
+  --color-ink: #070809;
+  --color-ink-soft: #15191d;
   /* The floor of the stages: the hero and the members fade into it. */
-  --color-ink-deep: #0d0f12;
+  --color-ink-deep: #0b0c0d;
   /* The tiles of the player and the ground behind a photo while it loads. */
   --color-ink-tile: #37393d;
   --color-lime: #e6ec9e;
@@ -14,7 +15,7 @@
   --color-olive: #4d5610;
   --color-olive-hover: #3a4110;
   /* Text. */
-  --color-text-on-ivory: #121418;
+  --color-text-on-ivory: #070809;
   --color-text-soft-on-ivory: #3a3d42;
   --color-muted-on-ivory: #605d5d;
   --color-text-on-ink: #f2f4f3;
