@@ -16,7 +16,7 @@ interface PosterProps {
   title: PosterTitle;
   where: string;
   note: string | null;
-  /** Fused into the top of the poster; without it, the monogram takes its place. */
+  /** Fused into the top of the poster; a dark poster without it shows the monogram instead. */
   photo?: { src: string; position: string };
   /** A `poster__action` button or link. */
   action?: ReactNode;
@@ -41,11 +41,13 @@ export function Poster({ palette, top, topNote, side, title, where, note, photo,
           />
         </div>
       ) : (
-        <svg className="poster__mark" viewBox={LOGO_MARK_VIEW_BOX} aria-hidden="true" focusable="false">
-          {LOGO_MARK_PATHS.map((d) => (
-            <path key={d} d={d} />
-          ))}
-        </svg>
+        palette !== "lime" && (
+          <svg className="poster__mark" viewBox={LOGO_MARK_VIEW_BOX} aria-hidden="true" focusable="false">
+            {LOGO_MARK_PATHS.map((d) => (
+              <path key={d} d={d} />
+            ))}
+          </svg>
+        )
       )}
       <StaffLines kind="poster" className="poster__staff" />
 
