@@ -1,26 +1,18 @@
 import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
 import { Logo } from "@/components/site/shared/logo.comp";
-import { HERO_COPY } from "@/constants/hero.const";
 import { CONTACT_ANCHOR, NAV_ITEMS } from "@/constants/navigation.const";
-import { SITE_NAME } from "@/constants/site.const";
 import "./header.section.css";
 
 // Thin bar over the top of the hero: it scrolls away with it, and from there
 // on the floating nav takes over. Contact is set apart as the call to action;
-// under 1100px the section links leave and only the name and contact stay.
+// under 1100px the section links leave and only the monogram and contact stay.
 export function Header() {
   const contact = NAV_ITEMS.find((item) => item.href === CONTACT_ANCHOR);
 
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <div className="site-header__brand">
-          <Logo theme="lime" height={42} />
-          <p className="site-header__name">
-            {SITE_NAME}
-            <span className="site-header__kind">{HERO_COPY.kicker}</span>
-          </p>
-        </div>
+        <Logo theme="lime" height={42} />
 
         <nav className="site-header__nav" aria-label="Secciones">
           {NAV_ITEMS.filter((item) => item.href !== CONTACT_ANCHOR).map((item) => (
