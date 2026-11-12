@@ -4,16 +4,15 @@
   gap: 8px;
 
   & .repertoire-filters__pill {
-    min-height: 40px;
-    padding: 0 16px;
+    min-height: 44px;
+    padding: 0 20px;
     border-radius: 999px;
     box-shadow: inset 0 0 0 1px rgba(18, 20, 24, 0.4);
-    font-family: var(--font-label);
-    font-size: 14px;
+    /* The rounded face of the body copy (the hero's description), as written. */
+    font-family: var(--font-body);
+    font-size: 16px;
     font-weight: 500;
     line-height: 1;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
     white-space: nowrap;
     color: var(--color-ink);
     transition:
