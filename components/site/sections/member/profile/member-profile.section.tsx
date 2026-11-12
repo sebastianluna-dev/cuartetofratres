@@ -1,7 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
 import { StaffLines } from "@/components/site/shared/staff-lines.comp";
-import { MEMBER_PAGE_COPY } from "@/constants/members.const";
 import { splitParagraphs } from "@/lib/text-blocks";
 import type { MemberContent } from "@/services/members/members.types";
 import "./member-profile.section.css";
@@ -10,28 +8,14 @@ interface MemberProfileSectionProps {
   member: MemberContent;
 }
 
-// First screen of a musician's page: the way back, the instrument, the name
-// and the biography on the left; the portrait standing on the right, over the
+// First screen of a musician's page: the instrument, the name and the
+// biography on the left; the portrait standing on the right, over the
 // staff lines. On the phone the portrait goes between the name and the text.
 export function MemberProfileSection({ member }: MemberProfileSectionProps) {
   return (
     <article className="section section_theme_ink member-profile" aria-labelledby="semblanza-titulo">
       <div className="member-profile__inner">
         <header className="member-profile__head">
-          {/* Back to the home page, at its members' row. */}
-          <Link href="/#integrantes" className="member-profile__back">
-            <svg className="member-profile__back-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path
-                d="M20 12H5M11 6l-6 6 6 6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.7"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            {MEMBER_PAGE_COPY.back}
-          </Link>
           <p className="member-profile__instrument">{member.instrument}</p>
           <h1 id="semblanza-titulo" className="member-profile__name">
             {member.displayName}

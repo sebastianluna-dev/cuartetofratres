@@ -66,7 +66,8 @@ export const MEMBERS_COPY = {
 
 /** Fixed copy of a musician's page. */
 export const MEMBER_PAGE_COPY = {
-  back: "Integrantes",
+  /** Accessible name of the arrow that leads back to the home page's members. */
+  back: "Volver a integrantes",
   others: "Conoce a los demás",
   /** Read after the name by screen readers on the home page's portraits. */
   linkHint: "ver semblanza",

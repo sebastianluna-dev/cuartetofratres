@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/site/sections/shell/footer/footer.section";
-import { Header } from "@/components/site/sections/shell/header/header.section";
+import { MemberHeader } from "@/components/site/sections/member/header/member-header.section";
 import { MemberOthersSection } from "@/components/site/sections/member/others/member-others.section";
 import { MemberProfileSection } from "@/components/site/sections/member/profile/member-profile.section";
 import { memberPath } from "@/constants/members.const";
@@ -39,7 +39,7 @@ export default async function MemberPage({ params }: PageProps<"/integrantes/[sl
 
   return (
     <div className="member-page">
-      <Header homeHref="/" />
+      <MemberHeader />
       <main id="contenido">
         <MemberProfileSection member={page.member} />
         <MemberOthersSection members={page.others} />

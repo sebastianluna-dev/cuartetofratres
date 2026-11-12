@@ -19,7 +19,7 @@
     padding: calc(86px + clamp(36px, 6vh, 72px)) var(--site-gutter) clamp(56px, 8vh, 104px);
   }
 
-  /* Way back, instrument and name, one under the other. */
+  /* Instrument and name, one under the other. */
   & .member-profile__head {
     grid-area: head;
     display: flex;
@@ -27,43 +27,11 @@
     align-items: flex-start;
   }
 
-  & .member-profile__back {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    min-height: 44px;
-    font-family: var(--font-label);
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(242, 244, 243, 0.84);
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: var(--color-text-on-ink);
-    }
-  }
-
-  & .member-profile__back-icon {
-    flex: none;
-    width: 20px;
-    height: 20px;
-    transition: transform 0.45s var(--ease-stage);
-  }
-
-  & .member-profile__back:hover .member-profile__back-icon,
-  & .member-profile__back:focus-visible .member-profile__back-icon {
-    transform: translateX(-4px);
-  }
-
   /* The lime tag: one of the few marks that keep the accent. */
   & .member-profile__instrument {
     display: inline-flex;
     align-items: center;
     height: 28px;
-    margin-top: clamp(28px, 5vh, 56px);
     padding: 0 12px;
     border-radius: 4px;
     background: var(--color-lime);
