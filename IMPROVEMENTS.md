@@ -52,8 +52,9 @@ Every section now follows the approved redesign (`propuestas-rediseno/05-punto-m
 the repertoire of `06-repertorio.html` R1 «Papel» and the contact of `07-contacto.html` C1
 «Carta»). Left over:
 
-- **Hero Global**: `image` and `imagePosition` are no longer drawn. Reuse the photo somewhere or
-  drop the fields with a migration.
+- **Hero Global**: `image`, `imagePosition` and `eventsHeading` are no longer drawn (the dates
+  section is titled «Cartelera», fixed in `constants/events.const.ts`). Reuse them or drop the
+  fields with a migration.
 - **Fixed copy**: the hero's frame, the posters' labels, «Conoce al cuarteto», the letter's
   captions and the player's «Reproducción simulada» line live in `constants/`. Move them to the
   Globals (with a migration) if the quartet needs to edit them.

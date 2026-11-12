@@ -243,7 +243,7 @@ strong {
   }
 }
 
-/* Centred section title in the italic accent («Próximas presentaciones»). */
+/* Centred section title in the italic accent («Cartelera»). */
 .section-title {
   font-family: var(--font-accent);
   font-size: clamp(52px, 7vw, 104px);

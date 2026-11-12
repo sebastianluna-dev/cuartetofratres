@@ -65,11 +65,12 @@ export const EVENT_DIALOG_LABELS = {
 export const MAX_SHOW_POSTERS = 2;
 
 /**
- * Fixed copy of the dates section: the button of a poster, the invitation
+ * Fixed copy of the dates section: its title, the button of a poster, the invitation
  * poster that leads to the contact form and the poster shown while no date is
  * published.
  */
 export const SHOWS_COPY = {
+  title: "Cartelera",
   program: "Ver programa",
   invitation: {
     top: "Tu",
