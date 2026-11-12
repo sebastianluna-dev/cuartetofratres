@@ -27,7 +27,6 @@ export function TrackList({ tracks, visibleIds, selectedIndex, playing, emptySta
             <TrackListItem
               key={track.id}
               track={track}
-              number={index + 1}
               selected={index === selectedIndex}
               playing={playing && index === selectedIndex}
               onSelect={() => onSelect(index)}

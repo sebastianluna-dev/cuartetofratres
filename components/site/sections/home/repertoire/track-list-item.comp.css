@@ -23,16 +23,6 @@
     }
   }
 
-  & .track-item__number {
-    flex: 0 0 auto;
-    width: 26px;
-    font-family: var(--font-display);
-    font-size: 24px;
-    line-height: 1;
-    color: var(--color-olive);
-    font-variant-numeric: tabular-nums;
-  }
-
   & .track-item__text {
     display: contents;
   }
@@ -63,7 +53,8 @@
     text-overflow: ellipsis;
   }
 
-  /* The play glyph and the equaliser share one 16 px square; only one shows. */
+  /* The play glyph and the equaliser share one 16 px square at the start of
+     the row; only one shows. */
   & .track-item__state {
     position: relative;
     flex: 0 0 auto;
@@ -105,11 +96,6 @@
   &.track-item_selected {
     --track-item-mark: var(--color-olive);
 
-    /* A sheet of white, like the card. */
-    & .track-item__button {
-      background: #fff;
-    }
-
     /* Only the title changes colour; the tile stays as it is. */
     & .track-item__title {
       color: var(--color-olive);
@@ -138,8 +124,7 @@
     }
   }
 
-  /* Phone: no number; title and composer stack in one column next to the
-     tile, the play glyph at the end. */
+  /* Phone: title and composer stack in one column next to the tile. */
   @media (max-width: 767px) {
     /* The row is narrow enough that a title would take two or three lines and
        push the rows out of rhythm: one line, cut with an ellipsis. */
@@ -149,13 +134,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    /* No sheet behind the chosen track here: at this width it reads as a
-       block of a different colour rather than as a mark. The olive title
-       marks it. */
-    &.track-item_selected .track-item__button {
-      background: transparent;
     }
 
     /* Edge to edge here, and still under the finger: the row is narrow
@@ -168,10 +146,6 @@
         padding-left: 0;
         background: transparent;
       }
-    }
-
-    & .track-item__number {
-      display: none;
     }
 
     & .track-item__text {
