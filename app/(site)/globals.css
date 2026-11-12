@@ -26,8 +26,7 @@
   --color-divider-on-ink: rgba(242, 244, 243, 0.16);
   --color-divider-strong-on-ink: rgba(242, 244, 243, 0.2);
 
-  --font-heading: var(--font-forum), Georgia, serif;
-  --font-display: var(--font-fratres), var(--font-forum), Georgia, serif;
+  --font-display: var(--font-fratres), Georgia, serif;
   --font-body: var(--font-mulish), system-ui, sans-serif;
   /* Labels, names and buttons, in condensed capitals. */
   --font-label: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
@@ -42,11 +41,6 @@
      sits at the bottom, so nothing covers a section's title. */
   --site-header-offset: 0px;
   --site-radius: 16px;
-  /* Vertical rhythm of the two ink sections that follow each other (members,
-     repertoire): the outer padding of the block and the gap between their
-     contents are this one value, split in half at the seam. */
-  --site-ink-space: clamp(64px, 8vw, 110px);
-  --site-ink-space-phone: 48px;
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   /* Slower start, long tail: the figures of the stages and the floating nav. */
   --ease-stage: cubic-bezier(0.2, 0.7, 0.1, 1);
@@ -139,7 +133,8 @@ strong {
   outline-offset: 3px;
 }
 
-.section_theme_ivory :focus-visible {
+.section_theme_ivory :focus-visible,
+.section_theme_paper :focus-visible {
   outline-color: var(--color-olive);
 }
 
@@ -194,6 +189,12 @@ strong {
 
   &.section_theme_ivory {
     background: var(--color-ivory);
+    color: var(--color-text-on-ivory);
+  }
+
+  /* The darker paper: sets a light section apart from the ivory ones around it. */
+  &.section_theme_paper {
+    background: var(--color-ivory-soft);
     color: var(--color-text-on-ivory);
   }
 
@@ -265,70 +266,8 @@ strong {
   opacity: 0.8;
 }
 
-/* Shared call to action: one layout, a variant per ground. */
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  white-space: nowrap;
-  transition:
-    background 0.25s ease,
-    border-color 0.25s ease,
-    color 0.25s ease,
-    transform 0.3s ease;
-
-  /* The accent call to action on ink: the event window and the player's
-     empty state. */
-  &.button_variant_lime {
-    padding: 12px 24px;
-    border-radius: 8px;
-    background: var(--color-lime);
-    border: 1px solid var(--color-lime);
-    color: var(--color-ink);
-    font-size: 12.5px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-
-    &:hover {
-      background: var(--color-lime-hover);
-      border-color: var(--color-lime-hover);
-    }
-  }
-
-  /* Ivory outline on ink; fills on hover. */
-  &.button_variant_outline-ivory {
-    padding: 12px 22px;
-    border: 1px solid var(--color-ivory);
-    border-radius: 2px;
-    color: var(--color-ivory);
-    font-family: var(--font-heading);
-    font-size: 14px;
-
-    &:hover {
-      background: var(--color-ivory);
-      color: var(--color-ink);
-    }
-  }
-
-  &.button_variant_ink {
-    padding: 16px 30px;
-    border-radius: 8px;
-    background: var(--color-ink);
-    color: var(--color-text-on-ink);
-    font-family: var(--font-heading);
-    font-size: 16px;
-
-    &:hover {
-      background: var(--color-ink-soft);
-    }
-  }
-}
-
 /* ---------------------------------------------------------------------------
-   Pieces of the redesign («punto medio»): shared by the hero, the dates, the
-   members and the about section.
+   Type pieces and the call to action, shared by every section.
    --------------------------------------------------------------------------- */
 
 /* Small condensed label in capitals: eyebrows, section numbers, foot notes. */

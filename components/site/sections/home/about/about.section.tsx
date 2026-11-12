@@ -13,7 +13,7 @@ export async function AboutSection() {
   const [about, settings] = await Promise.all([getAboutData(), getSiteSettingsData()]);
 
   return (
-    <section id="cuarteto" className="section section_theme_ivory about" aria-labelledby={TITLE_ID}>
+    <section id="cuarteto" className="section section_theme_paper about" aria-labelledby={TITLE_ID}>
       <div className="section__inner">
         <Reveal>
           <SectionHeader

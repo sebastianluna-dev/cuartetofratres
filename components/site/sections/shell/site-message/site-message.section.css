@@ -55,8 +55,12 @@
     border: 1px solid var(--color-lime);
     background: var(--color-lime);
     color: var(--color-ink);
-    font-family: var(--font-heading);
+    border-radius: 999px;
+    font-family: var(--font-label);
     font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
     transition: background 0.25s ease;
 
     &:hover {
