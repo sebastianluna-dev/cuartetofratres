@@ -1,0 +1,199 @@
+.member-profile {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: radial-gradient(ellipse 60% 70% at 72% 40%, #20242a 0, var(--color-ink-deep) 66%) var(--color-ink-deep);
+
+  /* Text on the left, the portrait on the right across both rows. Under the
+     top bar (86px). */
+  & .member-profile__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-areas:
+      "head stage"
+      "bio stage";
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(32px, 5vw, 96px);
+    max-width: var(--site-max-width);
+    margin: 0 auto;
+    padding: calc(86px + clamp(36px, 6vh, 72px)) var(--site-gutter) clamp(56px, 8vh, 104px);
+  }
+
+  /* Way back, instrument and name, one under the other. */
+  & .member-profile__head {
+    grid-area: head;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  & .member-profile__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    font-family: var(--font-label);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(242, 244, 243, 0.84);
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--color-text-on-ink);
+    }
+  }
+
+  & .member-profile__back-icon {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.45s var(--ease-stage);
+  }
+
+  & .member-profile__back:hover .member-profile__back-icon,
+  & .member-profile__back:focus-visible .member-profile__back-icon {
+    transform: translateX(-4px);
+  }
+
+  /* The lime tag: one of the few marks that keep the accent. */
+  & .member-profile__instrument {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    margin-top: clamp(28px, 5vh, 56px);
+    padding: 0 12px;
+    border-radius: 4px;
+    background: var(--color-lime);
+    color: var(--color-ink);
+    font-family: var(--font-label);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  & .member-profile__name {
+    margin-top: 18px;
+    font-family: var(--font-display);
+    font-size: clamp(56px, 7vw, 120px);
+    line-height: 0.86;
+    text-transform: uppercase;
+    text-wrap: balance;
+    animation: member-profile-rise 0.9s var(--ease-stage) both;
+  }
+
+  & .member-profile__bio {
+    grid-area: bio;
+    max-width: 62ch;
+    margin-top: clamp(28px, 4.5vh, 48px);
+    padding-top: clamp(24px, 3.5vh, 36px);
+    border-top: 1px solid var(--color-divider-on-ink);
+    animation: member-profile-rise 0.9s var(--ease-stage) 0.12s both;
+  }
+
+  & .member-profile__paragraph {
+    font-size: clamp(16.5px, 1.25vw, 19px);
+    font-weight: 400;
+    line-height: 1.75;
+    color: rgba(242, 244, 243, 0.88);
+    text-wrap: pretty;
+
+    & + & {
+      margin-top: 1em;
+    }
+  }
+
+  /* The portrait stands at the foot of its column, over a glow and the staff. */
+  & .member-profile__stage {
+    grid-area: stage;
+    position: relative;
+    align-self: end;
+  }
+
+  & .member-profile__glow {
+    position: absolute;
+    left: 50%;
+    top: 36%;
+    width: 120%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(242, 244, 243, 0.12), transparent);
+    transform: translate(-50%, -50%);
+  }
+
+  & .member-profile__staff {
+    inset: 4% -30% 10% -30%;
+    color: var(--color-text-on-ink);
+    opacity: 0.18;
+    -webkit-mask-image: radial-gradient(58% 52% at 50% 46%, #000 26%, transparent 100%);
+    mask-image: radial-gradient(58% 52% at 50% 46%, #000 26%, transparent 100%);
+  }
+
+  /* Fades at the sides and the bottom, never at the top: the head stays whole. */
+  & .member-profile__frame {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    max-height: calc(100svh - 120px);
+    margin: 0 auto;
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%),
+      linear-gradient(0deg, transparent 0, #000 24%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%),
+      linear-gradient(0deg, transparent 0, #000 24%);
+    mask-composite: intersect;
+    animation: member-profile-rise 1.3s var(--ease-stage) 0.1s both;
+  }
+
+  & .member-profile__photo {
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.06) brightness(0.96);
+  }
+
+  /* Tablet and phone: head, portrait, biography. */
+  @media (max-width: 900px) {
+    & .member-profile__inner {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas:
+        "head"
+        "stage"
+        "bio";
+      grid-template-rows: auto;
+      padding-top: calc(86px + 20px);
+    }
+
+    & .member-profile__name {
+      font-size: clamp(48px, 13vw, 88px);
+    }
+
+    & .member-profile__stage {
+      width: min(100%, 440px);
+      margin: 12px auto 0;
+    }
+
+    & .member-profile__frame {
+      max-height: none;
+    }
+
+    & .member-profile__bio {
+      margin-top: 8px;
+    }
+  }
+}
+
+@keyframes member-profile-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}

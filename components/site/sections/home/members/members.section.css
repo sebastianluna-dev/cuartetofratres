@@ -1,7 +1,7 @@
 .members {
   position: relative;
   padding: clamp(64px, 7vw, 104px) 0 clamp(56px, 6vw, 96px);
-  background: radial-gradient(70% 50% at 50% 26%, #1b1f23, var(--color-ink) 72%);
+  background: radial-gradient(70% 50% at 50% 26%, #1c2025, var(--color-ink) 72%);
   overflow: clip;
 
   & .members__staff {
@@ -20,5 +20,18 @@
 
   & .section-title {
     margin-bottom: clamp(24px, 3vw, 44px);
+  }
+
+  & .members__row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(10px, 2vw, 32px);
+  }
+
+  @media (max-width: 900px) {
+    & .members__row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px 14px;
+    }
   }
 }

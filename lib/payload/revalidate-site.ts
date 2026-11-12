@@ -14,6 +14,7 @@ function expire(tag: string): void {
   try {
     revalidateTag(tag, { expire: 0 });
     revalidatePath("/");
+    revalidatePath("/integrantes/[slug]", "page");
   } catch {
     // Outside a Next request (scripts): nothing cached, nothing to do.
   }

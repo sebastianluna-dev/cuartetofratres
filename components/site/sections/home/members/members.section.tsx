@@ -1,12 +1,14 @@
+import { MemberPortrait } from "@/components/site/shared/member-portrait.comp";
 import { Reveal } from "@/components/site/shared/reveal.comp";
 import { StaffLines } from "@/components/site/shared/staff-lines.comp";
 import { MEMBERS_COPY } from "@/constants/members.const";
 import { getMembers } from "@/services/members/members.service";
-import { MemberCast } from "./member-cast.comp";
 import "./members.section.css";
 
 const TITLE_ID = "integrantes-titulo";
 
+// The four musicians in a row; each portrait opens that musician's page
+// (app/(site)/integrantes/[slug]), where their profile is.
 export async function MembersSection() {
   const members = await getMembers();
 
@@ -20,7 +22,14 @@ export async function MembersSection() {
           </h2>
         </Reveal>
         <Reveal>
-          <MemberCast members={members} />
+          <ul className="members__row">
+            {members.map((member) => (
+              <li key={member.id}>
+                {/* Four to a row on desktop, two on the phone. */}
+                <MemberPortrait member={member} sizes="(max-width: 900px) 50vw, 25vw" />
+              </li>
+            ))}
+          </ul>
         </Reveal>
       </div>
     </section>

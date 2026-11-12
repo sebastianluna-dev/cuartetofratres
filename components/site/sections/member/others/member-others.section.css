@@ -1,0 +1,31 @@
+.member-others {
+  padding: clamp(48px, 6vw, 88px) 0 clamp(64px, 8vw, 120px);
+  border-top: 1px solid var(--color-divider-on-ink);
+
+  & .section-title {
+    margin-bottom: clamp(24px, 3vw, 44px);
+    font-size: clamp(40px, 5vw, 76px);
+  }
+
+  & .member-others__row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(10px, 2vw, 32px);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    & .member-others__row {
+      gap: 12px;
+    }
+
+    & .member-portrait__name {
+      font-size: 15px;
+    }
+
+    & .member-portrait__instrument {
+      font-size: 14px;
+    }
+  }
+}

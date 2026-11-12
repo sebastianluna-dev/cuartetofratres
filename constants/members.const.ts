@@ -62,5 +62,17 @@ export const MEMBERS: readonly Member[] = [
 /** Fixed copy of the members section. */
 export const MEMBERS_COPY = {
   title: "Conoce al cuarteto",
-  group: "Integrantes",
 } as const;
+
+/** Fixed copy of a musician's page. */
+export const MEMBER_PAGE_COPY = {
+  back: "Integrantes",
+  others: "Conoce a los demás",
+  /** Read after the name by screen readers on the home page's portraits. */
+  linkHint: "ver semblanza",
+} as const;
+
+/** Path of a musician's page. */
+export function memberPath(slug: string): string {
+  return `/integrantes/${slug}`;
+}
