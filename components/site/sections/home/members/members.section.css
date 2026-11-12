@@ -4,16 +4,6 @@
   background: radial-gradient(70% 50% at 50% 26%, #1c2025, var(--color-ink) 72%);
   overflow: clip;
 
-  & .members__staff {
-    left: 0;
-    right: 0;
-    top: 4%;
-    height: 52%;
-    opacity: 0.1;
-    -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent);
-    mask-image: linear-gradient(180deg, #000 30%, transparent);
-  }
-
   & .members__inner {
     position: relative;
   }

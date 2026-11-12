@@ -1,6 +1,5 @@
 import { MemberPortrait } from "@/components/site/shared/member-portrait.comp";
 import { Reveal } from "@/components/site/shared/reveal.comp";
-import { StaffLines } from "@/components/site/shared/staff-lines.comp";
 import { MEMBERS_COPY } from "@/constants/members.const";
 import { getMembers } from "@/services/members/members.service";
 import "./members.section.css";
@@ -14,7 +13,6 @@ export async function MembersSection() {
 
   return (
     <section id="integrantes" className="section section_theme_ink members" aria-labelledby={TITLE_ID}>
-      <StaffLines kind="wide" className="members__staff" />
       <div className="section__inner members__inner">
         <Reveal>
           <h2 id={TITLE_ID} className="section-title">
