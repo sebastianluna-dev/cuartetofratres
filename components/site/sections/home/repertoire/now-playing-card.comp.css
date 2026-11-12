@@ -39,7 +39,7 @@
 
   & .now-playing__photo {
     object-fit: cover;
-    object-position: 50% 40%;
+    object-position: 50% 50%;
     filter: grayscale(1) contrast(1.05);
   }
 

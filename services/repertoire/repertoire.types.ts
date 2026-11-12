@@ -1,4 +1,3 @@
-import type { ContentImage } from "@/services/shared/content-image.types";
 
 export interface CategoryContent {
   id: string;
@@ -23,8 +22,6 @@ export interface TrackContent {
 
 export interface RepertoireContent {
   title: string;
-  /** The quartet's photo behind the clef on the player card: the "El cuarteto" photo. */
-  cover: ContentImage;
   emptyState: { title: string; text: string; ctaLabel: string };
   /** In tab order. */
   categories: CategoryContent[];

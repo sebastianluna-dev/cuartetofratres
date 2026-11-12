@@ -2,16 +2,14 @@
 
 import Image from "next/image";
 import { forwardRef } from "react";
-import { PLAYER_COPY } from "@/constants/repertoire.const";
+import { PLAYER_COPY, RECORD_PHOTO } from "@/constants/repertoire.const";
 import { formatTrackTime } from "@/lib/format-track-time";
 import type { TrackContent } from "@/services/repertoire/repertoire.types";
-import type { ContentImage } from "@/services/shared/content-image.types";
 import { LineProgress } from "./line-progress.comp";
 import "./now-playing-card.comp.css";
 
 interface NowPlayingCardProps {
   track: TrackContent;
-  cover: ContentImage;
   playing: boolean;
   elapsed: number;
   onTogglePlay: () => void;
@@ -21,12 +19,12 @@ interface NowPlayingCardProps {
 }
 
 // The selected work as a record on the paper, with no card around it: the
-// quartet's photo cut into a disc that turns while the work plays and stops
+// quartet's photo (`RECORD_PHOTO`) cut into a disc that turns while the work plays and stops
 // on pause, then the category, the title, the composer, a thin progress line,
 // the clocks and the transport in words. Nothing here starts on its own: the
 // visitor presses play. The ref lets the player watch when it scrolls away.
 export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(function NowPlayingCard(
-  { track, cover, playing, elapsed, onTogglePlay, onPrevious, onNext, onSeek },
+  { track, playing, elapsed, onTogglePlay, onPrevious, onNext, onSeek },
   ref,
 ) {
   const fraction = track.durationSeconds > 0 ? elapsed / track.durationSeconds : 0;
@@ -35,7 +33,7 @@ export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(fu
     <div ref={ref} className={`now-playing${playing ? " now-playing_playing" : ""}`}>
       <div className="now-playing__disc" aria-hidden="true">
         <div className="now-playing__spin">
-          <Image className="now-playing__photo" src={cover.src} alt="" fill sizes="250px" />
+          <Image className="now-playing__photo" src={RECORD_PHOTO} alt="" fill sizes="250px" />
           <span className="now-playing__grooves" />
         </div>
         <span className="now-playing__label">

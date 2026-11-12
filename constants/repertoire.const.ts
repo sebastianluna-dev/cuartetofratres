@@ -49,6 +49,13 @@ export const REPERTOIRE_SECTION_DEFAULTS: RepertoireSectionDefaults = {
 };
 
 /**
+ * The photo cut into the player's record. Art direction, not CMS content: the
+ * square group shot is framed so the four faces sit on the ring between the
+ * label and the edge. A new photo means checking that framing again.
+ */
+export const RECORD_PHOTO = "/images/record/cuarteto.webp";
+
+/**
  * Fixed copy of the player. It is not in the CMS on purpose: the labels
  * describe how the player behaves, not the quartet's content.
  */

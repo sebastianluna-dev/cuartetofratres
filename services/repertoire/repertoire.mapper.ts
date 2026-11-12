@@ -5,7 +5,6 @@ import {
   type RepertoireCategorySeed,
   type Track as TrackDefault,
 } from "@/constants/repertoire.const";
-import type { ContentImage } from "@/services/shared/content-image.types";
 import type { CategoryContent, RepertoireContent, TrackContent } from "./repertoire.types";
 
 export function mapCategory(category: Category): CategoryContent {
@@ -54,14 +53,12 @@ export function mapDefaultTrack(track: TrackDefault): TrackContent {
 
 export function mapRepertoireSection(
   section: RepertoireSection,
-  cover: ContentImage,
   categories: CategoryContent[],
   tracks: TrackContent[],
 ): RepertoireContent {
   const defaults = REPERTOIRE_SECTION_DEFAULTS;
   return {
     title: section.title || defaults.title,
-    cover,
     emptyState: {
       title: section.emptyState?.title || defaults.emptyState.title,
       text: section.emptyState?.text || defaults.emptyState.text,
