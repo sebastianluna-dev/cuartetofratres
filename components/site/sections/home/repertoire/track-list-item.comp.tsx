@@ -31,7 +31,7 @@ export function TrackListItem({ track, selected, playing, onSelect, style }: Tra
           </span>
           <span className="track-item__play" />
         </span>
-        <StaffTile kind="notes" />
+        <StaffTile />
         {/* One box for both texts: a row on the desktop (`display: contents`),
             a column under the phone breakpoint. */}
         <span className="track-item__text">

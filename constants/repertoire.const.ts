@@ -58,6 +58,11 @@ export const PLAYER_COPY = {
   previous: "Obra anterior",
   next: "Obra siguiente",
   toggle: "Reproducir o pausar",
+  /** Visible words of the record's transport. */
+  previousLabel: "Anterior",
+  nextLabel: "Siguiente",
+  play: "Reproducir",
+  pause: "Pausar",
   position: "Posición en la pista",
   filters: "Filtrar repertorio",
   /** Small print under the player while there are no studio recordings. */

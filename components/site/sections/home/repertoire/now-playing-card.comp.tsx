@@ -2,13 +2,11 @@
 
 import Image from "next/image";
 import { forwardRef } from "react";
+import { PLAYER_COPY } from "@/constants/repertoire.const";
 import { formatTrackTime } from "@/lib/format-track-time";
 import type { TrackContent } from "@/services/repertoire/repertoire.types";
 import type { ContentImage } from "@/services/shared/content-image.types";
-import { MarqueeTitle } from "./marquee-title.comp";
-import { StaffProgress } from "./staff-progress.comp";
-import { StaffTile } from "./staff-tile.comp";
-import { TransportControls } from "./transport-controls.comp";
+import { LineProgress } from "./line-progress.comp";
 import "./now-playing-card.comp.css";
 
 interface NowPlayingCardProps {
@@ -22,13 +20,11 @@ interface NowPlayingCardProps {
   onSeek: (fraction: number) => void;
 }
 
-// The white card with the selected work: the quartet's photo under a lime
-// clef as the cover, scrolling title, composer
-// and category, the staff-shaped progress, the clocks and the transport. The
-// play button's pressed state says whether it is playing; no status line.
-// While it plays, the cover's photo drifts closer, very slowly.
-// Nothing here starts on its own: the visitor presses play. The ref lets the
-// player watch when the card scrolls out of view.
+// The selected work as a record on the paper, with no card around it: the
+// quartet's photo cut into a disc that turns while the work plays and stops
+// on pause, then the category, the title, the composer, a thin progress line,
+// the clocks and the transport in words. Nothing here starts on its own: the
+// visitor presses play. The ref lets the player watch when it scrolls away.
 export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(function NowPlayingCard(
   { track, cover, playing, elapsed, onTogglePlay, onPrevious, onNext, onSeek },
   ref,
@@ -37,23 +33,50 @@ export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(fu
 
   return (
     <div ref={ref} className={`now-playing${playing ? " now-playing_playing" : ""}`}>
-      <div className="now-playing__work">
-        <div className="now-playing__cover">
-          <Image className="now-playing__cover-photo" src={cover.src} alt="" fill sizes="192px" />
-          <StaffTile kind="clef" place="cover" />
+      <div className="now-playing__disc" aria-hidden="true">
+        <div className="now-playing__spin">
+          <Image className="now-playing__photo" src={cover.src} alt="" fill sizes="250px" />
+          <span className="now-playing__grooves" />
         </div>
-        <MarqueeTitle text={track.title} className="now-playing__title" />
-        <p className="now-playing__composer">{track.composer}</p>
-        {track.categoryLabel && <p className="now-playing__category">{track.categoryLabel}</p>}
+        <span className="now-playing__label">
+          <span className="now-playing__hole" />
+        </span>
       </div>
 
-      <div className="now-playing__controls">
-        <StaffProgress fraction={fraction} onSeek={onSeek} />
+      {track.categoryLabel && <p className="now-playing__category">{track.categoryLabel}</p>}
+      <p className="now-playing__title">{track.title}</p>
+      <p className="now-playing__composer">{track.composer}</p>
+
+      <div className="now-playing__progress">
+        <LineProgress fraction={fraction} onSeek={onSeek} />
         <div className="now-playing__clocks">
           <span>{formatTrackTime(elapsed)}</span>
           <span>−{formatTrackTime(track.durationSeconds - elapsed)}</span>
         </div>
-        <TransportControls playing={playing} onPrevious={onPrevious} onToggle={onTogglePlay} onNext={onNext} />
+      </div>
+
+      <div className="now-playing__transport">
+        <button type="button" className="now-playing__step" aria-label={PLAYER_COPY.previous} onClick={onPrevious}>
+          {PLAYER_COPY.previousLabel}
+        </button>
+        <span className="now-playing__dot" aria-hidden="true">
+          ·
+        </span>
+        <button
+          type="button"
+          className="now-playing__step now-playing__step_main"
+          aria-label={PLAYER_COPY.toggle}
+          aria-pressed={playing}
+          onClick={onTogglePlay}
+        >
+          {playing ? PLAYER_COPY.pause : PLAYER_COPY.play}
+        </button>
+        <span className="now-playing__dot" aria-hidden="true">
+          ·
+        </span>
+        <button type="button" className="now-playing__step" aria-label={PLAYER_COPY.next} onClick={onNext}>
+          {PLAYER_COPY.nextLabel}
+        </button>
       </div>
     </div>
   );
