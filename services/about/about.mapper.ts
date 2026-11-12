@@ -7,6 +7,6 @@ export function mapAbout(about: About): AboutContent {
   return {
     title: about.title || ABOUT_DEFAULTS.title,
     lead: about.lead || ABOUT_DEFAULTS.lead,
-    photo: mapContentImage(about.photo) ?? { src: ABOUT_DEFAULTS.photo.src, alt: ABOUT_DEFAULTS.photo.alt },
+    photo: mapContentImage(about.photo) ?? ABOUT_DEFAULTS.photo,
   };
 }

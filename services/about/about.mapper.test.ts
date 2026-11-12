@@ -9,7 +9,7 @@ describe("mapAbout", () => {
   it("uses the default texts and photo while the Global is empty", () => {
     const about = mapAbout(EMPTY);
     expect(about.title).toBe(ABOUT_DEFAULTS.title);
-    expect(about.photo.src).toBe(ABOUT_DEFAULTS.photo.src);
+    expect(about.photo).toEqual(ABOUT_DEFAULTS.photo);
   });
 
   it("prefers what the editor wrote", () => {

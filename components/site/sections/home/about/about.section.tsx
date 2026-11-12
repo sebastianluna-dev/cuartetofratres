@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import { Reveal } from "@/components/site/shared/reveal.comp";
 import { SectionHeader } from "@/components/site/shared/section-header.comp";
@@ -43,13 +44,22 @@ export async function AboutSection() {
           </Reveal>
 
           <Reveal className="about__media">
-            <figure className="about__frame">
-              {/* Five twelfths of the page on desktop, the whole width on the phone. */}
+            {/* The frame keeps the photo's own proportions, so nobody is cropped out:
+                the CMS knows them, and so does the launch file. */}
+            <figure
+              className="about__frame"
+              style={
+                about.photo.width && about.photo.height
+                  ? ({ "--about-photo-ratio": `${about.photo.width} / ${about.photo.height}` } as CSSProperties)
+                  : undefined
+              }
+            >
+              {/* Seven twelfths of the page on desktop, the whole width on the phone. */}
               <Image
                 src={about.photo.src}
                 alt={about.photo.alt}
                 fill
-                sizes="(max-width: 900px) 100vw, 40vw"
+                sizes="(max-width: 900px) 100vw, 56vw"
                 className="about__photo"
               />
             </figure>

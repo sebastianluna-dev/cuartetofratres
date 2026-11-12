@@ -1,15 +1,18 @@
 export interface AboutDefaults {
   title: string;
   lead: string;
-  photo: { src: string; alt: string };
+  /** `width`/`height`: real pixels of the file, which give the frame its proportions. */
+  photo: { src: string; alt: string; width: number; height: number };
 }
 
 export const ABOUT_DEFAULTS: AboutDefaults = {
   title: "El sonido se construye escuchando",
   lead: "Cuarteto Fratres reúne a cuatro músicos con formación profesional y actividad orquestal en México. Trabajan el repertorio de cámara con la misma exigencia en una sala de concierto que en una ceremonia privada: el programa se elige para el lugar y para quien escucha.",
   photo: {
-    src: "/images/cuarteto-estudio.jpg",
-    alt: "Los cuatro integrantes del Cuarteto Fratres con sus instrumentos",
+    src: "/images/cuarteto-sala.jpg",
+    alt: "Los cuatro integrantes del Cuarteto Fratres con sus instrumentos, en una sala de conciertos",
+    width: 1448,
+    height: 1086,
   },
 };
 

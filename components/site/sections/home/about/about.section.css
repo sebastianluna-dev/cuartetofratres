@@ -3,7 +3,7 @@
 
   & .about__grid {
     display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     gap: clamp(28px, 5vw, 90px);
     align-items: start;
     margin-top: clamp(28px, 4vw, 56px);
@@ -73,14 +73,13 @@
   & .about__frame {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 941 / 1250;
+    aspect-ratio: var(--about-photo-ratio, 4 / 3);
     border-radius: var(--site-radius);
     background: var(--color-ink-tile);
   }
 
   & .about__photo {
     object-fit: cover;
-    object-position: 50% 30%;
     filter: grayscale(1) contrast(1.04);
     transition: transform 1.6s var(--ease-stage);
   }
