@@ -1,100 +1,46 @@
 .site-footer {
-  background: var(--color-ink);
-  color: var(--color-text-on-ink);
-  /* Room for the repertoire's mini player while it is on screen: the bar
-     publishes its height on <body> (mini-player.comp.tsx); without it the
-     variable is unset and this is zero. */
-  padding-bottom: var(--mini-player-height, 0px);
+  /* The bottom padding keeps the last line clear of the floating nav. */
+  padding: clamp(40px, 5vw, 72px) var(--site-gutter) 110px;
+  background: var(--color-ivory);
+  color: var(--color-muted-on-ivory);
+
+  & :focus-visible {
+    outline-color: var(--color-olive);
+  }
 
   & .site-footer__inner {
-    max-width: var(--site-max-width);
-    margin: 0 auto;
-    padding: clamp(48px, 6vw, 84px) var(--site-gutter) clamp(28px, 3vw, 44px);
-  }
-
-  & .site-footer__grid {
     display: flex;
     flex-wrap: wrap;
-    gap: clamp(28px, 4vw, 72px);
-    align-items: flex-start;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px 32px;
+    max-width: 940px;
+    margin: 0 auto;
+    padding-top: 22px;
+    border-top: 1px solid var(--color-divider-on-ivory);
+    font-family: var(--font-label);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
   }
 
-  /* The wordmark no longer takes the free space: the paragraph beside it does,
-     in the column the section links used to fill. */
   & .site-footer__brand {
-    flex: 0 1 260px;
-    min-width: 0;
-  }
-
-  & .site-footer__about {
-    flex: 1 1 280px;
-    min-width: 150px;
-    max-width: 36em;
+    display: flex;
+    align-items: center;
+    gap: 14px;
   }
 
   & .site-footer__name {
-    margin-top: 16px;
-    font-family: var(--font-display);
-    font-size: clamp(30px, 3.4vw, 40px);
-    line-height: 1;
-    letter-spacing: 0.02em;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
+    color: var(--color-ink);
   }
 
-  /* Its top lines up with the headings of the columns beside it. */
-  & .site-footer__description {
-    font-size: 16px;
-    line-height: 1.75;
-    color: rgba(242, 244, 243, 0.55);
-  }
-
-  & .site-footer__column {
-    flex: 0 1 200px;
-    min-width: 150px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    font-size: 15px;
-  }
-
-  & .site-footer__heading {
-    margin-bottom: 4px;
-    font-size: 12.5px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--color-text-on-ink);
-  }
-
-  & .site-footer__link {
-    color: rgba(242, 244, 243, 0.75);
-    transition: color 0.25s ease;
-
-    &:hover {
-      color: var(--color-text-on-ink);
-    }
-  }
-
-  & .site-footer__text {
-    color: rgba(242, 244, 243, 0.5);
-  }
-
-  & .site-footer__bottom {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 14px;
-    margin-top: clamp(32px, 4vw, 56px);
-    padding-top: 20px;
-    border-top: 1px solid rgba(242, 244, 243, 0.14);
-    font-size: 13px;
-    letter-spacing: 0.07em;
-    color: var(--color-muted-on-ink);
-  }
-
-  @media (max-width: 1023px) {
-    & .site-footer__inner {
-      padding-top: 88px;
-    }
+  & .site-footer__year {
+    font-weight: 500;
+    color: var(--color-muted-on-ivory);
   }
 }

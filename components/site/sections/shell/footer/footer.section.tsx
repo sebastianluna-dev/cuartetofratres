@@ -1,67 +1,27 @@
-import Link from "next/link";
 import { Logo } from "@/components/site/shared/logo.comp";
-import { StaffOrnament } from "@/components/site/shared/staff-ornament.comp";
 import { SITE_NAME } from "@/constants/site.const";
-import { buildMailtoUrl } from "@/lib/build-mailto-url";
 import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
 import "./footer.section.css";
 
 const CURRENT_YEAR = 2026;
 
+// Last line of the page, on the same paper as the contact letter above it:
+// the name, what the quartet is and the photo credit. The contact details and
+// the networks are on the letter, so they are not repeated here.
 export async function Footer() {
   const settings = await getSiteSettingsData();
 
   return (
-    <footer className="site-footer ink-grain">
+    <footer className="site-footer">
       <div className="site-footer__inner">
-        <div className="site-footer__grid">
-          <div className="site-footer__brand">
-            <Logo theme="lime" height={62} />
-            <p className="site-footer__name">{SITE_NAME}</p>
-          </div>
-
-          <div className="site-footer__about">
-            <p className="site-footer__description">{settings.tagline}</p>
-          </div>
-
-          <div className="site-footer__column">
-            <span className="site-footer__heading">Contacto</span>
-            <Link href={buildMailtoUrl(settings.email)} className="site-footer__link">
-              {settings.email}
-            </Link>
-            {settings.whatsapp ? (
-              <Link href={`https://wa.me/${settings.whatsapp}`} className="site-footer__link" target="_blank">
-                WhatsApp: +{settings.whatsapp}
-              </Link>
-            ) : (
-              <span className="site-footer__text">WhatsApp por confirmar</span>
-            )}
-            <span className="site-footer__text">{settings.location}</span>
-          </div>
-
-          <div className="site-footer__column">
-            <span className="site-footer__heading">Redes</span>
-            {settings.social.map((network) =>
-              network.href ? (
-                <Link key={network.label} href={network.href} className="site-footer__link" target="_blank">
-                  {network.label}
-                </Link>
-              ) : (
-                <span key={network.label} className="site-footer__text">
-                  {network.label}
-                </span>
-              ),
-            )}
-          </div>
+        <div className="site-footer__brand">
+          <Logo theme="olive" height={34} />
+          <p className="site-footer__name">
+            {SITE_NAME} <span className="site-footer__year">© {CURRENT_YEAR}</span>
+          </p>
         </div>
-
-        <div className="site-footer__bottom">
-          <span>
-            © {CURRENT_YEAR} {SITE_NAME}. Todos los derechos reservados.
-          </span>
-          <StaffOrnament theme="ivory" width={160} />
-          <span>{settings.photoCredit}</span>
-        </div>
+        <p className="site-footer__tagline">{settings.tagline}</p>
+        <p className="site-footer__credit">{settings.photoCredit}</p>
       </div>
     </footer>
   );
