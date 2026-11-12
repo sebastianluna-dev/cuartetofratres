@@ -59,11 +59,12 @@
     translate: calc(-50% + var(--lean-x, 0px) * var(--depth)) calc(var(--lean-y, 0px) * var(--depth) * 0.6);
   }
 
-  /* Black and white, fading at the bottom and on the edges the photo itself
-     cuts, never at the top: the head stays whole. */
+  /* In full colour, the only colour of the hero: the wood and the skin read
+     against the grey room. Fading at the bottom and on the edges the photo
+     itself cuts, never at the top: the head stays whole. */
   & .hero-stage__image {
     object-fit: contain;
-    filter: grayscale(1) contrast(1.06) brightness(0.94);
+    filter: contrast(1.06) brightness(0.94);
     -webkit-mask-image:
       linear-gradient(90deg, transparent, #000 var(--fade-left)),
       linear-gradient(270deg, transparent, #000 var(--fade-right)),
