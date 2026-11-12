@@ -7,8 +7,9 @@
     align-items: center;
     gap: clamp(10px, 1.4vw, 16px);
     width: 100%;
-    min-height: 68px;
-    padding: 14px 12px;
+    /* Six rows, the filters and the pager fit beside the player's card. */
+    min-height: 64px;
+    padding: 10px 12px;
     border-radius: 12px;
     text-align: left;
     transition: background 0.3s ease;

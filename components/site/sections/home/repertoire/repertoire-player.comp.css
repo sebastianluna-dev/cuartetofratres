@@ -19,6 +19,13 @@
     min-width: 0;
   }
 
+  /* Pushed to the foot of the column, which stretches to the card's height. */
+  & .repertoire-player__pager {
+    min-height: 32px;
+    margin-top: auto;
+    padding-top: 10px;
+  }
+
   /* Small print: nothing here is a recording yet. */
   & .repertoire-player__note {
     margin-top: clamp(18px, 2.4vw, 30px);

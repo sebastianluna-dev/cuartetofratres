@@ -1,0 +1,68 @@
+.track-pager {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  & .track-pager__page,
+  & .track-pager__step {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-ink);
+    transition:
+      background 0.25s ease,
+      color 0.25s ease,
+      opacity 0.25s ease;
+
+    /* Drawn 32px tall; the finger still gets 44. */
+    &::after {
+      content: "";
+      position: absolute;
+      inset: -6px 0;
+    }
+  }
+
+  & .track-pager__page {
+    background: #e2e1df;
+
+    &:hover:not(.track-pager__page_current) {
+      background: #d6d5d3;
+    }
+
+    &.track-pager__page_current {
+      background: var(--color-ink);
+      color: var(--color-ivory);
+    }
+  }
+
+  & .track-pager__step {
+    padding: 0;
+
+    &:hover:not(:disabled) {
+      background: #e2e1df;
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.3;
+    }
+  }
+
+  & .track-pager__icon {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}

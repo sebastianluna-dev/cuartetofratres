@@ -5,14 +5,16 @@ import { useInView } from "@/hooks/use-in-view.hook";
 import { useMediaQuery } from "@/hooks/use-media-query.hook";
 import { useMiniPlayerPresence } from "@/hooks/use-mini-player-presence.hook";
 import { useSamplePlayer } from "@/hooks/use-sample-player.hook";
-import { PLAYER_COPY } from "@/constants/repertoire.const";
+import { PLAYER_COPY, REPERTOIRE_PAGE_SIZE } from "@/constants/repertoire.const";
 import { buildRepertoireFilters } from "@/lib/build-repertoire-filters";
 import { filterRepertoire } from "@/lib/filter-repertoire";
+import { pageCount, pageItems } from "@/lib/paginate";
 import type { RepertoireContent } from "@/services/repertoire/repertoire.types";
 import { MiniPlayer } from "./mini-player.comp";
 import { NowPlayingCard } from "./now-playing-card.comp";
 import { RepertoireFilters } from "./repertoire-filters.comp";
 import { TrackList } from "./track-list.comp";
+import { TrackPager } from "./track-pager.comp";
 import "./repertoire-player.comp.css";
 
 interface RepertoirePlayerProps {
@@ -38,11 +40,17 @@ const PHONE_QUERY = "(max-width: 767px)";
 export function RepertoirePlayer({ content, titleId }: RepertoirePlayerProps) {
   const { tracks } = content;
   const [categoryId, setCategoryId] = useState<string | null>(null);
-  // Counts the filter changes: each one remounts the list so its entrance plays again.
-  const [filterChanges, setFilterChanges] = useState(0);
+  const [page, setPage] = useState(0);
+  // Counts the changes of filter or page: each one remounts the list so its entrance plays again.
+  const [listChanges, setListChanges] = useState(0);
   const changeFilter = (next: string | null) => {
     setCategoryId(next);
-    setFilterChanges((count) => count + 1);
+    setPage(0);
+    setListChanges((count) => count + 1);
+  };
+  const changePage = (next: number) => {
+    setPage(next);
+    setListChanges((count) => count + 1);
   };
   const player = useSamplePlayer(tracks);
   const [cardRef, cardInView] = useInView<HTMLDivElement>(CARD_VISIBLE_SHARE);
@@ -51,7 +59,9 @@ export function RepertoirePlayer({ content, titleId }: RepertoirePlayerProps) {
   const miniPhase = useMiniPlayerPresence(phone ? inProgress : player.playing, phone ? false : cardInView);
 
   const filters = buildRepertoireFilters(content.categories);
-  const visibleTracks = filterRepertoire(tracks, categoryId);
+  const filteredTracks = filterRepertoire(tracks, categoryId);
+  const pages = pageCount(filteredTracks.length, REPERTOIRE_PAGE_SIZE);
+  const visibleTracks = pageItems(filteredTracks, page, REPERTOIRE_PAGE_SIZE);
   // The card and the bar show the length the player knows: the file's own once it has loaded.
   const current = tracks[player.selectedIndex];
   const selectedTrack = current && { ...current, durationSeconds: player.duration };
@@ -77,8 +87,8 @@ export function RepertoirePlayer({ content, titleId }: RepertoirePlayerProps) {
         <div className="repertoire-player__list">
           <RepertoireFilters filters={filters} active={categoryId} onChange={changeFilter} />
           <TrackList
-            key={filterChanges}
-            entering={filterChanges > 0}
+            key={listChanges}
+            entering={listChanges > 0}
             tracks={tracks}
             visibleIds={visibleTracks.map((track) => track.id)}
             selectedIndex={!phone || player.chosen ? player.selectedIndex : null}
@@ -86,6 +96,12 @@ export function RepertoirePlayer({ content, titleId }: RepertoirePlayerProps) {
             emptyState={content.emptyState}
             onSelect={player.select}
           />
+          {/* Out of the list, at the foot of the column: level with the card's bottom
+              edge on the desktop. The slot stays even with one page, so the
+              column keeps its height. */}
+          <div className="repertoire-player__pager">
+            <TrackPager page={Math.min(page, pages - 1)} count={pages} onChange={changePage} />
+          </div>
         </div>
       </div>
 

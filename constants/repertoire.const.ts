@@ -1,6 +1,13 @@
 /** The repertoire has at most this many categories; "Todo" is not one of them. */
 export const MAX_CATEGORIES = 5;
 
+/**
+ * Works per page of the programme. Six rows and the filters fit beside the
+ * player's card, so changing filter or page never changes the section's height
+ * on the desktop.
+ */
+export const REPERTOIRE_PAGE_SIZE = 6;
+
 /** Label of the tab that shows every track. */
 export const ALL_FILTER_LABEL = "Todo";
 
@@ -55,6 +62,9 @@ export const PLAYER_COPY = {
   filters: "Filtrar repertorio",
   /** Small print under the player while there are no studio recordings. */
   simulated: "Reproducción simulada: las grabaciones están en preparación.",
+  pages: "Páginas del repertorio",
+  previousPage: "Página anterior",
+  nextPage: "Página siguiente",
 } as const;
 
 // Seed of the categories and fallback while the CMS has none, in tab order.
