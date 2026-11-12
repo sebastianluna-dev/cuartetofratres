@@ -24,7 +24,6 @@ export const CONTACT_SECTION_DEFAULTS: ContactSectionDefaults = {
  * on, its button and the captions of the contact details under it.
  */
 export const CONTACT_COPY = {
-  label: "(05) · Contacto",
   addressee: "Para: Cuarteto Fratres",
   submit: "Enviar solicitud",
   submitting: "Enviando…",

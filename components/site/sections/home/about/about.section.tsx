@@ -17,13 +17,7 @@ export async function AboutSection() {
     <section id="cuarteto" className="section section_theme_paper about" aria-labelledby={TITLE_ID}>
       <div className="section__inner">
         <Reveal>
-          <SectionHeader
-            titleId={TITLE_ID}
-            title={ABOUT_COPY.heading}
-            label={ABOUT_COPY.label}
-            note={`${settings.location}.`}
-            ground="ivory"
-          />
+          <SectionHeader titleId={TITLE_ID} title={ABOUT_COPY.heading} note={`${settings.location}.`} />
         </Reveal>
 
         <div className="about__grid">

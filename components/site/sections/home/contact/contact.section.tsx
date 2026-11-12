@@ -19,7 +19,6 @@ export async function ContactSection() {
     <section id="contacto" className="section section_theme_ivory contact" aria-labelledby={TITLE_ID}>
       <div className="section__inner">
         <Reveal>
-          <p className="label label_ground_ivory contact__label">{CONTACT_COPY.label}</p>
           <h2 id={TITLE_ID} className="section-title">
             {content.title}
           </h2>

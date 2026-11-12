@@ -239,21 +239,6 @@ strong {
    Type pieces and the call to action, shared by every section.
    --------------------------------------------------------------------------- */
 
-/* Small condensed label in capitals: eyebrows, section numbers, foot notes. */
-.label {
-  font-family: var(--font-label);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(242, 244, 243, 0.84);
-
-  &.label_ground_ivory {
-    color: var(--color-muted-on-ivory);
-  }
-}
-
 /* Centred section title in the italic accent («Cartelera»). */
 .section-title {
   font-family: var(--font-accent);
