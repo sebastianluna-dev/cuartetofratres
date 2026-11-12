@@ -19,7 +19,7 @@ interface TrackListProps {
 
 // The programme: one row per work that passes the filter, or the
 // empty-state card. After a change of filter the parent remounts it with
-// `entering`, and the rows rise into place one after the other.
+// `entering`, and the rows grow into place one after the other.
 export function TrackList({
   tracks,
   visibleIds,

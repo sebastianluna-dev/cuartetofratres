@@ -36,15 +36,15 @@
     color: var(--color-text-soft-on-ivory);
   }
 
-  /* After a change of filter: the rows rise and fade in one after the other,
-     the empty card all at once. */
+  /* After a change of filter: the rows grow a little into their size and
+     fade in, one after the other; the empty card all at once. */
   &.track-list_entering {
     & .track-item {
-      animation: track-list-enter 0.55s var(--ease-stage) calc(var(--order, 0) * 70ms) both;
+      animation: track-list-enter 0.6s var(--ease-stage) calc(var(--order, 0) * 70ms) both;
     }
 
     & .track-list__empty {
-      animation: track-list-enter 0.55s var(--ease-stage) both;
+      animation: track-list-enter 0.6s var(--ease-stage) both;
     }
   }
 }
@@ -52,7 +52,7 @@
 @keyframes track-list-enter {
   0% {
     opacity: 0;
-    transform: translateY(14px);
+    transform: scale(0.94);
   }
 
   100% {
