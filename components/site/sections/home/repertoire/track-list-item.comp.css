@@ -89,13 +89,10 @@
     transition: opacity 0.3s ease;
   }
 
+  /* The chosen work only takes its play glyph or equaliser in olive; the
+     title and the tile stay as they are. */
   &.track-item_selected {
     --track-item-mark: var(--color-olive);
-
-    /* Only the title changes colour; the tile stays as it is. */
-    & .track-item__title {
-      color: var(--color-olive);
-    }
   }
 
   &.track-item_playing {
