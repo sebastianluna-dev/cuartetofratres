@@ -47,8 +47,8 @@
   & .member-profile__name {
     margin-top: 18px;
     font-family: var(--font-display);
-    font-size: clamp(56px, 7vw, 120px);
-    line-height: 0.86;
+    font-size: clamp(44px, 5vw, 84px);
+    line-height: 0.9;
     text-transform: uppercase;
     text-wrap: balance;
     animation: member-profile-rise 0.9s var(--ease-stage) both;
@@ -136,7 +136,7 @@
     }
 
     & .member-profile__name {
-      font-size: clamp(48px, 13vw, 88px);
+      font-size: clamp(38px, 10.5vw, 60px);
     }
 
     & .member-profile__stage {
