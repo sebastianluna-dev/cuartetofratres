@@ -6,6 +6,7 @@ import { StaffOrnament } from "@/components/site/shared/staff-ornament.comp";
 import { ABOUT_COPY, OCCASIONS } from "@/constants/about.const";
 import { getAboutData } from "@/services/about/about.service";
 import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
+import { OccasionIcon } from "./occasion-icon.comp";
 import "./about.section.css";
 
 const TITLE_ID = "cuarteto-titulo";
@@ -28,9 +29,7 @@ export async function AboutSection() {
             <ol className="about__occasions">
               {OCCASIONS.map((occasion, index) => (
                 <li key={occasion} className="about__occasion">
-                  <span className="about__occasion-number" aria-hidden="true">
-                    0{index + 1}
-                  </span>
+                  <OccasionIcon index={index} />
                   <span className="about__occasion-name">{occasion}</span>
                 </li>
               ))}

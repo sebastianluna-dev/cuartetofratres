@@ -51,17 +51,9 @@
     }
   }
 
-  & .about__occasion-number {
-    display: block;
-    font-family: var(--font-display);
-    font-size: 34px;
-    line-height: 1;
-    color: var(--color-olive);
-  }
-
   & .about__occasion-name {
     display: block;
-    margin-top: 10px;
+    margin-top: 14px;
     font-family: var(--font-label);
     font-size: 17px;
     font-weight: 600;
@@ -99,7 +91,7 @@
 
     & .about__occasion {
       display: flex;
-      align-items: baseline;
+      align-items: center;
       gap: 14px;
       padding: 14px 16px;
     }
