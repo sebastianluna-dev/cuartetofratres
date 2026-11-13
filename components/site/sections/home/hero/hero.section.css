@@ -24,6 +24,14 @@
     text-align: center;
   }
 
+  /* The monogram in the top-left corner, on the left edge of the name's column. */
+  & .hero__mark {
+    position: absolute;
+    top: clamp(22px, 3.4vh, 36px);
+    left: var(--site-gutter);
+    z-index: 9;
+  }
+
   & .hero__eyebrow {
     display: flex;
     justify-content: center;
@@ -94,6 +102,11 @@
 
     & .hero__inner {
       padding: 28px 0 0;
+    }
+
+    & .hero__mark {
+      top: 20px;
+      left: 0;
     }
 
     & .hero__eyebrow {

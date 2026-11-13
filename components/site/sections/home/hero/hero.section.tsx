@@ -1,4 +1,5 @@
 import { siteConfig } from "@/config/site.config";
+import { Logo } from "@/components/site/shared/logo.comp";
 import { HERO_COPY } from "@/constants/hero.const";
 import { HERO_STAGE_FIGURES } from "@/constants/hero-stage.const";
 import { getHeroData } from "@/services/hero/hero.service";
@@ -19,6 +20,10 @@ export async function HeroSection() {
   return (
     <section id="inicio" className={`section section_theme_ink hero hero_layout_${siteConfig.home.heroLayout}`}>
       <div className="hero__inner">
+        {/* The monogram signs the page from the top-left corner, in line with the name. */}
+        <div className="hero__mark">
+          <Logo theme="ivory" height={40} />
+        </div>
         <p className="hero__eyebrow">
           <span>{HERO_COPY.kicker}</span>
           <span className="hero__eyebrow-dot" aria-hidden="true">
