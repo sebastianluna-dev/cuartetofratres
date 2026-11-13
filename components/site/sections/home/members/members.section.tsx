@@ -2,14 +2,15 @@ import { MemberPortrait } from "@/components/site/shared/member-portrait.comp";
 import { Reveal } from "@/components/site/shared/reveal.comp";
 import { StaffLines } from "@/components/site/shared/staff-lines.comp";
 import { StaffMusic } from "@/components/site/shared/staff-music.comp";
-import { MEMBERS_COPY, MEMBERS_MUSIC_FIGURES, MEMBERS_MUSIC_STAGES } from "@/constants/members.const";
+import { RUNNING_MUSIC_FRAGMENTS } from "@/constants/hero-music.const";
+import { MEMBERS_COPY, MEMBERS_MUSIC_STAGES } from "@/constants/members.const";
 import { getMembers } from "@/services/members/members.service";
 import "./members.section.css";
 
 const TITLE_ID = "integrantes-titulo";
 
 // The four musicians in a row, over the same faint score as the hero and each
-// musician's page; each portrait opens that musician's page
+// musician's page, here written all along the staves and behind the figures; each portrait opens that musician's page
 // (app/(site)/integrantes/[slug]), where their profile is.
 export async function MembersSection() {
   const members = await getMembers();
@@ -26,7 +27,8 @@ export async function MembersSection() {
           <StaffLines kind="hero" className="members__staff" />
           <StaffMusic
             stages={MEMBERS_MUSIC_STAGES}
-            figures={MEMBERS_MUSIC_FIGURES}
+            figures={[]}
+            fragments={RUNNING_MUSIC_FRAGMENTS}
             id="members-music"
             className="members__music"
           />

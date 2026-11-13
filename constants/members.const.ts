@@ -96,11 +96,3 @@ export const MEMBERS_MUSIC_STAGES = {
   wide: { width: 1310, height: 531 },
   phone: { width: 350, height: 640 },
 } as const;
-
-/** The four portraits in that row (3:5, as tall as the row), so the ink thins out over each face. */
-export const MEMBERS_MUSIC_FIGURES = [
-  { x: 11.7, top: 0, height: 96 },
-  { x: 37.2, top: 0, height: 96 },
-  { x: 62.8, top: 0, height: 96 },
-  { x: 88.3, top: 0, height: 96 },
-] as const;

@@ -1,4 +1,4 @@
-import { HERO_MUSIC_FRAGMENTS } from "@/constants/hero-music.const";
+import { HERO_MUSIC_FRAGMENTS, type MusicFragment } from "@/constants/hero-music.const";
 import { engraveStaffMusic, stageMusicView, type FigurePlacement, type MusicItem } from "@/lib/engrave-staff-music";
 import { MUSIC_GLYPHS } from "@/lib/music-glyphs";
 import "./staff-music.comp.css";
@@ -19,13 +19,20 @@ interface StaffMusicProps {
   figures: readonly FigurePlacement[];
   /** Prefix of the glyphs' ids: unique per drawing on a page. */
   id: string;
+  /** What is written where; the hero's few stretches, clear of the faces, by default. */
+  fragments?: readonly MusicFragment[];
   className?: string;
 }
 
-function engrave(view: View, stages: Record<View, StageSize>, figures: readonly FigurePlacement[]) {
+function engrave(
+  view: View,
+  stages: Record<View, StageSize>,
+  figures: readonly FigurePlacement[],
+  fragments: readonly MusicFragment[],
+) {
   return engraveStaffMusic(
     stageMusicView(stages[view], figures),
-    HERO_MUSIC_FRAGMENTS.map((fragment) => ({ ...fragment, stretch: fragment[view] })),
+    fragments.map((fragment) => ({ ...fragment, stretch: fragment[view] })),
   );
 }
 
@@ -52,13 +59,13 @@ function Item({ item, glyphId }: { item: MusicItem; glyphId: (glyph: string) => 
 // with no reveal: the staff is decoration, never a sense of progress. One
 // drawing per layout (wide and phone), each engraved for its stage and
 // stretched with the lines, so the notes stay on them. Decorative.
-export function StaffMusic({ stages, figures, id, className }: StaffMusicProps) {
+export function StaffMusic({ stages, figures, id, fragments = HERO_MUSIC_FRAGMENTS, className }: StaffMusicProps) {
   const classes = ["staff-music", className ?? ""].filter(Boolean).join(" ");
 
   return (
     <div className={classes} aria-hidden="true">
       {VIEWS.map((view) => {
-        const music = engrave(view, stages, figures);
+        const music = engrave(view, stages, figures, fragments);
         const glyphId = (glyph: string) => `${id}-${view}-${glyph}`;
         return (
           <svg

@@ -201,6 +201,43 @@ export const HERO_MUSIC_FRAGMENTS: readonly MusicFragment[] = [
 ];
 
 /**
+ * The same bars written all along the three staves, with short gaps between
+ * them: for a row of musicians (the home page's «Conoce al cuarteto»), where
+ * the music may run behind the figures instead of around their faces.
+ */
+const RUN: readonly StaffStretch[] = [
+  [0, 18],
+  [20, 38],
+  [40, 58],
+  [60, 78],
+  [80, 98],
+];
+
+export const RUNNING_MUSIC_FRAGMENTS: readonly MusicFragment[] = [
+  ...RUN.map((stretch, index) => ({
+    staff: 0,
+    parts: excerpt(violin, index % 3, (index % 3) + 1),
+    wide: stretch,
+    phone: stretch,
+    opacity: 0.45,
+  })),
+  ...RUN.map((stretch, index) => ({
+    staff: 1,
+    parts: excerpt(canon.slice(0, 1), (index + 1) % 3, ((index + 1) % 3) + 1),
+    wide: stretch,
+    phone: stretch,
+    opacity: 0.4,
+  })),
+  ...RUN.map((stretch, index) => ({
+    staff: 2,
+    parts: excerpt(cello, (index + 2) % 3, ((index + 2) % 3) + 1),
+    wide: stretch,
+    phone: stretch,
+    opacity: 0.45,
+  })),
+];
+
+/**
  * The stage's size, in px, that each drawing is engraved for (see
  * hero-stage.comp.css): on a wide screen the stage keeps a 1.22 ratio (taken
  * at 1440 × 900), on the phone it is the full width under the name (390 × 844).
