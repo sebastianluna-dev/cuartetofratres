@@ -49,7 +49,10 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
               } as CSSProperties
             }
           >
-            <div className="member-profile__frame" style={photoFadeStyle(member.photo.page.fades)}>
+            <div
+              className={`member-profile__frame${member.photo.page.roundBottom ? " member-profile__frame_round_bottom" : ""}`}
+              style={photoFadeStyle(member.photo.page.fades)}
+            >
               {/* Five twelfths of the page on desktop, most of the screen on the phone. */}
               <Image
                 src={member.photo.src}

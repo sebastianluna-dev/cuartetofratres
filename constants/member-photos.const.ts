@@ -9,6 +9,8 @@ export interface PhotoFades {
 export interface PhotoArt {
   position: string;
   fades: PhotoFades;
+  /** Fades the foot into a curve instead of a straight edge (where the photo cuts a wide instrument). */
+  roundBottom?: boolean;
 }
 
 /**
@@ -69,7 +71,7 @@ export const MEMBER_PHOTOS: Readonly<Record<string, MemberPhoto>> = {
   "alfonso-perez": {
     src: "/images/stage/alfonso-perez.webp",
     alt: "Alfonso Pérez con su violoncello",
-    page: { position: "50% 0%", fades: { left: 14, right: 16, bottom: 30 } },
+    page: { position: "50% 0%", fades: { left: 14, right: 16, bottom: 30 }, roundBottom: true },
     // The cello's body fills the lower half, right of centre; his face is left.
     note: { x: -8, y: 50, points: "right" },
     portrait: { position: "46% 0%", fades: { left: 14, right: 24, bottom: 30 } },
