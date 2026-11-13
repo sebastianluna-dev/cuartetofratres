@@ -142,14 +142,15 @@ change to the global's `defaultValue`. The schema is now in line with the
 config, but the migration does two things at once. Worth a look if another
 default ever drifts.
 
-## `about.photo` no longer shown
+## `about.photo` and `about.title` no longer shown
 
 **Area:** CMS · **Priority:** low
 
 Since the «Retablo» redesign (2026-11-12) the «El cuarteto» section shows a
 fixed cut-out of the group (`ABOUT_GROUP` in `constants/about.const.ts`,
 `public/images/cuarteto-grupo.webp`), placed by hand in front of the title, so
-the photo uploaded to `/admin › Secciones › El cuarteto` is read but not drawn.
+the photo uploaded to `/admin › Secciones › El cuarteto` is read but not drawn,
+and since 2026-11-13 neither is its title (the big «El cuarteto» is the only title).
 Either drop the field (migration, plus the seed and `about.mapper`) or let the
 editors upload a transparent cut-out there and read it again. The cut-out was
 redone with ChatGPT on 2026-11-13 (clean edges, no light rim).
