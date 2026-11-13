@@ -146,25 +146,18 @@
     mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%);
   }
 
-  /* Fades at the sides and the bottom, never at the top: the head stays whole. */
+  /* The whole cut-out at its own 2:3, with no fade: nothing of the portrait
+     is hidden. */
   & .member-profile__frame {
     position: relative;
     aspect-ratio: 2 / 3;
     max-height: calc(100svh - 120px);
     margin: 0 auto;
-    -webkit-mask-image:
-      linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%),
-      linear-gradient(0deg, transparent 0, #000 24%);
-    -webkit-mask-composite: source-in;
-    mask-image:
-      linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%),
-      linear-gradient(0deg, transparent 0, #000 24%);
-    mask-composite: intersect;
     animation: member-profile-rise 1.3s var(--ease-stage) 0.1s both;
   }
 
   & .member-profile__photo {
-    object-fit: cover;
+    object-fit: contain;
     filter: var(--filter-musicians);
   }
 
