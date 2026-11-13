@@ -6,7 +6,8 @@ const nextConfig: NextConfig = {
     // AVIF first: the portraits are large and mostly flat tones, where it wins
     // clearly over WebP.
     formats: ["image/avif", "image/webp"],
-    // 75 is the default for every photo; 100 for the hero, the group photo of
+    // 75 is the default for every photo; 100 for the musicians (the hero's
+    // stage, their portraits and their own page), the group photo of
     // «El cuarteto» and the event window, where AVIF's smoothing at 75 shows
     // on hair and wood.
     qualities: [75, 100],

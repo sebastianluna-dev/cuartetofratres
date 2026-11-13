@@ -32,6 +32,7 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
               alt=""
               fill
               priority
+              quality={100}
               sizes="(max-width: 900px) 90vw, 42vw"
               className="member-profile__photo"
               style={{ objectPosition: member.photoPosition }}

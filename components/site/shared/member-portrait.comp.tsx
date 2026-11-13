@@ -23,6 +23,7 @@ export function MemberPortrait({ member, sizes }: MemberPortraitProps) {
           src={member.photo.src}
           alt=""
           fill
+          quality={100}
           sizes={sizes}
           className="member-portrait__photo"
           style={{ objectPosition: member.photoPosition }}
