@@ -15,6 +15,9 @@
   --color-olive: #4d5610;
   --color-olive-hover: #3a4110;
   /* Text. */
+  /* A warm cream: sets «El cuarteto» apart from the ivory repertoire above it. */
+  --color-cream: #fcead5;
+
   --color-text-on-ivory: #0c0e10;
   --color-text-soft-on-ivory: #3a3d42;
   --color-muted-on-ivory: #605d5d;
@@ -139,7 +142,8 @@ strong {
 }
 
 .section_theme_ivory :focus-visible,
-.section_theme_paper :focus-visible {
+.section_theme_paper :focus-visible,
+.section_theme_cream :focus-visible {
   outline-color: var(--color-olive);
 }
 
@@ -195,7 +199,7 @@ strong {
 
 /* ---------------------------------------------------------------------------
    Shared layout pieces
-   Every section is `section section_theme_<ivory|ink>` with a `section__inner`
+   Every section is `section section_theme_<ivory|paper|cream|ink>` with a `section__inner`
    that sets the width; the padding is each section's own.
    --------------------------------------------------------------------------- */
 
@@ -210,6 +214,11 @@ strong {
   /* The darker paper: sets a light section apart from the ivory ones around it. */
   &.section_theme_paper {
     background: var(--color-ivory-soft);
+    color: var(--color-text-on-ivory);
+  }
+
+  &.section_theme_cream {
+    background: var(--color-cream);
     color: var(--color-text-on-ivory);
   }
 

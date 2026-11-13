@@ -17,7 +17,7 @@ export async function AboutSection() {
   const about = await getAboutData();
 
   return (
-    <section id="cuarteto" className="section section_theme_paper about" aria-labelledby={TITLE_ID}>
+    <section id="cuarteto" className="section section_theme_cream about" aria-labelledby={TITLE_ID}>
       <div className="section__inner about__layout">
         <div className="about__stage">
           <FitTitle id={TITLE_ID} max={250} className="about__title">
