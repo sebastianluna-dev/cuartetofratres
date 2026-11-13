@@ -33,7 +33,7 @@
   }
 
   & .track-item__button:hover {
-    background: rgba(94, 73, 46, 0.06);
+    background: rgba(49, 34, 16, 0.06);
   }
 
   @media (max-width: 767px) {
