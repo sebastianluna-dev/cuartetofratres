@@ -10,35 +10,35 @@ import "./about.section.css";
 
 const TITLE_ID = "cuarteto-titulo";
 
-// «Retablo»: the title across the whole column and the four, cut out of one
-// group photo, standing in front of its lower half on a floor line. Below,
-// the place and the statement beside the lead, and the occasions as a row of
-// three cells, which stays a row on the phone.
+// Two columns: on the left the title with the four, cut out of one group
+// photo, standing in front of its lower half on a floor line; on the right
+// the place, the statement, the lead and the occasions as a row of three
+// cells. On the phone the columns stack and the row stays a row.
 export async function AboutSection() {
   const [about, settings] = await Promise.all([getAboutData(), getSiteSettingsData()]);
 
   return (
     <section id="cuarteto" className="section section_theme_paper about" aria-labelledby={TITLE_ID}>
-      <div className="section__inner">
+      <div className="section__inner about__layout">
         <div className="about__stage">
           <FitTitle id={TITLE_ID} max={250} className="about__title">
             {ABOUT_COPY.heading}
           </FitTitle>
           <Reveal className="about__group">
-            {/* About seven tenths of the column on desktop, the whole width on the phone. */}
+            {/* Most of the left column on desktop, the whole width on the phone. */}
             <Image
               src={ABOUT_GROUP.src}
               alt={ABOUT_GROUP.alt}
               width={ABOUT_GROUP.width}
               height={ABOUT_GROUP.height}
               quality={100}
-              sizes="(max-width: 760px) 100vw, 760px"
+              sizes="(max-width: 900px) 100vw, 46vw"
               className="about__group-photo"
             />
           </Reveal>
         </div>
 
-        <div className="about__mid">
+        <div className="about__content">
           <Reveal>
             <p className="about__place">
               <StaffOrnament width={84} />
@@ -46,21 +46,20 @@ export async function AboutSection() {
             </p>
             <p className="about__statement">{about.title}.</p>
           </Reveal>
-          <Reveal className="about__lead-wrap">
+          <Reveal>
             <p className="about__lead">{about.lead}</p>
           </Reveal>
+          <Reveal>
+            <ol className="about__occasions">
+              {OCCASIONS.map((occasion, index) => (
+                <li key={occasion} className="about__occasion">
+                  <OccasionIcon index={index} />
+                  <span className="about__occasion-name">{occasion}</span>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
         </div>
-
-        <Reveal>
-          <ol className="about__occasions">
-            {OCCASIONS.map((occasion, index) => (
-              <li key={occasion} className="about__occasion">
-                <OccasionIcon index={index} />
-                <span className="about__occasion-name">{occasion}</span>
-              </li>
-            ))}
-          </ol>
-        </Reveal>
       </div>
     </section>
   );
