@@ -120,17 +120,17 @@
     animation: member-profile-rise 1.3s var(--ease-stage) 0.1s both;
   }
 
-  /* The foot fades into a curve: an ellipse hung from the top, wide enough to
-     keep the head and shoulders whole, closes the lower corners. */
+  /* The foot fades out along a soft elliptical gradient centred on the chest:
+     a long ramp, so it has no visible edge, and the head stays whole. */
   & .member-profile__frame_round_bottom {
     -webkit-mask-image:
       linear-gradient(90deg, transparent, #000 var(--fade-left, 0%)),
       linear-gradient(270deg, transparent, #000 var(--fade-right, 0%)),
-      radial-gradient(ellipse 62% 96% at 50% 4%, #000 72%, transparent 100%);
+      radial-gradient(ellipse 80% 78% at 50% 32%, #000 48%, transparent 100%);
     mask-image:
       linear-gradient(90deg, transparent, #000 var(--fade-left, 0%)),
       linear-gradient(270deg, transparent, #000 var(--fade-right, 0%)),
-      radial-gradient(ellipse 62% 96% at 50% 4%, #000 72%, transparent 100%);
+      radial-gradient(ellipse 80% 78% at 50% 32%, #000 48%, transparent 100%);
   }
 
   & .member-profile__photo {
