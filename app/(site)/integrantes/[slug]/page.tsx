@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps<"/integrantes/[slug
   if (!page) return {};
   const { member } = page;
   return {
-    title: `${member.displayName} · ${member.instrument} | ${SITE_NAME}`,
+    title: `${member.shortName} · ${member.instrument} | ${SITE_NAME}`,
     description: excerpt(member.bio, DESCRIPTION_LENGTH),
     alternates: { canonical: memberPath(member.slug) },
   };

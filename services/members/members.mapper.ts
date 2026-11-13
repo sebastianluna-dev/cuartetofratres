@@ -1,6 +1,6 @@
 import type { Member } from "@/payload-types";
 import { INSTRUMENT_LABELS, type Member as MemberDefault } from "@/constants/members.const";
-import { dropSecondSurname, shortenName } from "@/lib/shorten-name";
+import { shortenName } from "@/lib/shorten-name";
 import { slugify } from "@/lib/slugify";
 import { MEMBER_PHOTOS } from "@/constants/member-photos.const";
 import type { MemberContent } from "./members.types";
@@ -21,7 +21,6 @@ export function mapMember(member: Member): MemberContent | null {
     id: String(member.id),
     slug,
     name: member.name,
-    displayName: dropSecondSurname(member.name),
     instrument: INSTRUMENT_LABELS[member.instrument],
     shortName,
     bio: member.bio,
@@ -35,7 +34,6 @@ export function mapDefaultMember(member: MemberDefault): MemberContent {
     id: member.id,
     slug,
     name: member.name,
-    displayName: dropSecondSurname(member.name),
     instrument: INSTRUMENT_LABELS[member.instrument],
     shortName: member.shortName,
     bio: member.bio,

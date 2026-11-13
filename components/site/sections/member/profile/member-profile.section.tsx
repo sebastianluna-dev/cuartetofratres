@@ -24,7 +24,7 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
               they hear it here, before the name. */}
           <p className="visually-hidden">{member.instrument}</p>
           <h1 id="semblanza-titulo" className="member-profile__name">
-            {member.displayName}
+            {member.shortName}
           </h1>
         </header>
 

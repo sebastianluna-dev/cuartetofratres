@@ -6,8 +6,6 @@ export interface MemberContent {
   slug: string;
   /** Full name, for the accessible label of the strip. */
   name: string;
-  /** The name as shown: given names and the first surname. */
-  displayName: string;
   /** Already translated: "Violín", "Viola", "Violoncello". */
   instrument: string;
   /** Given name and first surname. */
