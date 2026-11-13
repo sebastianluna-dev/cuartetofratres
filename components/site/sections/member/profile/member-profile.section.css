@@ -31,7 +31,7 @@
 
   & .member-profile__name {
     font-family: var(--font-display);
-    font-size: clamp(44px, 5vw, 84px);
+    font-size: clamp(36px, 5vw, 84px);
     line-height: 0.9;
     text-transform: uppercase;
     text-wrap: balance;
@@ -187,10 +187,6 @@
         "bio";
       grid-template-rows: auto;
       padding-top: calc(86px + 20px);
-    }
-
-    & .member-profile__name {
-      font-size: clamp(38px, 10.5vw, 60px);
     }
 
     & .member-profile__stage {
