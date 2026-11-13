@@ -42,43 +42,7 @@
     grid-area: bio;
     max-width: 68ch;
     margin-top: clamp(28px, 4.5vh, 48px);
-    padding-top: clamp(24px, 3.5vh, 36px);
-    border-top: 1px solid var(--color-divider-on-ink);
     animation: member-profile-rise 0.9s var(--ease-stage) 0.12s both;
-  }
-
-  /* The two ways on: the player and the form of the home page. */
-  & .member-profile__actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px 28px;
-    margin-top: clamp(24px, 3.5vh, 36px);
-  }
-
-  & .member-profile__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    min-height: 44px;
-    font-family: var(--font-label);
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    background: linear-gradient(currentColor, currentColor) 0 calc(100% - 10px) / 0 1px no-repeat;
-    transition: background-size 0.45s var(--ease-stage);
-
-    &:hover,
-    &:focus-visible {
-      background-size: calc(100% - 28px) 1px;
-    }
-  }
-
-  & .member-profile__link-icon {
-    flex: none;
-    width: 18px;
-    height: 18px;
   }
 
   & .member-profile__paragraph {
@@ -237,7 +201,7 @@
     }
 
     & .member-profile__bio {
-      margin-top: 8px;
+      margin-top: 24px;
     }
   }
 }

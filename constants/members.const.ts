@@ -71,9 +71,6 @@ export const MEMBER_PAGE_COPY = {
   others: "Conoce a los demás",
   /** Read after the name by screen readers on the home page's portraits. */
   linkHint: "ver semblanza",
-  /** The two ways on from a biography, to the home page's player and form. */
-  listen: "Escuchar al cuarteto",
-  hire: "Contratar al cuarteto",
 } as const;
 
 /** Path of a musician's page. */
