@@ -10,7 +10,7 @@ export async function RepertoireSection() {
   const repertoire = await getRepertoireData();
 
   return (
-    <section id="repertorio" className="section section_theme_wood repertoire" aria-labelledby={TITLE_ID}>
+    <section id="repertorio" className="section section_theme_ivory repertoire" aria-labelledby={TITLE_ID}>
       <div className="section__inner repertoire__inner">
         <Reveal className="repertoire__content">
           <RepertoirePlayer content={repertoire} titleId={TITLE_ID} />
