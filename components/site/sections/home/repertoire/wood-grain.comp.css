@@ -14,10 +14,13 @@
     opacity: 0.55;
   }
 
-  /* The edges a shade darker, as a varnished board catches the light. */
+  /* A faint dark veil over the whole board, so the ivory text stands out,
+     and the edges a shade darker, as a varnished board catches the light. */
   & .wood-grain__shade {
     position: absolute;
     inset: 0;
-    background: radial-gradient(120% 90% at 30% 20%, transparent 40%, rgba(0, 0, 0, 0.35));
+    background:
+      radial-gradient(120% 90% at 30% 20%, transparent 40%, rgba(0, 0, 0, 0.35)),
+      rgba(20, 8, 2, 0.22);
   }
 }
