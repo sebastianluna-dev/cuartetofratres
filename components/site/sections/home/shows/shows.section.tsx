@@ -7,11 +7,13 @@ import "./shows.section.css";
 
 const TITLE_ID = "cartelera-titulo";
 
-// The next dates as posters, on ivory. The row always ends with the
-// invitation poster; with no date published, a poster says so instead of
-// leaving the section out, so its anchor in the nav never dangles.
+// The next dates as posters, on ivory, ending with the invitation poster.
+// With no upcoming date published the whole section is left out: an empty
+// listing would only say the quartet is idle. No link on the page points to
+// its anchor, so nothing dangles.
 export async function ShowsSection() {
   const [settings, events] = await Promise.all([getSiteSettingsData(), getUpcomingEvents(MAX_SHOW_POSTERS)]);
+  if (events.length === 0) return null;
 
   return (
     <section id="cartelera" className="section section_theme_ivory shows" aria-labelledby={TITLE_ID}>

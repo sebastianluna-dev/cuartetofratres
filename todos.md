@@ -15,7 +15,7 @@ Small, mechanical tasks that need no design decision. Bigger items live in `IMPR
 - [x] Strip the C2PA metadata from the logo SVG and inline it as a component (2026-04-21).
 - [ ] In `/admin › Integrantes` (production), replace the four portraits with the cut-outs in `public/images/<slug>.webp`: the stored photos are the earlier opaque ones and the redesigned section fades a transparent portrait into the stage.
 - [ ] Confirm with the quartet which cut-out is whose: `ricardo-sanchez` and `jesus-medina` were told apart by the instrument only (the one held upright as the viola).
-- [ ] Publish at least one future date in `/admin › Presentaciones`: both seeded dates are past, so the dates section shows the «por anunciar» poster.
+- [ ] Publish at least one future date in `/admin › Presentaciones`: both seeded dates are past, and with no upcoming date the «Cartelera» section is left out of the page.
 - [ ] In `/admin › Ajustes del sitio` (production), set WhatsApp to `522288265906` (Lucía Paredes' number, given by the owner on 2026-11-13); the site shows it as `+52 228 826 5906`.
 - [ ] In `/admin › Integrantes` (production), split each biography into paragraphs with a blank line, as the seed in `constants/members.const.ts` now does (same words, breaks only before «Desde 2024…», «Obtuvo…», «Ha formado parte…», «Ha tomado clases…», «Su formación inició…», «Es violoncellista principal…», «Ha sido finalista…»).
 - [ ] In `/admin › El cuarteto` (production), replace the «Texto de presentación» with the two paragraphs in `ABOUT_DEFAULTS.lead` (`constants/about.const.ts`), blank lines included: the section now shows a longer description beside the group.
