@@ -2,6 +2,7 @@ import { LOGO_MARK_PATHS, LOGO_MARK_VIEW_BOX } from "@/components/site/shared/lo
 import { Reveal } from "@/components/site/shared/reveal.comp";
 import { CONTACT_COPY } from "@/constants/contact.const";
 import { buildMailtoUrl } from "@/lib/build-mailto-url";
+import { formatWhatsapp } from "@/lib/format-whatsapp";
 import { getContactSectionData } from "@/services/contact/contact-section.service";
 import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
 import { ContactForm } from "./contact-form.comp";
@@ -62,7 +63,7 @@ export async function ContactSection() {
                       target="_blank"
                       rel="noopener"
                     >
-                      +{settings.whatsapp}
+                      {formatWhatsapp(settings.whatsapp)}
                     </a>
                   ) : (
                     CONTACT_COPY.whatsappPending
