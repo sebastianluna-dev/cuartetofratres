@@ -13,8 +13,8 @@ interface HeroStageProps {
 }
 
 /** How far the stage leans towards the pointer, in px, across and down. */
-const LEAN_X = 22;
-const LEAN_Y = 14;
+const LEAN_X = 10;
+const LEAN_Y = 6;
 /** Share of the remaining distance covered per frame. */
 const EASING = 0.08;
 
