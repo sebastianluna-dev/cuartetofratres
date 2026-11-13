@@ -1,4 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
+import { MEMBER_PAGE_COPY } from "@/constants/members.const";
+import { CONTACT_ANCHOR } from "@/constants/navigation.const";
 import { StaffLines } from "@/components/site/shared/staff-lines.comp";
 import { splitParagraphs } from "@/lib/text-blocks";
 import type { MemberContent } from "@/services/members/members.types";
@@ -9,8 +13,9 @@ interface MemberProfileSectionProps {
 }
 
 // First screen of a musician's page: the instrument, the name and the
-// biography on the left; the portrait standing on the right, over the
-// staff lines. On the phone the portrait goes between the name and the text.
+// biography on the left, centred against the portrait standing on the right
+// over the staff lines, and two ways on (listen, hire) at the foot of the
+// text. On the phone the portrait goes between the name and the text.
 export function MemberProfileSection({ member }: MemberProfileSectionProps) {
   return (
     <article className="section section_theme_ink member-profile" aria-labelledby="semblanza-titulo">
@@ -46,6 +51,16 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
               {paragraph}
             </p>
           ))}
+          <div className="member-profile__actions">
+            <Link href="/#repertorio" className="pill-button pill-button_size_small">
+              {MEMBER_PAGE_COPY.listen}
+              <ArrowIcon className="pill-button__icon" />
+            </Link>
+            <Link href={`/${CONTACT_ANCHOR}`} className="member-profile__link">
+              {MEMBER_PAGE_COPY.hire}
+              <ArrowIcon className="member-profile__link-icon" />
+            </Link>
+          </div>
         </div>
       </div>
     </article>

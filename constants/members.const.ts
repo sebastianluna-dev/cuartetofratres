@@ -30,7 +30,7 @@ export const MEMBERS: readonly Member[] = [
     name: "Jesús Guadalupe Medina Corrales",
     instrument: "violin",
     shortName: "Jesús Medina",
-    bio: "Originario de Culiacán, Sinaloa. Inició el violín a los quince años con la maestra Marli Calderón, se formó en la Orquesta Escuela Carlos Chávez y fue concertino de esa agrupación. Desde 2024 es concertino de la Orquesta Filarmónica de Boca del Río y Veracruz. Su talento vocal lo llevó al Instituto Schiller para Niños Cantores en Mexicali y a compartir escenario con el tenor Luciano Pavarotti. Obtuvo el Primer Lugar en el Concurso para Jóvenes Solistas de la Orquesta de Baja California (2014) y el Concurso de Solistas de la Orquesta Escuela Carlos Chávez (2019).",
+    bio: "Originario de Culiacán, Sinaloa. Inició el violín a los quince años con la maestra Marli Calderón, se formó en la Orquesta Escuela Carlos Chávez y fue concertino de esa agrupación.\n\nDesde 2024 es concertino de la Orquesta Filarmónica de Boca del Río y Veracruz. Su talento vocal lo llevó al Instituto Schiller para Niños Cantores en Mexicali y a compartir escenario con el tenor Luciano Pavarotti.\n\nObtuvo el Primer Lugar en el Concurso para Jóvenes Solistas de la Orquesta de Baja California (2014) y el Concurso de Solistas de la Orquesta Escuela Carlos Chávez (2019).",
     photo: { src: "/images/jesus-medina.webp", alt: "Jesús Guadalupe Medina Corrales", position: "50% 0%" },
   },
   {
@@ -38,7 +38,7 @@ export const MEMBERS: readonly Member[] = [
     name: "Lucía Montserrat Paredes García",
     instrument: "violin",
     shortName: "Lucía Paredes",
-    bio: "Originaria de Tlaxcala. Comenzó a los nueve años en la Casa de Música de su ciudad y realizó sus estudios profesionales en el Instituto Superior de Música del Estado de Veracruz. Ha formado parte de la Camerata de Coahuila y de la Filarmónica de Boca del Río. Ha sido integrante de la Orquesta Sinfónica Juvenil del Estado de Veracruz, con giras nacionales y proyectos discográficos, y del ensamble de música antigua Corazón con Manos. Ha tomado clases magistrales con Ilya Kaler, Lisa Kim y Robert McDuffie, y se especializa en Musicoterapia.",
+    bio: "Originaria de Tlaxcala. Comenzó a los nueve años en la Casa de Música de su ciudad y realizó sus estudios profesionales en el Instituto Superior de Música del Estado de Veracruz.\n\nHa formado parte de la Camerata de Coahuila y de la Filarmónica de Boca del Río. Ha sido integrante de la Orquesta Sinfónica Juvenil del Estado de Veracruz, con giras nacionales y proyectos discográficos, y del ensamble de música antigua Corazón con Manos.\n\nHa tomado clases magistrales con Ilya Kaler, Lisa Kim y Robert McDuffie, y se especializa en Musicoterapia.",
     photo: { src: "/images/lucia-paredes.webp", alt: "Lucía Montserrat Paredes García", position: "50% 0%" },
   },
   {
@@ -46,7 +46,7 @@ export const MEMBERS: readonly Member[] = [
     name: "José Ricardo Sánchez Jiménez",
     instrument: "viola",
     shortName: "José Sánchez",
-    bio: "Originario de Coatepec, Veracruz. Estudia en la Facultad de Música de la Universidad Veracruzana con Yurii Inti Bullón y es Principal de Violas de la Orquesta Sinfónica Juvenil del Estado de Veracruz. Su formación inició en 2014 en la Orquesta Esperanza Azteca. Ha participado en clases magistrales con Christopher Lowry, Elías Goldstein, Milán Milisavljevic y Honggang Li, y colabora con la Camerata Latinoamericana además de la Orquesta Sinfónica de Xalapa.",
+    bio: "Originario de Coatepec, Veracruz. Estudia en la Facultad de Música de la Universidad Veracruzana con Yurii Inti Bullón y es Principal de Violas de la Orquesta Sinfónica Juvenil del Estado de Veracruz.\n\nSu formación inició en 2014 en la Orquesta Esperanza Azteca. Ha participado en clases magistrales con Christopher Lowry, Elías Goldstein, Milán Milisavljevic y Honggang Li, y colabora con la Camerata Latinoamericana además de la Orquesta Sinfónica de Xalapa.",
     photo: { src: "/images/ricardo-sanchez.webp", alt: "José Ricardo Sánchez Jiménez", position: "50% 0%" },
   },
   {
@@ -54,7 +54,7 @@ export const MEMBERS: readonly Member[] = [
     name: "Alfonso Pérez Valencia",
     instrument: "cello",
     shortName: "Alfonso Pérez",
-    bio: "Originario de Xalapa, Veracruz. Comenzó sus estudios a los tres años y se formó en el CIMI y en la Universidad Veracruzana. Es violoncellista principal de la Filarmónica de Boca del Río y director artístico de Ensamble Carmesí. Ha sido finalista en dos ediciones del Concurso Nacional de Violoncello del INBAL y ha participado en festivales de América, Europa y Asia, entre ellos Prisma Festival en Canadá y Esker Festival en Irlanda, con maestros como Thomas Mesa, Pablo Ferrández y Álvaro Bitrán.",
+    bio: "Originario de Xalapa, Veracruz. Comenzó sus estudios a los tres años y se formó en el CIMI y en la Universidad Veracruzana.\n\nEs violoncellista principal de la Filarmónica de Boca del Río y director artístico de Ensamble Carmesí.\n\nHa sido finalista en dos ediciones del Concurso Nacional de Violoncello del INBAL y ha participado en festivales de América, Europa y Asia, entre ellos Prisma Festival en Canadá y Esker Festival en Irlanda, con maestros como Thomas Mesa, Pablo Ferrández y Álvaro Bitrán.",
     photo: { src: "/images/alfonso-perez.webp", alt: "Alfonso Pérez Valencia", position: "50% 0%" },
   },
 ];
@@ -71,6 +71,9 @@ export const MEMBER_PAGE_COPY = {
   others: "Conoce a los demás",
   /** Read after the name by screen readers on the home page's portraits. */
   linkHint: "ver semblanza",
+  /** The two ways on from a biography, to the home page's player and form. */
+  listen: "Escuchar al cuarteto",
+  hire: "Contratar al cuarteto",
 } as const;
 
 /** Path of a musician's page. */

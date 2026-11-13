@@ -14,7 +14,6 @@
     max-width: calc(var(--site-max-width) - 2 * var(--site-gutter));
     height: 86px;
     margin: 0 auto;
-    border-bottom: 1px solid var(--color-divider-on-ink);
   }
 
   /* The arrow in a ring, like the contact mark of the home page's bar. */

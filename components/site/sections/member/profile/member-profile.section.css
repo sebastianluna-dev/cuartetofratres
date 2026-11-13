@@ -4,15 +4,17 @@
   overflow: clip;
   background: radial-gradient(ellipse 60% 70% at 72% 40%, #20242a 0, var(--color-ink-deep) 66%) var(--color-ink-deep);
 
-  /* Text on the left, the portrait on the right across both rows. Under the
-     top bar (86px). */
+  /* Text on the left, centred in height against the portrait on the right,
+     which spans every row. Under the page's top (86px). */
   & .member-profile__inner {
     display: grid;
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     grid-template-areas:
+      ". stage"
       "head stage"
-      "bio stage";
-    grid-template-rows: auto 1fr;
+      "bio stage"
+      ". stage";
+    grid-template-rows: 1fr auto auto 1fr;
     column-gap: clamp(32px, 5vw, 96px);
     max-width: var(--site-max-width);
     margin: 0 auto;
@@ -27,15 +29,15 @@
     align-items: flex-start;
   }
 
-  /* The lime tag: one of the few marks that keep the accent. */
+  /* The instrument as a quiet ivory tag in outline: lime stays out of it. */
   & .member-profile__instrument {
     display: inline-flex;
     align-items: center;
     height: 28px;
     padding: 0 12px;
     border-radius: 4px;
-    background: var(--color-lime);
-    color: var(--color-ink);
+    box-shadow: inset 0 0 0 1px rgba(242, 244, 243, 0.5);
+    color: var(--color-text-on-ink);
     font-family: var(--font-label);
     font-size: 13px;
     font-weight: 600;
@@ -56,11 +58,45 @@
 
   & .member-profile__bio {
     grid-area: bio;
-    max-width: 62ch;
+    max-width: 68ch;
     margin-top: clamp(28px, 4.5vh, 48px);
     padding-top: clamp(24px, 3.5vh, 36px);
     border-top: 1px solid var(--color-divider-on-ink);
     animation: member-profile-rise 0.9s var(--ease-stage) 0.12s both;
+  }
+
+  /* The two ways on: the player and the form of the home page. */
+  & .member-profile__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 28px;
+    margin-top: clamp(24px, 3.5vh, 36px);
+  }
+
+  & .member-profile__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    font-family: var(--font-label);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: linear-gradient(currentColor, currentColor) 0 calc(100% - 10px) / 0 1px no-repeat;
+    transition: background-size 0.45s var(--ease-stage);
+
+    &:hover,
+    &:focus-visible {
+      background-size: calc(100% - 28px) 1px;
+    }
+  }
+
+  & .member-profile__link-icon {
+    flex: none;
+    width: 18px;
+    height: 18px;
   }
 
   & .member-profile__paragraph {
