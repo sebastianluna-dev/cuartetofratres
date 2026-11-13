@@ -5,7 +5,7 @@ const TABLE = "0.35 0.62 0.45 0.58 0.4 0.66 0.48 0.55 0.42 0.6";
 // The grain of the repertoire's wood, drawn rather than photographed: a noise
 // stretched along the length (the fibres), bent by a wider, slower noise (the
 // waves of the figure) and banded into light and dark, laid over the varnish
-// in soft light, with the edges a little darker. It weighs nothing, never
+// in soft light. It weighs nothing, never
 // tiles and fits any size. A Server Component; decorative.
 export function WoodGrain() {
   return (
@@ -33,7 +33,6 @@ export function WoodGrain() {
         </defs>
         <rect x="-5%" y="-5%" width="110%" height="110%" filter="url(#wood-grain-filter)" />
       </svg>
-      <span className="wood-grain__shade" />
     </span>
   );
 }

@@ -13,13 +13,4 @@
     mix-blend-mode: soft-light;
     opacity: 0.55;
   }
-
-  /* A faint black veil over the whole board, so the ivory text stands out
-     and the varnish loses a little saturation,
-     and the edges a shade darker, as a varnished board catches the light. */
-  & .wood-grain__shade {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(120% 90% at 30% 20%, transparent 40%, rgba(0, 0, 0, 0.35)), rgba(0, 0, 0, 0.25);
-  }
 }
