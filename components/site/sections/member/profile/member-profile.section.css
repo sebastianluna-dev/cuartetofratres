@@ -18,7 +18,7 @@
     column-gap: clamp(32px, 5vw, 96px);
     max-width: var(--site-max-width);
     margin: 0 auto;
-    padding: calc(86px + clamp(36px, 6vh, 72px)) var(--site-gutter) clamp(56px, 8vh, 104px);
+    padding: calc(86px + clamp(12px, 2vh, 24px)) var(--site-gutter) clamp(56px, 8vh, 104px);
   }
 
   /* Instrument and name, one under the other. */
@@ -100,7 +100,7 @@
   & .member-profile__photo-box {
     position: relative;
     aspect-ratio: 2 / 3;
-    max-height: calc(100svh - 120px);
+    max-height: calc(100svh - 86px - clamp(12px, 2vh, 24px));
     margin: 0 auto;
   }
 
@@ -202,6 +202,24 @@
 
     & .member-profile__bio {
       margin-top: 24px;
+    }
+  }
+
+  /* Desktop: exactly one screen, the top bar included (it lies over the
+     first 86px), the portrait standing on the bottom edge. Last in the block
+     so it wins over the padding above. */
+  @media (min-width: 901px) {
+    height: 100vh;
+    height: 100svh;
+    min-height: 620px;
+
+    & .member-profile__inner {
+      height: 100%;
+      padding-bottom: 0;
+    }
+
+    & .member-profile__bio {
+      padding-bottom: clamp(24px, 4vh, 48px);
     }
   }
 }

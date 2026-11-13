@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import { MemberHeader } from "@/components/site/sections/member/header/member-header.section";
 import { StaffMusic } from "@/components/site/shared/staff-music.comp";
 import { MEMBER_MUSIC_STAGES, MEMBER_STAGE_FIGURE } from "@/constants/members.const";
 import { StaffLines } from "@/components/site/shared/staff-lines.comp";
@@ -12,12 +13,14 @@ interface MemberProfileSectionProps {
   member: MemberContent;
 }
 
-// First screen of a musician's page: the instrument, the name and the
+// First screen of a musician's page, one screen tall on desktop: the
+// monogram and the way back at the top (MemberHeader), the name and the
 // biography on the left, centred against the portrait standing on the right
 // over the staff lines. On the phone the portrait goes between the name and the text.
 export function MemberProfileSection({ member }: MemberProfileSectionProps) {
   return (
     <article className="section section_theme_ink member-profile" aria-labelledby="semblanza-titulo">
+      <MemberHeader />
       <div className="member-profile__inner">
         <header className="member-profile__head">
           {/* The instrument is drawn as a note on the photo, hidden from readers;
