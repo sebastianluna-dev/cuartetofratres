@@ -57,7 +57,7 @@
      cuts, never at the top: the head stays whole. */
   & .hero-stage__image {
     object-fit: contain;
-    filter: saturate(0.83) contrast(1) brightness(1);
+    filter: var(--filter-musicians);
     -webkit-mask-image:
       linear-gradient(90deg, transparent, #000 var(--fade-left)),
       linear-gradient(270deg, transparent, #000 var(--fade-right)),

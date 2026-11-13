@@ -35,7 +35,7 @@
     display: block;
     width: 100%;
     height: auto;
-    filter: grayscale(1) contrast(1.06);
+    filter: var(--filter-musicians);
   }
 
   /* The place and the statement on the left, the lead on the right. */
