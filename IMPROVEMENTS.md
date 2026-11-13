@@ -144,3 +144,13 @@ Either drop the field (migration, plus the seed and `about.mapper`) or let the
 editors upload a transparent cut-out there and read it again. The cut-out came
 out of macOS Vision: its edges carry a faint light rim on the dark clothes; a
 hand-cleaned version would fix it.
+
+## Hero texts in the CMS no longer shown
+
+**Area:** CMS · **Priority:** low
+
+Since 2026-11-12 the hero shows only the label and the name over the stage:
+the `lead` and `listenLabel` of `/admin › Secciones › Portada` (and the
+`image` the stage replaced earlier) are read by `hero.mapper` but not drawn.
+Drop them with a migration (and from the seed and the mapper), or bring them
+back if the hero gets its text again.

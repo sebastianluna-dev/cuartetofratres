@@ -25,15 +25,9 @@ export const HERO_DEFAULTS: HeroDefaults = {
 };
 
 /**
- * Fixed copy of the hero's frame. It is not in the CMS: these lines belong to
- * the composition (the label over the name, the links to the members and to
- * contact), not to what the quartet edits.
+ * Fixed copy of the hero's frame. It is not in the CMS: the label over the
+ * name belongs to the composition, not to what the quartet edits.
  */
 export const HERO_COPY = {
   kicker: "Cuarteto de cuerdas",
-  membersLink: "Conoce al cuarteto",
-  /** The page has no top bar: this link is the first screen's way to contact. */
-  contactLink: "Contacto",
-  linksLabel: "Accesos",
-  occasions: "Conciertos · Ceremonias · Eventos privados",
 } as const;
