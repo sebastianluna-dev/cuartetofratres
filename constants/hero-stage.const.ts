@@ -1,3 +1,5 @@
+import { MEMBER_PHOTOS } from "@/constants/member-photos.const";
+
 export interface StageFigure {
   id: string;
   /** Slug of the musician's own page, which shows this same cut-out. */
@@ -26,7 +28,7 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
   {
     id: "jesus-medina",
     memberSlug: "jesus-medina",
-    src: "/images/stage/jesus-medina.webp",
+    src: MEMBER_PHOTOS["jesus-medina"].src,
     x: 14.8,
     top: 6,
     height: 90,
@@ -37,7 +39,7 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
   {
     id: "lucia-paredes",
     memberSlug: "lucia-paredes",
-    src: "/images/stage/lucia-paredes.webp",
+    src: MEMBER_PHOTOS["lucia-paredes"].src,
     x: 37.9,
     top: 1.5,
     height: 100,
@@ -47,7 +49,7 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
   {
     id: "ricardo-sanchez",
     memberSlug: "jose-sanchez",
-    src: "/images/stage/ricardo-sanchez.webp",
+    src: MEMBER_PHOTOS["jose-sanchez"].src,
     x: 62.1,
     top: 5.5,
     height: 94,
@@ -57,7 +59,7 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
   {
     id: "alfonso-perez",
     memberSlug: "alfonso-perez",
-    src: "/images/stage/alfonso-perez.webp",
+    src: MEMBER_PHOTOS["alfonso-perez"].src,
     x: 85.2,
     top: 27,
     height: 68,

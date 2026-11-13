@@ -2,7 +2,7 @@ import type { Member } from "@/payload-types";
 import { INSTRUMENT_LABELS, type Member as MemberDefault } from "@/constants/members.const";
 import { dropSecondSurname, shortenName } from "@/lib/shorten-name";
 import { slugify } from "@/lib/slugify";
-import { mapContentImage } from "@/services/shared/map-content-image";
+import { MEMBER_PHOTOS } from "@/constants/member-photos.const";
 import type { MemberContent } from "./members.types";
 
 function orNull(value: string | null | undefined): string | null {
@@ -10,33 +10,35 @@ function orNull(value: string | null | undefined): string | null {
   return trimmed ? trimmed : null;
 }
 
+// The CMS only edits the biography; the photo comes from code, by the slug of
+// the page. A musician with no photo in code is left out.
 export function mapMember(member: Member): MemberContent | null {
-  const photo = mapContentImage(member.photo);
-  if (!photo) return null;
   const shortName = orNull(member.shortName) ?? shortenName(member.name);
+  const slug = slugify(shortName);
+  const photo = MEMBER_PHOTOS[slug];
+  if (!photo) return null;
   return {
     id: String(member.id),
-    slug: slugify(shortName),
+    slug,
     name: member.name,
     displayName: dropSecondSurname(member.name),
     instrument: INSTRUMENT_LABELS[member.instrument],
     shortName,
     bio: member.bio,
     photo,
-    photoPosition: member.photoPosition || "50% 30%",
   };
 }
 
 export function mapDefaultMember(member: MemberDefault): MemberContent {
+  const slug = slugify(member.shortName);
   return {
     id: member.id,
-    slug: slugify(member.shortName),
+    slug,
     name: member.name,
     displayName: dropSecondSurname(member.name),
     instrument: INSTRUMENT_LABELS[member.instrument],
     shortName: member.shortName,
     bio: member.bio,
-    photo: { src: member.photo.src, alt: member.photo.alt },
-    photoPosition: member.photo.position,
+    photo: MEMBER_PHOTOS[slug],
   };
 }

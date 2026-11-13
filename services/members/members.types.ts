@@ -1,4 +1,4 @@
-import type { ContentImage } from "@/services/shared/content-image.types";
+import type { MemberPhoto } from "@/constants/member-photos.const";
 
 export interface MemberContent {
   id: string;
@@ -13,6 +13,6 @@ export interface MemberContent {
   /** Given name and first surname. */
   shortName: string;
   bio: string;
-  photo: ContentImage;
-  photoPosition: string;
+  /** The cut-out and its framing, from code (constants/member-photos.const.ts). */
+  photo: MemberPhoto;
 }

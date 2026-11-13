@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
 import { MEMBER_PAGE_COPY, memberPath } from "@/constants/members.const";
+import { photoFadeStyle } from "@/lib/photo-fades";
 import type { MemberContent } from "@/services/members/members.types";
 import "./member-portrait.comp.css";
 
@@ -18,7 +19,7 @@ export function MemberPortrait({ member, sizes }: MemberPortraitProps) {
   return (
     <Link href={memberPath(member.slug)} className="member-portrait">
       <span className="member-portrait__glow" aria-hidden="true" />
-      <span className="member-portrait__frame">
+      <span className="member-portrait__frame" style={photoFadeStyle(member.photo.portrait.fades)}>
         <Image
           src={member.photo.src}
           alt=""
@@ -26,7 +27,7 @@ export function MemberPortrait({ member, sizes }: MemberPortraitProps) {
           quality={100}
           sizes={sizes}
           className="member-portrait__photo"
-          style={{ objectPosition: member.photoPosition }}
+          style={{ objectPosition: member.photo.portrait.position }}
         />
       </span>
       <span className="member-portrait__caption">

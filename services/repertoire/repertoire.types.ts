@@ -1,4 +1,3 @@
-
 export interface CategoryContent {
   id: string;
   label: string;

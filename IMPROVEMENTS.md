@@ -164,3 +164,14 @@ the `lead` and `listenLabel` of `/admin › Secciones › Portada` (and the
 `image` the stage replaced earlier) are read by `hero.mapper` but not drawn.
 Drop them with a migration (and from the seed and the mapper), or bring them
 back if the hero gets its text again.
+
+## `members.photo` and `members.photo_position` no longer read
+
+**Area:** CMS · **Priority:** low
+
+Since 2026-11-13 the musicians' photos come from `constants/member-photos.const.ts` and the two
+portrait fields of `payload/collections/Members.ts` are hidden in the admin. They stay in the
+schema (and the seed still fills `photo`, which is required) only to avoid a migration while the
+redesign is unpublished. Drop them with `npm run cms:migrate -- create members_photo_dropped`,
+remove them from the seed, and delete the four `public/images/<slug>.webp` portraits the seed
+uploads.
