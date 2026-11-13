@@ -7,7 +7,7 @@ export interface AboutDefaults {
 
 export const ABOUT_DEFAULTS: AboutDefaults = {
   title: "Nuestra música",
-  lead: "Cuarteto Fratres reúne a cuatro músicos con trayectoria orquestal en México: Jesús Medina y Lucía Paredes en los violines, Ricardo Sánchez en la viola y Alfonso Pérez en el violonchelo. Han tocado en la Filarmónica de Boca del Río y la Orquesta Sinfónica de Xalapa, y han tomado clases con maestros como Pablo Ferrández e Ilya Kaler.\n\nTocan con la misma exigencia en una sala de concierto que en una ceremonia privada: el programa se elige para el lugar y para quien escucha.",
+  lead: "Cuarteto Fratres reúne a cuatro músicos con trayectoria orquestal en México: Jesús Medina y Lucía Paredes en los violines, José Sánchez en la viola y Alfonso Pérez en el violonchelo. Han tocado en la Filarmónica de Boca del Río y la Orquesta Sinfónica de Xalapa, y han tomado clases con maestros como Pablo Ferrández e Ilya Kaler.\n\nTocan con la misma exigencia en una sala de concierto que en una ceremonia privada: el programa se elige para el lugar y para quien escucha.",
   photo: {
     src: "/images/cuarteto-sala.jpg",
     alt: "Los cuatro integrantes del Cuarteto Fratres con sus instrumentos, en una sala de conciertos",
