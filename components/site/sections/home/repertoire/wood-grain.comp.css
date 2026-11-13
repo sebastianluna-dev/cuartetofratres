@@ -21,6 +21,6 @@
     inset: 0;
     background:
       radial-gradient(120% 90% at 30% 20%, transparent 40%, rgba(0, 0, 0, 0.35)),
-      rgba(20, 8, 2, 0.22);
+      rgba(20, 8, 2, 0.32);
   }
 }
