@@ -1,6 +1,6 @@
 :root {
   /* Palette. Ink and the light grounds (ivory, warm white and cream), with
-     ink for what is chosen and olive for the focus on light grounds. */
+     ink for what is chosen and for the focus on light grounds. */
   --color-ivory: #f3f2f2;
   --color-ivory-soft: #eae9e9;
   /* Halfway between the quartet's first ink (#121418) and the Filarmónica's (#070809). */
@@ -10,8 +10,6 @@
   --color-ink-deep: #0a0b0e;
   /* The tiles of the player and the ground behind a photo while it loads. */
   --color-ink-tile: #37393d;
-  --color-olive: #4d5610;
-  --color-olive-hover: #3a4110;
   /* Text. */
   /* A warm cream: «El cuarteto» and the contact section, each after a near-white one. */
   --color-cream: #fcead5;
@@ -137,7 +135,7 @@ strong {
 }
 
 /* Visible focus across the whole site. On ink the ivory reads; on the light
-   grounds the olive does, which is why those sections recolour it. */
+   grounds the ink does, which is why those sections recolour it. */
 :focus-visible {
   outline: 2px solid var(--color-text-on-ink);
   outline-offset: 3px;
@@ -147,7 +145,7 @@ strong {
 .section_theme_paper :focus-visible,
 .section_theme_white :focus-visible,
 .section_theme_cream :focus-visible {
-  outline-color: var(--color-olive);
+  outline-color: var(--color-ink);
 }
 
 ::selection {

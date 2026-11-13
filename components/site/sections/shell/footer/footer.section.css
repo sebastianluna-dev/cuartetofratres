@@ -8,7 +8,7 @@
   color: var(--color-muted-on-ivory);
 
   & :focus-visible {
-    outline-color: var(--color-olive);
+    outline-color: var(--color-ink);
   }
 
   & .site-footer__inner {

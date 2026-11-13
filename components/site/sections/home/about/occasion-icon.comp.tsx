@@ -35,7 +35,7 @@ const DRAWINGS: readonly ReactNode[] = [
   </>,
 ];
 
-/** The duotone mark of an occasion: an ink line over an offset olive wash. Decorative. */
+/** The duotone mark of an occasion: an ink line over an offset, faint ink wash. Decorative. */
 export function OccasionIcon({ index }: { index: number }) {
   return (
     <svg className="occasion-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">

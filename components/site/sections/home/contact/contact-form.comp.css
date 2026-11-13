@@ -31,7 +31,7 @@
     font-size: clamp(48px, 5vw, 76px);
     line-height: 0.9;
     text-transform: uppercase;
-    color: var(--color-olive);
+    color: var(--color-ink);
   }
 
   & .contact-form__sent-text {

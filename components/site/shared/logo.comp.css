@@ -19,8 +19,4 @@
   &.logo_theme_ink {
     color: var(--color-ink);
   }
-
-  &.logo_theme_olive {
-    color: var(--color-olive);
-  }
 }

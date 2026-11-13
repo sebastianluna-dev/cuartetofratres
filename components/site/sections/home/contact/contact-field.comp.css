@@ -39,9 +39,9 @@
 
     &:focus {
       outline: none;
-      border-color: var(--color-olive);
+      border-color: var(--color-ink);
       background-color: rgba(241, 220, 192, 0.45);
-      box-shadow: 0 2px 0 var(--color-olive);
+      box-shadow: 0 1px 0 var(--color-ink);
     }
   }
 
@@ -65,7 +65,7 @@
 
     &:focus {
       padding-left: 10px;
-      box-shadow: inset 3px 0 0 var(--color-olive);
+      box-shadow: inset 2px 0 0 var(--color-ink);
     }
   }
 

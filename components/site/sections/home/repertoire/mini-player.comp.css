@@ -226,7 +226,7 @@
   }
 
   &.mini-player_playing .mini-player__status::before {
-    background: var(--color-olive);
+    background: var(--color-ink);
     opacity: 1;
   }
 
