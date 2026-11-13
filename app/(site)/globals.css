@@ -15,6 +15,15 @@
   --color-olive: #4d5610;
   --color-olive-hover: #3a4110;
   /* Text. */
+  /* The repertoire's ground: the amber-red varnish of a violin. */
+  --color-wood: #7c3d18;
+  --color-wood-light: #a65f2c;
+  --color-wood-deep: #2a140a;
+  --color-text-on-wood: #f6efe6;
+  --color-muted-on-wood: rgba(246, 239, 230, 0.7);
+  --color-fill-on-wood: rgba(246, 239, 230, 0.14);
+  --color-fill-strong-on-wood: rgba(246, 239, 230, 0.22);
+
   --color-text-on-ivory: #0c0e10;
   --color-text-soft-on-ivory: #3a3d42;
   --color-muted-on-ivory: #605d5d;
@@ -143,6 +152,10 @@ strong {
   outline-color: var(--color-olive);
 }
 
+.section_theme_wood :focus-visible {
+  outline-color: var(--color-text-on-wood);
+}
+
 ::selection {
   background: rgba(230, 236, 158, 0.55);
   color: var(--color-ink);
@@ -195,7 +208,7 @@ strong {
 
 /* ---------------------------------------------------------------------------
    Shared layout pieces
-   Every section is `section section_theme_<ivory|ink>` with a `section__inner`
+   Every section is `section section_theme_<ivory|paper|ink|wood>` with a `section__inner`
    that sets the width; the padding is each section's own.
    --------------------------------------------------------------------------- */
 
@@ -216,6 +229,12 @@ strong {
   &.section_theme_ink {
     background: var(--color-ink);
     color: var(--color-text-on-ink);
+  }
+
+  /* Varnished wood, lit from the top left: only the repertoire. */
+  &.section_theme_wood {
+    background: radial-gradient(90% 75% at 28% 18%, var(--color-wood-light), var(--color-wood) 72%) var(--color-wood);
+    color: var(--color-text-on-wood);
   }
 
   & .section__inner {

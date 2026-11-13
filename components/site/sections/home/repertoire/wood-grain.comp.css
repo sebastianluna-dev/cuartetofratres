@@ -1,0 +1,23 @@
+/* No z-index: a stacking context here would blend the fibres against
+   nothing instead of the varnish beneath. */
+.wood-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  & .wood-grain__fibres {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: soft-light;
+    opacity: 0.55;
+  }
+
+  /* The edges a shade darker, as a varnished board catches the light. */
+  & .wood-grain__shade {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(120% 90% at 30% 20%, transparent 40%, rgba(0, 0, 0, 0.35));
+  }
+}
