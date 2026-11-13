@@ -80,3 +80,16 @@ export const MEMBER_PAGE_COPY = {
 export function memberPath(slug: string): string {
   return `/integrantes/${slug}`;
 }
+
+/**
+ * The stage of a musician's page, for the music engraved on its staff lines:
+ * its size in px as laid out wide (a 1440px screen) and on a 390px phone, and
+ * the one portrait standing on it. The frame is 2:3 in both, so the notes keep
+ * their shape at any width in between.
+ */
+export const MEMBER_MUSIC_STAGES = {
+  wide: { width: 516, height: 774 },
+  phone: { width: 350, height: 525 },
+} as const;
+
+export const MEMBER_STAGE_FIGURE = [{ x: 50, top: 0, height: 100 }] as const;

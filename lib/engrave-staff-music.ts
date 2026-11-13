@@ -34,7 +34,7 @@ export interface MusicView {
   heads: StageHead[];
 }
 
-interface FigurePlacement {
+export interface FigurePlacement {
   /** Centre across, top edge and height, in percent of the stage (constants/hero-stage.const.ts). */
   x: number;
   top: number;

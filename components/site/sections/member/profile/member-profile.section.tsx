@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
-import { MEMBER_PAGE_COPY } from "@/constants/members.const";
+import { StaffMusic } from "@/components/site/shared/staff-music.comp";
+import { MEMBER_MUSIC_STAGES, MEMBER_PAGE_COPY, MEMBER_STAGE_FIGURE } from "@/constants/members.const";
 import { CONTACT_ANCHOR } from "@/constants/navigation.const";
 import { StaffLines } from "@/components/site/shared/staff-lines.comp";
 import { splitParagraphs } from "@/lib/text-blocks";
@@ -30,6 +31,12 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
         <div className="member-profile__stage" aria-hidden="true">
           <div className="member-profile__glow" />
           <StaffLines kind="hero" className="member-profile__staff" />
+          <StaffMusic
+            stages={MEMBER_MUSIC_STAGES}
+            figures={MEMBER_STAGE_FIGURE}
+            id="member-music"
+            className="member-profile__music"
+          />
           <div className="member-profile__frame">
             {/* Five twelfths of the page on desktop, most of the screen on the phone. */}
             <Image
