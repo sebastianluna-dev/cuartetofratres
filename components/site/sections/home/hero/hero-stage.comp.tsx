@@ -73,6 +73,7 @@ export function HeroStage({ figures, music }: HeroStageProps) {
             {
               "--x": `${figure.x}%`,
               "--top": `${figure.top}%`,
+              "--top-narrow": `${figure.topNarrow ?? figure.top}%`,
               "--height": `${figure.height}%`,
               "--layer": figure.layer,
               "--depth": figure.depth,

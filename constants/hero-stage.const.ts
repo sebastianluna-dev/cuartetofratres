@@ -5,6 +5,8 @@ export interface StageFigure {
   /** Centre of the figure across the stage and its top edge, in percent of the stage. */
   x: number;
   top: number;
+  /** Top edge on narrow phones (under 420px), when it differs: see hero-stage.comp.css. */
+  topNarrow?: number;
   /** Height in percent of the stage; the width follows the 2:3 file. */
   height: number;
   /** Stacking order: the higher stands in front. */
@@ -36,6 +38,9 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
     src: "/images/stage/lucia-paredes.webp",
     x: 37.9,
     top: 1.5,
+    // On narrow phones she steps down until her face is level with the
+    // cellist's, so the two violinists' faces beside her have room.
+    topNarrow: 22,
     height: 100,
     layer: 3,
     depth: 0.8,
