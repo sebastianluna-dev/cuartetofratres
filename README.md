@@ -47,7 +47,7 @@ The `cms:*` scripts run with `node --import ./scripts/alias-loader.mjs`, a resol
 
 ## Route map
 
-The home page, `/`, has an anchor per section, in page order: `#inicio`, `#cartelera`, `#integrantes`, `#repertorio`, `#cuarteto` and `#contacto`. The anchors live in `constants/navigation.const.ts`, where the top bar reads them. The top bar lies over the hero and scrolls away with it; under 1100px its section links move into a full-screen menu opened from a toggle (`sections/shell/header/header-mobile-menu.comp.tsx`). The footer does not repeat the navigation.
+The home page, `/`, has an anchor per section, in page order: `#inicio`, `#cartelera`, `#integrantes`, `#repertorio`, `#cuarteto` and `#contacto`. The anchors live in `constants/navigation.const.ts`. The home page has no top bar and no menu: the hero carries the name on one line over the four musicians, and its links lead to the members (`#integrantes`) and to contact (`#contacto`); the rest of the page is reached by scrolling. The footer does not repeat the navigation.
 
 Every poster of a date opens a window with its detail (`components/site/sections/home/shows/event-dialog.comp.tsx`): a native `<dialog>`, so the focus, the Escape key and the backdrop come from the browser. With no tickets link, the button leads to the contact form. The row of posters always ends with the invitation poster, which leads to the contact form; with no date published, a poster says so, and the section stays in place.
 

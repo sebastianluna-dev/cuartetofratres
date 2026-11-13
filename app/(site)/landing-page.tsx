@@ -1,5 +1,4 @@
 import { siteConfig } from "@/config/site.config";
-import { Header } from "@/components/site/sections/shell/header/header.section";
 import { Footer } from "@/components/site/sections/shell/footer/footer.section";
 import { FontPreview } from "@/components/site/sections/shell/font-preview/font-preview.section";
 import { HeroSection } from "@/components/site/sections/home/hero/hero.section";
@@ -14,7 +13,6 @@ export default function LandingPage() {
 
   return (
     <div className="landing-page">
-      <Header />
       <main id="contenido">
         {sections.hero && <HeroSection />}
         {sections.shows && <ShowsSection />}

@@ -18,14 +18,15 @@ export interface StageFigure {
 // The hero's stage is art direction, not CMS content: four cut-outs placed by
 // hand so that the heads read the same size although the photos were framed
 // differently (the cellist's is a much tighter shot, hence his place in front).
-// Seating order, left to right. A new photo means new numbers here.
+// Seating order, left to right, in percent of the centred stage (see
+// hero-stage.comp.css). A new photo means new numbers here.
 export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
   {
     id: "jesus-medina",
     src: "/images/stage/jesus-medina.webp",
-    x: 17,
-    top: 22.5,
-    height: 52,
+    x: 16,
+    top: 6,
+    height: 90,
     layer: 2,
     depth: 0.5,
     fade: { left: 7 },
@@ -34,17 +35,17 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
     id: "lucia-paredes",
     src: "/images/stage/lucia-paredes.webp",
     x: 38.5,
-    top: 18.5,
-    height: 72,
+    top: 1.5,
+    height: 100,
     layer: 3,
     depth: 0.8,
   },
   {
     id: "ricardo-sanchez",
     src: "/images/stage/ricardo-sanchez.webp",
-    x: 61,
-    top: 21.5,
-    height: 68,
+    x: 61.5,
+    top: 5.5,
+    height: 94,
     layer: 2,
     depth: 0.6,
   },
@@ -52,8 +53,8 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
     id: "alfonso-perez",
     src: "/images/stage/alfonso-perez.webp",
     x: 84,
-    top: 42,
-    height: 55,
+    top: 27,
+    height: 68,
     layer: 4,
     depth: 1.1,
     fade: { left: 9, right: 9, bottom: 30 },
