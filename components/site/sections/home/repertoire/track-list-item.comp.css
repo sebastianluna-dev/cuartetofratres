@@ -1,5 +1,5 @@
 .track-item {
-  /* Colour of the play glyph and the equaliser: ink, olive once chosen. */
+  /* Colour of the play glyph and the equaliser: ink, brown once chosen. */
   --track-item-mark: var(--color-ink);
 
   & .track-item__button {
@@ -90,10 +90,10 @@
     transition: opacity 0.3s ease;
   }
 
-  /* The chosen work only takes its play glyph or equaliser in olive; the
+  /* The chosen work only takes its play glyph or equaliser in brown; the
      title and the tile stay as they are. */
   &.track-item_selected {
-    --track-item-mark: var(--color-olive);
+    --track-item-mark: var(--color-brown);
   }
 
   &.track-item_playing {
