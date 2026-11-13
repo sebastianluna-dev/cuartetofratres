@@ -17,8 +17,12 @@
   /* Text. */
   /* A warm cream: sets «El cuarteto» apart from the near-white repertoire above it. */
   --color-cream: #fcead5;
-  /* Almost white: the repertoire, between the black members and the cream. */
-  --color-white-soft: #fbfbfa;
+  /* Almost white, warm: the repertoire's ground. */
+  --color-white-soft: #fdf6ec;
+  /* The repertoire's controls: cream at rest, a deeper cream under the pointer, brown when chosen. */
+  --color-cream-soft: #f9ebd7;
+  --color-cream-hover: #f1dcc0;
+  --color-brown: #5e492e;
 
   --color-text-on-ivory: #0c0e10;
   --color-text-soft-on-ivory: #3a3d42;

@@ -6,4 +6,39 @@
   & .repertoire__content {
     padding: clamp(52px, 6.4vw, 104px) 0 clamp(48px, 6vw, 96px);
   }
+
+  /* On the warm ground the controls drop their greys: cream at rest, a deeper
+     cream under the pointer, brown once chosen. */
+  & .repertoire-filters__pill,
+  & .track-pager__page {
+    background: var(--color-cream-soft);
+
+    &:hover:not(.repertoire-filters__pill_active, .track-pager__page_current) {
+      background: var(--color-cream-hover);
+    }
+
+    &.repertoire-filters__pill_active,
+    &.track-pager__page_current {
+      background: var(--color-brown);
+      color: var(--color-ivory);
+    }
+  }
+
+  & .track-pager__step:hover:not(:disabled) {
+    background: var(--color-cream-soft);
+  }
+
+  & .staff-tile {
+    background: var(--color-cream-soft);
+  }
+
+  & .track-item__button:hover {
+    background: rgba(94, 73, 46, 0.06);
+  }
+
+  @media (max-width: 767px) {
+    & .track-item__button:hover {
+      background: transparent;
+    }
+  }
 }
