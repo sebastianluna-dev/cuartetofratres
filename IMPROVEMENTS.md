@@ -82,6 +82,16 @@ the quartet share a date on social media; read `location.hash` in `ShowPosters` 
 The reference project pilots Storybook on one component. Worth it here only if the design keeps
 evolving; otherwise the sections are small enough to review in the page.
 
+### 9. Hero music between the phone and the tablet — [Design]
+
+The music on the hero's staff lines (`components/site/sections/home/hero/hero-music.comp.tsx`) is
+engraved on the server for two stages, the desktop one and the 390 × 844 phone, and stretched
+with the lines like them (`preserveAspectRatio="none"`), so the notes always stay on their lines.
+Where the stage's shape departs from those two (phone layouts 561–760 px wide, or a desktop window
+narrower than its height), the glyphs stretch with it: wider on a tablet in portrait. If that
+shows, add a third engraving for that band in `HERO_MUSIC_STAGES` and switch it in
+`hero-music.comp.css`.
+
 ---
 
 ## Resolved

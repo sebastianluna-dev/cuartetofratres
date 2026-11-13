@@ -1,0 +1,39 @@
+.hero-music {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: none;
+  fill: currentColor;
+
+  /* Rides the staff lines' own sway (staff-lines.comp.css), so every note
+     stays on its line; the music itself never moves or lights up. */
+  & .hero-music__drawing {
+    display: block;
+    width: 100%;
+    height: 100%;
+    animation: staff-lines-drift 16s ease-in-out infinite alternate;
+  }
+
+  & .hero-music__drawing_view_phone {
+    display: none;
+  }
+
+  & .hero-music__text_style_number {
+    font-family: var(--font-label);
+    font-weight: 500;
+  }
+
+  & .hero-music__text_style_expression {
+    font-family: Georgia, serif;
+    font-style: italic;
+  }
+
+  @media (max-width: 760px) {
+    & .hero-music__drawing_view_wide {
+      display: none;
+    }
+
+    & .hero-music__drawing_view_phone {
+      display: block;
+    }
+  }
+}

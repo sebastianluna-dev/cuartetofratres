@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type CSSProperties } from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import Image from "next/image";
 import { StaffLines } from "@/components/site/shared/staff-lines.comp";
 import type { StageFigure } from "@/constants/hero-stage.const";
@@ -8,6 +8,8 @@ import "./hero-stage.comp.css";
 
 interface HeroStageProps {
   figures: readonly StageFigure[];
+  /** The music engraved on the staff lines, rendered on the server and passed in ready. */
+  music?: ReactNode;
 }
 
 /** How far the stage leans towards the pointer, in px, across and down. */
@@ -16,11 +18,11 @@ const LEAN_Y = 14;
 /** Share of the remaining distance covered per frame. */
 const EASING = 0.08;
 
-// The musicians on the stage: a glow, the staff lines and the four cut-outs,
+// The musicians on the stage: a glow, the staff lines with their music and the four cut-outs,
 // each rising into place on load. A Client Component only for the parallax:
 // with a mouse, the figures lean a little towards the pointer, the ones in
 // front more. The offsets go to the node as custom properties, not to state.
-export function HeroStage({ figures }: HeroStageProps) {
+export function HeroStage({ figures, music }: HeroStageProps) {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -62,6 +64,7 @@ export function HeroStage({ figures }: HeroStageProps) {
     <div ref={ref} className="hero-stage" aria-hidden="true">
       <div className="hero-stage__glow" />
       <StaffLines kind="hero" className="hero-stage__staff" />
+      {music}
       {figures.map((figure, index) => (
         <div
           key={figure.id}

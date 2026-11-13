@@ -30,6 +30,15 @@
     mask-image: radial-gradient(60% 56% at 50% 46%, #000 30%, transparent 100%);
   }
 
+  /* The music on the same layer box as the lines, so it lands on them, but
+     brighter and with a wider fade towards the edges. */
+  & .hero-stage__music {
+    inset: 4% -30% 10%;
+    color: var(--color-text-on-ink);
+    -webkit-mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%);
+    mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%);
+  }
+
   /* Placed by its centre; the lean towards the pointer rides on `translate`,
      apart from the rise of the image inside. */
   & .hero-stage__figure {
