@@ -8,14 +8,16 @@ interface LineProgressProps {
   /** 0–1. */
   fraction: number;
   onSeek: (fraction: number) => void;
+  /** What a screen reader says for the position, e.g. «0:43 de 3:30». */
+  valueText?: string;
 }
 
 const KEY_STEP = 0.05;
 
 // A thin line that fills in ink as the work plays, with a dot as the
 // playhead. Click to seek; with the keyboard it is a slider (arrows move 5 %,
-// Home/End jump), like the staff of the mini player.
-export function LineProgress({ fraction, onSeek }: LineProgressProps) {
+// Home/End jump).
+export function LineProgress({ fraction, onSeek, valueText }: LineProgressProps) {
   const percent = Math.round(Math.min(1, Math.max(0, fraction)) * 1000) / 10;
 
   const onClick = (event: MouseEvent<HTMLDivElement>) => {
@@ -41,6 +43,7 @@ export function LineProgress({ fraction, onSeek }: LineProgressProps) {
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={Math.round(percent)}
+      aria-valuetext={valueText}
       onClick={onClick}
       onKeyDown={onKeyDown}
     >

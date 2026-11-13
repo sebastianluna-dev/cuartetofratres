@@ -8,3 +8,8 @@ export function formatTrackTime(totalSeconds: number): string {
   const seconds = safe % 60;
   return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 }
+
+/** The position as a screen reader says it on the progress slider: "0:43 de 3:30". */
+export function formatTrackPosition(elapsedSeconds: number, totalSeconds: number): string {
+  return `${formatTrackTime(elapsedSeconds)} de ${formatTrackTime(totalSeconds)}`;
+}

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { forwardRef } from "react";
 import { PLAYER_COPY, RECORD_PHOTO } from "@/constants/repertoire.const";
-import { formatTrackTime } from "@/lib/format-track-time";
+import { formatTrackPosition, formatTrackTime } from "@/lib/format-track-time";
 import type { TrackContent } from "@/services/repertoire/repertoire.types";
 import { LineProgress } from "./line-progress.comp";
 import "./now-playing-card.comp.css";
@@ -46,7 +46,11 @@ export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(fu
       <p className="now-playing__composer">{track.composer}</p>
 
       <div className="now-playing__progress">
-        <LineProgress fraction={fraction} onSeek={onSeek} />
+        <LineProgress
+          fraction={fraction}
+          onSeek={onSeek}
+          valueText={formatTrackPosition(elapsed, track.durationSeconds)}
+        />
         <div className="now-playing__clocks">
           <span>{formatTrackTime(elapsed)}</span>
           <span>−{formatTrackTime(track.durationSeconds - elapsed)}</span>
