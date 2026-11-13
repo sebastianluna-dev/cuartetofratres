@@ -26,10 +26,13 @@
     inset: 4% -30% 10%;
     color: var(--color-text-on-ink);
     opacity: 0.07;
-    -webkit-mask-image: radial-gradient(60% 56% at 50% 46%, #000 30%, transparent 100%);
-    mask-image: radial-gradient(60% 56% at 50% 46%, #000 30%, transparent 100%);
+    -webkit-mask-image: radial-gradient(60% 56% at 50% 46%, #000 30%, transparent 100%), linear-gradient(90deg, transparent 6%, #000 24%);
+    -webkit-mask-composite: source-in;
+    mask-image: radial-gradient(60% 56% at 50% 46%, #000 30%, transparent 100%), linear-gradient(90deg, transparent 6%, #000 24%);
+    mask-composite: intersect;
   }
 
+  /* Both layers also fade softly at their left edge, into the title. */
   /* The music on the same layer box as the lines, so it lands on them, but
      brighter and with a wider fade towards the edges. The layer's opacity
      scales the per-fragment one in constants/hero-music.const.ts. */
@@ -37,8 +40,10 @@
     inset: 4% -30% 10%;
     color: var(--color-text-on-ink);
     opacity: 0.3;
-    -webkit-mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%);
-    mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%);
+    -webkit-mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%), linear-gradient(90deg, transparent 6%, #000 24%);
+    -webkit-mask-composite: source-in;
+    mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%), linear-gradient(90deg, transparent 6%, #000 24%);
+    mask-composite: intersect;
   }
 
   /* Placed by its centre; the lean towards the pointer rides on `translate`,
