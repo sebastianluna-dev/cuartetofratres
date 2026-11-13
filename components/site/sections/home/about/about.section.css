@@ -87,8 +87,9 @@
     }
   }
 
+  /* Narrow enough that every name breaks onto two lines at least. */
   & .about__occasion-name {
-    max-width: 12em;
+    max-width: 5.6em;
     font-family: var(--font-accent);
     font-size: clamp(18px, 1.5vw, 23px);
     font-style: italic;
