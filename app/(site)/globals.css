@@ -21,8 +21,8 @@
   --color-wood-deep: #2a140a;
   --color-text-on-wood: #0c0e10;
   --color-muted-on-wood: rgba(12, 14, 16, 0.68);
-  --color-fill-on-wood: rgba(12, 14, 16, 0.1);
-  --color-fill-strong-on-wood: rgba(12, 14, 16, 0.16);
+  --color-fill-on-wood: rgba(250, 244, 236, 0.4);
+  --color-fill-strong-on-wood: rgba(250, 244, 236, 0.58);
 
   --color-text-on-ivory: #0c0e10;
   --color-text-soft-on-ivory: #3a3d42;
