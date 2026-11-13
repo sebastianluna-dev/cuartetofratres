@@ -9,9 +9,9 @@ export const CONTACT_ANCHOR = "#contacto";
 // Anchors of the one-page site, in page order. Every link to a section reads
 // this list, so a renamed section changes everywhere at once.
 export const NAV_ITEMS: readonly NavItem[] = [
+  { label: "Repertorio", href: "#repertorio" },
   { label: "Cartelera", href: "#cartelera" },
   { label: "Integrantes", href: "#integrantes" },
-  { label: "Repertorio", href: "#repertorio" },
   { label: "El cuarteto", href: "#cuarteto" },
   { label: "Contacto", href: CONTACT_ANCHOR },
 ];

@@ -15,9 +15,9 @@ export default function LandingPage() {
     <div className="landing-page">
       <main id="contenido">
         {sections.hero && <HeroSection />}
+        {sections.repertoire && <RepertoireSection />}
         {sections.shows && <ShowsSection />}
         {sections.members && <MembersSection />}
-        {sections.repertoire && <RepertoireSection />}
         {sections.about && <AboutSection />}
         {sections.contact && <ContactSection />}
       </main>
