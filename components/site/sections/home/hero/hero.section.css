@@ -104,14 +104,15 @@
     }
   }
 
-  /* Phone: the name in two lines and the stage under it. */
+  /* Phone: the monogram alone at the top, then room, the name in two lines
+     and the stage under it, with air between them. */
   @media (max-width: 760px) {
     height: auto;
     background: var(--color-ink-deep);
     padding: 0 var(--site-gutter);
 
     & .hero__inner {
-      padding: 28px 0 0;
+      padding: 104px 0 0;
     }
 
     & .hero__mark {
