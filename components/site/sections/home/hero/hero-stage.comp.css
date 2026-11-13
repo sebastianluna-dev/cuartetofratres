@@ -36,7 +36,7 @@
   & .hero-stage__music {
     inset: 4% -30% 10%;
     color: var(--color-text-on-ink);
-    opacity: 0.42;
+    opacity: 0.3;
     -webkit-mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%);
     mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%);
   }
