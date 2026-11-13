@@ -28,9 +28,9 @@ describe("mapMember", () => {
   it("maps the instrument label and the short name", () => {
     expect(mapMember(member())).toMatchObject({
       id: "2",
+      slug: "lucia-paredes",
       instrument: "Violín",
       shortName: "Lucía Paredes",
-      photoPosition: "50% 30%",
     });
   });
 
@@ -38,7 +38,11 @@ describe("mapMember", () => {
     expect(mapMember(member({ shortName: "  " }))?.shortName).toBe("Lucía Paredes");
   });
 
-  it("drops a member whose portrait was not populated", () => {
-    expect(mapMember(member({ photo: 5 }))).toBeNull();
+  it("takes the photo from code, whatever the CMS holds", () => {
+    expect(mapMember(member({ photo: 5 }))?.photo.src).toBe("/images/stage/lucia-paredes.webp");
+  });
+
+  it("drops a member with no photo in code", () => {
+    expect(mapMember(member({ shortName: "Nadie Más" }))).toBeNull();
   });
 });

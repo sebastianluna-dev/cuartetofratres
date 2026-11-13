@@ -1,0 +1,136 @@
+.hero-stage {
+  /* Centred under the name, as tall as most of the first screen; its width
+     follows the height, so the four keep their proportions at any width. */
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 1;
+  height: 80%;
+  aspect-ratio: 1.22;
+  max-width: 100vw;
+  translate: -50% 0;
+  pointer-events: none;
+
+  & .hero-stage__glow {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    width: 110%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(242, 244, 243, 0.1), transparent);
+    transform: translate(-50%, -50%);
+  }
+
+  & .hero-stage__staff {
+    inset: 4% -30% 10%;
+    color: var(--color-text-on-ink);
+    opacity: 0.07;
+    -webkit-mask-image:
+      radial-gradient(60% 56% at 50% 46%, #000 30%, transparent 100%), linear-gradient(90deg, transparent 2%, #000 16%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      radial-gradient(60% 56% at 50% 46%, #000 30%, transparent 100%), linear-gradient(90deg, transparent 2%, #000 16%);
+    mask-composite: intersect;
+  }
+
+  /* Both layers also fade softly at their left edge, into the title. */
+  /* The music on the same layer box as the lines, so it lands on them, but
+     brighter and with a wider fade towards the edges. The layer's opacity
+     scales the per-fragment one in constants/hero-music.const.ts. */
+  & .hero-stage__music {
+    inset: 4% -30% 10%;
+    color: var(--color-text-on-ink);
+    opacity: 0.3;
+    -webkit-mask-image:
+      radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%), linear-gradient(90deg, transparent 2%, #000 16%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%), linear-gradient(90deg, transparent 2%, #000 16%);
+    mask-composite: intersect;
+  }
+
+  /* Placed by its centre; the lean towards the pointer rides on `translate`,
+     apart from the rise of the image inside. */
+  & .hero-stage__figure {
+    position: absolute;
+    left: var(--x);
+    top: var(--top);
+    z-index: var(--layer);
+    height: var(--height);
+    aspect-ratio: 2 / 3;
+    translate: calc(-50% + var(--lean-x, 0px) * var(--depth)) calc(var(--lean-y, 0px) * var(--depth) * 0.6);
+  }
+
+  /* In colour, slightly desaturated, fading at the bottom and on the edges the photo itself
+     cuts, never at the top: the head stays whole. */
+  & .hero-stage__image {
+    object-fit: contain;
+    filter: var(--filter-musicians);
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent, #000 var(--fade-left)),
+      linear-gradient(270deg, transparent, #000 var(--fade-right)),
+      linear-gradient(0deg, transparent 2%, #000 var(--fade-bottom));
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(90deg, transparent, #000 var(--fade-left)),
+      linear-gradient(270deg, transparent, #000 var(--fade-right)),
+      linear-gradient(0deg, transparent 2%, #000 var(--fade-bottom));
+    mask-composite: intersect;
+    animation: hero-stage-rise 1.6s var(--ease-stage) calc(0.2s + var(--order) * 0.14s) both;
+  }
+
+  /* The ground the figures sink into, across the whole hero (which clips it). */
+  & .hero-stage__floor {
+    position: absolute;
+    left: -100vw;
+    right: -100vw;
+    bottom: 0;
+    z-index: 5;
+    height: 30%;
+    background: linear-gradient(0deg, var(--color-ink-deep) 6%, transparent);
+  }
+
+  /* Portrait tablet: a block under the name, as wide as the screen and at
+     its own proportions (a share of a tall screen's height would be wider
+     than the screen and get squeezed). */
+  @media (min-width: 761px) and (max-width: 1099px) and (orientation: portrait) {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    translate: none;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    aspect-ratio: 1.22;
+    margin-top: clamp(-24px, -2vw, -8px);
+  }
+
+  /* Phone: a block between the name and the actions, edge to edge, tucked
+     under both so the four stand as large as the width allows. */
+  @media (max-width: 760px) {
+    order: 2;
+    position: relative;
+    left: auto;
+    bottom: auto;
+    translate: none;
+    width: auto;
+    max-width: none;
+    height: min(60svh, 520px);
+    min-height: 400px;
+    aspect-ratio: auto;
+    margin: -58px calc(var(--site-gutter) * -1) 0;
+  }
+}
+
+@keyframes hero-stage-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}

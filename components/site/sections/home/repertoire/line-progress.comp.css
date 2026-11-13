@@ -1,0 +1,40 @@
+.line-progress {
+  position: relative;
+  height: 24px;
+  cursor: pointer;
+
+  & .line-progress__track {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 11px;
+    height: 2px;
+    border-radius: 2px;
+    background: rgba(12, 14, 16, 0.16);
+  }
+
+  & .line-progress__played {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 2px;
+    background: var(--color-ink);
+  }
+
+  & .line-progress__dot {
+    position: absolute;
+    top: 7px;
+    width: 10px;
+    height: 10px;
+    margin-left: -5px;
+    border-radius: 50%;
+    background: var(--color-ink);
+    transition: transform 0.25s ease;
+  }
+
+  &:hover .line-progress__dot,
+  &:focus-visible .line-progress__dot {
+    transform: scale(1.3);
+  }
+}

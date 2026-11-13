@@ -2,6 +2,10 @@ import type { CollectionConfig } from "payload";
 import { anyone, isAdminOrEditor } from "@/lib/payload/access";
 import { revalidateCatalog, revalidateCatalogAfterDelete } from "@/lib/payload/revalidate-site";
 
+// The four musicians are fixed: only their biography is edited here. Name,
+// instrument and order are read-only, and the photo is art direction kept in
+// code (constants/member-photos.const.ts), so its two fields are hidden: they
+// stay in the schema (the seed still fills them) until a migration drops them.
 export const Members: CollectionConfig = {
   slug: "members",
   labels: { singular: "Integrante", plural: "Integrantes" },
@@ -9,12 +13,14 @@ export const Members: CollectionConfig = {
     useAsTitle: "name",
     group: "Contenido",
     defaultColumns: ["order", "name", "instrument"],
+    description:
+      "Aquí sólo se edita la semblanza de cada integrante. Las fotos y los nombres los cambia el equipo del sitio.",
   },
   access: {
     read: anyone,
-    create: isAdminOrEditor,
+    create: () => false,
     update: isAdminOrEditor,
-    delete: isAdminOrEditor,
+    delete: () => false,
   },
   hooks: {
     afterChange: [revalidateCatalog],
@@ -31,14 +37,18 @@ export const Members: CollectionConfig = {
           label: "Orden",
           required: true,
           defaultValue: 1,
-          admin: { width: "25%", description: "1 = primer violín, 2 = segundo violín, 3 = viola, 4 = violoncello." },
+          admin: {
+            width: "25%",
+            readOnly: true,
+            description: "1 = primer violín, 2 = segundo violín, 3 = viola, 4 = violoncello.",
+          },
         },
         {
           name: "name",
           type: "text",
           label: "Nombre completo",
           required: true,
-          admin: { width: "45%" },
+          admin: { width: "45%", readOnly: true },
         },
         {
           name: "instrument",
@@ -50,7 +60,7 @@ export const Members: CollectionConfig = {
             { label: "Viola", value: "viola" },
             { label: "Violoncello", value: "cello" },
           ],
-          admin: { width: "30%" },
+          admin: { width: "30%", readOnly: true },
         },
       ],
     },
@@ -59,13 +69,14 @@ export const Members: CollectionConfig = {
       type: "text",
       label: "Nombre corto",
       required: true,
-      admin: { description: "Se lee en la tira del retrato. Ej.: «Jesús Medina»." },
+      admin: { readOnly: true, description: "Se lee en la tira del retrato y da la dirección de su página." },
     },
     {
       name: "bio",
       type: "textarea",
       label: "Semblanza",
       required: true,
+      admin: { description: "Deja una línea en blanco entre párrafos." },
     },
     {
       name: "photo",
@@ -73,13 +84,14 @@ export const Members: CollectionConfig = {
       relationTo: "media",
       label: "Retrato",
       required: true,
+      admin: { hidden: true },
     },
     {
       name: "photoPosition",
       type: "text",
       label: "Encuadre del retrato",
       defaultValue: "50% 30%",
-      admin: { description: "Valor de object-position: dónde queda la cara dentro del recorte. Ej.: «50% 28%»." },
+      admin: { hidden: true },
     },
   ],
 };

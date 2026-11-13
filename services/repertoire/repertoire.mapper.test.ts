@@ -51,3 +51,25 @@ describe("mapTrack", () => {
     expect(mapTrack(track(2))).toMatchObject({ categoryId: null, categoryLabel: "" });
   });
 });
+
+describe("mapTrack's recording", () => {
+  const AUDIO = {
+    id: 3,
+    title: "Fuga y Misterio",
+    url: "/api/audio/file/fuga.mp3",
+    updatedAt: "2026-06-10T00:00:00.000Z",
+    createdAt: "2026-06-10T00:00:00.000Z",
+  };
+
+  it("has no recording while the upload is empty", () => {
+    expect(mapTrack(track(CATEGORY)).audioSrc).toBeNull();
+  });
+
+  it("reads the file's URL of a populated upload", () => {
+    expect(mapTrack({ ...track(CATEGORY), audio: AUDIO }).audioSrc).toBe("/api/audio/file/fuga.mp3");
+  });
+
+  it("ignores an upload that arrives as a bare id", () => {
+    expect(mapTrack({ ...track(CATEGORY), audio: 3 }).audioSrc).toBeNull();
+  });
+});

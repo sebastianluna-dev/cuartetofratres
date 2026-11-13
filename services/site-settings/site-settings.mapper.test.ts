@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CONTACT_EMAIL, SITE_TAGLINE } from "@/constants/site.const";
+import { CONTACT_EMAIL, FACEBOOK_URL, INSTAGRAM_URL, SITE_TAGLINE } from "@/constants/site.const";
 import type { SiteSetting } from "@/payload-types";
 import { mapSiteSettings } from "./site-settings.mapper";
 
@@ -12,7 +12,10 @@ describe("mapSiteSettings", () => {
     expect(settings.tagline).toBe(SITE_TAGLINE);
     expect(settings.email).toBe(CONTACT_EMAIL);
     expect(settings.whatsapp).toBeNull();
-    expect(settings.social.map((network) => network.href)).toEqual([null, null, null]);
+    expect(settings.social).toEqual([
+      { label: "Instagram", href: INSTAGRAM_URL },
+      { label: "Facebook", href: FACEBOOK_URL },
+    ]);
   });
 
   it("treats a blank WhatsApp or social URL as not public yet", () => {
@@ -24,8 +27,13 @@ describe("mapSiteSettings", () => {
     expect(settings.whatsapp).toBeNull();
     expect(settings.social).toEqual([
       { label: "Instagram", href: "https://instagram.com/cuartetofratres" },
-      { label: "Facebook", href: null },
-      { label: "YouTube", href: null },
+      { label: "Facebook", href: FACEBOOK_URL },
     ]);
+  });
+
+  it("names YouTube only once it has a URL", () => {
+    expect(mapSiteSettings(EMPTY).social.map((network) => network.label)).toEqual(["Instagram", "Facebook"]);
+    const settings = mapSiteSettings({ ...EMPTY, social: { youtube: "https://youtube.com/@fratres" } });
+    expect(settings.social.map((network) => network.label)).toEqual(["Instagram", "Facebook", "YouTube"]);
   });
 });

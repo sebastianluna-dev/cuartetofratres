@@ -1,19 +1,25 @@
 :root {
-  /* Palette. Two grounds (ivory and ink) and one accent (lime), plus the
-     olive that the accent becomes when it has to be read on ivory. */
+  /* Palette. Ink and the light grounds (ivory, warm white and cream), with
+     ink for what is chosen and for the focus on light grounds. */
   --color-ivory: #f3f2f2;
   --color-ivory-soft: #eae9e9;
-  --color-ink: #121418;
-  --color-ink-soft: #20242c;
-  /* The player's tiles: the shade the ivory wash reaches over the card, made
-     solid so no grain shows through the cover. */
+  /* Halfway between the quartet's first ink (#121418) and the Filarmónica's (#070809). */
+  --color-ink: #0c0e10;
+  --color-ink-soft: #1b1f25;
+  /* The floor of the stages: the hero and the members fade into it. */
+  --color-ink-deep: #0a0b0e;
+  /* The tiles of the player and the ground behind a photo while it loads. */
   --color-ink-tile: #37393d;
-  --color-lime: #e6ec9e;
-  --color-lime-hover: #f1f6bd;
-  --color-olive: #4d5610;
-  --color-olive-hover: #3a4110;
   /* Text. */
-  --color-text-on-ivory: #121418;
+  /* A warm cream: «El cuarteto» and the contact section, each after a near-white one. */
+  --color-cream: #fcead5;
+  /* Almost white, warm: the repertoire's and the dates' ground. */
+  --color-white-soft: #fdf6ec;
+  /* The repertoire's controls: cream at rest, a deeper cream under the pointer, ink when chosen. */
+  --color-cream-soft: #f9ebd7;
+  --color-cream-hover: #f1dcc0;
+
+  --color-text-on-ivory: #0c0e10;
   --color-text-soft-on-ivory: #3a3d42;
   --color-muted-on-ivory: #605d5d;
   --color-text-on-ink: #f2f4f3;
@@ -24,26 +30,31 @@
   --color-divider-on-ink: rgba(242, 244, 243, 0.16);
   --color-divider-strong-on-ink: rgba(242, 244, 243, 0.2);
 
-  --font-heading: var(--font-forum), Georgia, serif;
-  --font-display: var(--font-fratres), var(--font-forum), Georgia, serif;
+  --font-display: var(--font-fratres), Georgia, serif;
   --font-body: var(--font-mulish), system-ui, sans-serif;
+  /* Labels, names and buttons, in condensed capitals. */
+  --font-label: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
+  /* The italic accent of the titles; always used with `font-style: italic`. */
+  --font-accent: var(--font-instrument-serif), Georgia, serif;
+  /* The section titles' calligraphic face. */
+  --font-title: var(--font-italianno), var(--font-instrument-serif), cursive;
 
   /* Horizontal padding of every section and the header: one value so the
      content edges line up from the top of the page to the footer. */
   --site-gutter: clamp(20px, 4.5vw, 72px);
   --site-max-width: 1500px;
-  /* Anchor offset: the fixed header must not cover a section's title when a
-     nav link scrolls to it. */
-  --site-header-offset: 84px;
-  /* Vertical rhythm of the two ink sections that follow each other (members,
-     repertoire): the outer padding of the block and the gap between their
-     contents are this one value, split in half at the seam. */
-  --site-ink-space: clamp(64px, 8vw, 110px);
-  --site-ink-space-phone: 48px;
+  /* The top bar and the hero open wider than the sections under them, so the
+     first screen does not look small on a large display. */
+  --site-max-width-wide: 1760px;
+  /* Anchor offset. The top bar scrolls away with the hero, so nothing covers a
+     section's title. */
+  --site-header-offset: 0px;
+  --site-radius: 16px;
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
-  /* Tiled monochrome turbulence: the film grain of `.grain` and `.ink-grain`. */
-  --grain-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
-  --grain-size: 170px;
+  /* Slower start, long tail: the figures of the stages and the hover moves. */
+  --ease-stage: cubic-bezier(0.2, 0.7, 0.1, 1);
+  /* Every photo of the musicians, in colour and slightly desaturated. */
+  --filter-musicians: saturate(0.83) contrast(1) brightness(1);
 }
 
 /* ---------------------------------------------------------------------------
@@ -123,19 +134,22 @@ strong {
   font-weight: 600;
 }
 
-/* Visible focus across the whole site. On ink the lime reads; on ivory the
-   olive does, which is why sections on ivory recolour it. */
+/* Visible focus across the whole site. On ink the ivory reads; on the light
+   grounds the ink does, which is why those sections recolour it. */
 :focus-visible {
-  outline: 2px solid var(--color-lime);
+  outline: 2px solid var(--color-text-on-ink);
   outline-offset: 3px;
 }
 
-.section_theme_ivory :focus-visible {
-  outline-color: var(--color-olive);
+.section_theme_ivory :focus-visible,
+.section_theme_paper :focus-visible,
+.section_theme_white :focus-visible,
+.section_theme_cream :focus-visible {
+  outline-color: var(--color-ink);
 }
 
 ::selection {
-  background: rgba(230, 236, 158, 0.55);
+  background: var(--color-cream-hover);
   color: var(--color-ink);
 }
 
@@ -153,6 +167,16 @@ strong {
   }
 }
 
+/* Read by screen readers, never drawn. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 /* Skip link to the content: off-screen until it receives focus. */
 .skip-link {
   position: absolute;
@@ -160,7 +184,7 @@ strong {
   left: 12px;
   z-index: 100;
   padding: 10px 16px;
-  background: var(--color-lime);
+  background: var(--color-ivory);
   color: var(--color-ink);
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -176,7 +200,7 @@ strong {
 
 /* ---------------------------------------------------------------------------
    Shared layout pieces
-   Every section is `section section_theme_<ivory|ink>` with a `section__inner`
+   Every section is `section section_theme_<ivory|paper|white|cream|ink>` with a `section__inner`
    that sets the width; the padding is each section's own.
    --------------------------------------------------------------------------- */
 
@@ -185,6 +209,22 @@ strong {
 
   &.section_theme_ivory {
     background: var(--color-ivory);
+    color: var(--color-text-on-ivory);
+  }
+
+  /* The darker paper: sets a light section apart from the ivory ones around it. */
+  &.section_theme_paper {
+    background: var(--color-ivory-soft);
+    color: var(--color-text-on-ivory);
+  }
+
+  &.section_theme_white {
+    background: var(--color-white-soft);
+    color: var(--color-text-on-ivory);
+  }
+
+  &.section_theme_cream {
+    background: var(--color-cream);
     color: var(--color-text-on-ivory);
   }
 
@@ -197,25 +237,6 @@ strong {
     max-width: var(--site-max-width);
     margin: 0 auto;
     padding: 0 var(--site-gutter);
-  }
-}
-
-/* Small uppercase label above a title, next to the staff ornament. */
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-
-  & .eyebrow__label {
-    font-size: 13.5px;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--color-olive);
-  }
-
-  /* On ink the staff stays lime and the label reads in ivory. */
-  &.eyebrow_theme_ink .eyebrow__label {
-    color: var(--color-text-on-ink);
   }
 }
 
@@ -234,101 +255,85 @@ strong {
   }
 }
 
-/* Coarse film grain over an ink block (the ink sections, the footer, the
-   contact form's ink buttons): one layer above everything in it, ground, photos, cards and text
-   alike, so nothing reads as a different surface; the ivory blocks stay
-   clean. `screen` at low opacity: `overlay` does almost nothing on a colour
-   this dark. It takes no pointer events, so everything under it stays
-   clickable. */
-.ink-grain {
-  position: relative;
+/* ---------------------------------------------------------------------------
+   Type pieces and the call to action, shared by every section.
+   --------------------------------------------------------------------------- */
 
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 5;
-    /* Follows a rounded block (the ink buttons of the contact form). */
-    border-radius: inherit;
-    pointer-events: none;
-    background-image: var(--grain-image);
-    background-size: 300px 300px;
-    mix-blend-mode: screen;
-    opacity: 0.14;
-  }
+/* Centred section title in the calligraphic face («Cartelera»). A script has
+   a small body, hence 1.12 times the size the italic accent had (the review
+   panel's 1.4 for this face, at the 80% the owner settled on). The display
+   modifier is now drawn the same way: the owner chose one face for every
+   section title. */
+.section-title {
+  font-family: var(--font-title);
+  font-size: clamp(58px, 7.84vw, 116px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  text-align: center;
+  text-wrap: balance;
 }
 
-/* Film grain over a photo. Goes on the positioned, clipping block that holds
-   a `fill` image: a tiled SVG turbulence blended into the tones, so it reads
-   as texture rather than a grey veil. It sits at z-index 1, above the photo
-   and any decoration without a z-index; text laid over the photo takes
-   z-index 2 to stay crisp. No pointer events. */
-.grain::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background-image: var(--grain-image);
-  background-size: var(--grain-size) var(--grain-size);
-  mix-blend-mode: overlay;
-  opacity: 0.8;
-}
-
-/* Shared call to action: one layout, a variant per ground. */
-.button {
+/* Pill call to action. Ivory on ink; `ghost` is the outline on ink and `ink`
+   the one for the paper grounds. */
+.pill-button {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  gap: 12px;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-label);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   white-space: nowrap;
   transition:
-    background 0.25s ease,
-    border-color 0.25s ease,
-    color 0.25s ease,
-    transform 0.3s ease;
+    background 0.3s ease,
+    color 0.3s ease;
 
-  /* The accent call to action on ink: the event window and the player's
-     empty state. */
-  &.button_variant_lime {
-    padding: 12px 24px;
-    border-radius: 8px;
-    background: var(--color-lime);
-    border: 1px solid var(--color-lime);
-    color: var(--color-ink);
-    font-size: 12.5px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-
-    &:hover {
-      background: var(--color-lime-hover);
-      border-color: var(--color-lime-hover);
-    }
+  &:hover {
+    background: #fff;
   }
 
-  /* Ivory outline on ink; fills on hover. */
-  &.button_variant_outline-ivory {
-    padding: 12px 22px;
-    border: 1px solid var(--color-ivory);
-    border-radius: 2px;
-    color: var(--color-ivory);
-    font-family: var(--font-heading);
+  & .pill-button__icon {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    transition: transform 0.45s var(--ease-stage);
+  }
+
+  &:hover .pill-button__icon,
+  &:focus-visible .pill-button__icon {
+    transform: translateX(4px);
+  }
+
+  &.pill-button_size_small {
+    min-height: 44px;
+    padding: 0 18px;
     font-size: 14px;
+  }
+
+  &.pill-button_variant_ghost {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+    color: var(--color-text-on-ink);
 
     &:hover {
       background: var(--color-ivory);
+      box-shadow: none;
       color: var(--color-ink);
     }
   }
 
-  &.button_variant_ink {
-    padding: 16px 30px;
-    border-radius: 8px;
+  &.pill-button_variant_ink {
     background: var(--color-ink);
-    color: var(--color-text-on-ink);
-    font-family: var(--font-heading);
-    font-size: 16px;
+    color: var(--color-ivory);
 
     &:hover {
       background: var(--color-ink-soft);

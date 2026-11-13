@@ -1,77 +1,110 @@
 .contact {
-  & .contact__inner {
-    padding-top: clamp(64px, 8vw, 110px);
-    padding-bottom: clamp(74px, 11vw, 150px);
+  padding: clamp(48px, 6vw, 96px) 0 0;
+
+  & .section-title {
+    margin-bottom: clamp(44px, 5vw, 72px);
   }
 
-  /* Side by side only where the form can hold its own rows: below that the
-     two columns would leave it about 450px, and the caption column plus the
-     four event chips do not fit in what is left. */
-  & .contact__grid {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: clamp(32px, 5vw, 72px);
-
-    @media (max-width: 1279px) {
-      flex-direction: column;
-      align-items: stretch;
-    }
+  /* The words and the details on the left, the letter on the right. */
+  & .contact__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(32px, 6vw, 110px);
+    align-items: center;
   }
 
-  & .contact__intro {
-    flex: 1 1 400px;
-    min-width: 0;
+  & .contact__desk {
+    position: relative;
   }
 
-  & .contact__eyebrow {
-    margin-bottom: 22px;
+  & .contact__under {
+    position: absolute;
+    inset: 0;
+    border-radius: 6px;
+    background: var(--color-cream-hover);
+    box-shadow: 0 0 0 1px rgba(12, 14, 16, 0.06);
+    transform: rotate(-1.4deg);
   }
 
-  /* The display face, as in the other section headings: uppercase, set
-     tight. The measure is narrower than the serif's because the caps run
-     wider at the same size. */
-  & .contact__title {
-    max-width: 14em;
-    font-family: var(--font-display);
-    font-size: clamp(44px, 5.6vw, 72px);
-    line-height: 1;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
+  & .contact__sheet {
+    position: relative;
+    padding: clamp(24px, 5vw, 64px);
+    border-radius: 6px;
+    background: #fbfaf8;
+    box-shadow:
+      0 34px 60px -44px rgba(18, 20, 24, 0.5),
+      0 0 0 1px rgba(18, 20, 24, 0.07);
   }
 
   & .contact__lead {
-    margin-top: 22px;
-    max-width: 32em;
-    font-size: 18px;
+    max-width: 40ch;
+    font-size: clamp(17px, 1.35vw, 20px);
+    font-weight: 400;
     line-height: 1.75;
-    color: #444141;
+    color: var(--color-text-soft-on-ivory);
     text-wrap: pretty;
   }
 
-  & .contact__form {
-    flex: 1 1 420px;
-    min-width: 0;
+  /* One under the other, under a dashed rule. */
+  & .contact__details {
+    display: grid;
+    gap: 22px;
+    margin-top: clamp(28px, 3.4vw, 44px);
+    padding-top: 26px;
+    border-top: 1px dashed rgba(18, 20, 24, 0.4);
   }
 
-  /* Stacked, the main axis is vertical and those bases would be read as
-     heights: the intro would be padded out to 400px whatever it says, and the
-     space would look like a gap before the form. */
-  @media (max-width: 1279px) {
-    & .contact__intro,
-    & .contact__form {
-      flex: 0 0 auto;
+  & .contact__detail-name {
+    margin-bottom: 10px;
+    font-family: var(--font-label);
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-on-ivory);
+  }
+
+  & .contact__detail-value {
+    font-family: var(--font-label);
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--color-text-soft-on-ivory);
+    overflow-wrap: anywhere;
+
+    &.contact__detail-value_kind_list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px 14px;
     }
   }
 
-  @media (max-width: 767px) {
-    & .contact__inner {
-      padding-top: 40px;
-      padding-bottom: 60px;
+  & .contact__link {
+    border-bottom: 1px solid currentColor;
+    color: var(--color-ink);
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--color-text-soft-on-ivory);
+    }
+  }
+
+  @media (max-width: 900px) {
+    & .contact__layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: clamp(36px, 8vw, 56px);
+    }
+  }
+
+  @media (max-width: 760px) {
+    & .contact__details {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    & .contact__title {
-      font-size: 38px;
+    & .contact__detail:first-child {
+      grid-column: 1 / -1;
     }
   }
 }

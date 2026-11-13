@@ -9,18 +9,21 @@ interface ContactFieldProps {
   autoComplete?: string;
 }
 
-// Underlined text field. The label wraps the control, so clicking the caption
-// focuses it and no `id` has to be generated.
+// A line of the letter: the caption on the left and, beside it, a rule to
+// write on (several for the details). The label wraps the control, so
+// clicking the caption focuses it and no `id` has to be generated.
 export function ContactField({ label, name, maxLength, error, multiline = false, autoComplete }: ContactFieldProps) {
   const errorId = `${name}-error`;
 
   return (
-    <label className={`contact-field${error ? " contact-field_invalid" : ""}`}>
+    <label
+      className={`contact-field${multiline ? " contact-field_kind_multiline" : ""}${error ? " contact-field_invalid" : ""}`}
+    >
       <span className="contact-field__label">{label}</span>
       {multiline ? (
         <textarea
           name={name}
-          rows={3}
+          rows={4}
           maxLength={maxLength}
           className="contact-field__control contact-field__control_kind_textarea"
           aria-invalid={Boolean(error)}

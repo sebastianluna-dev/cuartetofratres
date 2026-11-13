@@ -41,3 +41,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# The CMS export and the sync backups (scripts/export-cms.mts, scripts/sync-cms.mts)
+/cms-export/

@@ -11,3 +11,7 @@ export const SITE_LOCATION = "Boca del Río, Veracruz";
 export const SITE_LOCATION_FULL = "Boca del Río, Veracruz, México";
 
 export const PHOTO_CREDIT = "Fotografía: archivo del cuarteto";
+
+/** The quartet's networks: Instagram (@cuarteto_fratres) and Facebook. */
+export const INSTAGRAM_URL = "https://www.instagram.com/cuarteto_fratres/";
+export const FACEBOOK_URL = "https://www.facebook.com/CuartetoFratres";

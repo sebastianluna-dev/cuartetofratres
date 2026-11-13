@@ -1,6 +1,13 @@
 /** The repertoire has at most this many categories; "Todo" is not one of them. */
 export const MAX_CATEGORIES = 5;
 
+/**
+ * Works per page of the programme. Six rows and the filters fit beside the
+ * player's card, so changing filter or page never changes the section's height
+ * on the desktop.
+ */
+export const REPERTOIRE_PAGE_SIZE = 6;
+
 /** Label of the tab that shows every track. */
 export const ALL_FILTER_LABEL = "Todo";
 
@@ -42,6 +49,13 @@ export const REPERTOIRE_SECTION_DEFAULTS: RepertoireSectionDefaults = {
 };
 
 /**
+ * The photo cut into the player's record. Art direction, not CMS content: the
+ * square group shot is framed so the four faces sit on the ring between the
+ * label and the edge. A new photo means checking that framing again.
+ */
+export const RECORD_PHOTO = "/images/record/cuarteto.webp";
+
+/**
  * Fixed copy of the player. It is not in the CMS on purpose: the labels
  * describe how the player behaves, not the quartet's content.
  */
@@ -51,8 +65,20 @@ export const PLAYER_COPY = {
   previous: "Obra anterior",
   next: "Obra siguiente",
   toggle: "Reproducir o pausar",
+  /** The mini player's record on a touch screen, before its first tap opens the card. */
+  showWork: "Mostrar la obra",
+  /** Visible words of the record's transport. */
+  previousLabel: "Anterior",
+  nextLabel: "Siguiente",
+  play: "Reproducir",
+  pause: "Pausar",
   position: "Posición en la pista",
   filters: "Filtrar repertorio",
+  /** Small print under the player while there are no studio recordings. */
+  simulated: "Reproducción simulada: las grabaciones están en preparación.",
+  pages: "Páginas del repertorio",
+  previousPage: "Página anterior",
+  nextPage: "Página siguiente",
 } as const;
 
 // Seed of the categories and fallback while the CMS has none, in tab order.

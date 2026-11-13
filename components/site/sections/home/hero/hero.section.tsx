@@ -1,64 +1,58 @@
-import type { CSSProperties } from "react";
-import Image from "next/image";
-import { getUpcomingEvents } from "@/services/events/events.service";
+import { siteConfig } from "@/config/site.config";
+import { Logo } from "@/components/site/shared/logo.comp";
+import { HERO_COPY } from "@/constants/hero.const";
+import { HERO_STAGE_FIGURES } from "@/constants/hero-stage.const";
+import { HERO_MUSIC_STAGES } from "@/constants/hero-music.const";
+import { StaffMusic } from "@/components/site/shared/staff-music.comp";
 import { getHeroData } from "@/services/hero/hero.service";
-import { EventCards } from "./event-cards.comp";
+import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
+import { HeroStage } from "./hero-stage.comp";
 import "./hero.section.css";
 
-const MAX_EVENT_CARDS = 2;
-
-/** Width / height of the photo's frame on the phone; the same 11 / 10 as hero.section.css. */
-const PHONE_FRAME_RATIO = 11 / 10;
-
-// First screen: the name and the next two dates on the left, the group photo
-// against the right edge, centred. The photo is the LCP, hence `priority`.
+// First screen, with no top bar and nothing else over it: the label, the name
+// and the four musicians. Two layouts (siteConfig.home.heroLayout): `centered`
+// sets the name on one line across the top with the four centred beneath it;
+// `split` sets it in two lines on the left with the four standing on the
+// right. On the phone both take the name in two lines over the stage.
 export async function HeroSection() {
-  const [hero, events] = await Promise.all([getHeroData(), getUpcomingEvents(MAX_EVENT_CARDS)]);
-
-  // On the phone the photo is cropped to fill a taller frame, so it is drawn
-  // wider than the screen: next/image must request that width, not 100vw.
-  const phoneWidthVw = Math.ceil((hero.image.width / hero.image.height / PHONE_FRAME_RATIO) * 100);
+  const [hero, settings] = await Promise.all([getHeroData(), getSiteSettingsData()]);
+  const titleWords = hero.title.trim().split(/\s+/);
 
   return (
-    <section id="inicio" className="section section_theme_ink ink-grain hero">
-      {/* The real size of the file gives the frame the photo's own ratio on
-          desktop, so the vignette lands exactly on its edges. */}
-      <div
-        className="hero__media"
-        style={{ "--photo-width": hero.image.width, "--photo-height": hero.image.height } as CSSProperties}
-      >
-        <Image
-          src={hero.image.src}
-          alt={hero.image.alt}
-          fill
-          priority
-          sizes={`(max-width: 767px) ${phoneWidthVw}vw, min(64vw, ${hero.image.width}px)`}
-          className="hero__photo"
-          quality={100}
-          style={{ objectPosition: hero.imagePosition }}
-        />
-      </div>
-
+    <section id="inicio" className={`section section_theme_ink hero hero_layout_${siteConfig.home.heroLayout}`}>
       <div className="hero__inner">
-        <h1 className="hero__title">{hero.title}</h1>
-        <p className="hero__lead">{hero.lead}</p>
-
-        {/* DOM order is heading → cards → listen button (the tab order on
-            desktop); the phone shows the button first through CSS `order`. */}
-        <div className="hero__row">
-          {events.length > 0 && (
-            <>
-              <h2 id="proximas-presentaciones" className="hero__events-heading">
-                {hero.eventsHeading}
-              </h2>
-              <EventCards events={events} labelledBy="proximas-presentaciones" />
-            </>
-          )}
-          <a href="#repertorio" className="hero__listen">
-            {hero.listenLabel}
-          </a>
+        {/* The monogram signs the page from the top-left corner, in line with the name. */}
+        <div className="hero__mark">
+          <Logo theme="ivory" height={40} />
         </div>
+        <p className="hero__eyebrow">
+          <span>{HERO_COPY.kicker}</span>
+          <span className="hero__eyebrow-dot" aria-hidden="true">
+            ·
+          </span>
+          <span>{settings.location}</span>
+        </p>
+        <h1 className="hero__title">
+          {/* A space keeps the name whole for readers and copy-paste. */}
+          {titleWords.map((word, index) => (
+            <span key={index} className="hero__title-word">
+              {word}{" "}
+            </span>
+          ))}
+        </h1>
       </div>
+
+      <HeroStage
+        figures={HERO_STAGE_FIGURES}
+        music={
+          <StaffMusic
+            stages={HERO_MUSIC_STAGES}
+            figures={HERO_STAGE_FIGURES}
+            id="hero-music"
+            className="hero-stage__music"
+          />
+        }
+      />
     </section>
   );
 }

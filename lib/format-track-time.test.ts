@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatTrackTime } from "./format-track-time";
+import { formatTrackPosition, formatTrackTime } from "./format-track-time";
 
 describe("formatTrackTime", () => {
   it("pads the seconds to two digits", () => {
@@ -15,5 +15,12 @@ describe("formatTrackTime", () => {
 
   it("never shows a negative time", () => {
     expect(formatTrackTime(-4)).toBe("0:00");
+  });
+});
+
+describe("formatTrackPosition", () => {
+  it("joins the elapsed time and the length", () => {
+    expect(formatTrackPosition(43, 210)).toBe("0:43 de 3:30");
+    expect(formatTrackPosition(0, 0)).toBe("0:00 de 0:00");
   });
 });

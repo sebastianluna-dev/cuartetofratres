@@ -23,3 +23,11 @@ export const HERO_DEFAULTS: HeroDefaults = {
   listenLabel: "Escuchar al cuarteto",
   eventsHeading: "Próximas presentaciones",
 };
+
+/**
+ * Fixed copy of the hero's frame. It is not in the CMS: the label over the
+ * name belongs to the composition, not to what the quartet edits.
+ */
+export const HERO_COPY = {
+  kicker: "Cuarteto de cuerdas",
+} as const;

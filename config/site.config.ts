@@ -7,10 +7,13 @@ export const siteConfig: SiteConfig = {
   home: {
     sections: {
       hero: true,
-      about: true,
+      shows: true,
       members: true,
       repertoire: true,
+      about: true,
       contact: true,
     },
+    // How the hero sets the name against the musicians (see HeroLayout).
+    heroLayout: "split",
   },
 };

@@ -1,0 +1,9 @@
+.shows {
+  padding: clamp(64px, 7vw, 110px) 0;
+  /* Clips the posters' row on the phone, where it scrolls sideways. */
+  overflow-x: clip;
+
+  & .section-title {
+    margin-bottom: clamp(30px, 3.6vw, 56px);
+  }
+}

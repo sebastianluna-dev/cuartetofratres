@@ -1,120 +1,129 @@
 .about {
-  --about-pad-top: clamp(56px, 8vw, 124px);
-  --about-pad-bottom: clamp(56px, 7vw, 104px);
-  /* What the column of social links used to take to the right of the photo:
-     its widest caption («Instagram», 10 px with 0.2em of tracking) plus the
-     gap. The column is gone; the space stays, so the photo did not move. */
-  --about-media-inset: calc(70px + clamp(16px, 2vw, 28px));
+  padding: clamp(56px, 6vw, 96px) 0 clamp(64px, 7vw, 110px);
 
-  & .about__content {
-    padding: var(--about-pad-top) 0 var(--about-pad-bottom);
+  /* The title with the group on the left, the words on the right. */
+  & .about__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: clamp(32px, 5vw, 96px);
+    align-items: center;
   }
 
-  & .about__grid {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: clamp(32px, 4.5vw, 64px);
-  }
-
-  & .about__text {
-    flex: 1 1 420px;
-    min-width: 0;
-  }
-
-  & .about__eyebrow {
-    margin-bottom: clamp(18px, 2.4vw, 26px);
+  /* The title and, in front of its lower half, the four. */
+  & .about__stage {
+    position: relative;
   }
 
   & .about__title {
-    max-width: 11em;
-    font-family: var(--font-display);
-    font-size: clamp(38px, 5.6vw, 76px);
-    line-height: 1;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
-    color: var(--color-ink);
+    position: relative;
+    z-index: 1;
+    text-align: center;
   }
 
+  & .about__group {
+    position: relative;
+    z-index: 2;
+    width: 82%;
+    margin: -12% auto 0;
+  }
+
+  & .about__group-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: var(--filter-musicians);
+  }
+
+  /* The description: a few paragraphs from the CMS, split on blank lines. */
   & .about__lead {
-    margin-top: clamp(22px, 3vw, 30px);
-    max-width: 32em;
-    font-size: 19px;
+    max-width: 58ch;
+  }
+
+  & .about__paragraph {
+    font-size: clamp(16px, 1.2vw, 18px);
+    font-weight: 400;
     line-height: 1.75;
+    color: var(--color-text-soft-on-ivory);
     text-wrap: pretty;
+
+    & + & {
+      margin-top: 1em;
+    }
   }
 
-  /* The block cancels the section's vertical padding and the photo is taller
-     than the text block plus that padding, so it is the photo that sets the
-     section's height and runs from the section above to the section below. */
-  & .about__media {
-    display: flex;
-    flex: 0 0 auto;
-    align-items: flex-start;
-    gap: clamp(16px, 2vw, 28px);
-    padding-right: var(--about-media-inset);
-    margin-top: calc(-1 * var(--about-pad-top));
-    margin-bottom: calc(-1 * var(--about-pad-bottom));
+  /* The three occasions as one row of cells between two rules. */
+  & .about__occasions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: clamp(28px, 3vw, 44px);
+    border-block: 1px solid var(--color-divider-on-ivory);
   }
 
-  /* The photo is never cropped: a fixed height and the width follows from
-     its own ratio (a 9:16 portrait by default). */
-  & .about__figure {
+  & .about__occasion {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    gap: 14px;
+    padding: clamp(18px, 2vw, 28px) 10px;
+    text-align: center;
+
+    & + .about__occasion {
+      border-left: 1px solid var(--color-divider-on-ivory);
+    }
+
+    & .occasion-icon {
+      width: 56px;
+      height: 56px;
+      transition: transform 0.8s var(--ease-stage);
+    }
+
+    &:hover {
+      & .occasion-icon {
+        transform: translateY(-4px) rotate(-3deg);
+      }
+    }
   }
 
-  & .about__frame {
-    position: relative;
-    height: clamp(560px, 46vw, 760px);
-    aspect-ratio: var(--about-photo-ratio, 941 / 1672);
-    overflow: hidden;
+  /* Narrow enough that every name breaks onto two lines at least. */
+  & .about__occasion-name {
+    max-width: 5.6em;
+    font-family: var(--font-accent);
+    font-size: clamp(18px, 1.5vw, 23px);
+    font-style: italic;
+    line-height: 1.08;
+    text-wrap: balance;
   }
 
-  & .about__photo {
-    object-fit: cover;
-    filter: grayscale(1) contrast(0.85) brightness(1.03);
+  @media (max-width: 900px) {
+    & .about__layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 
-  @media (max-width: 767px) {
-    /* Stacked, the photo is the last thing in the section: with no padding
-       under it, it runs straight into the section that follows, the way it
-       already does on the desktop through the block's negative margin. */
-    & .about__content {
-      padding-top: 38px;
-      padding-bottom: 0;
-    }
-
-    & .about__title {
-      font-size: 36px;
-    }
-
-    & .about__lead {
-      font-size: 17.5px;
-      line-height: 1.65;
-    }
-
-    /* Stacked: the photo bleeds to both screen edges (the basis has to
-       include the two gutters the negative margins give back) and the icons
-       go under it. */
-    & .about__media {
-      flex-basis: calc(100% + 2 * var(--site-gutter));
-      flex-direction: column;
-      gap: 18px;
-      min-width: 0;
-      padding-right: 0;
-      margin: 0 calc(-1 * var(--site-gutter));
-    }
-
-    & .about__figure {
-      align-self: stretch;
-    }
-
-    /* Full width on its own row; the height follows the ratio. */
-    & .about__frame {
+  @media (max-width: 760px) {
+    & .about__group {
       width: 100%;
-      height: auto;
+      margin-top: -6vw;
+    }
+
+    & .about__occasion {
+      gap: 10px;
+      padding: 18px 6px;
+
+      & .occasion-icon {
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    & .about__occasion-name {
+      font-size: 18px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    & .about__occasion .occasion-icon {
+      transition: none;
     }
   }
 }

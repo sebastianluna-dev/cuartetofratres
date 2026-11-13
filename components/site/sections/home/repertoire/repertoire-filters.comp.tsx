@@ -7,7 +7,7 @@ interface RepertoireFiltersProps {
   onChange: (categoryId: string | null) => void;
 }
 
-// One rounded pill per genre; the active one is solid ivory.
+// One outlined pill per genre; the active one is solid ink.
 export function RepertoireFilters({ filters, active, onChange }: RepertoireFiltersProps) {
   return (
     <div className="repertoire-filters" role="group" aria-label={PLAYER_COPY.filters}>

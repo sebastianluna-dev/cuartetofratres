@@ -3,12 +3,15 @@ export interface NavItem {
   href: string;
 }
 
-// Anchors of the one-page site. The header, the mobile menu and the footer
-// read the same list, so a renamed section changes everywhere at once.
-// Contact is one more section here, not a call to action apart.
+/** Anchor of the contact section: the hero links to it as the first screen's call to action. */
+export const CONTACT_ANCHOR = "#contacto";
+
+// Anchors of the one-page site, in page order. Every link to a section reads
+// this list, so a renamed section changes everywhere at once.
 export const NAV_ITEMS: readonly NavItem[] = [
+  { label: "Repertorio", href: "#repertorio" },
   { label: "El cuarteto", href: "#cuarteto" },
   { label: "Integrantes", href: "#integrantes" },
-  { label: "Repertorio", href: "#repertorio" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Cartelera", href: "#cartelera" },
+  { label: "Contacto", href: CONTACT_ANCHOR },
 ];

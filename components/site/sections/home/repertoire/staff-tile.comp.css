@@ -3,34 +3,17 @@
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
   border-radius: 8px;
-  background: var(--color-ink-tile);
-  color: var(--color-text-on-ink);
+  background: var(--color-ivory-soft);
+  color: var(--color-ink);
   overflow: hidden;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 
   & svg {
     display: block;
-  }
-
-  &.staff-tile_kind_clef {
-    color: var(--color-lime);
-
-    & svg {
-      width: 50px;
-      height: 124px;
-    }
-  }
-
-  /* Over the photo: fills the cover, no tile colour of its own. */
-  &.staff-tile_place_cover {
-    position: absolute;
-    inset: 0;
-    border-radius: 0;
-    background: transparent;
-  }
-
-  &.staff-tile_kind_notes {
-    width: 44px;
-    height: 44px;
   }
 }

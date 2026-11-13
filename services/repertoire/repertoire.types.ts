@@ -1,5 +1,3 @@
-import type { ContentImage } from "@/services/shared/content-image.types";
-
 export interface CategoryContent {
   id: string;
   label: string;
@@ -15,13 +13,14 @@ export interface TrackContent {
   categoryId: string | null;
   /** Full label of the category, for the now-playing card; empty when there is none. */
   categoryLabel: string;
+  /** Length shown until the recording's own length is known; the length of the simulated sample when there is none. */
   durationSeconds: number;
+  /** URL of the recording, or `null` while there is none and the player simulates it. */
+  audioSrc: string | null;
 }
 
 export interface RepertoireContent {
   title: string;
-  /** The quartet's photo behind the clef on the player card: the "El cuarteto" photo. */
-  cover: ContentImage;
   emptyState: { title: string; text: string; ctaLabel: string };
   /** In tab order. */
   categories: CategoryContent[];

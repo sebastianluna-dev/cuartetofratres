@@ -1,7 +1,8 @@
 "use client";
 
 import { useActionState } from "react";
-import { CONTACT_LIMITS } from "@/constants/contact.const";
+import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
+import { CONTACT_COPY, CONTACT_LIMITS } from "@/constants/contact.const";
 import { sendContactRequest } from "@/services/contact/contact.actions";
 import type { ContactFormState } from "@/services/contact/contact.types";
 import { ContactField } from "./contact-field.comp";
@@ -56,10 +57,11 @@ export function ContactForm({ sentTitle, sentText }: ContactFormProps) {
         multiline
       />
 
-      {/* Last line of the table: the button on the left, the message beside it. */}
+      {/* Last line of the letter: the button on the left, the message beside it. */}
       <div className="contact-form__footer">
-        <button type="submit" className="button button_variant_ink ink-grain contact-form__submit" disabled={pending}>
-          {pending ? "Enviando…" : "Enviar solicitud"}
+        <button type="submit" className="pill-button pill-button_variant_ink contact-form__submit" disabled={pending}>
+          {pending ? CONTACT_COPY.submitting : CONTACT_COPY.submit}
+          <ArrowIcon className="pill-button__icon" />
         </button>
         {/* Only the error message lives here now; the region stays in the DOM so it is announced. */}
         <p className="contact-form__notice" aria-live="polite">

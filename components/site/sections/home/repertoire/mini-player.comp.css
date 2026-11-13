@@ -1,15 +1,15 @@
 .mini-player {
+  /* Size of the record; the card hangs from its middle. */
+  --mini-player-record: 152px;
+
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  /* Under the fixed header (60) and the phone menu (70). */
+  right: 28px;
+  bottom: 28px;
+  /* Under the phone menu (70). */
   z-index: 50;
-  /* The ink of the sections, with their grain (`ink-grain`); the bar has to
-     win the `position` of that class to stay sticky. */
-  background: var(--color-ink);
-  color: var(--color-text-on-ink);
-  box-shadow: 0 -18px 40px rgba(10, 11, 13, 0.45);
+  width: var(--mini-player-record);
+  height: var(--mini-player-record);
+  color: var(--color-ink);
   animation: mini-player-rise 0.35s var(--ease-out);
 
   /* Same length as EXIT_MS in hooks/use-mini-player-presence.hook.ts. */
@@ -17,19 +17,186 @@
     animation: mini-player-sink 0.35s var(--ease-out) forwards;
   }
 
-  & .mini-player__inner {
-    display: flex;
-    align-items: center;
-    gap: clamp(14px, 2vw, 26px);
-    max-width: var(--site-max-width);
-    margin: 0 auto;
-    padding: 12px var(--site-gutter);
+  /* The record: the play/pause button, over the card. */
+  & .mini-player__record {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: 50%;
+
+    &:focus-visible {
+      outline-offset: 4px;
+    }
+
+    &:hover .mini-player__label {
+      transform: translate(-50%, -50%) scale(1.08);
+    }
   }
 
-  & .mini-player__work {
-    flex: 1 1 180px;
-    min-width: 0;
+  & .mini-player__disc {
+    position: absolute;
+    inset: 0;
+    display: block;
+    border-radius: 50%;
+  }
+
+  & .mini-player__spin {
+    position: absolute;
+    inset: 0;
     overflow: hidden;
+    border-radius: 50%;
+    box-shadow:
+      0 14px 26px -16px rgba(12, 14, 16, 0.7),
+      0 0 0 1px rgba(12, 14, 16, 0.14);
+    animation: mini-player-spin 9s linear infinite;
+    animation-play-state: paused;
+  }
+
+  &.mini-player_playing .mini-player__spin {
+    animation-play-state: running;
+  }
+
+  & .mini-player__photo {
+    object-fit: cover;
+    filter: var(--filter-musicians);
+  }
+
+  & .mini-player__texture {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: repeating-radial-gradient(circle at 50% 50%, rgba(12, 14, 16, 0) 0 2px, rgba(12, 14, 16, 0.12) 2px 3px);
+    mix-blend-mode: multiply;
+  }
+
+  /* The progress, drawn still over the turning photo: the played ring washed
+     pale with its grooves, the needle as an ink and ivory circle. */
+  & .mini-player__grooves {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  & .mini-player__band {
+    fill: none;
+    stroke: rgba(243, 242, 242, 0.5);
+  }
+
+  & .mini-player__groove {
+    fill: none;
+    stroke: rgba(12, 14, 16, 0.38);
+    stroke-width: 0.4;
+  }
+
+  & .mini-player__needle {
+    fill: none;
+    stroke: var(--color-ink);
+    stroke-width: 1.2;
+
+    &.mini-player__needle_light {
+      stroke: var(--color-ivory);
+      stroke-width: 0.6;
+    }
+  }
+
+  & .mini-player__tip {
+    fill: var(--color-ivory);
+    stroke: var(--color-ink);
+    stroke-width: 0.5;
+  }
+
+  & .mini-player__label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 34%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color-ink);
+    transform: translate(-50%, -50%);
+    transition: transform 0.35s var(--ease-stage);
+  }
+
+  /* Pause bars while it plays, a play triangle while it is paused. */
+  & .mini-player__glyph {
+    position: relative;
+    display: block;
+    width: 14px;
+    height: 16px;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      border-radius: 1px;
+      background: var(--color-ivory);
+    }
+
+    &::before {
+      left: 1px;
+    }
+
+    &::after {
+      right: 1px;
+    }
+  }
+
+  &:not(.mini-player_playing) .mini-player__glyph {
+    &::before {
+      left: 3px;
+      width: 0;
+      border-width: 8px 0 8px 13px;
+      border-style: solid;
+      border-color: transparent transparent transparent var(--color-ivory);
+      border-radius: 0;
+      background: none;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+
+  /* The card: out to the left of the record, from behind it. Hidden, it is
+     also out of the tab order and the accessibility tree (visibility). */
+  & .mini-player__card {
+    position: absolute;
+    right: calc(var(--mini-player-record) / 2);
+    top: 50%;
+    z-index: 1;
+    width: 380px;
+    padding: 14px calc(var(--mini-player-record) / 2 + 18px) 4px 20px;
+    border-radius: var(--site-radius);
+    /* The paper of the contact letter, a shade lighter than the page. */
+    background: #fbfaf8;
+    box-shadow:
+      0 30px 60px -30px rgba(18, 20, 24, 0.55),
+      0 0 0 1px rgba(18, 20, 24, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(36px, -50%) scale(0.97);
+    transition:
+      opacity 0.25s var(--ease-out),
+      transform 0.35s var(--ease-out),
+      visibility 0s 0.35s;
+  }
+
+  &.mini-player_open .mini-player__card {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%);
+    transition:
+      opacity 0.3s var(--ease-stage),
+      transform 0.45s var(--ease-stage),
+      visibility 0s;
   }
 
   & .mini-player__status {
@@ -37,136 +204,183 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-size: 10px;
+    font-family: var(--font-label);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(242, 244, 243, 0.45);
+    color: var(--color-muted-on-ivory);
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      margin: 0 8px 1px 0;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.45;
+      vertical-align: middle;
+    }
   }
 
-  & .marquee-box {
-    margin-top: 5px;
+  &.mini-player_playing .mini-player__status::before {
+    background: var(--color-ink);
+    opacity: 1;
   }
 
+  /* Two lines at most, so the longest titles still fit. */
   & .mini-player__title {
-    font-family: var(--font-heading);
-    font-size: 18px;
-    line-height: 1.2;
+    display: -webkit-box;
+    margin-top: 5px;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow-wrap: anywhere;
+    font-family: var(--font-accent);
+    font-size: 21px;
+    font-style: italic;
+    line-height: 1.14;
+    color: var(--color-ink);
   }
 
   & .mini-player__composer {
     display: block;
     margin-top: 3px;
-    font-size: 11.5px;
-    color: rgba(242, 244, 243, 0.55);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-family: var(--font-label);
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-ink);
   }
 
-  & .mini-player__progress {
-    flex: 2 1 240px;
-    min-width: 0;
+  & .mini-player__time {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    margin-top: 4px;
 
-    & .staff-progress {
+    & .line-progress {
       flex: 1 1 auto;
       min-width: 0;
     }
   }
 
   & .mini-player__clock {
-    font-size: 11.5px;
-    color: rgba(242, 244, 243, 0.55);
+    font-family: var(--font-label);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    color: var(--color-muted-on-ivory);
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
   }
 
-  /* Phone: the work and a lone play button on one row; no status line and no
-     previous/next, and the position is one line along the bottom edge. */
+  /* Anterior · Siguiente, in words like the card above. */
+  & .mini-player__transport {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: -12px;
+  }
+
+  & .mini-player__step {
+    min-height: 44px;
+    padding: 0 12px;
+    border-radius: 999px;
+    font-family: var(--font-label);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--color-text-soft-on-ivory);
+    transition:
+      color 0.25s ease,
+      background 0.25s ease;
+
+    &:hover {
+      background: rgba(12, 14, 16, 0.05);
+      color: var(--color-ink);
+    }
+  }
+
+  & .mini-player__dot {
+    color: rgba(12, 14, 16, 0.3);
+  }
+
+  /* Phone: a smaller record, and the card, as wide as the screen allows,
+     sits on the record's bottom edge so it never runs off the screen. */
   @media (max-width: 767px) {
-    & .mini-player__inner {
-      flex-wrap: wrap;
-      gap: 10px 14px;
-      padding-top: 12px;
-      padding-bottom: 14px;
+    --mini-player-record: 108px;
+
+    right: 12px;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+
+    & .mini-player__card {
+      top: auto;
+      bottom: -2px;
+      width: calc(100vw - 24px - var(--mini-player-record) / 2);
+      padding: 12px calc(var(--mini-player-record) / 2 + 14px) 2px 16px;
+      transform: translateX(28px) scale(0.97);
     }
 
-    & .mini-player__work {
-      flex-basis: 0;
+    &.mini-player_open .mini-player__card {
+      transform: none;
     }
 
     & .mini-player__status {
       display: none;
     }
 
-    & .marquee-box {
+    & .mini-player__title {
       margin-top: 0;
+      font-size: 19px;
     }
 
-    & .transport__step {
-      display: none;
-    }
-
-    /* Out of the row and pinned to the bar's own bottom edge, so it runs the
-       width of the screen instead of the width of the inner column. */
-    & .mini-player__progress {
+    /* A thumb needs more than the line's 24 px: the hit area grows, the drawing does not. */
+    & .line-progress::before {
+      content: "";
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      gap: 0;
+      inset: -10px 0;
     }
+  }
+}
 
-    & .mini-player__clock {
-      display: none;
-    }
-
-    /* The staff gives way to a plain rule. The root keeps its slider role and
-       its handlers, so seeking, the keyboard and the announcements are the
-       same; only the drawing changes. It stays taller than the line it shows
-       so there is something to hit with a thumb. */
-    & .staff-progress {
-      height: 16px;
-
-      &::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 3px;
-        background: rgba(242, 244, 243, 0.22);
-      }
-    }
-
-    & .staff-progress__staff,
-    & .staff-progress__head {
-      display: none;
-    }
-
-    /* The elapsed part: the inline clip-path still trims it from the right. */
-    & .staff-progress__played {
-      top: auto;
-      height: 3px;
-      background: var(--color-ivory);
-    }
+@keyframes mini-player-spin {
+  100% {
+    transform: rotate(360deg);
   }
 }
 
 @keyframes mini-player-rise {
   from {
-    transform: translateY(100%);
+    opacity: 0;
+    transform: translateY(40px);
   }
 
   to {
+    opacity: 1;
     transform: translateY(0);
   }
 }
 
 @keyframes mini-player-sink {
   from {
+    opacity: 1;
     transform: translateY(0);
   }
 
   to {
-    transform: translateY(100%);
+    opacity: 0;
+    transform: translateY(40px);
   }
 }

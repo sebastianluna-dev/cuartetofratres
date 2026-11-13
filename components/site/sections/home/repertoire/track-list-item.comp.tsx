@@ -1,34 +1,28 @@
+import type { CSSProperties } from "react";
 import type { TrackContent } from "@/services/repertoire/repertoire.types";
 import { StaffTile } from "./staff-tile.comp";
 import "./track-list-item.comp.css";
 
 interface TrackListItemProps {
   track: TrackContent;
-  number: number;
   selected: boolean;
   playing: boolean;
   onSelect: () => void;
+  /** Custom properties from the list: the row's place in the entrance. */
+  style?: CSSProperties;
 }
 
-// One row of the programme: number, staff tile, title, composer and, at the
-// end, a play glyph that becomes the equaliser while this row plays. The
-// whole row is the button.
-export function TrackListItem({ track, number, selected, playing, onSelect }: TrackListItemProps) {
+// One row of the programme: the play glyph (the equaliser while this row
+// plays), the staff tile, the title and the composer. The whole row is the
+// button; the chosen one is only told by its glyph and, while it plays, the equaliser.
+export function TrackListItem({ track, selected, playing, onSelect, style }: TrackListItemProps) {
   const classes = ["track-item", selected ? "track-item_selected" : "", playing ? "track-item_playing" : ""]
     .filter(Boolean)
     .join(" ");
 
   return (
-    <li className={classes}>
+    <li className={classes} style={style}>
       <button type="button" className="track-item__button" aria-pressed={selected} onClick={onSelect}>
-        <span className="track-item__number">{number < 10 ? `0${number}` : number}</span>
-        <StaffTile kind="notes" />
-        {/* One box for both texts: a row on the desktop (`display: contents`),
-            a column under the phone breakpoint. */}
-        <span className="track-item__text">
-          <span className="track-item__title">{track.title}</span>
-          <span className="track-item__composer">{track.composer}</span>
-        </span>
         <span className="track-item__state" aria-hidden="true">
           <span className="track-item__equalizer">
             <span className="track-item__bar" />
@@ -36,6 +30,13 @@ export function TrackListItem({ track, number, selected, playing, onSelect }: Tr
             <span className="track-item__bar" />
           </span>
           <span className="track-item__play" />
+        </span>
+        <StaffTile />
+        {/* One box for both texts: a row on the desktop (`display: contents`),
+            a column under the phone breakpoint. */}
+        <span className="track-item__text">
+          <span className="track-item__title">{track.title}</span>
+          <span className="track-item__composer">{track.composer}</span>
         </span>
       </button>
     </li>

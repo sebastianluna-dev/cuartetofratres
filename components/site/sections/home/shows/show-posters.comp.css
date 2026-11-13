@@ -1,0 +1,30 @@
+.show-posters {
+  display: flex;
+  justify-content: center;
+  gap: clamp(14px, 1.8vw, 30px);
+
+  /* Three to a row; with fewer, they keep that width and sit centred. */
+  & .show-posters__item {
+    flex: 0 1 calc((100% - 2 * clamp(14px, 1.8vw, 30px)) / 3);
+    min-width: 0;
+  }
+
+  /* Tablet and phone: one row that scrolls sideways and snaps to each poster. */
+  @media (max-width: 900px) {
+    justify-content: flex-start;
+    margin: 0 calc(var(--site-gutter) * -1);
+    padding: 0 var(--site-gutter) 36px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    & .show-posters__item {
+      flex: 0 0 min(78vw, 340px);
+      scroll-snap-align: center;
+    }
+  }
+}

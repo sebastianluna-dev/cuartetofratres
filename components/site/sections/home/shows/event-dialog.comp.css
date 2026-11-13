@@ -1,0 +1,333 @@
+.event-dialog {
+  /* The global reset zeroes every margin; `auto` is what centres a modal dialog. */
+  margin: auto;
+  width: min(100% - 2 * var(--site-gutter), 920px);
+  max-width: none;
+  /* The height follows the width: the photo takes three eighths and is a
+     9:16 portrait, so the box is 3:2. A short screen caps it and the
+     detail column scrolls on its own; the photo never moves. */
+  aspect-ratio: 3 / 2;
+  max-height: calc(100dvh - 64px);
+  padding: 0;
+  border: 0;
+  border-radius: var(--site-radius);
+  overflow: hidden;
+  background: var(--color-ink);
+  color: var(--color-text-on-ink);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+
+  &::backdrop {
+    background: rgba(18, 20, 24, 0.72);
+    backdrop-filter: blur(4px);
+  }
+
+  /* Layout only while open: a closed <dialog> must keep `display: none`.
+     One row as tall as the box; each column clips or scrolls its own content.
+     The panel, not the dialog, is the positioned block of the close button: a
+     modal dialog must keep the browser's own positioning. */
+  &[open] .event-dialog__panel {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+    grid-template-rows: minmax(0, 1fr);
+    height: 100%;
+  }
+
+  & .event-dialog__close {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--color-text-on-ink);
+    border-radius: 50%;
+    color: var(--color-text-on-ink);
+    transition:
+      background 0.25s ease,
+      color 0.25s ease;
+
+    &:hover {
+      background: var(--color-ivory);
+      color: var(--color-ink);
+    }
+  }
+
+  & .event-dialog__media {
+    position: relative;
+    min-height: 0;
+    background: #191c22;
+  }
+
+  & .event-dialog__photo {
+    object-fit: cover;
+    filter: var(--filter-musicians);
+  }
+
+  /* The only thing that scrolls: a long programme stays inside the box. */
+  & .event-dialog__body {
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: clamp(24px, 3vw, 40px) clamp(24px, 3vw, 44px) clamp(24px, 3vw, 36px);
+  }
+
+  /* Scrollbar in the window's own colours: ink track, ivory thumb. The
+     standard properties are inherited by the body column (and by the whole
+     sheet on the phone); the -webkit- pseudo-elements are for Safari. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ivory) var(--color-ink);
+
+  &::-webkit-scrollbar,
+  & .event-dialog__body::-webkit-scrollbar {
+    width: 8px;
+    background: var(--color-ink);
+  }
+
+  &::-webkit-scrollbar-track,
+  & .event-dialog__body::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+
+  &::-webkit-scrollbar-thumb,
+  & .event-dialog__body::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: var(--color-ivory);
+    border: 2px solid var(--color-ink);
+  }
+
+  & .event-dialog__band {
+    font-family: var(--font-label);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(242, 244, 243, 0.84);
+  }
+
+  & .event-dialog__title {
+    margin-top: 16px;
+    max-width: 9em;
+    font-family: var(--font-display);
+    font-size: clamp(40px, 4vw, 58px);
+    line-height: 0.92;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  & .event-dialog__description {
+    margin-top: 14px;
+    font-size: 16.5px;
+    line-height: 1.7;
+    color: rgba(242, 244, 243, 0.86);
+    white-space: pre-line;
+    text-wrap: pretty;
+  }
+
+  /* Venue and tickets as rows: the label in a narrow left column, the
+     content beside it, a hairline above each. */
+  & .event-dialog__facts {
+    margin-top: 30px;
+  }
+
+  & .event-dialog__fact {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 8px 24px;
+    align-items: baseline;
+    padding: 22px 0;
+    border-top: 1px solid var(--color-divider-on-ink);
+  }
+
+  & .event-dialog__block {
+    margin-top: 30px;
+    padding-top: 26px;
+    border-top: 1px solid var(--color-divider-on-ink);
+  }
+
+  & .event-dialog__block-label {
+    font-family: var(--font-label);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-muted-on-ink);
+  }
+
+  & .event-dialog__fact-main {
+    font-family: var(--font-accent);
+    font-size: clamp(22px, 2vw, 28px);
+    font-style: italic;
+    line-height: 1.15;
+  }
+
+  & .event-dialog__fact-detail {
+    margin-top: 6px;
+    font-size: 15px;
+    color: var(--color-muted-on-ink);
+  }
+
+  /* Led by a dot, like the prices, and underlined only on hover. */
+  & .event-dialog__link {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: var(--font-label);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-on-ink);
+
+    &::before {
+      content: "· ";
+    }
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  }
+
+  /* The prices run in one wrapping line; the dot closes each price but the
+     last, so it stays at the end of a line instead of opening the next. */
+  & .event-dialog__prices {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 10px;
+    row-gap: 6px;
+    list-style: none;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--color-muted-on-ink);
+  }
+
+  & .event-dialog__price {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+
+    &:not(:last-child)::after {
+      content: "·";
+    }
+  }
+
+  & .event-dialog__price-amount {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2vw, 26px);
+    line-height: 1;
+    color: var(--color-text-on-ink);
+  }
+
+  & .event-dialog__program {
+    margin-top: 12px;
+    list-style: none;
+    counter-reset: obra;
+  }
+
+  & .event-dialog__program-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 20px;
+    padding: 14px 0;
+    border-top: 1px solid var(--color-divider-on-ink);
+    counter-increment: obra;
+
+    &:first-child {
+      border-top: 0;
+      padding-top: 6px;
+    }
+
+    &::before {
+      content: counter(obra, decimal-leading-zero);
+      font-family: var(--font-label);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-muted-on-ink);
+      font-variant-numeric: tabular-nums;
+    }
+  }
+
+  & .event-dialog__program-title {
+    font-family: var(--font-accent);
+    font-size: clamp(21px, 1.9vw, 26px);
+    font-style: italic;
+    line-height: 1.2;
+  }
+
+  /* The composer sits against the right edge of the list. */
+  & .event-dialog__program-composer {
+    margin-left: auto;
+    font-family: var(--font-label);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted-on-ink);
+  }
+
+  & .event-dialog__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 20px;
+    margin-top: 34px;
+  }
+
+  /* On the phone the dialog is a full-width sheet: photo on top, the rest
+     below; a long detail scrolls the sheet as a whole. */
+  @media (max-width: 767px) {
+    width: 100%;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    aspect-ratio: auto;
+    /* Full-bleed sheet: rounded corners would leave gaps at the screen edge. */
+    border-radius: 0;
+    overflow-y: auto;
+
+    &[open] .event-dialog__panel {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: 240px auto;
+      height: auto;
+    }
+
+    & .event-dialog__body {
+      overflow: visible;
+    }
+
+    & .event-dialog__close {
+      top: 14px;
+      right: 14px;
+      width: 42px;
+      height: 42px;
+      background: rgba(18, 20, 24, 0.55);
+    }
+
+    & .event-dialog__media {
+      aspect-ratio: auto;
+    }
+
+    & .event-dialog__body {
+      padding: 24px 20px 32px;
+    }
+
+    & .event-dialog__fact {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    & .event-dialog__program-composer {
+      margin-left: 0;
+      flex-basis: 100%;
+      padding-left: 34px;
+    }
+
+    & .event-dialog__actions .pill-button {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+}

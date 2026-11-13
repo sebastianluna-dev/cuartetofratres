@@ -1,197 +1,142 @@
 .hero {
+  /* --hero-height: the first screen; the stage takes most of it. */
+  --hero-height: max(680px, 100vh);
   position: relative;
-  min-height: clamp(660px, 96vh, 960px);
+  isolation: isolate;
+  overflow: clip;
+  height: var(--hero-height);
   display: flex;
-  align-items: stretch;
-  overflow: hidden;
+  flex-direction: column;
+  background: radial-gradient(ellipse 52% 62% at 50% 62%, #1f2328 0, var(--color-ink-deep) 70%) var(--color-ink-deep);
 
-  /* Against the right edge and centred vertically, with the photo's own
-     ratio (--photo-width/--photo-height come inline from the CMS), so the
-     frame is exactly the picture and the vignette lands on its edges. */
-  & .hero__media {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    width: 64%;
-    max-height: 100%;
-    aspect-ratio: var(--photo-width) / var(--photo-height);
-    transform: translateY(-50%);
-
-    /* Elliptical vignette: a light veil of ink in the middle and solid ink at
-       the edges, so the photo melts into the background without a visible
-       border. It overhangs the photo by 2px to cover the antialiased edge
-       pixels. The section's grain (globals.css) lies over everything. */
-    &::after {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      z-index: 2;
-      background: radial-gradient(ellipse 70% 50% at 72% 50%, rgba(18, 20, 24, 0.1) 60%, var(--color-ink) 100%);
-      pointer-events: none;
-    }
+  @supports (height: 100svh) {
+    --hero-height: max(680px, 100svh);
   }
 
-  & .hero__photo {
-    object-fit: contain;
-    filter: grayscale(1) contrast(1);
-  }
-
+  /* The label and the name, centred over the stage. */
   & .hero__inner {
     position: relative;
+    z-index: 8;
     width: 100%;
-    min-width: 0;
-    max-width: var(--site-max-width);
+    max-width: var(--site-max-width-wide);
     margin: 0 auto;
-    padding: clamp(124px, 16vh, 180px) clamp(20px, 4vw, 64px) clamp(44px, 7vh, 76px) var(--site-gutter);
-  }
-
-  & .hero__title {
-    max-width: 16em;
-    font-family: var(--font-display);
-    font-size: clamp(42px, 7.2vw, 102px);
-    line-height: 0.96;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
-    color: var(--color-text-on-ink);
-  }
-
-  & .hero__lead {
-    margin-top: clamp(18px, 2.4vw, 26px);
-    max-width: 30em;
-    font-size: clamp(18px, 1.7vw, 20px);
-    line-height: 1.65;
-    color: rgba(242, 244, 243, 0.88);
-    text-wrap: pretty;
-  }
-
-  & .hero__row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 22px;
-    margin-top: clamp(26px, 3.4vw, 38px);
-  }
-
-  /* Heading of the dates: read by assistive tech everywhere (the list is
-     labelled by it), drawn only on the phone. */
-  & .hero__events-heading {
-    display: none;
-  }
-
-  /* Round outlined button: the only call to action that competes with the
-     dates, so it reads as an ivory ring on the ink and fills on hover.
-     Its label wraps inside the circle: two words per line at most. */
-  & .hero__listen {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 136px;
-    height: 136px;
-    padding: 0 22px;
-    margin-top: clamp(0px, 4vw, 56px);
-    border: 1px solid var(--color-ivory);
-    border-radius: 50%;
-    background: transparent;
-    color: var(--color-ivory);
-    font-family: var(--font-heading);
-    font-size: 17px;
-    line-height: 1.25;
-    letter-spacing: 0.04em;
+    padding: clamp(26px, 5vh, 56px) var(--site-gutter) 0;
     text-align: center;
-    transition:
-      background 0.3s ease,
-      color 0.3s ease,
-      transform 0.3s ease;
-
-    &:hover {
-      background: var(--color-ivory);
-      color: var(--color-ink);
-    }
-
-    &:active {
-      transform: scale(0.97);
-    }
   }
 
-  /* On the phone the photo goes first, across the screen under the header,
-     and the text follows it. The frame is taller than the photo (11:10), so
-     it is cropped at the sides until the musicians fill the width; the CMS
-     framing (inline `object-position`) decides which part stays. Both sides
-     touch the screen's edges, so only the top and bottom fade into the ink. */
-  @media (max-width: 767px) {
-    flex-direction: column;
+  /* The monogram in the top-left corner, on the left edge of the name's column. */
+  & .hero__mark {
+    position: absolute;
+    top: clamp(22px, 3.4vh, 36px);
+    left: var(--site-gutter);
+    z-index: 9;
+  }
 
-    & .hero__media {
-      position: relative;
-      top: auto;
-      width: 100%;
-      margin-top: 72px;
-      aspect-ratio: 11 / 10;
-      transform: none;
+  & .hero__eyebrow {
+    display: flex;
+    justify-content: center;
+    gap: 0.6em;
+    font-family: var(--font-label);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(242, 244, 243, 0.84);
+  }
 
-      &::after {
-        background: linear-gradient(
-          180deg,
-          var(--color-ink) 0%,
-          rgba(18, 20, 24, 0) 12%,
-          rgba(18, 20, 24, 0) 74%,
-          var(--color-ink) 100%
-        );
+  /* One line across the page: as wide as the screen lets it, and short
+     enough in height to leave the stage its room. */
+  & .hero__title {
+    margin-top: clamp(8px, 1.4vh, 16px);
+    font-family: var(--font-display);
+    font-size: clamp(56px, min(11.2vw, 18vh), 230px);
+    line-height: 0.84;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Split layout, from 1100px up (narrower screens have no room for both, so
+     they keep the centred one): the label and the name in two lines on the
+     left, vertically centred, and the stage standing on the right. */
+  &.hero_layout_split {
+    @media (min-width: 1100px) {
+      & .hero__inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        padding: 0 var(--site-gutter) 4vh;
+        text-align: left;
+      }
+
+      & .hero__eyebrow {
+        justify-content: flex-start;
+      }
+
+      & .hero__title {
+        margin-top: clamp(10px, 1.6vh, 18px);
+        font-size: clamp(56px, min(8.2vw, 16vh), 190px);
+        white-space: normal;
+      }
+
+      & .hero__title-word {
+        display: block;
+      }
+
+      & .hero-stage {
+        left: auto;
+        right: max(var(--site-gutter), 4vw);
+        height: 80%;
+        translate: none;
       }
     }
+  }
 
-    & .hero__photo {
-      object-fit: cover;
-    }
+  /* Portrait tablet: a full-height hero leaves a dark gap between the name
+     and the stage, so it takes the height of what it holds instead. */
+  @media (min-width: 761px) and (max-width: 1099px) and (orientation: portrait) {
+    height: auto;
 
     & .hero__inner {
-      display: flex;
-      flex-direction: column;
-      padding-top: 8px;
-    }
-
-    /* Scales with the screen so the name fills its line without wrapping. */
-    & .hero__title {
-      font-size: clamp(42px, 13vw, 72px);
-    }
-
-    /* One column: listen button first (visual order differs from the DOM on
-       purpose), then the heading and the cards. */
-    & .hero__row {
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-items: stretch;
-      gap: 18px;
-    }
-
-    & .hero__listen {
-      order: -1;
-      width: 100%;
-      height: 52px;
-      margin-top: 0;
-      border-radius: 8px;
-      /* Filled here: there is no hover on a phone to reveal the ground, and a
-         bar of outline alone reads as a field, not as a button. */
-      background: var(--color-ivory);
-      color: var(--color-ink);
-      font-size: 16px;
-      line-height: 1.2;
-    }
-
-    & .hero__events-heading {
-      display: block;
-      margin-top: 10px;
-      font-size: 11.5px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--color-text-on-ink);
+      padding-bottom: 0;
     }
   }
 
-  @media (max-width: 479px) {
-    & .hero__lead {
-      max-width: none;
+  /* Phone: the name in two lines and the stage under it. */
+  @media (max-width: 760px) {
+    height: auto;
+    background: var(--color-ink-deep);
+    padding: 0 var(--site-gutter);
+
+    & .hero__inner {
+      padding: 28px 0 0;
+    }
+
+    & .hero__mark {
+      top: 20px;
+      left: 0;
+    }
+
+    & .hero__eyebrow {
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 13px;
+    }
+
+    & .hero__eyebrow-dot {
+      display: none;
+    }
+
+    & .hero__title {
+      font-size: clamp(60px, 22.5vw, 104px);
+      white-space: normal;
+    }
+
+    & .hero__title-word {
+      display: block;
     }
   }
 }
