@@ -32,6 +32,8 @@
   --font-label: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
   /* The italic accent of the titles; always used with `font-style: italic`. */
   --font-accent: var(--font-instrument-serif), Georgia, serif;
+  /* The section titles' calligraphic face. */
+  --font-title: var(--font-italianno), var(--font-instrument-serif), cursive;
 
   /* Horizontal padding of every section and the header: one value so the
      content edges line up from the top of the page to the footer. */
@@ -242,24 +244,19 @@ strong {
    Type pieces and the call to action, shared by every section.
    --------------------------------------------------------------------------- */
 
-/* Centred section title in the italic accent («Cartelera»). */
+/* Centred section title in the calligraphic face («Cartelera»). A script has
+   a small body, hence 1.4 times the size the italic accent had. The display
+   modifier is now drawn the same way: the owner chose one face for every
+   section title. */
 .section-title {
-  font-family: var(--font-accent);
-  font-size: clamp(52px, 7vw, 104px);
-  font-style: italic;
+  font-family: var(--font-title);
+  font-size: clamp(73px, 9.8vw, 146px);
+  font-style: normal;
   font-weight: 400;
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   text-align: center;
   text-wrap: balance;
-
-  /* In the quartet's display face, in capitals, like the hero's name. */
-  &.section-title_face_display {
-    font-family: var(--font-display);
-    font-style: normal;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
-  }
 }
 
 /* Pill call to action. Ivory on ink; `ghost` is the outline on ink and `ink`

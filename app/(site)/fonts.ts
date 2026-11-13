@@ -49,6 +49,21 @@ export const barlowCondensed = localFont({
 });
 
 /**
+ * The section titles («Repertorio», «Cartelera», «Conoce al cuarteto»…): the
+ * calligraphic face the owner picked in the review panel. Google's Italianno,
+ * Latin subsets, self-hosted. A script with a small body, so the titles are
+ * set larger than the face they replaced (see `.section-title`).
+ */
+export const italianno = localFont({
+  src: [
+    { path: "../../public/fonts/italianno-400-latin.woff2", weight: "400", style: "normal" },
+    { path: "../../public/fonts/italianno-400-latin-ext.woff2", weight: "400", style: "normal" },
+  ],
+  variable: "--font-italianno",
+  display: "swap",
+});
+
+/**
  * The italic accent: centred section titles and the word that answers a title
  * in capitals. Only the italic of Google's Instrument Serif is used.
  */
