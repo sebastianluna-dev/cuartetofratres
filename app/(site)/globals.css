@@ -57,8 +57,7 @@
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   /* Slower start, long tail: the figures of the stages and the hover moves. */
   --ease-stage: cubic-bezier(0.2, 0.7, 0.1, 1);
-  /* Every photo of the musicians, in colour and slightly desaturated. The
-     posters of the dates and their window stay in black and white. */
+  /* Every photo of the musicians, in colour and slightly desaturated. */
   --filter-musicians: saturate(0.83) contrast(1) brightness(1);
 }
 

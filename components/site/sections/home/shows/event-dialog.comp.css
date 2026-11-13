@@ -67,8 +67,7 @@
 
   & .event-dialog__photo {
     object-fit: cover;
-    /* Softer than the cards: the photo sits next to text, not under it. */
-    filter: grayscale(1) contrast(0.85);
+    filter: var(--filter-musicians);
   }
 
   /* The only thing that scrolls: a long programme stays inside the box. */
