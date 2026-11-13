@@ -13,5 +13,7 @@ export const siteConfig: SiteConfig = {
       about: true,
       contact: true,
     },
+    // How the hero sets the name against the musicians (see HeroLayout).
+    heroLayout: "split",
   },
 };

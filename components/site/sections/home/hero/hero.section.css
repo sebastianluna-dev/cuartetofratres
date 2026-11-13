@@ -49,6 +49,43 @@
     white-space: nowrap;
   }
 
+  /* Split layout, from 1100px up (narrower screens have no room for both, so
+     they keep the centred one): the label and the name in two lines on the
+     left, vertically centred, and the stage standing on the right. */
+  &.hero_layout_split {
+    @media (min-width: 1100px) {
+      & .hero__inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        padding: 0 var(--site-gutter) 4vh;
+        text-align: left;
+      }
+
+      & .hero__eyebrow {
+        justify-content: flex-start;
+      }
+
+      & .hero__title {
+        margin-top: clamp(10px, 1.6vh, 18px);
+        font-size: clamp(56px, min(8.2vw, 16vh), 190px);
+        white-space: normal;
+      }
+
+      & .hero__title-word {
+        display: block;
+      }
+
+      & .hero-stage {
+        left: auto;
+        right: max(var(--site-gutter), 4vw);
+        height: 80%;
+        translate: none;
+      }
+    }
+  }
+
   /* Phone: the name in two lines and the stage under it. */
   @media (max-width: 760px) {
     height: auto;

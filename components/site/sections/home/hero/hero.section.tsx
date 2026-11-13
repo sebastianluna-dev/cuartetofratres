@@ -1,3 +1,4 @@
+import { siteConfig } from "@/config/site.config";
 import { HERO_COPY } from "@/constants/hero.const";
 import { HERO_STAGE_FIGURES } from "@/constants/hero-stage.const";
 import { getHeroData } from "@/services/hero/hero.service";
@@ -6,15 +7,17 @@ import { HeroMusic } from "./hero-music.comp";
 import { HeroStage } from "./hero-stage.comp";
 import "./hero.section.css";
 
-// First screen, with no top bar and nothing else over it: the label and the
-// name on one line across the top, and the four musicians standing in the
-// centre beneath it. On the phone the name takes two lines over the stage.
+// First screen, with no top bar and nothing else over it: the label, the name
+// and the four musicians. Two layouts (siteConfig.home.heroLayout): `centered`
+// sets the name on one line across the top with the four centred beneath it;
+// `split` sets it in two lines on the left with the four standing on the
+// right. On the phone both take the name in two lines over the stage.
 export async function HeroSection() {
   const [hero, settings] = await Promise.all([getHeroData(), getSiteSettingsData()]);
   const titleWords = hero.title.trim().split(/\s+/);
 
   return (
-    <section id="inicio" className="section section_theme_ink hero">
+    <section id="inicio" className={`section section_theme_ink hero hero_layout_${siteConfig.home.heroLayout}`}>
       <div className="hero__inner">
         <p className="hero__eyebrow">
           <span>{HERO_COPY.kicker}</span>
