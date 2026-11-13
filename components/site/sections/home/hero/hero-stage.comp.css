@@ -11,25 +11,6 @@
   translate: -50% 0;
   pointer-events: none;
 
-  /* The room: a grey photo dissolving into the ground behind the four. */
-  & .hero-stage__room {
-    position: absolute;
-    left: -34%;
-    right: -34%;
-    top: 6%;
-    bottom: 6%;
-    opacity: 0.4;
-    translate: calc(var(--lean-x, 0px) * 0.25) calc(var(--lean-y, 0px) * 0.15);
-    -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 22%, transparent 72%);
-    mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 22%, transparent 72%);
-  }
-
-  & .hero-stage__room-image {
-    object-fit: cover;
-    object-position: 50% 60%;
-    filter: grayscale(1) contrast(0.95) brightness(0.78);
-  }
-
   & .hero-stage__glow {
     position: absolute;
     left: 50%;
@@ -104,13 +85,6 @@
     min-height: 400px;
     aspect-ratio: auto;
     margin: -58px calc(var(--site-gutter) * -1) 0;
-
-    & .hero-stage__room {
-      left: -20%;
-      right: -20%;
-      top: 0;
-      bottom: 4%;
-    }
   }
 }
 

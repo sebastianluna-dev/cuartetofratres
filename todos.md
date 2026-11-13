@@ -16,4 +16,3 @@ Small, mechanical tasks that need no design decision. Bigger items live in `IMPR
 - [ ] In `/admin › Integrantes` (production), replace the four portraits with the cut-outs in `public/images/<slug>.webp`: the stored photos are the earlier opaque ones and the redesigned section fades a transparent portrait into the stage.
 - [ ] Confirm with the quartet which cut-out is whose: `ricardo-sanchez` and `jesus-medina` were told apart by the instrument only (the one held upright as the viola).
 - [ ] Publish at least one future date in `/admin › Presentaciones`: both seeded dates are past, so the dates section shows the «por anunciar» poster.
-- [ ] Confirm the origin and the licence of `public/images/stage/sala.jpg` (the room fused behind the hero stage) before the redesign goes to production; replace it with a photo of the quartet's own hall if it cannot be used.

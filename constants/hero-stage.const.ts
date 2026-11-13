@@ -60,9 +60,3 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
     fade: { left: 9, right: 9, bottom: 30 },
   },
 ];
-
-/**
- * The room behind the stage: a photo fused in grey into the ground, between
- * the name and the musicians, its right side running behind them.
- */
-export const HERO_STAGE_BACKDROP = "/images/stage/sala.jpg";

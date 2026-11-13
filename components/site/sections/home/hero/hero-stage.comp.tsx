@@ -8,8 +8,6 @@ import "./hero-stage.comp.css";
 
 interface HeroStageProps {
   figures: readonly StageFigure[];
-  /** Photo of the room, fused into the ground behind the figures. */
-  backdrop: string;
 }
 
 /** How far the stage leans towards the pointer, in px, across and down. */
@@ -18,12 +16,11 @@ const LEAN_Y = 14;
 /** Share of the remaining distance covered per frame. */
 const EASING = 0.08;
 
-// The musicians on the stage: the room fused into the ground, a glow, the
-// staff lines and the four cut-outs,
+// The musicians on the stage: a glow, the staff lines and the four cut-outs,
 // each rising into place on load. A Client Component only for the parallax:
 // with a mouse, the figures lean a little towards the pointer, the ones in
 // front more. The offsets go to the node as custom properties, not to state.
-export function HeroStage({ figures, backdrop }: HeroStageProps) {
+export function HeroStage({ figures }: HeroStageProps) {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -63,9 +60,6 @@ export function HeroStage({ figures, backdrop }: HeroStageProps) {
 
   return (
     <div ref={ref} className="hero-stage" aria-hidden="true">
-      <div className="hero-stage__room">
-        <Image src={backdrop} alt="" fill sizes="(max-width: 900px) 130vw, 75vw" className="hero-stage__room-image" />
-      </div>
       <div className="hero-stage__glow" />
       <StaffLines kind="hero" className="hero-stage__staff" />
       {figures.map((figure, index) => (
@@ -91,7 +85,8 @@ export function HeroStage({ figures, backdrop }: HeroStageProps) {
             alt=""
             fill
             priority
-            sizes="(max-width: 900px) 70vw, 44vw"
+            quality={100}
+            sizes="(max-width: 760px) 90vw, 44vw"
             className="hero-stage__image"
           />
         </div>
