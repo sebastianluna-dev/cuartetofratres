@@ -40,6 +40,9 @@ The site also works against an empty database: every service falls back to the c
 | `npm run cms:generate`                    | Regenerates `payload-types.ts` and the admin's import map.                 |
 | `npm run cms:seed`                        | Loads the initial content (idempotent across the collections).             |
 | `npm run cms:user`                        | Creates a CMS admin user from the terminal.                                |
+| `npm run cms:export`                      | Exports the local CMS (content and files) to `cms-export/`.                |
+| `npm run cms:sync -- --dry-run`           | Lists what `cms:sync` would change in the database of `.env.prod-sync`.    |
+| `npm run cms:sync`                        | Writes `cms-export/` into that database (production), after a backup.      |
 
 The `cms:*` scripts run with `node --import ./scripts/alias-loader.mjs`, a resolution hook that understands the aliases in `tsconfig.json`: Payload's CLI does not resolve them under Node 24.
 
@@ -64,7 +67,7 @@ Everything the visitor sees is edited in `/admin`. The **Globals** hold each sec
 | Secciones › Portada (`hero`)              | Title, text and the «Escuchar» button. The photo, its framing and the caption of the dates are stored but no longer drawn (see below).                                                                                                                                                          |
 | Secciones › El cuarteto (`about`)         | Title, text and the group's photo.                                                                                                                                                                                                                                                              |
 | Secciones › Repertorio / Contacto         | Each section's copy (titles, notes, empty state, the message shown after sending).                                                                                                                                                                                                              |
-| Sitio › Datos del sitio (`site-settings`) | Tagline, email, WhatsApp, city, networks and the photography credit. The email, WhatsApp and networks show up beside the contact letter, under the section's text; a network with no URL is shown without a link.                                                                                                                           |
+| Sitio › Datos del sitio (`site-settings`) | Tagline, email, WhatsApp, city, networks and the photography credit. The email, WhatsApp and networks show up beside the contact letter, under the section's text; a network with no URL is shown without a link.                                                                               |
 | Contenido › Integrantes (`members`)       | The four musicians, with desk order, instrument, short name, profile, portrait and framing. The portrait must be a cut-out on a transparent ground (WebP or PNG, 2:3, the head at the same height in all four): the section fades it into the stage.                                            |
 | Contenido › Presentaciones (`events`)     | Dates with time, city and photo, plus the window's detail (description, programme, venue, prices and tickets link). The dates section shows the next two **published** ones as posters; one without the «Publicada» box is stored without reaching the site, and past ones stay on as a record. |
 | Contenido › Repertorio (`tracks`)         | Works with composer, category, recording (from `Grabaciones`) and the excerpt's length.                                                                                                                                                                                                         |
@@ -102,6 +105,18 @@ Every valid request is stored as a document of the `contact-requests` collection
 - **`lib/`**: pure functions with a test beside them (`*.test.ts`).
 - **`services/`**: one folder per domain (`hero`, `about`, `members`, `events`, `repertoire`, `contact`, `site-settings`) with a service, a mapper and types; `shared/` holds the cached read of the CMS and the image mapping. `contact/` also holds the validation and the server action.
 - **`scripts/`**: migrations, seed, user creation and type generation, outside Next.
+
+## Copying the local content to production
+
+The design reads its content from the CMS, so a deploy alone keeps production's old texts and photos. To make production's CMS match the local one:
+
+1. Deploy the code first (its build runs the pending migrations on the production database).
+2. `npm run cms:export` writes the local CMS to `cms-export/` (ignored by git): `content.json` and a copy of every image and recording it uses. It only reads `localhost`.
+3. `npx vercel env pull .env.prod-sync --environment=production` brings production's variables into a file Next does not load on its own, so neither `next dev` nor `next start` can reach production by mistake.
+4. `npm run cms:sync -- --dry-run` lists every change; `npm run cms:sync` saves a backup of production to `cms-export/backup-<time>.json` and applies them. Rows are matched by a stable key (file name, label, title, desk order), never by id; uploads missing in production go to Vercel Blob. A second run reports nothing to change.
+5. Delete `.env.prod-sync`.
+
+`cms:sync` reads only `.env.prod-sync` and refuses `localhost` and a missing Blob token (unless the file sets `CMS_SYNC_REHEARSAL=1`, for rehearsing against a throwaway local database).
 
 ## Deploying on Vercel
 
