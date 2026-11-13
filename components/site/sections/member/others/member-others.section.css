@@ -28,4 +28,17 @@
       font-size: 14px;
     }
   }
+
+  /* Three names in a 390 px row touched each other: smaller, and a long
+     name may take two lines instead of reaching its neighbour. */
+  @media (max-width: 480px) {
+    & .member-portrait__name {
+      font-size: 13px;
+      text-wrap: balance;
+    }
+
+    & .member-portrait__instrument {
+      font-size: 13px;
+    }
+  }
 }
