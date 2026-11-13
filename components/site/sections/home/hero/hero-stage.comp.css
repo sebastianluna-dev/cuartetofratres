@@ -25,16 +25,18 @@
   & .hero-stage__staff {
     inset: 4% -30% 10%;
     color: var(--color-text-on-ink);
-    opacity: 0.16;
+    opacity: 0.1;
     -webkit-mask-image: radial-gradient(60% 56% at 50% 46%, #000 30%, transparent 100%);
     mask-image: radial-gradient(60% 56% at 50% 46%, #000 30%, transparent 100%);
   }
 
   /* The music on the same layer box as the lines, so it lands on them, but
-     brighter and with a wider fade towards the edges. */
+     brighter and with a wider fade towards the edges. The layer's opacity
+     scales the per-fragment one in constants/hero-music.const.ts. */
   & .hero-stage__music {
     inset: 4% -30% 10%;
     color: var(--color-text-on-ink);
+    opacity: 0.6;
     -webkit-mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%);
     mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%);
   }
