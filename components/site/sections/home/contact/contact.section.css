@@ -36,32 +36,6 @@
       0 0 0 1px rgba(18, 20, 24, 0.07);
   }
 
-  /* The monogram as the letter's seal: it turns a little when the sheet is hovered. */
-  & .contact__seal {
-    position: absolute;
-    right: clamp(14px, 4vw, 52px);
-    top: -36px;
-    display: grid;
-    place-items: center;
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
-    background: var(--color-brown);
-    box-shadow: 0 12px 24px -14px rgba(18, 20, 24, 0.55);
-    transform: rotate(9deg);
-    transition: transform 0.9s var(--ease-stage);
-  }
-
-  & .contact__sheet:hover .contact__seal {
-    transform: rotate(-4deg);
-  }
-
-  & .contact__seal-mark {
-    width: 40px;
-    height: 45px;
-    fill: var(--color-ivory);
-  }
-
   & .contact__lead {
     max-width: 40ch;
     font-size: clamp(17px, 1.35vw, 20px);
@@ -125,17 +99,6 @@
   }
 
   @media (max-width: 760px) {
-    & .contact__seal {
-      top: -30px;
-      width: 76px;
-      height: 76px;
-    }
-
-    & .contact__seal-mark {
-      width: 32px;
-      height: 36px;
-    }
-
     & .contact__details {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }

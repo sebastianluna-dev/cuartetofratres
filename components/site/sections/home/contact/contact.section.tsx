@@ -1,4 +1,3 @@
-import { LOGO_MARK_PATHS, LOGO_MARK_VIEW_BOX } from "@/components/site/shared/logo-mark.const";
 import { Reveal } from "@/components/site/shared/reveal.comp";
 import { CONTACT_COPY } from "@/constants/contact.const";
 import { buildMailtoUrl } from "@/lib/build-mailto-url";
@@ -12,7 +11,7 @@ const TITLE_ID = "contacto-titulo";
 
 // Two columns: on the left what to tell the quartet and the other ways to
 // reach it; on the right the form alone, as a letter to the quartet (a sheet
-// of paper with ruled lines to write on and the monogram as its seal).
+// of paper with ruled lines to write on).
 export async function ContactSection() {
   const [content, settings] = await Promise.all([getContactSectionData(), getSiteSettingsData()]);
 
@@ -82,13 +81,6 @@ export async function ContactSection() {
             {/* A second sheet under the letter, slightly turned. */}
             <div className="contact__under" aria-hidden="true" />
             <div className="contact__sheet">
-              <span className="contact__seal" aria-hidden="true">
-                <svg className="contact__seal-mark" viewBox={LOGO_MARK_VIEW_BOX} focusable="false">
-                  {LOGO_MARK_PATHS.map((d) => (
-                    <path key={d} d={d} />
-                  ))}
-                </svg>
-              </span>
               <ContactForm sentTitle={content.sentTitle} sentText={content.sentText} />
             </div>
           </Reveal>
