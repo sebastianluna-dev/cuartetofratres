@@ -24,7 +24,7 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
   {
     id: "jesus-medina",
     src: "/images/stage/jesus-medina.webp",
-    x: 16,
+    x: 14.8,
     top: 6,
     height: 90,
     layer: 2,
@@ -34,7 +34,7 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
   {
     id: "lucia-paredes",
     src: "/images/stage/lucia-paredes.webp",
-    x: 38.5,
+    x: 37.9,
     top: 1.5,
     height: 100,
     layer: 3,
@@ -43,7 +43,7 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
   {
     id: "ricardo-sanchez",
     src: "/images/stage/ricardo-sanchez.webp",
-    x: 61.5,
+    x: 62.1,
     top: 5.5,
     height: 94,
     layer: 2,
@@ -52,7 +52,7 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
   {
     id: "alfonso-perez",
     src: "/images/stage/alfonso-perez.webp",
-    x: 84,
+    x: 85.2,
     top: 27,
     height: 68,
     layer: 4,
