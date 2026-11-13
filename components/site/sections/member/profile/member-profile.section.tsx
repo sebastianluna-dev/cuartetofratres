@@ -7,6 +7,7 @@ import { StaffLines } from "@/components/site/shared/staff-lines.comp";
 import { photoFadeStyle } from "@/lib/photo-fades";
 import { splitParagraphs } from "@/lib/text-blocks";
 import type { MemberContent } from "@/services/members/members.types";
+import { MemberStage } from "./member-stage.comp";
 import "./member-profile.section.css";
 
 interface MemberProfileSectionProps {
@@ -31,7 +32,7 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
           </h1>
         </header>
 
-        <div className="member-profile__stage" aria-hidden="true">
+        <MemberStage>
           <div className="member-profile__glow" />
           <StaffLines kind="hero" className="member-profile__staff" />
           <StaffMusic
@@ -73,7 +74,7 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
               </svg>
             </p>
           </div>
-        </div>
+        </MemberStage>
 
         <div className="member-profile__bio">
           {splitParagraphs(member.bio).map((paragraph, index) => (

@@ -79,6 +79,7 @@
   /* The staff and its music fade out softly at their left edge, so they do not end in a hard cut. */
   & .member-profile__staff {
     inset: 4% -30% 10% -30%;
+    translate: calc(var(--lean-x, 0px) * -0.4) calc(var(--lean-y, 0px) * -0.4);
     color: var(--color-text-on-ink);
     opacity: 0.07;
     -webkit-mask-image:
@@ -91,6 +92,7 @@
 
   & .member-profile__music {
     inset: 4% -30% 10% -30%;
+    translate: calc(var(--lean-x, 0px) * -0.4) calc(var(--lean-y, 0px) * -0.4);
     color: var(--color-text-on-ink);
     opacity: 0.3;
     -webkit-mask-image:
@@ -113,9 +115,12 @@
     margin: 0 auto;
   }
 
+  /* The photo follows the pointer as the hero's figures do (MemberStage);
+     the staff behind it leans a little the other way, and the note stays put. */
   & .member-profile__frame {
     position: absolute;
     inset: 0;
+    translate: var(--lean-x, 0px) calc(var(--lean-y, 0px) * 0.6);
     -webkit-mask-image:
       linear-gradient(90deg, transparent, #000 var(--fade-left, 0%)),
       linear-gradient(270deg, transparent, #000 var(--fade-right, 0%)),
