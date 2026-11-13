@@ -51,11 +51,6 @@
     height: var(--height);
     aspect-ratio: 2 / 3;
     translate: calc(-50% + var(--lean-x, 0px) * var(--depth)) calc(var(--lean-y, 0px) * var(--depth) * 0.6);
-
-    /* Narrow phones: a figure may stand lower (`topNarrow` in the constants). */
-    @media (max-width: 419px) {
-      top: var(--top-narrow);
-    }
   }
 
   /* In colour, slightly desaturated, fading at the bottom and on the edges the photo itself
