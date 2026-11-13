@@ -8,6 +8,12 @@
     flex-wrap: wrap;
     align-items: stretch;
     gap: clamp(20px, 2.6vw, 34px);
+
+    /* The card is sticky: if the list wrapped below it, the card would ride
+       over the list while it scrolls. From the tablet up both share a row. */
+    @media (min-width: 768px) {
+      flex-wrap: nowrap;
+    }
   }
 
   /* Pills and programme share the column to the right of the card. */
@@ -17,6 +23,10 @@
     gap: 14px;
     flex: 1 1 420px;
     min-width: 0;
+
+    @media (min-width: 768px) {
+      flex-basis: 0;
+    }
   }
 
   /* Pushed to the foot of the column, which stretches to the card's height. */

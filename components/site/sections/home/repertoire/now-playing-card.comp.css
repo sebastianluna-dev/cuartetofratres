@@ -170,6 +170,21 @@
     color: rgba(12, 14, 16, 0.3);
   }
 
+  /* Tablet: a narrower record, so the programme keeps room beside it. */
+  @media (max-width: 1023px) {
+    flex: 0 0 240px;
+
+    /* The three words must fit the narrower column. */
+    & .now-playing__step {
+      padding: 0 6px;
+      letter-spacing: 0.1em;
+    }
+
+    & .now-playing__transport {
+      gap: 0;
+    }
+  }
+
   /* Phone: no record; the mini player is the whole player. */
   @media (max-width: 767px) {
     display: none;
