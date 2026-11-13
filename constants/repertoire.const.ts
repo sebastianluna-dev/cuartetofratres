@@ -65,6 +65,8 @@ export const PLAYER_COPY = {
   previous: "Obra anterior",
   next: "Obra siguiente",
   toggle: "Reproducir o pausar",
+  /** The mini player's record on a touch screen, before its first tap opens the card. */
+  showWork: "Mostrar la obra",
   /** Visible words of the record's transport. */
   previousLabel: "Anterior",
   nextLabel: "Siguiente",

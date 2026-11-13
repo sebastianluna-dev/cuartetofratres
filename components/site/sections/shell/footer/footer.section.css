@@ -1,6 +1,7 @@
 .site-footer {
-  /* While the repertoire's mini player is on screen it publishes its height,
-     and the footer pads itself so its last line is never under the bar. */
+  /* While the repertoire's mini player sits in the bottom-right corner it
+     publishes how much of the screen's bottom it takes, and the footer pads
+     itself so the photo credit on the right is never under the record. */
   padding: clamp(40px, 5vw, 72px) var(--site-gutter) calc(clamp(40px, 5vw, 72px) + var(--mini-player-height, 0px));
   background: var(--color-ivory);
   color: var(--color-muted-on-ivory);
