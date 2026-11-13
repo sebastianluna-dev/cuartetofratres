@@ -58,6 +58,22 @@
     transition: transform 1.4s var(--ease-stage);
   }
 
+  /* The sides a little darker, so the date on the left and the city on the
+     right read over any photo. */
+  & .poster__photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--b) 62%, transparent) 0%,
+      transparent 42%,
+      transparent 70%,
+      color-mix(in srgb, var(--b) 55%, transparent) 100%
+    );
+    pointer-events: none;
+  }
+
   &:hover .poster__photo-image,
   &:focus-within .poster__photo-image {
     transform: scale(1.05);
