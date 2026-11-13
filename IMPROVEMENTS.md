@@ -12,6 +12,11 @@ Backlog of the project's technical debt and improvements. Every entry carries an
 
 ### 1. Recordings of the repertoire — [Content]
 
+**2026-11-13: the owner chose to publish these eight reference recordings in production for now**
+(`npm run cms:sync` copies them). They play as the quartet's own; replace them with the quartet's
+recordings as soon as there are any, and remove the two demo dates (5 and 20 December, the seeded
+October dates moved forward for testing) once real ones exist.
+
 The player plays real files now (`hooks/use-sample-player.hook.ts`). The local database holds eight
 reference recordings by other ensembles, supplied for development (four works of the programme
 plus two pop covers and two wedding covers: «Viva la Vida», «Skyfall», «Love Story», «Por una
