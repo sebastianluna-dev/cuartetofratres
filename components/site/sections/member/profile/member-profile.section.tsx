@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
 import { StaffMusic } from "@/components/site/shared/staff-music.comp";
+import { HERO_STAGE_FIGURES } from "@/constants/hero-stage.const";
 import { MEMBER_MUSIC_STAGES, MEMBER_PAGE_COPY, MEMBER_STAGE_FIGURE } from "@/constants/members.const";
 import { CONTACT_ANCHOR } from "@/constants/navigation.const";
 import { StaffLines } from "@/components/site/shared/staff-lines.comp";
@@ -18,6 +19,11 @@ interface MemberProfileSectionProps {
 // over the staff lines, and two ways on (listen, hire) at the foot of the
 // text. On the phone the portrait goes between the name and the text.
 export function MemberProfileSection({ member }: MemberProfileSectionProps) {
+  // The hero's cut-out of the musician (cut wider from the shoot, so the
+  // violin on Jesús's shoulder is whole); the CMS portrait if there is none.
+  const stageCutOut = HERO_STAGE_FIGURES.find((figure) => figure.memberSlug === member.slug);
+  const photoSrc = stageCutOut?.src ?? member.photo.src;
+
   return (
     <article className="section section_theme_ink member-profile" aria-labelledby="semblanza-titulo">
       <div className="member-profile__inner">
@@ -40,7 +46,7 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
           <div className="member-profile__frame">
             {/* Five twelfths of the page on desktop, most of the screen on the phone. */}
             <Image
-              src={member.photo.src}
+              src={photoSrc}
               alt=""
               fill
               priority

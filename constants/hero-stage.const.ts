@@ -1,5 +1,7 @@
 export interface StageFigure {
   id: string;
+  /** Slug of the musician's own page, which shows this same cut-out. */
+  memberSlug: string;
   /** Full cut-out on a transparent ground, under public/images/stage. */
   src: string;
   /** Centre of the figure across the stage and its top edge, in percent of the stage. */
@@ -23,6 +25,7 @@ export interface StageFigure {
 export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
   {
     id: "jesus-medina",
+    memberSlug: "jesus-medina",
     src: "/images/stage/jesus-medina.webp",
     x: 14.8,
     top: 6,
@@ -33,6 +36,7 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
   },
   {
     id: "lucia-paredes",
+    memberSlug: "lucia-paredes",
     src: "/images/stage/lucia-paredes.webp",
     x: 37.9,
     top: 1.5,
@@ -42,6 +46,7 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
   },
   {
     id: "ricardo-sanchez",
+    memberSlug: "jose-sanchez",
     src: "/images/stage/ricardo-sanchez.webp",
     x: 62.1,
     top: 5.5,
@@ -51,6 +56,7 @@ export const HERO_STAGE_FIGURES: readonly StageFigure[] = [
   },
   {
     id: "alfonso-perez",
+    memberSlug: "alfonso-perez",
     src: "/images/stage/alfonso-perez.webp",
     x: 85.2,
     top: 27,
