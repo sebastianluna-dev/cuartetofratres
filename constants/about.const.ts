@@ -25,8 +25,8 @@ export const ABOUT_DEFAULTS: AboutDefaults = {
 export const ABOUT_GROUP = {
   src: "/images/cuarteto-grupo.webp",
   alt: "Los cuatro integrantes del Cuarteto Fratres con sus instrumentos: dos violines, viola y violonchelo",
-  width: 1205,
-  height: 1180,
+  width: 1195,
+  height: 1174,
 } as const;
 
 /** Fixed copy of the about section's frame. */

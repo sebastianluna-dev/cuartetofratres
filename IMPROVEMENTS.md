@@ -151,9 +151,8 @@ fixed cut-out of the group (`ABOUT_GROUP` in `constants/about.const.ts`,
 `public/images/cuarteto-grupo.webp`), placed by hand in front of the title, so
 the photo uploaded to `/admin › Secciones › El cuarteto` is read but not drawn.
 Either drop the field (migration, plus the seed and `about.mapper`) or let the
-editors upload a transparent cut-out there and read it again. The cut-out came
-out of macOS Vision: its edges carry a faint light rim on the dark clothes; a
-hand-cleaned version would fix it.
+editors upload a transparent cut-out there and read it again. The cut-out was
+redone with ChatGPT on 2026-11-13 (clean edges, no light rim).
 
 ## Hero texts in the CMS no longer shown
 
