@@ -71,7 +71,10 @@ export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(fu
           aria-pressed={playing}
           onClick={onTogglePlay}
         >
-          {playing ? PLAYER_COPY.pause : PLAYER_COPY.play}
+          {/* Both words share one cell and only one shows, so the button keeps
+              the width of the longer and nothing beside it moves. */}
+          <span className={`now-playing__word${playing ? " now-playing__word_hidden" : ""}`}>{PLAYER_COPY.play}</span>
+          <span className={`now-playing__word${playing ? "" : " now-playing__word_hidden"}`}>{PLAYER_COPY.pause}</span>
         </button>
         <span className="now-playing__dot" aria-hidden="true">
           ·
