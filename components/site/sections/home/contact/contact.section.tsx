@@ -10,9 +10,9 @@ import "./contact.section.css";
 
 const TITLE_ID = "contacto-titulo";
 
-// The form as a letter to the quartet: a sheet of paper on the ivory ground,
-// with ruled lines to write on, the monogram as its seal and the contact
-// details at the foot of the page.
+// Two columns: on the left what to tell the quartet and the other ways to
+// reach it; on the right the form alone, as a letter to the quartet (a sheet
+// of paper with ruled lines to write on and the monogram as its seal).
 export async function ContactSection() {
   const [content, settings] = await Promise.all([getContactSectionData(), getSiteSettingsData()]);
 
@@ -25,25 +25,9 @@ export async function ContactSection() {
           </h2>
         </Reveal>
 
-        <Reveal className="contact__desk">
-          {/* A second sheet under the letter, slightly turned. */}
-          <div className="contact__under" aria-hidden="true" />
-          <div className="contact__sheet">
-            <span className="contact__seal" aria-hidden="true">
-              <svg className="contact__seal-mark" viewBox={LOGO_MARK_VIEW_BOX} focusable="false">
-                {LOGO_MARK_PATHS.map((d) => (
-                  <path key={d} d={d} />
-                ))}
-              </svg>
-            </span>
-            <p className="contact__head">
-              <span>{CONTACT_COPY.addressee}</span>
-              <span>{settings.location}</span>
-            </p>
+        <div className="contact__layout">
+          <Reveal className="contact__aside">
             <p className="contact__lead">{content.lead}</p>
-
-            <ContactForm sentTitle={content.sentTitle} sentText={content.sentText} />
-
             <dl className="contact__details">
               <div className="contact__detail">
                 <dt className="contact__detail-name">{CONTACT_COPY.email}</dt>
@@ -92,8 +76,23 @@ export async function ContactSection() {
                 </dd>
               </div>
             </dl>
-          </div>
-        </Reveal>
+          </Reveal>
+
+          <Reveal className="contact__desk">
+            {/* A second sheet under the letter, slightly turned. */}
+            <div className="contact__under" aria-hidden="true" />
+            <div className="contact__sheet">
+              <span className="contact__seal" aria-hidden="true">
+                <svg className="contact__seal-mark" viewBox={LOGO_MARK_VIEW_BOX} focusable="false">
+                  {LOGO_MARK_PATHS.map((d) => (
+                    <path key={d} d={d} />
+                  ))}
+                </svg>
+              </span>
+              <ContactForm sentTitle={content.sentTitle} sentText={content.sentText} />
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
