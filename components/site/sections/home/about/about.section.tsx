@@ -1,10 +1,8 @@
 import Image from "next/image";
 import { FitTitle } from "@/components/site/shared/fit-title.comp";
 import { Reveal } from "@/components/site/shared/reveal.comp";
-import { StaffOrnament } from "@/components/site/shared/staff-ornament.comp";
 import { ABOUT_COPY, ABOUT_GROUP, OCCASIONS } from "@/constants/about.const";
 import { getAboutData } from "@/services/about/about.service";
-import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
 import { OccasionIcon } from "./occasion-icon.comp";
 import "./about.section.css";
 
@@ -12,10 +10,10 @@ const TITLE_ID = "cuarteto-titulo";
 
 // Two columns: on the left the title with the four, cut out of one group
 // photo, standing in front of its lower half; on the right
-// the place, the statement, the lead and the occasions as a row of three
+// a short title in the titles' face, the lead and the occasions as a row of three
 // cells. On the phone the columns stack and the row stays a row.
 export async function AboutSection() {
-  const [about, settings] = await Promise.all([getAboutData(), getSiteSettingsData()]);
+  const about = await getAboutData();
 
   return (
     <section id="cuarteto" className="section section_theme_paper about" aria-labelledby={TITLE_ID}>
@@ -40,11 +38,7 @@ export async function AboutSection() {
 
         <div className="about__content">
           <Reveal>
-            <p className="about__place">
-              <StaffOrnament width={84} />
-              {settings.location}.
-            </p>
-            <p className="about__statement">{about.title}.</p>
+            <p className="about__statement">{about.title}</p>
           </Reveal>
           <Reveal>
             <p className="about__lead">{about.lead}</p>

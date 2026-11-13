@@ -18,3 +18,4 @@ Small, mechanical tasks that need no design decision. Bigger items live in `IMPR
 - [ ] Publish at least one future date in `/admin › Presentaciones`: both seeded dates are past, so the dates section shows the «por anunciar» poster.
 - [ ] In `/admin › Ajustes del sitio` (production), set WhatsApp to `522288265906` (Lucía Paredes' number, given by the owner on 2026-11-13); the site shows it as `+52 228 826 5906`.
 - [ ] In `/admin › Integrantes` (production), split each biography into paragraphs with a blank line, as the seed in `constants/members.const.ts` now does (same words, breaks only before «Desde 2024…», «Obtuvo…», «Ha formado parte…», «Ha tomado clases…», «Su formación inició…», «Es violoncellista principal…», «Ha sido finalista…»).
+- [ ] In `/admin › El cuarteto` (production), set the title to «Nuestra música»: the section now shows it as a short title in the titles' face, and the stored «El sonido se construye escuchando» is too long for it.
