@@ -1,5 +1,9 @@
+/* Its own stacking context, raised above the sections that follow: the mini
+   player is fixed inside it, and the members' row (z-index 1) would otherwise
+   paint over the record while it scrolls past. */
 .repertoire {
   position: relative;
+  z-index: 2;
   isolation: isolate;
   overflow: clip;
 
