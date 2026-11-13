@@ -4,7 +4,7 @@
 
   & .section-title {
     margin-bottom: clamp(24px, 3vw, 44px);
-    font-size: clamp(56px, 7vw, 106px);
+    font-size: clamp(45px, 5.6vw, 85px);
   }
 
   & .member-others__row {

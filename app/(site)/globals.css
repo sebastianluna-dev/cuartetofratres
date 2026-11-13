@@ -245,12 +245,13 @@ strong {
    --------------------------------------------------------------------------- */
 
 /* Centred section title in the calligraphic face («Cartelera»). A script has
-   a small body, hence 1.4 times the size the italic accent had. The display
+   a small body, hence 1.12 times the size the italic accent had (the review
+   panel's 1.4 for this face, at the 80% the owner settled on). The display
    modifier is now drawn the same way: the owner chose one face for every
    section title. */
 .section-title {
   font-family: var(--font-title);
-  font-size: clamp(73px, 9.8vw, 146px);
+  font-size: clamp(58px, 7.84vw, 116px);
   font-style: normal;
   font-weight: 400;
   line-height: 1;
