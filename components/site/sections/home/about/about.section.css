@@ -1,28 +1,80 @@
 .about {
-  padding: clamp(64px, 7vw, 110px) 0;
+  padding: clamp(56px, 6vw, 96px) 0 clamp(64px, 7vw, 110px);
 
-  & .about__grid {
+  /* The title and, in front of its lower half, the four on a floor line. */
+  & .about__stage {
+    position: relative;
+    max-width: 1080px;
+    margin: 0 auto;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: var(--color-ink);
+    }
+  }
+
+  & .about__title {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  & .about__group {
+    position: relative;
+    z-index: 2;
+    width: min(760px, 72%);
+    margin: clamp(-150px, -9vw, -40px) auto 0;
+  }
+
+  & .about__group-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: grayscale(1) contrast(1.06);
+  }
+
+  /* The place and the statement on the left, the lead on the right. */
+  & .about__mid {
     display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    gap: clamp(28px, 5vw, 90px);
-    align-items: start;
-    margin-top: clamp(28px, 4vw, 56px);
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(24px, 5vw, 90px);
+    max-width: 1080px;
+    margin: clamp(28px, 3.4vw, 48px) auto 0;
+  }
+
+  & .about__place {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-family: var(--font-label);
+    font-size: clamp(18px, 1.4vw, 21px);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.2;
   }
 
   /* The section's own title in the CMS, set as a statement in the italic accent. */
   & .about__statement {
     max-width: 14em;
-    margin-top: 22px;
     font-family: var(--font-accent);
-    font-size: clamp(34px, 3.7vw, 58px);
+    font-size: clamp(34px, 3.4vw, 54px);
     font-style: italic;
     line-height: 1.02;
     letter-spacing: -0.01em;
   }
 
+  & .about__lead-wrap {
+    align-self: end;
+  }
+
   & .about__lead {
     max-width: 56ch;
-    margin-top: 20px;
     font-size: clamp(16px, 1.2vw, 18px);
     font-weight: 400;
     line-height: 1.75;
@@ -30,74 +82,81 @@
     text-wrap: pretty;
   }
 
+  /* The three occasions as one row of cells between two rules. */
   & .about__occasions {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-    margin-top: clamp(24px, 3vw, 40px);
+    max-width: 1080px;
+    margin: clamp(36px, 4.4vw, 60px) auto 0;
+    border-block: 1px solid var(--color-divider-on-ivory);
   }
 
   & .about__occasion {
-    padding: 16px 16px 18px;
-    border-radius: 12px;
-    box-shadow: inset 0 0 0 1px var(--color-divider-on-ivory);
-    transition:
-      background 0.35s ease,
-      transform 0.6s var(--ease-stage);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: clamp(22px, 2.6vw, 34px) 14px;
+    text-align: center;
+    transition: background 0.4s ease;
+
+    & + .about__occasion {
+      border-left: 1px solid var(--color-divider-on-ivory);
+    }
+
+    & .occasion-icon {
+      width: 64px;
+      height: 64px;
+      transition: transform 0.8s var(--ease-stage);
+    }
 
     &:hover {
       background: #fff;
-      transform: translateY(-4px);
+
+      & .occasion-icon {
+        transform: translateY(-4px) rotate(-3deg);
+      }
     }
   }
 
   & .about__occasion-name {
-    display: block;
-    margin-top: 14px;
-    font-family: var(--font-label);
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    max-width: 12em;
+    font-family: var(--font-accent);
+    font-size: clamp(19px, 1.9vw, 28px);
+    font-style: italic;
+    line-height: 1.08;
+    text-wrap: balance;
   }
 
-  & .about__frame {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: var(--about-photo-ratio, 4 / 3);
-    border-radius: var(--site-radius);
-    background: var(--color-ink-tile);
-  }
-
-  & .about__photo {
-    object-fit: cover;
-    filter: grayscale(1) contrast(1.04);
-    transition: transform 1.6s var(--ease-stage);
-  }
-
-  & .about__frame:hover .about__photo {
-    transform: scale(1.04);
-  }
-
-  @media (max-width: 900px) {
-    & .about__grid {
-      grid-template-columns: minmax(0, 1fr);
+  @media (max-width: 760px) {
+    & .about__group {
+      width: 100%;
+      margin-top: -6vw;
     }
 
-    & .about__occasions {
+    & .about__mid {
       grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
     }
 
     & .about__occasion {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 16px;
+      gap: 10px;
+      padding: 18px 6px;
+
+      & .occasion-icon {
+        width: 44px;
+        height: 44px;
+      }
     }
 
     & .about__occasion-name {
-      margin-top: 0;
+      font-size: 18px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    & .about__occasion .occasion-icon {
+      transition: none;
     }
   }
 }

@@ -1,9 +1,8 @@
-import type { CSSProperties } from "react";
 import Image from "next/image";
+import { FitTitle } from "@/components/site/shared/fit-title.comp";
 import { Reveal } from "@/components/site/shared/reveal.comp";
-import { SectionHeader } from "@/components/site/shared/section-header.comp";
 import { StaffOrnament } from "@/components/site/shared/staff-ornament.comp";
-import { ABOUT_COPY, OCCASIONS } from "@/constants/about.const";
+import { ABOUT_COPY, ABOUT_GROUP, OCCASIONS } from "@/constants/about.const";
 import { getAboutData } from "@/services/about/about.service";
 import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
 import { OccasionIcon } from "./occasion-icon.comp";
@@ -11,53 +10,57 @@ import "./about.section.css";
 
 const TITLE_ID = "cuarteto-titulo";
 
+// «Retablo»: the title across the whole column and the four, cut out of one
+// group photo, standing in front of its lower half on a floor line. Below,
+// the place and the statement beside the lead, and the occasions as a row of
+// three cells, which stays a row on the phone.
 export async function AboutSection() {
   const [about, settings] = await Promise.all([getAboutData(), getSiteSettingsData()]);
 
   return (
     <section id="cuarteto" className="section section_theme_paper about" aria-labelledby={TITLE_ID}>
       <div className="section__inner">
-        <Reveal>
-          <SectionHeader titleId={TITLE_ID} title={ABOUT_COPY.heading} note={`${settings.location}.`} />
-        </Reveal>
-
-        <div className="about__grid">
-          <Reveal className="about__text">
-            <StaffOrnament width={240} />
-            <p className="about__statement">{about.title}.</p>
-            <p className="about__lead">{about.lead}</p>
-            <ol className="about__occasions">
-              {OCCASIONS.map((occasion, index) => (
-                <li key={occasion} className="about__occasion">
-                  <OccasionIcon index={index} />
-                  <span className="about__occasion-name">{occasion}</span>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
-
-          <Reveal className="about__media">
-            {/* The frame keeps the photo's own proportions, so nobody is cropped out:
-                the CMS knows them, and so does the launch file. */}
-            <figure
-              className="about__frame"
-              style={
-                about.photo.width && about.photo.height
-                  ? ({ "--about-photo-ratio": `${about.photo.width} / ${about.photo.height}` } as CSSProperties)
-                  : undefined
-              }
-            >
-              {/* Seven twelfths of the page on desktop, the whole width on the phone. */}
-              <Image
-                src={about.photo.src}
-                alt={about.photo.alt}
-                fill
-                sizes="(max-width: 900px) 100vw, 56vw"
-                className="about__photo"
-              />
-            </figure>
+        <div className="about__stage">
+          <FitTitle id={TITLE_ID} max={250} className="about__title">
+            {ABOUT_COPY.heading}
+          </FitTitle>
+          <Reveal className="about__group">
+            {/* About seven tenths of the column on desktop, the whole width on the phone. */}
+            <Image
+              src={ABOUT_GROUP.src}
+              alt={ABOUT_GROUP.alt}
+              width={ABOUT_GROUP.width}
+              height={ABOUT_GROUP.height}
+              quality={100}
+              sizes="(max-width: 760px) 100vw, 760px"
+              className="about__group-photo"
+            />
           </Reveal>
         </div>
+
+        <div className="about__mid">
+          <Reveal>
+            <p className="about__place">
+              <StaffOrnament width={84} />
+              {settings.location}.
+            </p>
+            <p className="about__statement">{about.title}.</p>
+          </Reveal>
+          <Reveal className="about__lead-wrap">
+            <p className="about__lead">{about.lead}</p>
+          </Reveal>
+        </div>
+
+        <Reveal>
+          <ol className="about__occasions">
+            {OCCASIONS.map((occasion, index) => (
+              <li key={occasion} className="about__occasion">
+                <OccasionIcon index={index} />
+                <span className="about__occasion-name">{occasion}</span>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
       </div>
     </section>
   );

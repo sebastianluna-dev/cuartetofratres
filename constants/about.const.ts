@@ -16,6 +16,19 @@ export const ABOUT_DEFAULTS: AboutDefaults = {
   },
 };
 
+/**
+ * The four together, cut out of the square group photo, standing in front of
+ * the section's title. Art direction, not CMS content: the overlap with the
+ * title depends on where the heads sit in this file. `width`/`height` are the
+ * file's own pixels.
+ */
+export const ABOUT_GROUP = {
+  src: "/images/cuarteto-grupo.webp",
+  alt: "Los cuatro integrantes del Cuarteto Fratres con sus instrumentos: dos violines, viola y violonchelo",
+  width: 1205,
+  height: 1180,
+} as const;
+
 /** Fixed copy of the about section's frame. */
 export const ABOUT_COPY = {
   heading: "El cuarteto",
