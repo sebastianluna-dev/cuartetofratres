@@ -22,7 +22,7 @@ export async function Footer({ theme = "ivory" }: FooterProps) {
       <div className="site-footer__inner">
         <div className="site-footer__brand">
           {/* On a musician's page the monogram leads home; on the home page, to its top. */}
-          <Logo theme={onInk ? "ivory" : "olive"} height={34} href={onInk ? "/" : "#inicio"} />
+          <Logo theme={onInk ? "ivory" : "ink"} height={34} href={onInk ? "/" : "#inicio"} />
           <p className="site-footer__name">
             {SITE_NAME} <span className="site-footer__year">© {CURRENT_YEAR}</span>
           </p>
