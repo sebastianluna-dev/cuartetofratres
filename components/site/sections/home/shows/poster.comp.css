@@ -99,7 +99,7 @@
   }
 
   &.poster_palette_cream .poster__staff {
-    color: var(--color-brown);
+    color: var(--color-ink);
     opacity: 0.5;
   }
 

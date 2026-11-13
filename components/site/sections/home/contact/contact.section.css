@@ -22,7 +22,7 @@
     inset: 0;
     border-radius: 6px;
     background: var(--color-cream-hover);
-    box-shadow: 0 0 0 1px rgba(49, 34, 16, 0.08);
+    box-shadow: 0 0 0 1px rgba(12, 14, 16, 0.06);
     transform: rotate(-1.4deg);
   }
 
