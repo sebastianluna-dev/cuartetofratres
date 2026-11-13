@@ -16,9 +16,9 @@ export default function LandingPage() {
       <main id="contenido">
         {sections.hero && <HeroSection />}
         {sections.repertoire && <RepertoireSection />}
-        {sections.shows && <ShowsSection />}
-        {sections.members && <MembersSection />}
         {sections.about && <AboutSection />}
+        {sections.members && <MembersSection />}
+        {sections.shows && <ShowsSection />}
         {sections.contact && <ContactSection />}
       </main>
       <Footer />

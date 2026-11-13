@@ -10,8 +10,8 @@ export const CONTACT_ANCHOR = "#contacto";
 // this list, so a renamed section changes everywhere at once.
 export const NAV_ITEMS: readonly NavItem[] = [
   { label: "Repertorio", href: "#repertorio" },
-  { label: "Cartelera", href: "#cartelera" },
-  { label: "Integrantes", href: "#integrantes" },
   { label: "El cuarteto", href: "#cuarteto" },
+  { label: "Integrantes", href: "#integrantes" },
+  { label: "Cartelera", href: "#cartelera" },
   { label: "Contacto", href: CONTACT_ANCHOR },
 ];
