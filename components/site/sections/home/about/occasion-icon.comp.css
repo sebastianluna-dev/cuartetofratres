@@ -7,8 +7,8 @@
   color: var(--color-ink);
 
   & .occasion-icon__wash {
-    fill: var(--color-olive);
-    opacity: 0.2;
+    fill: var(--color-ink);
+    opacity: 0.1;
   }
 
   & .occasion-icon__line {
