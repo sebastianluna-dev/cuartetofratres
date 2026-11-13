@@ -14,13 +14,13 @@
     --b: #0e1012;
   }
 
-  &.poster_palette_lime {
-    --a: #eef3b4;
-    --b: #dbe289;
+  &.poster_palette_cream {
+    --a: #fbf1e2;
+    --b: #f1dcc0;
     color: var(--color-ink);
   }
 
-  /* Dark veil under the text of a date; the lime poster needs none. */
+  /* Dark veil under the text of a date; the cream poster needs none. */
   &::after {
     content: "";
     position: absolute;
@@ -33,7 +33,7 @@
     pointer-events: none;
   }
 
-  &.poster_palette_lime::after {
+  &.poster_palette_cream::after {
     display: none;
   }
 
@@ -82,8 +82,8 @@
     mask-image: radial-gradient(60% 46% at 52% 34%, #000 22%, transparent 100%);
   }
 
-  &.poster_palette_lime .poster__staff {
-    color: var(--color-olive);
+  &.poster_palette_cream .poster__staff {
+    color: var(--color-brown);
     opacity: 0.5;
   }
 
@@ -210,11 +210,11 @@
 
     /* The section is on ivory, but the poster's ground is dark. */
     &:focus-visible {
-      outline-color: var(--color-lime);
+      outline-color: var(--color-text-on-ink);
     }
   }
 
-  &.poster_palette_lime .poster__action {
+  &.poster_palette_cream .poster__action {
     background: var(--color-ink);
     box-shadow: none;
     color: var(--color-ivory);

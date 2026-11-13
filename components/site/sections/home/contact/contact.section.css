@@ -46,7 +46,7 @@
     width: 96px;
     height: 96px;
     border-radius: 50%;
-    background: var(--color-lime);
+    background: var(--color-brown);
     box-shadow: 0 12px 24px -14px rgba(18, 20, 24, 0.55);
     transform: rotate(9deg);
     transition: transform 0.9s var(--ease-stage);
@@ -59,7 +59,7 @@
   & .contact__seal-mark {
     width: 40px;
     height: 45px;
-    fill: var(--color-ink);
+    fill: var(--color-ivory);
   }
 
   & .contact__lead {

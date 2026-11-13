@@ -103,7 +103,7 @@
   }
 
   & .mini-player__tip {
-    fill: var(--color-lime);
+    fill: var(--color-ivory);
     stroke: var(--color-ink);
     stroke-width: 0.5;
   }

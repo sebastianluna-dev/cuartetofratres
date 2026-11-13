@@ -1,6 +1,6 @@
 :root {
-  /* Palette. Two grounds (ivory and ink) and one accent (lime), plus the
-     olive that the accent becomes when it has to be read on ivory. */
+  /* Palette. Ink and the light grounds (ivory, warm white and cream), with
+     brown for what is chosen and olive for the focus on light grounds. */
   --color-ivory: #f3f2f2;
   --color-ivory-soft: #eae9e9;
   /* Halfway between the quartet's first ink (#121418) and the Filarmónica's (#070809). */
@@ -10,8 +10,6 @@
   --color-ink-deep: #0a0b0e;
   /* The tiles of the player and the ground behind a photo while it loads. */
   --color-ink-tile: #37393d;
-  --color-lime: #e6ec9e;
-  --color-lime-hover: #f1f6bd;
   --color-olive: #4d5610;
   --color-olive-hover: #3a4110;
   /* Text. */
@@ -140,10 +138,10 @@ strong {
   font-weight: 600;
 }
 
-/* Visible focus across the whole site. On ink the lime reads; on ivory the
-   olive does, which is why sections on ivory recolour it. */
+/* Visible focus across the whole site. On ink the ivory reads; on the light
+   grounds the olive does, which is why those sections recolour it. */
 :focus-visible {
-  outline: 2px solid var(--color-lime);
+  outline: 2px solid var(--color-text-on-ink);
   outline-offset: 3px;
 }
 
@@ -155,7 +153,7 @@ strong {
 }
 
 ::selection {
-  background: rgba(230, 236, 158, 0.55);
+  background: var(--color-cream-hover);
   color: var(--color-ink);
 }
 
@@ -190,7 +188,7 @@ strong {
   left: 12px;
   z-index: 100;
   padding: 10px 16px;
-  background: var(--color-lime);
+  background: var(--color-ivory);
   color: var(--color-ink);
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -282,9 +280,7 @@ strong {
 }
 
 /* Pill call to action. Ivory on ink; `ghost` is the outline on ink and `ink`
-   the one for the paper grounds. Lime stays out of the buttons: it is kept for
-   the invitation poster and a few small marks (the monogram, the instrument
-   tag, the letter's seal). */
+   the one for the paper grounds. */
 .pill-button {
   display: inline-flex;
   align-items: center;

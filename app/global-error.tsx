@@ -31,7 +31,7 @@ export default function GlobalError({ error, retry }: { error: Error & { digest?
             style={{
               padding: "14px 26px",
               border: 0,
-              background: "#e6ec9e",
+              background: "#f3f2f2",
               color: "#0c0e10",
               fontSize: 15,
               cursor: "pointer",

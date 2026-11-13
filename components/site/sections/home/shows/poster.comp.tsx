@@ -6,8 +6,8 @@ import type { PosterTitle } from "@/lib/split-poster-title";
 import "./poster.comp.css";
 
 interface PosterProps {
-  /** `graphite` is the dark ground of a date; `lime` is the invitation. */
-  palette: "graphite" | "lime";
+  /** `graphite` is the dark ground of a date; `cream` is the invitation. */
+  palette: "graphite" | "cream";
   /** The big figure of the corner (the day) and the line under it. */
   top: ReactNode;
   topNote: string;
@@ -41,7 +41,7 @@ export function Poster({ palette, top, topNote, side, title, where, note, photo,
           />
         </div>
       ) : (
-        palette !== "lime" && (
+        palette !== "cream" && (
           <svg className="poster__mark" viewBox={LOGO_MARK_VIEW_BOX} aria-hidden="true" focusable="false">
             {LOGO_MARK_PATHS.map((d) => (
               <path key={d} d={d} />

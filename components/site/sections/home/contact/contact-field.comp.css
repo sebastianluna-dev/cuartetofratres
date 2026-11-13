@@ -40,7 +40,7 @@
     &:focus {
       outline: none;
       border-color: var(--color-olive);
-      background-color: rgba(230, 236, 158, 0.3);
+      background-color: rgba(241, 220, 192, 0.45);
       box-shadow: 0 2px 0 var(--color-olive);
     }
   }
