@@ -3,12 +3,6 @@
   isolation: isolate;
   overflow: clip;
 
-  /* Over the wood's grain (WoodGrain). */
-  & .repertoire__inner {
-    position: relative;
-    z-index: 1;
-  }
-
   & .repertoire__content {
     padding: clamp(52px, 6.4vw, 104px) 0 clamp(48px, 6vw, 96px);
   }
