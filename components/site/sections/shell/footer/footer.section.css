@@ -16,7 +16,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px 32px;
-    max-width: 940px;
+    max-width: var(--site-max-width);
     margin: 0 auto;
     padding-top: 22px;
     border-top: 1px solid var(--color-divider-on-ivory);
@@ -44,5 +44,27 @@
   & .site-footer__year {
     font-weight: 500;
     color: var(--color-muted-on-ivory);
+  }
+
+  /* At the foot of a musician's page, which is dark from top to bottom. */
+  &.site-footer_theme_ink {
+    background: var(--color-ink);
+    color: var(--color-muted-on-ink);
+
+    & :focus-visible {
+      outline-color: var(--color-text-on-ink);
+    }
+
+    & .site-footer__inner {
+      border-top-color: var(--color-divider-on-ink);
+    }
+
+    & .site-footer__name {
+      color: var(--color-text-on-ink);
+    }
+
+    & .site-footer__year {
+      color: var(--color-muted-on-ink);
+    }
   }
 }

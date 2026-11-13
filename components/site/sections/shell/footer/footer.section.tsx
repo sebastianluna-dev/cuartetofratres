@@ -5,17 +5,24 @@ import "./footer.section.css";
 
 const CURRENT_YEAR = 2026;
 
-// Last line of the page, on the same paper as the contact letter above it:
-// the name, what the quartet is and the photo credit. The contact details and
-// the networks are on the letter, so they are not repeated here.
-export async function Footer() {
+interface FooterProps {
+  /** Ivory under the home page's contact letter; ink at the foot of a musician's dark page. */
+  theme?: "ivory" | "ink";
+}
+
+// Last line of the page: the name, what the quartet is and the photo credit.
+// The contact details and the networks are in the contact section, so they
+// are not repeated here.
+export async function Footer({ theme = "ivory" }: FooterProps) {
   const settings = await getSiteSettingsData();
+  const onInk = theme === "ink";
 
   return (
-    <footer className="site-footer">
+    <footer className={`site-footer site-footer_theme_${theme}`}>
       <div className="site-footer__inner">
         <div className="site-footer__brand">
-          <Logo theme="olive" height={34} />
+          {/* On a musician's page the monogram leads home; on the home page, to its top. */}
+          <Logo theme={onInk ? "ivory" : "olive"} height={34} href={onInk ? "/" : "#inicio"} />
           <p className="site-footer__name">
             {SITE_NAME} <span className="site-footer__year">© {CURRENT_YEAR}</span>
           </p>

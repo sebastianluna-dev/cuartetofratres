@@ -42,7 +42,7 @@ export default async function MemberPage({ params }: PageProps<"/integrantes/[sl
         <MemberProfileSection member={page.member} />
         <MemberOthersSection members={page.others} />
       </main>
-      <Footer />
+      <Footer theme="ink" />
     </div>
   );
 }

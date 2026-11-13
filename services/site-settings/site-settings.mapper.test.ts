@@ -12,7 +12,7 @@ describe("mapSiteSettings", () => {
     expect(settings.tagline).toBe(SITE_TAGLINE);
     expect(settings.email).toBe(CONTACT_EMAIL);
     expect(settings.whatsapp).toBeNull();
-    expect(settings.social.map((network) => network.href)).toEqual([null, null, null]);
+    expect(settings.social).toEqual([{ label: "Instagram", href: null }]);
   });
 
   it("treats a blank WhatsApp or social URL as not public yet", () => {
@@ -22,10 +22,11 @@ describe("mapSiteSettings", () => {
       social: { instagram: " https://instagram.com/cuartetofratres ", facebook: "" },
     });
     expect(settings.whatsapp).toBeNull();
-    expect(settings.social).toEqual([
-      { label: "Instagram", href: "https://instagram.com/cuartetofratres" },
-      { label: "Facebook", href: null },
-      { label: "YouTube", href: null },
-    ]);
+    expect(settings.social).toEqual([{ label: "Instagram", href: "https://instagram.com/cuartetofratres" }]);
+  });
+
+  it("names Facebook and YouTube only once they have a URL", () => {
+    const settings = mapSiteSettings({ ...EMPTY, social: { youtube: "https://youtube.com/@fratres" } });
+    expect(settings.social.map((network) => network.label)).toEqual(["Instagram", "YouTube"]);
   });
 });
