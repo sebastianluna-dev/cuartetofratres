@@ -82,6 +82,21 @@
     background: linear-gradient(0deg, var(--color-ink-deep) 6%, transparent);
   }
 
+  /* Portrait tablet: a block under the name, as wide as the screen and at
+     its own proportions (a share of a tall screen's height would be wider
+     than the screen and get squeezed). */
+  @media (min-width: 761px) and (max-width: 1099px) and (orientation: portrait) {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    translate: none;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    aspect-ratio: 1.22;
+    margin-top: clamp(-24px, -2vw, -8px);
+  }
+
   /* Phone: a block between the name and the actions, edge to edge, tucked
      under both so the four stand as large as the width allows. */
   @media (max-width: 760px) {

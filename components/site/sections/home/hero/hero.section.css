@@ -94,6 +94,16 @@
     }
   }
 
+  /* Portrait tablet: a full-height hero leaves a dark gap between the name
+     and the stage, so it takes the height of what it holds instead. */
+  @media (min-width: 761px) and (max-width: 1099px) and (orientation: portrait) {
+    height: auto;
+
+    & .hero__inner {
+      padding-bottom: 0;
+    }
+  }
+
   /* Phone: the name in two lines and the stage under it. */
   @media (max-width: 760px) {
     height: auto;
