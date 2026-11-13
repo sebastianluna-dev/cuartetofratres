@@ -9,19 +9,9 @@
     align-items: center;
   }
 
-  /* The title and, in front of its lower half, the four on a floor line. */
+  /* The title and, in front of its lower half, the four. */
   & .about__stage {
     position: relative;
-
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 1px;
-      background: var(--color-ink);
-    }
   }
 
   & .about__title {

@@ -11,7 +11,7 @@ import "./about.section.css";
 const TITLE_ID = "cuarteto-titulo";
 
 // Two columns: on the left the title with the four, cut out of one group
-// photo, standing in front of its lower half on a floor line; on the right
+// photo, standing in front of its lower half; on the right
 // the place, the statement, the lead and the occasions as a row of three
 // cells. On the phone the columns stack and the row stays a row.
 export async function AboutSection() {
