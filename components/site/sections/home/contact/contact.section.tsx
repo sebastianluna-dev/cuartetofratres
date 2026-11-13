@@ -17,7 +17,7 @@ export async function ContactSection() {
   const [content, settings] = await Promise.all([getContactSectionData(), getSiteSettingsData()]);
 
   return (
-    <section id="contacto" className="section section_theme_ivory contact" aria-labelledby={TITLE_ID}>
+    <section id="contacto" className="section section_theme_cream contact" aria-labelledby={TITLE_ID}>
       <div className="section__inner">
         <Reveal>
           <h2 id={TITLE_ID} className="section-title">

@@ -15,9 +15,9 @@
   --color-olive: #4d5610;
   --color-olive-hover: #3a4110;
   /* Text. */
-  /* A warm cream: sets «El cuarteto» apart from the near-white repertoire above it. */
+  /* A warm cream: «El cuarteto» and the contact section, each after a near-white one. */
   --color-cream: #fcead5;
-  /* Almost white, warm: the repertoire's ground. */
+  /* Almost white, warm: the repertoire's and the dates' ground. */
   --color-white-soft: #fdf6ec;
   /* The repertoire's controls: cream at rest, a deeper cream under the pointer, brown when chosen. */
   --color-cream-soft: #f9ebd7;

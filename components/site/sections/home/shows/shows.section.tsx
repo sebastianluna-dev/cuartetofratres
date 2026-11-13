@@ -16,7 +16,7 @@ export async function ShowsSection() {
   if (events.length === 0) return null;
 
   return (
-    <section id="cartelera" className="section section_theme_ivory shows" aria-labelledby={TITLE_ID}>
+    <section id="cartelera" className="section section_theme_white shows" aria-labelledby={TITLE_ID}>
       <div className="section__inner">
         <Reveal>
           <h2 id={TITLE_ID} className="section-title">

@@ -3,7 +3,8 @@
      publishes how much of the screen's bottom it takes, and the footer pads
      itself so the photo credit on the right is never under the record. */
   padding: clamp(40px, 5vw, 72px) var(--site-gutter) calc(clamp(40px, 5vw, 72px) + var(--mini-player-height, 0px));
-  background: var(--color-ivory);
+  /* The cream of the contact section above, so the page ends on one ground. */
+  background: var(--color-cream);
   color: var(--color-muted-on-ivory);
 
   & :focus-visible {

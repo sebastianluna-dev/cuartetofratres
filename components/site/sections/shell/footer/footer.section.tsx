@@ -6,7 +6,7 @@ import "./footer.section.css";
 const CURRENT_YEAR = 2026;
 
 interface FooterProps {
-  /** Ivory under the home page's contact letter; ink at the foot of a musician's dark page. */
+  /** Cream under the home page's contact section ("ivory" is the light one); ink at the foot of a musician's dark page. */
   theme?: "ivory" | "ink";
 }
 
