@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
@@ -23,7 +24,9 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
     <article className="section section_theme_ink member-profile" aria-labelledby="semblanza-titulo">
       <div className="member-profile__inner">
         <header className="member-profile__head">
-          <p className="member-profile__instrument">{member.instrument}</p>
+          {/* The instrument is drawn as a note on the photo, hidden from readers;
+              they hear it here, before the name. */}
+          <p className="visually-hidden">{member.instrument}</p>
           <h1 id="semblanza-titulo" className="member-profile__name">
             {member.displayName}
           </h1>
@@ -38,18 +41,35 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
             id="member-music"
             className="member-profile__music"
           />
-          <div className="member-profile__frame" style={photoFadeStyle(member.photo.page.fades)}>
-            {/* Five twelfths of the page on desktop, most of the screen on the phone. */}
-            <Image
-              src={member.photo.src}
-              alt=""
-              fill
-              priority
-              quality={100}
-              sizes="(max-width: 900px) 90vw, 42vw"
-              className="member-profile__photo"
-              style={{ objectPosition: member.photo.page.position }}
-            />
+          <div
+            className="member-profile__photo-box"
+            style={
+              {
+                "--note-x": `${member.photo.note.x}%`,
+                "--note-y": `${member.photo.note.y}%`,
+              } as CSSProperties
+            }
+          >
+            <div className="member-profile__frame" style={photoFadeStyle(member.photo.page.fades)}>
+              {/* Five twelfths of the page on desktop, most of the screen on the phone. */}
+              <Image
+                src={member.photo.src}
+                alt=""
+                fill
+                priority
+                quality={100}
+                sizes="(max-width: 900px) 90vw, 42vw"
+                className="member-profile__photo"
+                style={{ objectPosition: member.photo.page.position }}
+              />
+            </div>
+            <p className={`member-profile__note member-profile__note_points_${member.photo.note.points}`}>
+              {member.instrument}
+              <svg className="member-profile__note-line" viewBox="0 0 70 50" focusable="false">
+                <path d="M64 4C46 6 22 14 10 40" />
+                <path d="M4 31l6 10 9-6" />
+              </svg>
+            </p>
           </div>
         </div>
 

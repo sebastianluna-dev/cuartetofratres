@@ -29,25 +29,7 @@
     align-items: flex-start;
   }
 
-  /* The instrument as a quiet ivory tag in outline: lime stays out of it. */
-  & .member-profile__instrument {
-    display: inline-flex;
-    align-items: center;
-    height: 28px;
-    padding: 0 12px;
-    border-radius: 4px;
-    box-shadow: inset 0 0 0 1px rgba(242, 244, 243, 0.5);
-    color: var(--color-text-on-ink);
-    font-family: var(--font-label);
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
   & .member-profile__name {
-    margin-top: 18px;
     font-family: var(--font-display);
     font-size: clamp(44px, 5vw, 84px);
     line-height: 0.9;
@@ -149,11 +131,18 @@
   /* The whole cut-out at its own 2:3. Only the edges the photo itself cuts
      fade out (each musician's numbers in constants/member-photos.const.ts),
      never the top: the head stays whole. */
-  & .member-profile__frame {
+  /* The frame's box: the photo's size, and the ground of the note, which
+     stays outside the frame's mask so it never fades. */
+  & .member-profile__photo-box {
     position: relative;
     aspect-ratio: 2 / 3;
     max-height: calc(100svh - 120px);
     margin: 0 auto;
+  }
+
+  & .member-profile__frame {
+    position: absolute;
+    inset: 0;
     -webkit-mask-image:
       linear-gradient(90deg, transparent, #000 var(--fade-left, 0%)),
       linear-gradient(270deg, transparent, #000 var(--fade-right, 0%)),
@@ -170,6 +159,45 @@
   & .member-profile__photo {
     object-fit: contain;
     filter: var(--filter-musicians);
+  }
+
+  /* The instrument written by hand beside the musician, its line curving down
+     to the instrument (each musician's place in constants/member-photos.const.ts). */
+  & .member-profile__note {
+    position: absolute;
+    left: var(--note-x);
+    top: var(--note-y);
+    z-index: 2;
+    font-family: var(--font-label);
+    font-size: clamp(16px, 1.35vw, 21px);
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(242, 244, 243, 0.92);
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+    animation: member-profile-rise 0.9s var(--ease-stage) 0.5s both;
+  }
+
+  & .member-profile__note-line {
+    display: block;
+    width: 76px;
+    height: 54px;
+    margin: 8px 0 0 -4px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.8;
+  }
+
+  /* The drawn line points down and to the left; mirrored, down and to the right. */
+  & .member-profile__note_points_right .member-profile__note-line {
+    margin-left: 4px;
+    transform: scaleX(-1);
   }
 
   /* Tablet and phone: head, portrait, biography. */
@@ -193,8 +221,19 @@
       margin: 12px auto 0;
     }
 
-    & .member-profile__frame {
+    & .member-profile__photo-box {
       max-height: none;
+    }
+
+    /* Never past the edges of the screen. */
+    & .member-profile__note {
+      left: clamp(0%, var(--note-x), 76%);
+      font-size: 14px;
+    }
+
+    & .member-profile__note-line {
+      width: 46px;
+      height: 34px;
     }
 
     & .member-profile__bio {

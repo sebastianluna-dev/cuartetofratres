@@ -11,12 +11,25 @@ export interface PhotoArt {
   fades: PhotoFades;
 }
 
+/**
+ * The hand-drawn note that names the instrument on a musician's page: where
+ * its text starts, in percent of the photo's frame (it may stand outside it),
+ * and which way its line curves down to the instrument.
+ */
+export interface InstrumentNote {
+  x: number;
+  y: number;
+  points: "left" | "right";
+}
+
 export interface MemberPhoto {
   /** Transparent cut-out from the green-screen shoot, 1024 × 1536 (2:3). */
   src: string;
   alt: string;
   /** The musician's own page: the whole cut-out in a 2:3 frame. */
   page: PhotoArt;
+  /** The note pointing at the instrument on that page. */
+  note: InstrumentNote;
   /** The home page's row of four and the «others» row: a 3:5 frame, cropped. */
   portrait: PhotoArt;
 }
@@ -33,24 +46,32 @@ export const MEMBER_PHOTOS: Readonly<Record<string, MemberPhoto>> = {
     src: "/images/stage/jesus-medina.webp",
     alt: "Jesús Guadalupe Medina con su violín al hombro",
     page: { position: "50% 0%", fades: { left: 5, bottom: 22 } },
+    // The violin rests on his left shoulder, high on the frame's left.
+    note: { x: -6, y: 6, points: "right" },
     portrait: { position: "18% 0%", fades: { left: 8, right: 12, bottom: 26 } },
   },
   "lucia-paredes": {
     src: "/images/stage/lucia-paredes.webp",
     alt: "Lucía Montserrat Paredes con su violín",
     page: { position: "50% 0%", fades: { bottom: 22 } },
+    // The violin held upright in front of her, low in the centre.
+    note: { x: 70, y: 40, points: "left" },
     portrait: { position: "50% 0%", fades: { left: 12, right: 12, bottom: 26 } },
   },
   "jose-sanchez": {
     src: "/images/stage/ricardo-sanchez.webp",
     alt: "José Ricardo Sánchez con su viola",
     page: { position: "50% 0%", fades: { bottom: 22 } },
+    // The viola held upright in front of him, low in the centre.
+    note: { x: 72, y: 38, points: "left" },
     portrait: { position: "50% 0%", fades: { left: 12, right: 12, bottom: 26 } },
   },
   "alfonso-perez": {
     src: "/images/stage/alfonso-perez.webp",
     alt: "Alfonso Pérez con su violoncello",
     page: { position: "50% 0%", fades: { left: 14, right: 16, bottom: 30 } },
+    // The cello's body fills the lower half, right of centre; his face is left.
+    note: { x: -8, y: 50, points: "right" },
     portrait: { position: "46% 0%", fades: { left: 14, right: 24, bottom: 30 } },
   },
 };
