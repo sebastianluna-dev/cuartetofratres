@@ -76,7 +76,7 @@ export function borodinCello(phone: boolean): MusicPart[] {
 export function borodinViolin(phone: boolean): MusicPart[] {
   const bars = [
     [
-      n("F#5", 1, { slur: "(", text: "cantabile" }),
+      n("F#5", 1, { slur: "(" }),
       n("B5", 1, { slur: ")", tie: true }),
       n("B5", 0.5, { beam: "a" }),
       n("A5", 0.25, { beam: "a", slur: "(" }),
@@ -162,13 +162,13 @@ export function pachelbel(phone: boolean): MusicPart[] {
   ];
 }
 
-/** Bars `from` to `to` (exclusive) of some parts, the bar number over the first part only. */
-function excerpt(parts: MusicPart[], from: number, to: number, barNumber: string): MusicPart[] {
-  return parts.map((part, index) => ({
-    ...part,
-    barNumber: index === 0 ? barNumber : "",
-    bars: part.bars.slice(from, to),
-  }));
+/**
+ * Bars `from` to `to` (exclusive) of some parts. The background carries no
+ * words or numbers (no «cantabile», no bar numbers): readable text among the
+ * signs drew the eye away from the musicians, so only the signs stay.
+ */
+function excerpt(parts: MusicPart[], from: number, to: number): MusicPart[] {
+  return parts.map((part) => ({ ...part, barNumber: "", bars: part.bars.slice(from, to) }));
 }
 
 /** Where a fragment is written: a stretch of a staff, from and to, in the drawing's units (0–100 across). */
@@ -192,10 +192,12 @@ const cello = borodinCello(false);
 const canon = pachelbel(false);
 
 export const HERO_MUSIC_FRAGMENTS: readonly MusicFragment[] = [
-  { staff: 0, parts: excerpt(violin, 0, 1, "44"), wide: [0, 29], phone: [19, 44], opacity: 0.45 },
-  { staff: 0, parts: excerpt(violin, 2, 3, "46"), wide: [64, 90], phone: [60, 82], opacity: 0.45 },
-  { staff: 1, parts: excerpt(canon.slice(0, 1), 2, 3, "9"), wide: [79, 100], phone: [56, 82], opacity: 0.4 },
-  { staff: 2, parts: excerpt(cello, 0, 1, ""), wide: [0, 17], phone: [19, 44], opacity: 0.45 },
+  { staff: 0, parts: excerpt(violin, 0, 1), wide: [0, 29], phone: [19, 44], opacity: 0.45 },
+  { staff: 0, parts: excerpt(violin, 2, 3), wide: [64, 90], phone: [60, 82], opacity: 0.45 },
+  { staff: 1, parts: excerpt(canon.slice(0, 1), 0, 1), wide: [0, 20], phone: [19, 44], opacity: 0.4 },
+  { staff: 1, parts: excerpt(canon.slice(0, 1), 2, 3), wide: [79, 100], phone: [56, 82], opacity: 0.4 },
+  { staff: 2, parts: excerpt(cello, 0, 1), wide: [0, 17], phone: [19, 44], opacity: 0.45 },
+  { staff: 2, parts: excerpt(cello, 2, 3), wide: [74, 96], phone: [60, 82], opacity: 0.45 },
 ];
 
 /**
