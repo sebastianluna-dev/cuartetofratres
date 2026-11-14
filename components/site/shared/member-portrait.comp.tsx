@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
@@ -19,7 +20,15 @@ export function MemberPortrait({ member, sizes }: MemberPortraitProps) {
   return (
     <Link href={memberPath(member.slug)} className="member-portrait">
       <span className="member-portrait__glow" aria-hidden="true" />
-      <span className="member-portrait__frame" style={photoFadeStyle(member.photo.portrait.fades)}>
+      <span
+        className="member-portrait__frame"
+        style={
+          {
+            ...photoFadeStyle(member.photo.portrait.fades),
+            "--portrait-zoom": String(member.photo.portrait.phoneZoom ?? 1),
+          } as CSSProperties
+        }
+      >
         <Image
           src={member.photo.src}
           alt=""
