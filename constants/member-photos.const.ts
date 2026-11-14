@@ -28,6 +28,11 @@ export interface InstrumentNote {
   x: number;
   y: number;
   points: "left" | "right";
+  /**
+   * On the phone, where the name sits right above the photo: the note moves
+   * under the instrument and its line points up to it instead of down.
+   */
+  phoneBelow?: { x: number; y: number };
 }
 
 export interface MemberPhoto {
@@ -55,7 +60,7 @@ export const MEMBER_PHOTOS: Readonly<Record<string, MemberPhoto>> = {
     alt: "Jesús Guadalupe Medina con su violín al hombro",
     page: { position: "50% 0%", fades: { left: 5, bottom: 22 } },
     // The violin rests on his left shoulder, high on the frame's left.
-    note: { x: -6, y: 6, points: "right" },
+    note: { x: -6, y: 6, points: "right", phoneBelow: { x: 6, y: 40 } },
     portrait: { position: "18% 0%", fades: { left: 8, right: 12, bottom: 26 }, phoneZoom: 1.38 },
   },
   "lucia-paredes": {

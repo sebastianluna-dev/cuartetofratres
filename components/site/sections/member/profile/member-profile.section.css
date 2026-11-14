@@ -227,6 +227,23 @@
       height: 34px;
     }
 
+    /* Under the instrument, the line drawn above the word and pointing up to it. */
+    & .member-profile__note_phone_below {
+      display: flex;
+      flex-direction: column-reverse;
+      left: var(--note-phone-x);
+      top: var(--note-phone-y);
+
+      & .member-profile__note-line {
+        margin: 0 0 6px 4px;
+        transform: scaleY(-1);
+      }
+
+      &.member-profile__note_points_right .member-profile__note-line {
+        transform: scale(-1, -1);
+      }
+    }
+
     & .member-profile__bio {
       margin-top: 24px;
     }

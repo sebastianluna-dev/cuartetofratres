@@ -47,6 +47,10 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
               {
                 "--note-x": `${member.photo.note.x}%`,
                 "--note-y": `${member.photo.note.y}%`,
+                ...(member.photo.note.phoneBelow && {
+                  "--note-phone-x": `${member.photo.note.phoneBelow.x}%`,
+                  "--note-phone-y": `${member.photo.note.phoneBelow.y}%`,
+                }),
               } as CSSProperties
             }
           >
@@ -66,7 +70,9 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
                 style={{ objectPosition: member.photo.page.position }}
               />
             </div>
-            <p className={`member-profile__note member-profile__note_points_${member.photo.note.points}`}>
+            <p
+              className={`member-profile__note member-profile__note_points_${member.photo.note.points}${member.photo.note.phoneBelow ? " member-profile__note_phone_below" : ""}`}
+            >
               {member.instrument}
               <svg className="member-profile__note-line" viewBox="0 0 70 50" focusable="false">
                 <path d="M64 4C46 6 22 14 10 40" />
