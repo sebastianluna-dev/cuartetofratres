@@ -131,6 +131,25 @@
     color: var(--color-ink);
   }
 
+  /* The phone's one-line title (marquee-title.comp), hidden from the tablet up. */
+  & .now-playing__line-box {
+    display: none;
+    width: 100%;
+  }
+
+  & .now-playing__line {
+    justify-content: center;
+    font-family: var(--font-accent);
+    font-size: clamp(26px, 2.4vw, 32px);
+    font-style: italic;
+    line-height: 1.2;
+    color: var(--color-ink);
+
+    &.marquee_scrolling {
+      justify-content: flex-start;
+    }
+  }
+
   & .now-playing__composer {
     margin-top: -6px;
     font-family: var(--font-label);
@@ -256,6 +275,15 @@
     /* The category is already the active filter's business: one line less. */
     & .now-playing__category {
       display: none;
+    }
+
+    /* One line for the title, sliding when it does not fit. */
+    & .now-playing__title {
+      display: none;
+    }
+
+    & .now-playing__line-box {
+      display: block;
     }
   }
 }

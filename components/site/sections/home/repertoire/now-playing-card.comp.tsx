@@ -6,6 +6,7 @@ import { PLAYER_COPY, RECORD_PHOTO } from "@/constants/repertoire.const";
 import { formatTrackPosition, formatTrackTime } from "@/lib/format-track-time";
 import type { TrackContent } from "@/services/repertoire/repertoire.types";
 import { LineProgress } from "./line-progress.comp";
+import { MarqueeTitle } from "./marquee-title.comp";
 import "./now-playing-card.comp.css";
 
 interface NowPlayingCardProps {
@@ -54,6 +55,8 @@ export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(fu
 
       {track.categoryLabel && <p className="now-playing__category">{track.categoryLabel}</p>}
       <p className="now-playing__title">{track.title}</p>
+      {/* The phone's title: one line that slides when it does not fit. */}
+      <MarqueeTitle text={track.title} className="now-playing__line" boxClassName="now-playing__line-box" />
       <p className="now-playing__composer">{track.composer}</p>
 
       <div className="now-playing__progress">
