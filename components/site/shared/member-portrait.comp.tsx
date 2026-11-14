@@ -25,7 +25,7 @@ export function MemberPortrait({ member, sizes }: MemberPortraitProps) {
         style={
           {
             ...photoFadeStyle(member.photo.portrait.fades),
-            "--portrait-zoom": String(member.photo.portrait.phoneZoom ?? 1),
+            "--portrait-zoom": String(member.photo.portrait.zoom ?? 1),
           } as CSSProperties
         }
       >
