@@ -62,3 +62,23 @@ export function formatEventPosterDate(isoDate: string): EventPosterDate {
   if (!day || !weekday) throw new Error(`Fecha inválida: "${isoDate}"`);
   return { day, month: monthName, weekday };
 }
+
+const WEEKDAYS_ES = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"] as const;
+
+export interface EventCalendarDate extends EventPosterDate {
+  year: string;
+  /** "Sábado". */
+  weekdayLong: string;
+}
+
+/**
+ * "2026-12-05" → the poster's pieces plus the year and the weekday in full:
+ * the calendar leaf of the event window.
+ */
+export function formatEventCalendarDate(isoDate: string): EventCalendarDate {
+  const poster = formatEventPosterDate(isoDate);
+  const year = isoDate.slice(0, 4);
+  const weekdayLong = WEEKDAYS_ES[WEEKDAYS_SHORT_ES.indexOf(poster.weekday as (typeof WEEKDAYS_SHORT_ES)[number])];
+  if (!weekdayLong) throw new Error(`Fecha inválida: "${isoDate}"`);
+  return { ...poster, year, weekdayLong };
+}
