@@ -3,6 +3,11 @@
   align-items: center;
   gap: 6px;
 
+  /* Centred under the list on the phone, where the list takes the width. */
+  @media (max-width: 767px) {
+    justify-content: center;
+  }
+
   & .track-pager__page,
   & .track-pager__step {
     position: relative;
