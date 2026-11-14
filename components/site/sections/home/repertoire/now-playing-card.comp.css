@@ -64,6 +64,41 @@
     transform: translate(-50%, -50%);
   }
 
+  /* The phone's play and pause, on the label (hidden from the tablet up). */
+  & .now-playing__disc-toggle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: none;
+    place-items: center;
+    width: 30%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color-ink);
+    color: var(--color-ivory);
+    transform: translate(-50%, -50%);
+    transition: transform 0.25s var(--ease-stage);
+
+    &:active {
+      transform: translate(-50%, -50%) scale(0.94);
+    }
+  }
+
+  & .now-playing__glyph_play {
+    width: 0;
+    height: 0;
+    margin-left: 4px;
+    border-left: 16px solid currentColor;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+
+  & .now-playing__glyph_pause {
+    width: 16px;
+    height: 20px;
+    border-inline: 5px solid currentColor;
+  }
+
   & .now-playing__hole {
     width: 16%;
     aspect-ratio: 1;
@@ -206,6 +241,17 @@
 
     & .now-playing__disc {
       width: min(62vw, 230px);
+    }
+
+    /* Play and pause move onto the record: the word between «Anterior» and
+       «Siguiente» goes, with one of its dots. */
+    & .now-playing__disc-toggle {
+      display: grid;
+    }
+
+    & .now-playing__step.now-playing__step_main,
+    & .now-playing__step_main + .now-playing__dot {
+      display: none;
     }
   }
 }
