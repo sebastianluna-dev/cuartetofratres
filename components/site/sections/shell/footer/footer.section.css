@@ -52,11 +52,6 @@
     }
   }
 
-  & .site-footer__year {
-    font-weight: 500;
-    color: var(--color-muted-on-ivory);
-  }
-
   /* At the foot of a musician's page, which is dark from top to bottom. */
   &.site-footer_theme_ink {
     background: var(--color-ink);
@@ -72,10 +67,6 @@
 
     & .site-footer__name {
       color: var(--color-text-on-ink);
-    }
-
-    & .site-footer__year {
-      color: var(--color-muted-on-ink);
     }
 
     & .site-footer__credit-link:hover {

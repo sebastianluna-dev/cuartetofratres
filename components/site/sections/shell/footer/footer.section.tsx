@@ -3,8 +3,6 @@ import { SITE_CREDIT, SITE_NAME } from "@/constants/site.const";
 import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
 import "./footer.section.css";
 
-const CURRENT_YEAR = 2026;
-
 interface FooterProps {
   /** Cream under the home page's contact section ("ivory" is the light one); ink at the foot of a musician's dark page. */
   theme?: "ivory" | "ink";
@@ -23,9 +21,7 @@ export async function Footer({ theme = "ivory" }: FooterProps) {
         <div className="site-footer__brand">
           {/* On a musician's page the monogram leads home; on the home page, to its top. */}
           <Logo theme={onInk ? "ivory" : "ink"} height={34} href={onInk ? "/" : "#inicio"} />
-          <p className="site-footer__name">
-            {SITE_NAME} <span className="site-footer__year">© {CURRENT_YEAR}</span>
-          </p>
+          <p className="site-footer__name">{SITE_NAME}</p>
         </div>
         <p className="site-footer__tagline">{settings.tagline}</p>
         <p className="site-footer__credit">
