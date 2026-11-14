@@ -2,7 +2,6 @@ import { siteConfig } from "@/config/site.config";
 import { Logo } from "@/components/site/shared/logo.comp";
 import { HERO_COPY } from "@/constants/hero.const";
 import { HERO_STAGE_FIGURES } from "@/constants/hero-stage.const";
-import { HERO_MUSIC_STAGES } from "@/constants/hero-music.const";
 import { StaffMusic } from "@/components/site/shared/staff-music.comp";
 import { getHeroData } from "@/services/hero/hero.service";
 import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
@@ -44,14 +43,7 @@ export async function HeroSection() {
 
       <HeroStage
         figures={HERO_STAGE_FIGURES}
-        music={
-          <StaffMusic
-            stages={HERO_MUSIC_STAGES}
-            figures={HERO_STAGE_FIGURES}
-            id="hero-music"
-            className="hero-stage__music"
-          />
-        }
+        music={<StaffMusic drawing="hero" eager className="hero-stage__music" />}
       />
     </section>
   );

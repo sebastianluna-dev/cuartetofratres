@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { formatEventDate, formatEventCalendarDate, formatEventDateLong, formatEventPosterDate } from "./format-event-date";
+import {
+  formatEventDate,
+  formatEventCalendarDate,
+  formatEventDateLong,
+  formatEventPosterDate,
+} from "./format-event-date";
 
 describe("formatEventDate", () => {
   it("returns day/month with the zeros kept", () => {

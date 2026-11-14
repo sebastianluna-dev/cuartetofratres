@@ -2,8 +2,7 @@ import { MemberPortrait } from "@/components/site/shared/member-portrait.comp";
 import { Reveal } from "@/components/site/shared/reveal.comp";
 import { StaffLines } from "@/components/site/shared/staff-lines.comp";
 import { StaffMusic } from "@/components/site/shared/staff-music.comp";
-import { RUNNING_MUSIC_FRAGMENTS } from "@/constants/hero-music.const";
-import { MEMBERS_COPY, MEMBERS_MUSIC_STAGES } from "@/constants/members.const";
+import { MEMBERS_COPY } from "@/constants/members.const";
 import { getMembers } from "@/services/members/members.service";
 import "./members.section.css";
 
@@ -25,13 +24,7 @@ export async function MembersSection() {
         </Reveal>
         <Reveal className="members__stage">
           <StaffLines kind="hero" className="members__staff" />
-          <StaffMusic
-            stages={MEMBERS_MUSIC_STAGES}
-            figures={[]}
-            fragments={RUNNING_MUSIC_FRAGMENTS}
-            id="members-music"
-            className="members__music"
-          />
+          <StaffMusic drawing="members" className="members__music" />
           <ul className="members__row">
             {members.map((member) => (
               <li key={member.id}>

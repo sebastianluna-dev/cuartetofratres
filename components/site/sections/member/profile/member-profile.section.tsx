@@ -2,7 +2,6 @@ import type { CSSProperties } from "react";
 import Image from "next/image";
 import { MemberHeader } from "@/components/site/sections/member/header/member-header.section";
 import { StaffMusic } from "@/components/site/shared/staff-music.comp";
-import { MEMBER_MUSIC_STAGES, MEMBER_STAGE_FIGURE } from "@/constants/members.const";
 import { StaffLines } from "@/components/site/shared/staff-lines.comp";
 import { photoFadeStyle } from "@/lib/photo-fades";
 import { splitParagraphs } from "@/lib/text-blocks";
@@ -35,12 +34,7 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
         <MemberStage>
           <div className="member-profile__glow" />
           <StaffLines kind="hero" className="member-profile__staff" />
-          <StaffMusic
-            stages={MEMBER_MUSIC_STAGES}
-            figures={MEMBER_STAGE_FIGURE}
-            id="member-music"
-            className="member-profile__music"
-          />
+          <StaffMusic drawing="member" eager className="member-profile__music" />
           <div
             className="member-profile__photo-box"
             style={

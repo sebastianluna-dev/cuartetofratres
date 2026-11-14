@@ -28,10 +28,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="es"
-      className={FONT_VARIABLES}
-    >
+    <html lang="es" className={FONT_VARIABLES}>
       <body>
         <a className="skip-link" href="#contenido">
           Saltar al contenido
