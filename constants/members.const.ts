@@ -100,5 +100,5 @@ export const MEMBERS_MUSIC_STAGES = {
 /** The row of the other three on a musician's page, as its music is engraved: size in px, wide and on the phone. */
 export const MEMBER_OTHERS_MUSIC_STAGES = {
   wide: { width: 1100, height: 595 },
-  phone: { width: 350, height: 212 },
+  phone: { width: 350, height: 640 },
 } as const;

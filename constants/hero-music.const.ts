@@ -178,9 +178,9 @@ export interface MusicFragment {
   /** Staff of `staffLines("hero")`, 0 at the top. */
   staff: number;
   parts: MusicPart[];
-  /** The stretch on a wide screen and on the phone, clear of the faces. */
+  /** The stretch on a wide screen and on the phone, clear of the faces; `null`: not written there. */
   wide: StaffStretch;
-  phone: StaffStretch;
+  phone: StaffStretch | null;
   /** Ink of the fragment before it fades near a face. */
   opacity: number;
 }
@@ -221,11 +221,14 @@ export const RUNNING_MUSIC_FRAGMENTS: readonly MusicFragment[] = [
     phone: stretch,
     opacity: 0.45,
   })),
+  // On the phone the rows of portraits are two, and the middle staff would
+  // run through the names between them: it is not written there (and its
+  // lines are hidden by the sections' own stylesheets).
   ...RUN.map((stretch, index) => ({
     staff: 1,
     parts: excerpt(canon.slice(0, 1), (index + 1) % 3, ((index + 1) % 3) + 1),
     wide: stretch,
-    phone: stretch,
+    phone: null,
     opacity: 0.4,
   })),
   ...RUN.map((stretch, index) => ({

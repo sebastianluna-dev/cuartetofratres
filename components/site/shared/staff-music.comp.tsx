@@ -32,7 +32,10 @@ function engrave(
 ) {
   return engraveStaffMusic(
     stageMusicView(stages[view], figures),
-    fragments.map((fragment) => ({ ...fragment, stretch: fragment[view] })),
+    fragments.flatMap((fragment) => {
+      const stretch = fragment[view];
+      return stretch ? [{ ...fragment, stretch }] : [];
+    }),
   );
 }
 

@@ -43,6 +43,13 @@
   }
 
   @media (max-width: 900px) {
+    /* Two rows of two: the middle staff would run through the names between
+       them, so only the top one (behind the first pair) and the bottom one
+       (behind the second) stay. Lines 6 to 10 are that staff's. */
+    & .members__staff .staff-lines__line:nth-child(n + 6):nth-child(-n + 10) {
+      display: none;
+    }
+
     & .members__row {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 26px 14px;
