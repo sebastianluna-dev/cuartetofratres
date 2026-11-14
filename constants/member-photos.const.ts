@@ -17,6 +17,12 @@ export interface PhotoArt {
    * faces in the rows of portraits.
    */
   zoom?: number;
+  /**
+   * Room the frame takes past its left edge, in percent of its width, for an
+   * instrument the zoom would cut there; the photo itself and the frame's
+   * right edge stay where they are.
+   */
+  bleedLeft?: number;
 }
 
 /**
@@ -61,7 +67,7 @@ export const MEMBER_PHOTOS: Readonly<Record<string, MemberPhoto>> = {
     page: { position: "50% 0%", fades: { left: 5, bottom: 22 } },
     // The violin rests on his left shoulder, high on the frame's left.
     note: { x: -6, y: 6, points: "right", phoneBelow: { x: 6, y: 40 } },
-    portrait: { position: "18% 0%", fades: { left: 8, right: 12, bottom: 26 }, zoom: 1.38 },
+    portrait: { position: "18% 0%", fades: { left: 8, right: 12, bottom: 26 }, zoom: 1.38, bleedLeft: 22 },
   },
   "lucia-paredes": {
     src: "/images/stage/lucia-paredes.webp",

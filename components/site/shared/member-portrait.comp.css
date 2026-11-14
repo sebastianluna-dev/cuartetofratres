@@ -41,6 +41,15 @@
     mask-composite: intersect;
   }
 
+  /* Room past the left edge, for an instrument the zoom would cut there: the
+     frame grows to the left by --portrait-bleed percent of its width and keeps
+     its height, and the photo keeps its old box on the right (inline styles). */
+  & .member-portrait__frame_bleed_left {
+    width: calc(100% * (100 + var(--portrait-bleed)) / 100);
+    margin-left: calc(-1% * var(--portrait-bleed));
+    aspect-ratio: calc(3 * (100 + var(--portrait-bleed)) / 100) / 5;
+  }
+
   /* In colour (--filter-musicians), always fully lit; under the pointer it only grows a
      little, from the top so the head stays in the frame. */
   & .member-portrait__photo {
