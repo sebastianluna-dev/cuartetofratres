@@ -75,13 +75,13 @@
     transform: translate(-50%, -50%);
   }
 
-  /* The lines and the music on them as faint as in the hero. */
+  /* The lines and the music on them as faint as behind the rows of portraits. */
   /* The staff and its music fade out softly at their left edge, so they do not end in a hard cut. */
   & .member-profile__staff {
     inset: 4% -30% 10% -30%;
     translate: calc(var(--lean-x, 0px) * -0.4) calc(var(--lean-y, 0px) * -0.4);
     color: var(--color-text-on-ink);
-    opacity: 0.07;
+    opacity: 0.05;
     -webkit-mask-image:
       radial-gradient(58% 52% at 50% 46%, #000 26%, transparent 100%), linear-gradient(90deg, transparent 6%, #000 24%);
     -webkit-mask-composite: source-in;
@@ -94,7 +94,7 @@
     inset: 4% -30% 10% -30%;
     translate: calc(var(--lean-x, 0px) * -0.4) calc(var(--lean-y, 0px) * -0.4);
     color: var(--color-text-on-ink);
-    opacity: 0.3;
+    opacity: 0.2;
     -webkit-mask-image:
       radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%), linear-gradient(90deg, transparent 6%, #000 24%);
     -webkit-mask-composite: source-in;
