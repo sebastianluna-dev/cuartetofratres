@@ -203,18 +203,22 @@
       padding-top: calc(86px + 20px);
     }
 
+    /* Pulled up under the name: the cut-out has air above the head, which
+       left the name floating far from the musician. */
     & .member-profile__stage {
       width: min(100%, 440px);
-      margin: 12px auto 0;
+      margin: -36px auto 0;
     }
 
     & .member-profile__photo-box {
       max-height: none;
     }
 
-    /* Never past the edges of the screen. */
+    /* Never past the edges of the screen, and below the name the stage now
+       sits under. */
     & .member-profile__note {
       left: clamp(0%, var(--note-x), 76%);
+      top: max(var(--note-y), 16%);
       font-size: 14px;
     }
 

@@ -36,8 +36,8 @@ export function MemberOthersSection({ members }: MemberOthersSectionProps) {
           <ul className="member-others__row">
             {members.map((member) => (
               <li key={member.id}>
-                {/* Three to a row: a quarter of the page on desktop, a third on the phone. */}
-                <MemberPortrait member={member} sizes="(max-width: 900px) 33vw, 25vw" />
+                {/* Three to a row from the tablet up, two on the phone (the third centred). */}
+                <MemberPortrait member={member} sizes="(max-width: 767px) 50vw, (max-width: 900px) 33vw, 25vw" />
               </li>
             ))}
           </ul>
