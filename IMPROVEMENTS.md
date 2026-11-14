@@ -97,6 +97,15 @@ narrower than its height), the glyphs stretch with it: wider on a tablet in port
 shows, add a third engraving for that band in `HERO_MUSIC_STAGES` and switch it in
 `staff-music.comp.css`.
 
+### 10. First load on a phone: what was tried — [Performance]
+
+Measured on `next start` with Lighthouse's mobile throttling (1.6 Mbps, 150 ms, CPU ×4), median of 3–5 loads: LCP 2.61 s → 1.32 s on 2026-11-14 after preloading only Fratres and Mulish, moving latin-ext to on-demand families, the musicians' photos at quality 90 and the engraved staffs as static SVG files (the home HTML went from 463 KB to 139 KB). Tried and left out, so it is not retried blindly:
+
+- `experimental.inlineCss`: FCP 0.79 → 0.56 s but LCP 1.32 → 2.05 s, because Next copies the CSS into both the HTML and the RSC payload (home 26 → 51 KB gzipped) and it applies to the Payload admin too (its HTML doubles).
+- Splitting the client code: of the JavaScript the home loads, React and Next are ~115 KB gzipped and the site's own components ~20 KB; the 39 KB polyfill chunk is `noModule`, so modern browsers skip it. Lazy-loading the dialog or the player would save a few KB.
+
+How to approach what is left: measure the production URL (CDN, compression) in a private window, so the browser's extensions do not count, before chasing more.
+
 ---
 
 ## Resolved
