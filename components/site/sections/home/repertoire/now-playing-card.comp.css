@@ -195,9 +195,18 @@
     }
   }
 
-  /* Phone: no record; the mini player is the whole player. */
+  /* Phone: the record above the programme, the whole width, not sticky (the
+     list wraps below it); a little smaller. */
   @media (max-width: 767px) {
-    display: none;
+    position: static;
+    flex: 1 1 100%;
+    max-width: none;
+    gap: 12px;
+    margin-bottom: 8px;
+
+    & .now-playing__disc {
+      width: min(62vw, 230px);
+    }
   }
 }
 
