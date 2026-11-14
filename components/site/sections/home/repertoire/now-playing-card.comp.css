@@ -243,14 +243,13 @@
       width: min(62vw, 230px);
     }
 
-    /* Play and pause move onto the record: the word between «Anterior» and
-       «Siguiente» goes, with one of its dots. */
+    /* Play and pause move onto the record, and the words go: the programme
+       below is how to change work on the phone. */
     & .now-playing__disc-toggle {
       display: grid;
     }
 
-    & .now-playing__step.now-playing__step_main,
-    & .now-playing__step_main + .now-playing__dot {
+    & .now-playing__transport {
       display: none;
     }
   }
