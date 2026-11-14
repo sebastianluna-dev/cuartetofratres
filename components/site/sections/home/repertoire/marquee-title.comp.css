@@ -1,8 +1,22 @@
 /* The edges fade, so the text slides in and out instead of being cut. */
 .marquee-box {
+  --marquee-fade: 16px;
+
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 16px), transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 16px), transparent);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 var(--marquee-fade),
+    #000 calc(100% - var(--marquee-fade)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 var(--marquee-fade),
+    #000 calc(100% - var(--marquee-fade)),
+    transparent
+  );
 }
 
 .marquee {
@@ -20,8 +34,15 @@
 
   /* The loop itself runs from hooks/use-marquee.hook.ts; the class only
      brings in the second copy. */
-  &.marquee_scrolling .marquee__copy_role_echo {
-    display: block;
+  &.marquee_scrolling {
+    /* At rest the title starts just past the left fade, so it reads whole;
+       the fade only shows once it moves left into it. Both copies shift
+       together, so the loop still lands where it began. */
+    padding-left: var(--marquee-fade);
+
+    & .marquee__copy_role_echo {
+      display: block;
+    }
   }
 
   /* Without motion the line stays still and ends in an ellipsis. */
