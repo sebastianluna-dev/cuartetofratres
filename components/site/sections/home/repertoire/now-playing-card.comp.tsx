@@ -6,6 +6,7 @@ import { PLAYER_COPY, RECORD_PHOTO } from "@/constants/repertoire.const";
 import { formatTrackPosition, formatTrackTime } from "@/lib/format-track-time";
 import type { TrackContent } from "@/services/repertoire/repertoire.types";
 import { LineProgress } from "./line-progress.comp";
+import { MarqueeTitle } from "./marquee-title.comp";
 import "./now-playing-card.comp.css";
 
 interface NowPlayingCardProps {
@@ -31,18 +32,31 @@ export const NowPlayingCard = forwardRef<HTMLDivElement, NowPlayingCardProps>(fu
 
   return (
     <div ref={ref} className={`now-playing${playing ? " now-playing_playing" : ""}`}>
-      <div className="now-playing__disc" aria-hidden="true">
-        <div className="now-playing__spin">
+      <div className="now-playing__disc">
+        <div className="now-playing__spin" aria-hidden="true">
           <Image className="now-playing__photo" src={RECORD_PHOTO} alt="" fill sizes="250px" />
           <span className="now-playing__grooves" />
         </div>
-        <span className="now-playing__label">
+        <span className="now-playing__label" aria-hidden="true">
           <span className="now-playing__hole" />
         </span>
+        {/* On the phone, play and pause sit on the record's label, as on the
+            mini player; the stylesheet shows it only there. */}
+        <button
+          type="button"
+          className="now-playing__disc-toggle"
+          aria-label={playing ? PLAYER_COPY.pause : PLAYER_COPY.play}
+          aria-pressed={playing}
+          onClick={onTogglePlay}
+        >
+          <span className={`now-playing__glyph now-playing__glyph_${playing ? "pause" : "play"}`} aria-hidden="true" />
+        </button>
       </div>
 
       {track.categoryLabel && <p className="now-playing__category">{track.categoryLabel}</p>}
       <p className="now-playing__title">{track.title}</p>
+      {/* The phone's title: one line that slides when it does not fit. */}
+      <MarqueeTitle text={track.title} className="now-playing__line" boxClassName="now-playing__line-box" />
       <p className="now-playing__composer">{track.composer}</p>
 
       <div className="now-playing__progress">

@@ -119,7 +119,7 @@
     height: min(60svh, 520px);
     min-height: 400px;
     aspect-ratio: auto;
-    margin: -58px calc(var(--site-gutter) * -1) 0;
+    margin: -24px calc(var(--site-gutter) * -1) 0;
   }
 }
 

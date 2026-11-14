@@ -11,6 +11,18 @@ export interface PhotoArt {
   fades: PhotoFades;
   /** Fades the foot into a curve instead of a straight edge (where the photo cuts a wide instrument). */
   roundBottom?: boolean;
+  /**
+   * How much closer the portrait comes, from the top: the cut-outs are shot at
+   * different distances, and Alfonso's, the closest, sets the size of the
+   * faces in the rows of portraits.
+   */
+  zoom?: number;
+  /**
+   * Room the frame takes past its left edge, in percent of its width, for an
+   * instrument the zoom would cut there; the photo itself and the frame's
+   * right edge stay where they are.
+   */
+  bleedLeft?: number;
 }
 
 /**
@@ -22,6 +34,11 @@ export interface InstrumentNote {
   x: number;
   y: number;
   points: "left" | "right";
+  /**
+   * On the phone, where the name sits right above the photo: the note moves
+   * under the instrument and its line points up to it instead of down.
+   */
+  phoneBelow?: { x: number; y: number };
 }
 
 export interface MemberPhoto {
@@ -49,8 +66,8 @@ export const MEMBER_PHOTOS: Readonly<Record<string, MemberPhoto>> = {
     alt: "Jesús Guadalupe Medina con su violín al hombro",
     page: { position: "50% 0%", fades: { left: 5, bottom: 22 } },
     // The violin rests on his left shoulder, high on the frame's left.
-    note: { x: -6, y: 6, points: "right" },
-    portrait: { position: "18% 0%", fades: { left: 8, right: 12, bottom: 26 } },
+    note: { x: -6, y: 6, points: "right", phoneBelow: { x: 6, y: 40 } },
+    portrait: { position: "18% 0%", fades: { left: 8, right: 12, bottom: 26 }, zoom: 1.38, bleedLeft: 22 },
   },
   "lucia-paredes": {
     src: "/images/stage/lucia-paredes.webp",
@@ -58,7 +75,7 @@ export const MEMBER_PHOTOS: Readonly<Record<string, MemberPhoto>> = {
     page: { position: "50% 0%", fades: { bottom: 22 } },
     // The violin held upright in front of her, low in the centre.
     note: { x: 70, y: 40, points: "left" },
-    portrait: { position: "50% 0%", fades: { left: 12, right: 12, bottom: 26 } },
+    portrait: { position: "50% 0%", fades: { left: 12, right: 12, bottom: 26 }, zoom: 1.5 },
   },
   "jose-sanchez": {
     src: "/images/stage/ricardo-sanchez.webp",
@@ -66,7 +83,7 @@ export const MEMBER_PHOTOS: Readonly<Record<string, MemberPhoto>> = {
     page: { position: "50% 0%", fades: { bottom: 22 } },
     // The viola held upright in front of him, low in the centre.
     note: { x: 72, y: 38, points: "left" },
-    portrait: { position: "50% 0%", fades: { left: 12, right: 12, bottom: 26 } },
+    portrait: { position: "50% 0%", fades: { left: 12, right: 12, bottom: 26 }, zoom: 1.42 },
   },
   "alfonso-perez": {
     src: "/images/stage/alfonso-perez.webp",

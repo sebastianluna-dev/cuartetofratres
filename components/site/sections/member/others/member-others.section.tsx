@@ -1,8 +1,7 @@
 import { MemberPortrait } from "@/components/site/shared/member-portrait.comp";
 import { StaffLines } from "@/components/site/shared/staff-lines.comp";
 import { StaffMusic } from "@/components/site/shared/staff-music.comp";
-import { RUNNING_MUSIC_FRAGMENTS } from "@/constants/hero-music.const";
-import { MEMBER_OTHERS_MUSIC_STAGES, MEMBER_PAGE_COPY } from "@/constants/members.const";
+import { MEMBER_PAGE_COPY } from "@/constants/members.const";
 import type { MemberContent } from "@/services/members/members.types";
 import "./member-others.section.css";
 
@@ -26,18 +25,12 @@ export function MemberOthersSection({ members }: MemberOthersSectionProps) {
         </h2>
         <div className="member-others__stage">
           <StaffLines kind="hero" className="member-others__staff" />
-          <StaffMusic
-            stages={MEMBER_OTHERS_MUSIC_STAGES}
-            figures={[]}
-            fragments={RUNNING_MUSIC_FRAGMENTS}
-            id="member-others-music"
-            className="member-others__music"
-          />
+          <StaffMusic drawing="member-others" className="member-others__music" />
           <ul className="member-others__row">
             {members.map((member) => (
               <li key={member.id}>
-                {/* Three to a row: a quarter of the page on desktop, a third on the phone. */}
-                <MemberPortrait member={member} sizes="(max-width: 900px) 33vw, 25vw" />
+                {/* Three to a row from the tablet up, two on the phone (the third centred). */}
+                <MemberPortrait member={member} sizes="(max-width: 767px) 50vw, (max-width: 900px) 33vw, 25vw" />
               </li>
             ))}
           </ul>

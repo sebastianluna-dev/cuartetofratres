@@ -12,8 +12,11 @@
   /* Tablet and phone: one row that scrolls sideways and snaps to each poster. */
   @media (max-width: 900px) {
     justify-content: flex-start;
-    margin: 0 calc(var(--site-gutter) * -1);
-    padding: 0 var(--site-gutter) 36px;
+    /* A scrolling row clips what spills out of it: the padding leaves room
+       for the posters' shadow (30px down, 60px blur) above and below, and
+       the negative margin gives that room back so the section keeps its height. */
+    margin: -24px calc(var(--site-gutter) * -1) -30px;
+    padding: 24px var(--site-gutter) 66px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;

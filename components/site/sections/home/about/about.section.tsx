@@ -30,7 +30,7 @@ export async function AboutSection() {
               alt={ABOUT_GROUP.alt}
               width={ABOUT_GROUP.width}
               height={ABOUT_GROUP.height}
-              quality={100}
+              quality={90}
               sizes="(max-width: 900px) 100vw, 46vw"
               className="about__group-photo"
             />

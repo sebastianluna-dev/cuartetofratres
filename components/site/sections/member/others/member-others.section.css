@@ -1,5 +1,27 @@
 .member-others {
+  position: relative;
   overflow: clip;
+
+  /* The score fades out towards the sides of the screen and is gone at them:
+     a veil of the section's ground over the sides, under the portraits
+     (z-index 1) and over the score. Tied to the section, which spans the
+     viewport, so it meets the screen's edges at any width. */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+      90deg,
+      var(--color-ink) 0,
+      var(--color-ink) 1.5vw,
+      transparent 14vw,
+      transparent calc(100% - 14vw),
+      var(--color-ink) calc(100% - 1.5vw),
+      var(--color-ink) 100%
+    );
+    pointer-events: none;
+  }
   padding: clamp(48px, 6vw, 88px) 0 clamp(64px, 8vw, 120px);
 
   & .section-title {
@@ -18,7 +40,7 @@
   & .member-others__staff {
     inset: 4% -30% 10%;
     color: var(--color-text-on-ink);
-    opacity: 0.07;
+    opacity: 0.05;
     -webkit-mask-image: radial-gradient(60% 56% at 50% 46%, #000 30%, transparent 100%);
     mask-image: radial-gradient(60% 56% at 50% 46%, #000 30%, transparent 100%);
   }
@@ -26,7 +48,7 @@
   & .member-others__music {
     inset: 4% -30% 10%;
     color: var(--color-text-on-ink);
-    opacity: 0.3;
+    opacity: 0.2;
     -webkit-mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%);
     mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%);
   }
@@ -55,16 +77,33 @@
     }
   }
 
-  /* Three names in a 390 px row touched each other: smaller, and a long
-     name may take two lines instead of reaching its neighbour. */
-  @media (max-width: 480px) {
+  /* Phone: two to a row, as on the home page, and the third centred under
+     them; the names keep their size. */
+  @media (max-width: 767px) {
+    /* Two rows of two: the middle staff would run through the names between
+       them, so only the top one (behind the first pair) and the bottom one
+       (behind the second) stay. Lines 6 to 10 are that staff's. */
+    & .member-others__staff .staff-lines__line:nth-child(n + 6):nth-child(-n + 10) {
+      display: none;
+    }
+
+    & .member-others__row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 26px 14px;
+
+      & > li {
+        flex: 0 0 calc((100% - 14px) / 2);
+      }
+    }
+
     & .member-portrait__name {
-      font-size: 13px;
-      text-wrap: balance;
+      font-size: 19px;
     }
 
     & .member-portrait__instrument {
-      font-size: 13px;
+      font-size: 16px;
     }
   }
 }

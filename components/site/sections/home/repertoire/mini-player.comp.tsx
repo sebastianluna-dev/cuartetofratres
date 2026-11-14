@@ -94,7 +94,7 @@ export function MiniPlayer({
       >
         <span className="mini-player__disc" aria-hidden="true">
           <span className="mini-player__spin">
-            <Image className="mini-player__photo" src={RECORD_PHOTO} alt="" fill sizes="152px" quality={100} />
+            <Image className="mini-player__photo" src={RECORD_PHOTO} alt="" fill sizes="152px" quality={90} />
             <span className="mini-player__texture" />
           </span>
           <svg className="mini-player__grooves" viewBox="0 0 100 100" focusable="false">

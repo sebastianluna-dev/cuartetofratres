@@ -4,6 +4,27 @@
   background: radial-gradient(70% 50% at 50% 26%, #1c2025, var(--color-ink) 72%);
   overflow: clip;
 
+  /* The score fades out towards the sides of the screen and is gone at them:
+     a veil of the section's ground over the sides, under the portraits
+     (z-index 1) and over the score. Tied to the section, which spans the
+     viewport, so it meets the screen's edges at any width. */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+      90deg,
+      var(--color-ink) 0,
+      var(--color-ink) 1.5vw,
+      transparent 14vw,
+      transparent calc(100% - 14vw),
+      var(--color-ink) calc(100% - 1.5vw),
+      var(--color-ink) 100%
+    );
+    pointer-events: none;
+  }
+
   & .members__inner {
     position: relative;
   }
@@ -13,7 +34,7 @@
   }
 
   /* The row of portraits and, behind it, the hero's score: lines and music
-     as faint as there, fading out towards the edges. */
+     a little fainter than there, fading out towards the edges. */
   & .members__stage {
     position: relative;
   }
@@ -21,7 +42,7 @@
   & .members__staff {
     inset: 4% -30% 10%;
     color: var(--color-text-on-ink);
-    opacity: 0.07;
+    opacity: 0.05;
     -webkit-mask-image: radial-gradient(60% 56% at 50% 46%, #000 30%, transparent 100%);
     mask-image: radial-gradient(60% 56% at 50% 46%, #000 30%, transparent 100%);
   }
@@ -29,7 +50,7 @@
   & .members__music {
     inset: 4% -30% 10%;
     color: var(--color-text-on-ink);
-    opacity: 0.3;
+    opacity: 0.2;
     -webkit-mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%);
     mask-image: radial-gradient(78% 74% at 50% 46%, #000 52%, transparent 100%);
   }
@@ -43,6 +64,13 @@
   }
 
   @media (max-width: 900px) {
+    /* Two rows of two: the middle staff would run through the names between
+       them, so only the top one (behind the first pair) and the bottom one
+       (behind the second) stay. Lines 6 to 10 are that staff's. */
+    & .members__staff .staff-lines__line:nth-child(n + 6):nth-child(-n + 10) {
+      display: none;
+    }
+
     & .members__row {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 26px 14px;

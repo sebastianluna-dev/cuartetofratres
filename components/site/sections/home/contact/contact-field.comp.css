@@ -93,21 +93,27 @@
     border-color: #9a2c1a;
   }
 
-  /* On the phone the caption stays on its line, in a narrower column and
-     smaller, so the rules keep their spacing. */
+  /* On the phone each caption goes above its rule, at a readable size, and
+     the rule takes the whole width of the sheet: still a letter, easier to
+     write on. The details keep their evenly spaced lines. */
   @media (max-width: 760px) {
-    grid-template-columns: 92px minmax(0, 1fr);
-    column-gap: 10px;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0;
+    padding-top: 22px;
 
     & .contact-field__label {
-      padding-bottom: 8px;
-      font-size: 12px;
+      padding-bottom: 0;
+      font-size: 14px;
       line-height: 1.2;
-      letter-spacing: 0.12em;
+    }
+
+    &.contact-field_kind_multiline .contact-field__label {
+      height: auto;
     }
 
     & .contact-field__error {
-      grid-column: 2;
+      grid-column: 1;
+      margin-top: 6px;
     }
   }
 }

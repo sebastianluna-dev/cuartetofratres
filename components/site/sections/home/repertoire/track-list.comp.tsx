@@ -15,6 +15,8 @@ interface TrackListProps {
   onSelect: (index: number) => void;
   /** Plays the entrance of the rows (or of the empty card); set after the visitor changes the filter. */
   entering?: boolean;
+  /** Number of the first row on show: rows are numbered across the pages of the filter. */
+  firstNumber?: number;
 }
 
 // The programme: one row per work that passes the filter, or the
@@ -28,6 +30,7 @@ export function TrackList({
   emptyState,
   onSelect,
   entering = false,
+  firstNumber = 1,
 }: TrackListProps) {
   const rows = tracks.map((track, index) => ({ track, index })).filter(({ track }) => visibleIds.includes(track.id));
 
@@ -40,6 +43,7 @@ export function TrackList({
               key={track.id}
               style={{ "--order": order } as CSSProperties}
               track={track}
+              number={firstNumber + order}
               selected={index === selectedIndex}
               playing={playing && index === selectedIndex}
               onSelect={() => onSelect(index)}

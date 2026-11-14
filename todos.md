@@ -6,7 +6,6 @@ Small, mechanical tasks that need no design decision. Bigger items live in `IMPR
 - [ ] In `/admin › Secciones › Repertorio`, set the title to «Repertorio»: the seeded phrase («Del clásico al pop…») predates the card layout, whose default is now the one word.
 - [ ] In `/admin › Integrantes`, check the cellist's bio and role: the seed text used «violonchelo/violonchelista», now spelt «violoncello/violoncellista» in `constants/members.const.ts`; the stored copy keeps whatever was seeded.
 - [ ] Add `og:image` alt text review: `app/opengraph-image.tsx` uses the generator's default serif; check how it renders on Facebook and WhatsApp previews.
-- [ ] Replace `CURRENT_YEAR` in `footer.section.tsx` with the build year if the site is still up in 2027.
 - [ ] Give `Media` image sizes (`upload.imageSizes`) so the admin list does not load the full photos as thumbnails.
 - [ ] Add `admin.preview` links from the Globals to `/#<ancla>` of their section.
 - [ ] Set `upload.focalPoint` on `Media` and derive `object-position` from it, instead of the free-text framing fields.

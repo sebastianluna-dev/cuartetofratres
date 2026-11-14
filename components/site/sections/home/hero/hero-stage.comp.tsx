@@ -50,7 +50,7 @@ export function HeroStage({ figures, music }: HeroStageProps) {
             alt=""
             fill
             priority
-            quality={100}
+            quality={90}
             sizes="(max-width: 760px) 90vw, 44vw"
             className="hero-stage__image"
           />

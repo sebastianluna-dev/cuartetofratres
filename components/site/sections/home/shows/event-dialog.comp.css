@@ -1,65 +1,132 @@
+/* The window of a date, as the printed programme handed out at the hall: a
+   cream sheet with a calendar leaf, the photo under it and the works with a
+   dotted leader to their composer. On the phone it is a sheet that rises from
+   the bottom, with its action held at the foot. */
 .event-dialog {
   /* The global reset zeroes every margin; `auto` is what centres a modal dialog. */
   margin: auto;
   width: min(100% - 2 * var(--site-gutter), 920px);
   max-width: none;
-  /* The height follows the width: the photo takes three eighths and is a
-     9:16 portrait, so the box is 3:2. A short screen caps it and the
-     detail column scrolls on its own; the photo never moves. */
-  aspect-ratio: 3 / 2;
   max-height: calc(100dvh - 64px);
   padding: 0;
   border: 0;
-  border-radius: var(--site-radius);
+  border-radius: 20px;
   overflow: hidden;
-  background: var(--color-ink);
-  color: var(--color-text-on-ink);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  background: var(--color-cream);
+  color: var(--color-ink);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
 
   &::backdrop {
     background: rgba(18, 20, 24, 0.72);
     backdrop-filter: blur(4px);
   }
 
+  &[open] {
+    animation: event-dialog-in 0.45s var(--ease-stage);
+  }
+
   /* Layout only while open: a closed <dialog> must keep `display: none`.
-     One row as tall as the box; each column clips or scrolls its own content.
-     The panel, not the dialog, is the positioned block of the close button: a
-     modal dialog must keep the browser's own positioning. */
+     The calendar column stays put; the text column scrolls on its own when
+     a long programme does not fit. The panel, not the dialog, is the
+     positioned block of the close button: a modal dialog must keep the
+     browser's own positioning. */
   &[open] .event-dialog__panel {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
-    grid-template-rows: minmax(0, 1fr);
-    height: 100%;
+    grid-template-columns: 260px minmax(0, 1fr);
+  }
+
+  & .event-dialog__handle {
+    display: none;
   }
 
   & .event-dialog__close {
     position: absolute;
     top: 22px;
     right: 22px;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
-    border: 1px solid var(--color-text-on-ink);
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(12, 14, 16, 0.5);
     border-radius: 50%;
-    color: var(--color-text-on-ink);
+    background: var(--color-cream);
+    color: var(--color-ink);
     transition:
       background 0.25s ease,
       color 0.25s ease;
 
     &:hover {
-      background: var(--color-ivory);
-      color: var(--color-ink);
+      background: var(--color-ink);
+      color: var(--color-cream);
     }
+  }
+
+  & .event-dialog__side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 0;
+    padding: 36px 0 36px 36px;
+  }
+
+  /* The calendar leaf: weekday, the day large, month and year, the hour. */
+  & .event-dialog__calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 12px 20px;
+    border-radius: 14px;
+    box-shadow: inset 0 0 0 1px rgba(12, 14, 16, 0.22);
+    text-align: center;
+  }
+
+  & .event-dialog__weekday {
+    font-family: var(--font-label);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-muted-on-ivory);
+  }
+
+  & .event-dialog__day {
+    margin: 12px 0 6px;
+    font-family: var(--font-display);
+    font-size: 112px;
+    line-height: 0.85;
+  }
+
+  & .event-dialog__month {
+    font-family: var(--font-label);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  & .event-dialog__hour {
+    align-self: stretch;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-divider-soft-on-ivory);
+    font-family: var(--font-accent);
+    font-size: 26px;
+    font-style: italic;
+    line-height: 1;
   }
 
   & .event-dialog__media {
     position: relative;
-    min-height: 0;
-    background: #191c22;
+    flex: 1;
+    min-height: 180px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--color-cream-hover);
   }
 
   & .event-dialog__photo {
@@ -67,267 +134,318 @@
     filter: var(--filter-musicians);
   }
 
-  /* The only thing that scrolls: a long programme stays inside the box. */
   & .event-dialog__body {
-    min-height: 0;
+    max-height: calc(100dvh - 64px);
     overflow-y: auto;
     overscroll-behavior: contain;
-    padding: clamp(24px, 3vw, 40px) clamp(24px, 3vw, 44px) clamp(24px, 3vw, 36px);
+    padding: 44px 44px 36px 40px;
   }
 
-  /* Scrollbar in the window's own colours: ink track, ivory thumb. The
-     standard properties are inherited by the body column (and by the whole
-     sheet on the phone); the -webkit- pseudo-elements are for Safari. */
+  /* Scrollbar in the sheet's colours: cream track, ink thumb. The standard
+     properties are inherited by the text column (and by the whole sheet on
+     the phone); the -webkit- pseudo-elements are for Safari. */
   scrollbar-width: thin;
-  scrollbar-color: var(--color-ivory) var(--color-ink);
+  scrollbar-color: rgba(12, 14, 16, 0.4) var(--color-cream);
 
   &::-webkit-scrollbar,
   & .event-dialog__body::-webkit-scrollbar {
     width: 8px;
-    background: var(--color-ink);
-  }
-
-  &::-webkit-scrollbar-track,
-  & .event-dialog__body::-webkit-scrollbar-track {
-    background: var(--color-ink);
+    background: var(--color-cream);
   }
 
   &::-webkit-scrollbar-thumb,
   & .event-dialog__body::-webkit-scrollbar-thumb {
     border-radius: 999px;
-    background: var(--color-ivory);
-    border: 2px solid var(--color-ink);
+    background: rgba(12, 14, 16, 0.4);
+    border: 2px solid var(--color-cream);
   }
 
-  & .event-dialog__band {
-    font-family: var(--font-label);
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(242, 244, 243, 0.84);
+  /* The city in the script of the section titles, over the title. */
+  & .event-dialog__city {
+    max-width: calc(100% - 56px);
+    font-family: var(--font-title);
+    font-size: 52px;
+    line-height: 0.8;
   }
 
   & .event-dialog__title {
-    margin-top: 16px;
-    max-width: 9em;
+    margin-top: 8px;
+    max-width: 10em;
     font-family: var(--font-display);
-    font-size: clamp(40px, 4vw, 58px);
+    font-size: clamp(40px, 4vw, 54px);
     line-height: 0.92;
     text-transform: uppercase;
     text-wrap: balance;
   }
 
   & .event-dialog__description {
-    margin-top: 14px;
-    font-size: 16.5px;
+    margin-top: 16px;
+    max-width: 46ch;
+    font-size: 16px;
     line-height: 1.7;
-    color: rgba(242, 244, 243, 0.86);
+    color: var(--color-text-soft-on-ivory);
     white-space: pre-line;
     text-wrap: pretty;
   }
 
-  /* Venue and tickets as rows: the label in a narrow left column, the
-     content beside it, a hairline above each. */
-  & .event-dialog__facts {
-    margin-top: 30px;
+  & .event-dialog__program-block {
+    margin-top: 26px;
   }
 
-  & .event-dialog__fact {
-    display: grid;
-    grid-template-columns: 96px minmax(0, 1fr);
-    gap: 8px 24px;
-    align-items: baseline;
-    padding: 22px 0;
-    border-top: 1px solid var(--color-divider-on-ink);
-  }
-
-  & .event-dialog__block {
-    margin-top: 30px;
-    padding-top: 26px;
-    border-top: 1px solid var(--color-divider-on-ink);
-  }
-
-  & .event-dialog__block-label {
+  & .event-dialog__program-label,
+  & .event-dialog__fact-label {
     font-family: var(--font-label);
     font-size: 13px;
     font-weight: 500;
+    line-height: 1;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--color-muted-on-ink);
+  }
+
+  & .event-dialog__program-label {
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid var(--color-ink);
+  }
+
+  & .event-dialog__program {
+    list-style: none;
+  }
+
+  & .event-dialog__program-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--color-divider-soft-on-ivory);
+  }
+
+  & .event-dialog__program-title {
+    font-family: var(--font-accent);
+    font-size: 24px;
+    font-style: italic;
+    line-height: 1.2;
+  }
+
+  & .event-dialog__program-leader {
+    flex: 1;
+    min-width: 24px;
+    border-bottom: 1.5px dotted rgba(12, 14, 16, 0.4);
+    translate: 0 -5px;
+  }
+
+  & .event-dialog__program-composer {
+    flex: none;
+    max-width: 45%;
+    font-family: var(--font-label);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.14em;
+    text-align: right;
+    text-transform: uppercase;
+  }
+
+  /* Venue and tickets side by side under the programme. */
+  & .event-dialog__facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 28px;
+    margin-top: 22px;
+  }
+
+  & .event-dialog__fact-label {
+    color: var(--color-muted-on-ivory);
   }
 
   & .event-dialog__fact-main {
+    display: block;
+    margin-top: 8px;
     font-family: var(--font-accent);
-    font-size: clamp(22px, 2vw, 28px);
+    font-size: 22px;
     font-style: italic;
     line-height: 1.15;
   }
 
   & .event-dialog__fact-detail {
-    margin-top: 6px;
-    font-size: 15px;
-    color: var(--color-muted-on-ink);
+    display: block;
+    margin-top: 4px;
+    font-size: 14px;
+    color: var(--color-muted-on-ivory);
   }
 
-  /* Led by a dot, like the prices, and underlined only on hover. */
+  & .event-dialog__prices {
+    list-style: none;
+  }
+
   & .event-dialog__link {
     display: inline-block;
-    margin-top: 12px;
+    margin-top: 10px;
     font-family: var(--font-label);
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.14em;
+    text-decoration: underline;
     text-transform: uppercase;
-    color: var(--color-text-on-ink);
-
-    &::before {
-      content: "· ";
-    }
+    text-underline-offset: 4px;
 
     &:hover {
-      text-decoration: underline;
-      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
     }
-  }
-
-  /* The prices run in one wrapping line; the dot closes each price but the
-     last, so it stays at the end of a line instead of opening the next. */
-  & .event-dialog__prices {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    column-gap: 10px;
-    row-gap: 6px;
-    list-style: none;
-    font-size: 15px;
-    line-height: 1.5;
-    color: var(--color-muted-on-ink);
-  }
-
-  & .event-dialog__price {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 8px;
-
-    &:not(:last-child)::after {
-      content: "·";
-    }
-  }
-
-  & .event-dialog__price-amount {
-    font-family: var(--font-display);
-    font-size: clamp(22px, 2vw, 26px);
-    line-height: 1;
-    color: var(--color-text-on-ink);
-  }
-
-  & .event-dialog__program {
-    margin-top: 12px;
-    list-style: none;
-    counter-reset: obra;
-  }
-
-  & .event-dialog__program-item {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 4px 20px;
-    padding: 14px 0;
-    border-top: 1px solid var(--color-divider-on-ink);
-    counter-increment: obra;
-
-    &:first-child {
-      border-top: 0;
-      padding-top: 6px;
-    }
-
-    &::before {
-      content: counter(obra, decimal-leading-zero);
-      font-family: var(--font-label);
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--color-muted-on-ink);
-      font-variant-numeric: tabular-nums;
-    }
-  }
-
-  & .event-dialog__program-title {
-    font-family: var(--font-accent);
-    font-size: clamp(21px, 1.9vw, 26px);
-    font-style: italic;
-    line-height: 1.2;
-  }
-
-  /* The composer sits against the right edge of the list. */
-  & .event-dialog__program-composer {
-    margin-left: auto;
-    font-family: var(--font-label);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-muted-on-ink);
   }
 
   & .event-dialog__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px 20px;
-    margin-top: 34px;
+    margin-top: 28px;
   }
 
-  /* On the phone the dialog is a full-width sheet: photo on top, the rest
-     below; a long detail scrolls the sheet as a whole. */
+  @media (prefers-reduced-motion: reduce) {
+    &[open] {
+      animation: none;
+    }
+  }
+
+  /* On the phone: a sheet risen from the bottom with a handle; the calendar
+     and the photo share the top row, the whole sheet scrolls and the action
+     stays at its foot. */
   @media (max-width: 767px) {
     width: 100%;
-    min-height: 100dvh;
-    max-height: 100dvh;
-    aspect-ratio: auto;
-    /* Full-bleed sheet: rounded corners would leave gaps at the screen edge. */
-    border-radius: 0;
+    max-height: calc(100dvh - 48px);
+    margin: auto 0 0;
+    border-radius: 24px 24px 0 0;
     overflow-y: auto;
+    overscroll-behavior: contain;
 
-    &[open] .event-dialog__panel {
-      grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: 240px auto;
-      height: auto;
+    &[open] {
+      animation-name: event-dialog-rise;
     }
 
-    & .event-dialog__body {
-      overflow: visible;
+    &[open] .event-dialog__panel {
+      display: block;
+      padding: 14px var(--site-gutter) 0;
+    }
+
+    & .event-dialog__handle {
+      display: block;
+      width: 44px;
+      height: 5px;
+      margin: 0 auto 14px;
+      border-radius: 9px;
+      background: rgba(12, 14, 16, 0.25);
     }
 
     & .event-dialog__close {
-      top: 14px;
-      right: 14px;
-      width: 42px;
-      height: 42px;
-      background: rgba(18, 20, 24, 0.55);
+      top: 18px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+    }
+
+    & .event-dialog__side {
+      flex-direction: row;
+      gap: 14px;
+      padding: 0;
+    }
+
+    & .event-dialog__calendar {
+      flex: none;
+      width: 104px;
+      padding: 12px 8px;
+    }
+
+    & .event-dialog__weekday {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+    }
+
+    & .event-dialog__day {
+      margin: 8px 0 4px;
+      font-size: 64px;
+    }
+
+    & .event-dialog__month {
+      font-size: 14px;
+      letter-spacing: 0.24em;
+    }
+
+    & .event-dialog__year {
+      display: none;
+    }
+
+    & .event-dialog__hour {
+      margin-top: 8px;
+      padding-top: 8px;
+      font-size: 20px;
     }
 
     & .event-dialog__media {
-      aspect-ratio: auto;
+      min-height: 0;
     }
 
     & .event-dialog__body {
-      padding: 24px 20px 32px;
+      max-height: none;
+      overflow: visible;
+      padding: 0;
     }
 
-    & .event-dialog__fact {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 10px;
+    & .event-dialog__city {
+      margin-top: 22px;
+      font-size: 44px;
+    }
+
+    & .event-dialog__title {
+      font-size: 40px;
+    }
+
+    & .event-dialog__description {
+      font-size: 16px;
+    }
+
+    & .event-dialog__program-item {
+      flex-wrap: wrap;
+      gap: 4px 10px;
+    }
+
+    & .event-dialog__program-title {
+      font-size: 22px;
+    }
+
+    & .event-dialog__program-leader {
+      display: none;
     }
 
     & .event-dialog__program-composer {
-      margin-left: 0;
       flex-basis: 100%;
-      padding-left: 34px;
+      max-width: none;
+      text-align: left;
+    }
+
+    & .event-dialog__facts {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    & .event-dialog__actions {
+      position: sticky;
+      bottom: 0;
+      margin: 26px calc(-1 * var(--site-gutter)) 0;
+      padding: 18px var(--site-gutter) calc(20px + env(safe-area-inset-bottom));
+      background: linear-gradient(transparent, var(--color-cream) 18px);
     }
 
     & .event-dialog__actions .pill-button {
       justify-content: center;
       width: 100%;
     }
+  }
+}
+
+@keyframes event-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+}
+
+@keyframes event-dialog-rise {
+  from {
+    transform: translateY(100%);
   }
 }

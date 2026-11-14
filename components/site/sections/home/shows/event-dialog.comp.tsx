@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
 import { EVENT_DIALOG_LABELS } from "@/constants/events.const";
-import { formatEventDateLong } from "@/lib/format-event-date";
+import { formatEventCalendarDate } from "@/lib/format-event-date";
 import type { EventContent } from "@/services/events/events.types";
 import "./event-dialog.comp.css";
 
@@ -16,27 +16,26 @@ interface EventDialogProps {
 
 const TITLE_ID = "detalle-presentacion-titulo";
 
-// Native <dialog> opened with `showModal()`: the browser gives the focus trap,
-// Escape, the top layer and the focus return for free. Closing by any means
-/** Height of the photo column on desktop (a 920px box at 3:2) and on the phone; the same numbers as the stylesheet. */
-const MEDIA_HEIGHT = 613;
-const MEDIA_WIDTH = 345;
-const MEDIA_HEIGHT_PHONE = 240;
-const PHONE_WIDTH = 430;
+/** The photo under the calendar: about 224×360 on desktop, 240×170 on the phone; the same numbers as the stylesheet. */
+const MEDIA_HEIGHT = 360;
+const MEDIA_WIDTH = 224;
+const MEDIA_HEIGHT_PHONE = 170;
+const MEDIA_WIDTH_PHONE = 240;
 /** The launch photos are 16:9; a CMS upload brings its own size. */
 const DEFAULT_RATIO = 16 / 9;
 
-// The column is a tall portrait and most photos are wide, so `cover` draws
-// them at the column's height and crops the sides: next/image must request
-// that drawn width, not the column's, or it serves a small file and the
-// screen stretches it.
+// The photo is a portrait box and most photos are wide, so `cover` draws them
+// at the box's height and crops the sides: next/image must request that drawn
+// width, not the box's, or it serves a small file and the screen stretches it.
 function photoSizes(width?: number, height?: number): string {
   const ratio = width && height ? width / height : DEFAULT_RATIO;
-  const phone = Math.ceil(Math.max(PHONE_WIDTH, MEDIA_HEIGHT_PHONE * ratio));
+  const phone = Math.ceil(Math.max(MEDIA_WIDTH_PHONE, MEDIA_HEIGHT_PHONE * ratio));
   const desktop = Math.ceil(Math.max(MEDIA_WIDTH, MEDIA_HEIGHT * ratio));
   return `(max-width: 767px) ${phone}px, ${desktop}px`;
 }
 
+// Native <dialog> opened with `showModal()`: the browser gives the focus trap,
+// Escape, the top layer and the focus return for free. Closing by any means
 // (Escape, the button, the backdrop) fires `onClose`, which clears the open
 // event in the parent.
 export function EventDialog({ event, onClose }: EventDialogProps) {
@@ -62,6 +61,7 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
   const close = () => ref.current?.close();
   const hasPrices = (event?.ticketPrices.length ?? 0) > 0;
   const hasVenue = Boolean(event?.venueName || event?.venueAddress);
+  const calendar = event ? formatEventCalendarDate(event.date) : null;
 
   return (
     <dialog
@@ -77,6 +77,8 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
     >
       {event && (
         <div className="event-dialog__panel">
+          {/* Only a cue that the sheet rises from the bottom on the phone. */}
+          <span className="event-dialog__handle" aria-hidden="true" />
           <button type="button" className="event-dialog__close" aria-label={EVENT_DIALOG_LABELS.close} onClick={close}>
             <svg
               width="16"
@@ -91,57 +93,77 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
             </svg>
           </button>
 
-          <div className="event-dialog__media">
-            <Image
-              src={event.image.src}
-              alt={event.image.alt}
-              fill
-              sizes={photoSizes(event.image.width, event.image.height)}
-              quality={100}
-              className="event-dialog__photo"
-              style={{ objectPosition: event.imagePosition }}
-            />
+          <div className="event-dialog__side">
+            <time className="event-dialog__calendar" dateTime={`${event.date}T${event.time}`}>
+              <span className="event-dialog__weekday">{calendar?.weekdayLong}</span>
+              <span className="event-dialog__day">{calendar?.day}</span>
+              <span className="event-dialog__month">
+                {calendar?.month} <span className="event-dialog__year">{calendar?.year}</span>
+              </span>
+              <span className="event-dialog__hour">{event.time} h</span>
+            </time>
+            <div className="event-dialog__media">
+              <Image
+                src={event.image.src}
+                alt={event.image.alt}
+                fill
+                sizes={photoSizes(event.image.width, event.image.height)}
+                quality={90}
+                className="event-dialog__photo"
+                style={{ objectPosition: event.imagePosition }}
+              />
+            </div>
           </div>
 
           <div className="event-dialog__body">
-            <p className="event-dialog__band">
-              <time dateTime={event.date}>{formatEventDateLong(event.date)}</time> · {event.time}
-            </p>
+            <p className="event-dialog__city">{event.city}</p>
             <h2 id={TITLE_ID} className="event-dialog__title">
               {event.title}
             </h2>
             {event.description && <p className="event-dialog__description">{event.description}</p>}
 
+            {event.program.length > 0 && (
+              <section className="event-dialog__program-block" aria-label={EVENT_DIALOG_LABELS.program}>
+                <h3 className="event-dialog__program-label">{EVENT_DIALOG_LABELS.program}</h3>
+                <ol className="event-dialog__program">
+                  {event.program.map((item, index) => (
+                    <li key={`${item.title}-${index}`} className="event-dialog__program-item">
+                      <span className="event-dialog__program-title">{item.title}</span>
+                      {item.composer && (
+                        <>
+                          {/* The dotted leader of a printed programme, title to composer. */}
+                          <span className="event-dialog__program-leader" aria-hidden="true" />
+                          <span className="event-dialog__program-composer">{item.composer}</span>
+                        </>
+                      )}
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            )}
+
             {(hasVenue || hasPrices) && (
               <div className="event-dialog__facts">
                 {hasVenue && (
                   <section className="event-dialog__fact" aria-label={EVENT_DIALOG_LABELS.venue}>
-                    <h3 className="event-dialog__block-label">{EVENT_DIALOG_LABELS.venue}</h3>
-                    <div className="event-dialog__fact-body">
-                      {event.venueName && <p className="event-dialog__fact-main">{event.venueName}</p>}
-                      {event.venueAddress && <p className="event-dialog__fact-detail">{event.venueAddress}</p>}
-                      {event.mapsUrl && (
-                        <a
-                          href={event.mapsUrl}
-                          className="event-dialog__link"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {EVENT_DIALOG_LABELS.directions}
-                        </a>
-                      )}
-                    </div>
+                    <h3 className="event-dialog__fact-label">{EVENT_DIALOG_LABELS.venue}</h3>
+                    {event.venueName && <p className="event-dialog__fact-main">{event.venueName}</p>}
+                    {event.venueAddress && <p className="event-dialog__fact-detail">{event.venueAddress}</p>}
+                    {event.mapsUrl && (
+                      <a href={event.mapsUrl} className="event-dialog__link" target="_blank" rel="noopener noreferrer">
+                        {EVENT_DIALOG_LABELS.directions}
+                      </a>
+                    )}
                   </section>
                 )}
                 {hasPrices && (
                   <section className="event-dialog__fact" aria-label={EVENT_DIALOG_LABELS.ticketsHeading}>
-                    <h3 className="event-dialog__block-label">{EVENT_DIALOG_LABELS.ticketsHeading}</h3>
-                    {/* One line that wraps: amount, who it is for, a dot, the next one. */}
+                    <h3 className="event-dialog__fact-label">{EVENT_DIALOG_LABELS.ticketsHeading}</h3>
                     <ul className="event-dialog__prices">
                       {event.ticketPrices.map((price, index) => (
                         <li key={`${price.amount}-${index}`} className="event-dialog__price">
-                          <span className="event-dialog__price-amount">{price.amount}</span>
-                          {price.label && <span className="event-dialog__price-label">{price.label}</span>}
+                          <span className="event-dialog__fact-main">{price.amount}</span>
+                          {price.label && <span className="event-dialog__fact-detail">{price.label}</span>}
                         </li>
                       ))}
                     </ul>
@@ -150,28 +172,19 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
               </div>
             )}
 
-            {event.program.length > 0 && (
-              <section className="event-dialog__block" aria-label={EVENT_DIALOG_LABELS.program}>
-                <h3 className="event-dialog__block-label">{EVENT_DIALOG_LABELS.program}</h3>
-                <ol className="event-dialog__program">
-                  {event.program.map((item, index) => (
-                    <li key={`${item.title}-${index}`} className="event-dialog__program-item">
-                      <span className="event-dialog__program-title">{item.title}</span>
-                      {item.composer && <span className="event-dialog__program-composer">{item.composer}</span>}
-                    </li>
-                  ))}
-                </ol>
-              </section>
-            )}
-
             <div className="event-dialog__actions">
               {event.ticketsUrl ? (
-                <a href={event.ticketsUrl} className="pill-button" target="_blank" rel="noopener noreferrer">
+                <a
+                  href={event.ticketsUrl}
+                  className="pill-button pill-button_variant_ink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {EVENT_DIALOG_LABELS.tickets}
                   <ArrowIcon direction="up-right" className="pill-button__icon" />
                 </a>
               ) : (
-                <a href="#contacto" className="pill-button" onClick={close}>
+                <a href="#contacto" className="pill-button pill-button_variant_ink" onClick={close}>
                   {EVENT_DIALOG_LABELS.inquire}
                   <ArrowIcon className="pill-button__icon" />
                 </a>

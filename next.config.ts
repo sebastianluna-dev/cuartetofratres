@@ -6,11 +6,12 @@ const nextConfig: NextConfig = {
     // AVIF first: the portraits are large and mostly flat tones, where it wins
     // clearly over WebP.
     formats: ["image/avif", "image/webp"],
-    // 75 is the default for every photo; 100 for the musicians (the hero's
+    // 75 is the default for every photo; 90 for the musicians (the hero's
     // stage, their portraits and their own page), the group photo of
-    // «El cuarteto» and the event window, where AVIF's smoothing at 75 shows
-    // on hair and wood.
-    qualities: [75, 100],
+    // «El cuarteto», the record and the event window, where AVIF's smoothing
+    // at 75 shows on hair and wood. 90 looks the same as 100 there and weighs
+    // about a sixth less.
+    qualities: [75, 90],
     // Uploads served by Vercel Blob in production; locally Payload serves
     // them from /api/media/file/*, a same-origin path that needs no entry.
     remotePatterns: [

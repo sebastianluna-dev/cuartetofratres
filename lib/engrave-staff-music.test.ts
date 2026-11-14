@@ -22,7 +22,10 @@ const views = {
 function engrave(view: MusicView, size: "wide" | "phone") {
   return engraveStaffMusic(
     view,
-    HERO_MUSIC_FRAGMENTS.map((fragment) => ({ ...fragment, stretch: fragment[size] })),
+    HERO_MUSIC_FRAGMENTS.flatMap((fragment) => {
+      const stretch = fragment[size];
+      return stretch ? [{ ...fragment, stretch }] : [];
+    }),
   );
 }
 

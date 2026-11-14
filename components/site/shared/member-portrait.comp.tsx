@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/site/shared/arrow-icon.comp";
@@ -16,18 +17,35 @@ interface MemberPortraitProps {
 // instrument. The whole block links to their page. Used by the home page's
 // row and by the «others» row of every musician's page.
 export function MemberPortrait({ member, sizes }: MemberPortraitProps) {
+  const { portrait } = member.photo;
+  const bleed = portrait.bleedLeft ?? 0;
+
   return (
     <Link href={memberPath(member.slug)} className="member-portrait">
       <span className="member-portrait__glow" aria-hidden="true" />
-      <span className="member-portrait__frame" style={photoFadeStyle(member.photo.portrait.fades)}>
+      <span
+        className={`member-portrait__frame${bleed ? " member-portrait__frame_bleed_left" : ""}`}
+        style={
+          {
+            ...photoFadeStyle(member.photo.portrait.fades),
+            "--portrait-zoom": String(portrait.zoom ?? 1),
+            "--portrait-bleed": String(bleed),
+          } as CSSProperties
+        }
+      >
         <Image
           src={member.photo.src}
           alt=""
           fill
-          quality={100}
+          quality={90}
           sizes={sizes}
           className="member-portrait__photo"
-          style={{ objectPosition: member.photo.portrait.position }}
+          // With room on the left, the photo keeps the box it had: the right
+          // part of the wider frame (next/image's own `fill` styles give way to these).
+          style={{
+            objectPosition: portrait.position,
+            ...(bleed && { left: `${(bleed / (100 + bleed)) * 100}%`, width: `${(100 / (100 + bleed)) * 100}%` }),
+          }}
         />
       </span>
       <span className="member-portrait__caption">

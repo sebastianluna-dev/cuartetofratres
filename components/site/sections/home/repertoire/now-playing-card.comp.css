@@ -64,6 +64,41 @@
     transform: translate(-50%, -50%);
   }
 
+  /* The phone's play and pause, on the label (hidden from the tablet up). */
+  & .now-playing__disc-toggle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: none;
+    place-items: center;
+    width: 30%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color-ink);
+    color: var(--color-ivory);
+    transform: translate(-50%, -50%);
+    transition: transform 0.25s var(--ease-stage);
+
+    &:active {
+      transform: translate(-50%, -50%) scale(0.94);
+    }
+  }
+
+  & .now-playing__glyph_play {
+    width: 0;
+    height: 0;
+    margin-left: 4px;
+    border-left: 16px solid currentColor;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+  }
+
+  & .now-playing__glyph_pause {
+    width: 16px;
+    height: 20px;
+    border-inline: 5px solid currentColor;
+  }
+
   & .now-playing__hole {
     width: 16%;
     aspect-ratio: 1;
@@ -94,6 +129,25 @@
     font-style: italic;
     line-height: 1.12;
     color: var(--color-ink);
+  }
+
+  /* The phone's one-line title (marquee-title.comp), hidden from the tablet up. */
+  & .now-playing__line-box {
+    display: none;
+    width: 100%;
+  }
+
+  & .now-playing__line {
+    justify-content: center;
+    font-family: var(--font-accent);
+    font-size: clamp(26px, 2.4vw, 32px);
+    font-style: italic;
+    line-height: 1.2;
+    color: var(--color-ink);
+
+    &.marquee_scrolling {
+      justify-content: flex-start;
+    }
   }
 
   & .now-playing__composer {
@@ -195,9 +249,42 @@
     }
   }
 
-  /* Phone: no record; the mini player is the whole player. */
+  /* Phone: the record above the programme, the whole width, not sticky (the
+     list wraps below it); a little smaller. */
   @media (max-width: 767px) {
-    display: none;
+    position: static;
+    flex: 1 1 100%;
+    max-width: none;
+    gap: 12px;
+    margin-bottom: 8px;
+
+    & .now-playing__disc {
+      width: min(62vw, 230px);
+    }
+
+    /* Play and pause move onto the record, and the words go: the programme
+       below is how to change work on the phone. */
+    & .now-playing__disc-toggle {
+      display: grid;
+    }
+
+    & .now-playing__transport {
+      display: none;
+    }
+
+    /* The category is already the active filter's business: one line less. */
+    & .now-playing__category {
+      display: none;
+    }
+
+    /* One line for the title, sliding when it does not fit. */
+    & .now-playing__title {
+      display: none;
+    }
+
+    & .now-playing__line-box {
+      display: block;
+    }
   }
 }
 

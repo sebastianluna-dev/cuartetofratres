@@ -1,9 +1,10 @@
-/* Its own stacking context, raised above the sections that follow: the mini
-   player is fixed inside it, and the members' row (z-index 1) would otherwise
-   paint over the record while it scrolls past. */
+/* Its own stacking context, raised above everything the sections that follow
+   lift (the group in «El cuarteto» at 2, the members' row at 1, the posters'
+   text at 6): the mini player is fixed inside it and must stay on top while
+   they scroll past. */
 .repertoire {
   position: relative;
-  z-index: 2;
+  z-index: 20;
   isolation: isolate;
   overflow: clip;
 

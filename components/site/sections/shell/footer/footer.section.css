@@ -17,7 +17,9 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px 32px;
-    max-width: var(--site-max-width);
+    /* The same width as the sections' content: their inner box is the site's
+       maximum with the gutters inside it, the footer's gutters are outside. */
+    max-width: calc(var(--site-max-width) - 2 * var(--site-gutter));
     margin: 0 auto;
     padding-top: 22px;
     border-top: 1px solid var(--color-divider-on-ivory);
@@ -42,9 +44,14 @@
     color: var(--color-ink);
   }
 
-  & .site-footer__year {
-    font-weight: 500;
-    color: var(--color-muted-on-ivory);
+  & .site-footer__credit-link {
+    border-bottom: 1px solid currentColor;
+    color: inherit;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--color-ink);
+    }
   }
 
   /* At the foot of a musician's page, which is dark from top to bottom. */
@@ -64,8 +71,8 @@
       color: var(--color-text-on-ink);
     }
 
-    & .site-footer__year {
-      color: var(--color-muted-on-ink);
+    & .site-footer__credit-link:hover {
+      color: var(--color-text-on-ink);
     }
   }
 }

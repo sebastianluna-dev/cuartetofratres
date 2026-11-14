@@ -2,7 +2,6 @@ import type { CSSProperties } from "react";
 import Image from "next/image";
 import { MemberHeader } from "@/components/site/sections/member/header/member-header.section";
 import { StaffMusic } from "@/components/site/shared/staff-music.comp";
-import { MEMBER_MUSIC_STAGES, MEMBER_STAGE_FIGURE } from "@/constants/members.const";
 import { StaffLines } from "@/components/site/shared/staff-lines.comp";
 import { photoFadeStyle } from "@/lib/photo-fades";
 import { splitParagraphs } from "@/lib/text-blocks";
@@ -35,18 +34,17 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
         <MemberStage>
           <div className="member-profile__glow" />
           <StaffLines kind="hero" className="member-profile__staff" />
-          <StaffMusic
-            stages={MEMBER_MUSIC_STAGES}
-            figures={MEMBER_STAGE_FIGURE}
-            id="member-music"
-            className="member-profile__music"
-          />
+          <StaffMusic drawing="member" eager className="member-profile__music" />
           <div
             className="member-profile__photo-box"
             style={
               {
                 "--note-x": `${member.photo.note.x}%`,
                 "--note-y": `${member.photo.note.y}%`,
+                ...(member.photo.note.phoneBelow && {
+                  "--note-phone-x": `${member.photo.note.phoneBelow.x}%`,
+                  "--note-phone-y": `${member.photo.note.phoneBelow.y}%`,
+                }),
               } as CSSProperties
             }
           >
@@ -60,13 +58,15 @@ export function MemberProfileSection({ member }: MemberProfileSectionProps) {
                 alt=""
                 fill
                 priority
-                quality={100}
+                quality={90}
                 sizes="(max-width: 900px) 90vw, 42vw"
                 className="member-profile__photo"
                 style={{ objectPosition: member.photo.page.position }}
               />
             </div>
-            <p className={`member-profile__note member-profile__note_points_${member.photo.note.points}`}>
+            <p
+              className={`member-profile__note member-profile__note_points_${member.photo.note.points}${member.photo.note.phoneBelow ? " member-profile__note_phone_below" : ""}`}
+            >
               {member.instrument}
               <svg className="member-profile__note-line" viewBox="0 0 70 50" focusable="false">
                 <path d="M64 4C46 6 22 14 10 40" />

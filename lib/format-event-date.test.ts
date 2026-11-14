@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { formatEventDate, formatEventDateLong, formatEventPosterDate } from "./format-event-date";
+import {
+  formatEventDate,
+  formatEventCalendarDate,
+  formatEventDateLong,
+  formatEventPosterDate,
+} from "./format-event-date";
 
 describe("formatEventDate", () => {
   it("returns day/month with the zeros kept", () => {
@@ -32,5 +37,22 @@ describe("formatEventPosterDate", () => {
   it("rejects anything that is not a date", () => {
     expect(() => formatEventPosterDate("8 de noviembre")).toThrow();
     expect(() => formatEventPosterDate("2026-00-10")).toThrow();
+  });
+});
+
+describe("formatEventCalendarDate", () => {
+  it("adds the year and the weekday in full to the poster's pieces", () => {
+    expect(formatEventCalendarDate("2026-12-05")).toEqual({
+      day: "05",
+      month: "Dic",
+      weekday: "Sáb",
+      year: "2026",
+      weekdayLong: "Sábado",
+    });
+    expect(formatEventCalendarDate("2026-11-11").weekdayLong).toBe("Miércoles");
+  });
+
+  it("rejects anything that is not a date", () => {
+    expect(() => formatEventCalendarDate("5 de diciembre")).toThrow();
   });
 });
