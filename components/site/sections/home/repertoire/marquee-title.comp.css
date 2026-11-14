@@ -18,19 +18,15 @@
     display: none;
   }
 
-  &.marquee_scrolling {
-    animation: marquee-loop var(--marquee-duration, 8s) linear infinite;
-
-    & .marquee__copy_role_echo {
-      display: block;
-    }
+  /* The loop itself runs from hooks/use-marquee.hook.ts; the class only
+     brings in the second copy. */
+  &.marquee_scrolling .marquee__copy_role_echo {
+    display: block;
   }
 
   /* Without motion the line stays still and ends in an ellipsis. */
   @media (prefers-reduced-motion: reduce) {
     &.marquee_scrolling {
-      animation: none;
-
       & .marquee__copy {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -40,15 +36,5 @@
         display: none;
       }
     }
-  }
-}
-
-@keyframes marquee-loop {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(var(--marquee-shift, 0px));
   }
 }
