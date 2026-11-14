@@ -83,6 +83,7 @@ export function RepertoirePlayer({ content, titleId }: RepertoirePlayerProps) {
             entering={listChanges > 0}
             tracks={tracks}
             visibleIds={visibleTracks.map((track) => track.id)}
+            firstNumber={Math.min(page, pages - 1) * REPERTOIRE_PAGE_SIZE + 1}
             selectedIndex={player.selectedIndex}
             playing={player.playing}
             emptyState={content.emptyState}
