@@ -252,6 +252,11 @@
     & .now-playing__transport {
       display: none;
     }
+
+    /* The category is already the active filter's business: one line less. */
+    & .now-playing__category {
+      display: none;
+    }
   }
 }
 
