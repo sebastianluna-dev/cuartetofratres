@@ -91,6 +91,14 @@ body {
   overflow-x: hidden;
 }
 
+/* A musician's page is dark from top to bottom: the page itself is ink, so a
+   seam between two sections (or the overscroll at either end) never shows a
+   light line. */
+body:has(.member-page),
+.member-page {
+  background: var(--color-ink);
+}
+
 h1,
 h2,
 h3,
