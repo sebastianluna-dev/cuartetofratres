@@ -46,9 +46,14 @@
        and push the page past the screen; zero lets it clip and scroll. */
     min-width: 0;
     margin-right: calc(-1 * var(--site-gutter));
-    padding-right: var(--site-gutter);
+    padding-right: calc(var(--site-gutter) + 40px);
     overflow-x: auto;
     scrollbar-width: none;
+    /* The right edge fades out, so a pill cut by the screen reads as "there
+       is more this way". The mask stays put while the pills scroll under it;
+       the padding past the last one lets it scroll out of the fade. */
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent);
+    mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent);
 
     &::-webkit-scrollbar {
       display: none;
