@@ -4,6 +4,27 @@
   background: radial-gradient(70% 50% at 50% 26%, #1c2025, var(--color-ink) 72%);
   overflow: clip;
 
+  /* The score fades out towards the sides of the screen and is gone at them:
+     a veil of the section's ground over the sides, under the portraits
+     (z-index 1) and over the score. Tied to the section, which spans the
+     viewport, so it meets the screen's edges at any width. */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+      90deg,
+      var(--color-ink) 0,
+      var(--color-ink) 1.5vw,
+      transparent 14vw,
+      transparent calc(100% - 14vw),
+      var(--color-ink) calc(100% - 1.5vw),
+      var(--color-ink) 100%
+    );
+    pointer-events: none;
+  }
+
   & .members__inner {
     position: relative;
   }
