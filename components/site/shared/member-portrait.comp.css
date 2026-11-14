@@ -4,13 +4,14 @@
   width: 100%;
   color: var(--color-text-on-ink);
 
-  /* The halo behind the head: it shows and grows under the pointer. */
+  /* The halo behind the musician: an upright ellipse, like a stage light on
+     someone standing; it shows and grows under the pointer. */
   & .member-portrait__glow {
     position: absolute;
     left: 50%;
-    top: 34%;
-    width: 112%;
-    aspect-ratio: 1;
+    top: 40%;
+    width: 104%;
+    aspect-ratio: 2 / 3;
     border-radius: 50%;
     background: radial-gradient(closest-side, rgba(242, 244, 243, 0.16), transparent);
     opacity: 0;
