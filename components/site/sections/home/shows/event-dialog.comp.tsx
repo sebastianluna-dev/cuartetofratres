@@ -108,7 +108,7 @@ export function EventDialog({ event, onClose }: EventDialogProps) {
                 alt={event.image.alt}
                 fill
                 sizes={photoSizes(event.image.width, event.image.height)}
-                quality={100}
+                quality={90}
                 className="event-dialog__photo"
                 style={{ objectPosition: event.imagePosition }}
               />

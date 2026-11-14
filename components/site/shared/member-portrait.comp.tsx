@@ -37,7 +37,7 @@ export function MemberPortrait({ member, sizes }: MemberPortraitProps) {
           src={member.photo.src}
           alt=""
           fill
-          quality={100}
+          quality={90}
           sizes={sizes}
           className="member-portrait__photo"
           // With room on the left, the photo keeps the box it had: the right
