@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { barlowCondensed, fratresDisplay, instrumentSerif, italianno, mulish } from "./fonts";
+import { FONT_VARIABLES } from "./fonts";
 import { GoogleAnalytics } from "@/components/site/shared/google-analytics.comp";
 import { SITE_NAME, SITE_TAGLINE } from "@/constants/site.const";
 import { SITE_URL } from "@/lib/site-url";
@@ -30,7 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${mulish.variable} ${fratresDisplay.variable} ${barlowCondensed.variable} ${instrumentSerif.variable} ${italianno.variable}`}
+      className={FONT_VARIABLES}
     >
       <body>
         <a className="skip-link" href="#contenido">

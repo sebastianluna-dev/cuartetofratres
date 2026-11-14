@@ -31,13 +31,13 @@
   --color-divider-strong-on-ink: rgba(242, 244, 243, 0.2);
 
   --font-display: var(--font-fratres), Georgia, serif;
-  --font-body: var(--font-mulish), system-ui, sans-serif;
+  --font-body: var(--font-mulish-ext), var(--font-mulish), system-ui, sans-serif;
   /* Labels, names and buttons, in condensed capitals. */
-  --font-label: var(--font-barlow-condensed), "Arial Narrow", sans-serif;
+  --font-label: var(--font-barlow-condensed-ext), var(--font-barlow-condensed), "Arial Narrow", sans-serif;
   /* The italic accent of the titles; always used with `font-style: italic`. */
-  --font-accent: var(--font-instrument-serif), Georgia, serif;
+  --font-accent: var(--font-instrument-serif-ext), var(--font-instrument-serif), Georgia, serif;
   /* The section titles' calligraphic face. */
-  --font-title: var(--font-italianno), var(--font-instrument-serif), cursive;
+  --font-title: var(--font-italianno-ext), var(--font-italianno), var(--font-instrument-serif), cursive;
 
   /* Horizontal padding of every section and the header: one value so the
      content edges line up from the top of the page to the footer. */

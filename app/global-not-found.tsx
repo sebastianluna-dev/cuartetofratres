@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SiteMessage } from "@/components/site/sections/shell/site-message/site-message.section";
 import { SITE_NAME } from "@/constants/site.const";
 import "./(site)/globals.css";
-import { barlowCondensed, fratresDisplay, mulish } from "./(site)/fonts";
+import { FONT_VARIABLES } from "./(site)/fonts";
 
 // 404 for URLs that match NO route at all (`/whatever`). With two root
 // layouts (site and CMS) Next cannot compose it from a `not-found.tsx` and
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function GlobalNotFound() {
   return (
-    <html lang="es" className={`${mulish.variable} ${fratresDisplay.variable} ${barlowCondensed.variable}`}>
+    <html lang="es" className={FONT_VARIABLES}>
       <body>
         <main id="contenido">
           <SiteMessage
