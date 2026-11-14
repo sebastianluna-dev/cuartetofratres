@@ -1,6 +1,5 @@
 import { Logo } from "@/components/site/shared/logo.comp";
 import { SITE_CREDIT, SITE_NAME } from "@/constants/site.const";
-import { getSiteSettingsData } from "@/services/site-settings/site-settings.service";
 import "./footer.section.css";
 
 interface FooterProps {
@@ -8,11 +7,10 @@ interface FooterProps {
   theme?: "ivory" | "ink";
 }
 
-// Last line of the page: the name, what the quartet is and who made the site.
+// Last line of the page: the name and who made the site.
 // The contact details and the networks are in the contact section, so they
 // are not repeated here.
-export async function Footer({ theme = "ivory" }: FooterProps) {
-  const settings = await getSiteSettingsData();
+export function Footer({ theme = "ivory" }: FooterProps) {
   const onInk = theme === "ink";
 
   return (
@@ -23,7 +21,6 @@ export async function Footer({ theme = "ivory" }: FooterProps) {
           <Logo theme={onInk ? "ivory" : "ink"} height={34} href={onInk ? "/" : "#inicio"} />
           <p className="site-footer__name">{SITE_NAME}</p>
         </div>
-        <p className="site-footer__tagline">{settings.tagline}</p>
         <p className="site-footer__credit">
           {SITE_CREDIT.label}{" "}
           <a href={SITE_CREDIT.href} className="site-footer__credit-link" target="_blank" rel="noopener">
