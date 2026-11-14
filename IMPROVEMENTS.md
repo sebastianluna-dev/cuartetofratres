@@ -160,6 +160,14 @@ Either drop the field (migration, plus the seed and `about.mapper`) or let the
 editors upload a transparent cut-out there and read it again. The cut-out was
 redone with ChatGPT on 2026-11-13 (clean edges, no light rim).
 
+## `site-settings.photoCredit` no longer shown
+
+**Area:** CMS · **Priority:** low
+
+Since 2026-11-13 the footer signs the site instead («Diseño y desarrollo: Sebastian Luna», `SITE_CREDIT`
+in `constants/site.const.ts`), so the photo credit stored in `/admin › Ajustes del sitio` is read but
+not drawn. Drop the field (migration, seed and mapper) or bring it back somewhere else.
+
 ## Hero texts in the CMS no longer shown
 
 **Area:** CMS · **Priority:** low
